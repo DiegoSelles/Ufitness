@@ -1,0 +1,67 @@
+
+ul.dropdown-lr {
+  width: 300px;
+}
+ul.navbar-right{
+	margin-top: 3px;
+	margin-right: 5px;
+	margin-bottom: 7.5px;
+	margin-left: 850px;
+}
+ul.side-nav{
+	top: 61px;
+}
+.img-rounded{
+	width: 1300px;
+}
+.btn.btn-primary {
+    background-color: #333;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.btn-info {
+	 background-color: #333;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.button-Actividades{
+	position: absolute;
+    display: inline-block;
+	margin-left: 700px;
+	margin-top: 200px;
+}
+.dropdown-info{
+    position: absolute;
+    display: inline-block;
+	margin-left: 400px;
+	margin-top: 200px;
+}
+ul.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #CCC;
+    min-width: 400px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown-menu a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+	.dropdown-lr h3 {
+		color: #eee;
+	}
+	.dropdown-lr label {
+		color: #eee;
+	}
+}
