@@ -55,6 +55,149 @@ ul.dropdown-menu {
     text-decoration: none;
     display: block;
 }
+#wrapper{
+  background-color: white;
+  font-family: 'Rubik', sans-serif;
+}
+
+.titulo_seccion{
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 50px;
+  margin-top: 20px;
+}
+.header_ejercicios{
+  order: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 2px;
+}
+.lista_ejercicios {
+    width: 1200px;
+    margin-top: 30px;
+    border-top: 1px solid black;
+}
+
+.header_lista{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#contenido .lista_ejercicios h1{
+  font-size: 30px;
+  color:#555555;
+}
+.anadir_ejercicio{
+  align-self: center;
+  display: flex;
+  align-items: baseline;;
+}
+
+#btn_anadir{
+  align-self: auto;
+  background-color:	#77F977;
+  color: black;
+  margin-left: 20px;
+
+}
+
+#btn_anadir:hover{
+  background-color:#59E059;
+}
+
+.contenido_lista{
+  padding-top: 20px;
+}
+
+.bloque_ejercicio{
+  width: 1200px;
+  height: 80px;
+  margin-top:  10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  background: #EEEEEE;
+  box-shadow: 0 10px 6px -6px #777;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titulo_ejercicio{
+  border:1px solid black;
+  width: 200px;
+  height: 80px;
+  display:flex;
+}
+
+.info_ejercicio{
+  width: 1200px;
+  height: 80px;
+  display:flex;
+  flex-direction: column;
+  font-size: 10px;
+}
+
+.opciones_ejercicio{
+  border:1px solid black;
+  width:100px;
+  height: 80px;
+  display:flex;
+  align-items: center;
+}
+#btn_eliminar{
+  background-color: #F2463B;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  padding: 5px;
+}
+
+#btn_eliminar:hover{
+  background-color: #F73224;
+}
+/*Search */
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #fff;
+    width:500px;
+
+}
+
+#custom-search-input input{
+    height: 30px;
+    border: 0;
+    box-shadow: none;
+
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
 
 /* mobile fix */
 @media (max-width: 768px) {
