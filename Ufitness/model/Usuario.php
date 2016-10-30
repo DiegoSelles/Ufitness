@@ -1,6 +1,6 @@
 <?php
 
-class Usuario 
+class Usuario
 {
 	private $nombre;
 	public $email;
@@ -18,7 +18,7 @@ class Usuario
 }
 
   public function getNombre() {
-    return $this-> nombre;
+    return $this->nombre;
   }
 
   public function setUsername($nombre) {
@@ -27,8 +27,8 @@ class Usuario
 
   public function getPassword() {
     return $this->password;
-  }  
-   
+  }
+
   public function setPassword($password) {
     $this->password = $password;
   }

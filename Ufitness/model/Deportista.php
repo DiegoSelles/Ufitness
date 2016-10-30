@@ -5,13 +5,13 @@ class Deportista extends Usuario
 {
 	public $riesgos;
 	public $historialentrenamiento;
-	public $tipoDep;
-	function __construct($nombre,$email,$password,$edad,$dni,$riesgos,$historialentrenamiento,$tipoDep)
+	public $tipoDeportista;
+	function __construct($nombre,$email,$password,$edad,$dni,$riesgos,$historialentrenamiento,$tipoDeportista)
 	{
 		parent::__construct($nombre,$email,$password,$edad,$dni);
 		$this ->riesgos = $riesgos;
 		$this ->historialentrenamiento = $historialentrenamiento;
-		$this ->tipoDep = $tipoDep;
+		$this ->tipoDeportista = $tipoDep;
 	}
 }
 ?>
