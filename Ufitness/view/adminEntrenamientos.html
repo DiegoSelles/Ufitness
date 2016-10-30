@@ -25,6 +25,8 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="desplegarMenu.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,7 +93,87 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+
+          <div id="contenido" class="container-fluid">
+              <div class="titulo_seccion">
+                <i class="fa fa-table" aria-hidden="true"></i>
+                <strong>Entrenamientos</strong>
+              </div>
+              <div class="listado">
+                <div class="header_lista">
+                  <div>
+                    <h1>Lista de Entrenamientos </h1>
+                  </div>
+                  <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control input-lg" placeholder="Buscar Entrenamiento">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                  </div>
+                  <div class="anadir">
+                    <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Entrenamiento</a>
+                  </div>
+                </div>
+            <nav id = "desplegable">
+              <ul>
+          			<li id="nivelPrincipiante"><a class= "btn_nivel" href="#"><i class="fa fa-chevron-down"></i>Principiante</a>
+          				<ul>
+                    <div class="bloque_lista">
+                      <div class="titulo_bloque">
+                        <h1>Nombre Entrenamiento1<h1>
+                      </div>
+                      <div class="info_bloque">
+                        <p>Descripción: Pecho-Biceps | Espalda-Triceps | Hombro-Pierna</p>
+                      </div>
+                      <div class="opciones_ejercicio">
+                          <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+          				</ul>
+                  <ul>
+                    <div class="bloque_lista">
+                      <div class="titulo_bloque">
+                        <h1>Nombre Entrenamiento2<h1>
+                      </div>
+                      <div class="info_bloque">
+                        <p>Descripcion:</p>
+                      </div>
+                      <div class="opciones_ejercicio">
+                          <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+          				</ul>
+                  <ul>
+                    <div class="bloque_lista">
+                      <div class="titulo_bloque">
+                        <h1>Nombre Entrenamiento3<h1>
+                      </div>
+                      <div class="info_bloque">
+                        <p>Máquina:</p>
+                        <p>Músculo:</p>
+                      </div>
+                      <div class="opciones_ejercicio">
+                          <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+          				</ul>
+
+          			</li>
+
+
+          		</ul>
+            </nav>
+                </div>
+              </div>
+          </div>
+
     </div>
+
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -76,8 +76,8 @@ ul.dropdown-menu {
   border-bottom-right-radius: 10px;
   padding: 2px;
 }
-.lista_ejercicios {
-    width: 1200px;
+.listado {
+    width: 980px;
     margin-top: 30px;
     border-top: 1px solid black;
 }
@@ -88,14 +88,15 @@ ul.dropdown-menu {
   justify-content: space-between;
   align-items: center;
 }
-#contenido .lista_ejercicios h1{
+#contenido2 .listado h1{
+  display: flex;
   font-size: 30px;
   color:#555555;
 }
-.anadir_ejercicio{
+.anadir{
   align-self: center;
   display: flex;
-  align-items: baseline;;
+  align-items: baseline;
 }
 
 #btn_anadir{
@@ -103,6 +104,7 @@ ul.dropdown-menu {
   background-color:	#77F977;
   color: black;
   margin-left: 20px;
+  border-radius: 10px;
 
 }
 
@@ -114,8 +116,8 @@ ul.dropdown-menu {
   padding-top: 20px;
 }
 
-.bloque_ejercicio{
-  width: 1200px;
+.bloque_lista{
+  width: 980px;
   height: 80px;
   margin-top:  10px;
   margin-bottom: 10px;
@@ -127,28 +129,50 @@ ul.dropdown-menu {
   justify-content: space-between;
 }
 
-.titulo_ejercicio{
-  border:1px solid black;
-  width: 200px;
-  height: 80px;
+.titulo_bloque{
+  border:0px;
   display:flex;
 }
 
-.info_ejercicio{
-  width: 1200px;
+.info_bloque{
+  width: 980px;
   height: 80px;
   display:flex;
   flex-direction: column;
   font-size: 10px;
 }
 
+.btn_nivel{
+  font-size: 24px;
+  color: black;
+}
+.btn_nivel:hover{
+  color: black;
+}
+
+.btn_nivel:focus{
+  color: black;
+}
+
 .opciones_ejercicio{
-  border:1px solid black;
+  border:0px;
   width:100px;
   height: 80px;
   display:flex;
+  padding-left: 20px;
   align-items: center;
 }
+
+#desplegable ul {
+	list-style: none;
+}
+#desplegable ul ul {
+	display: none;
+}
+#desplegable ul ul.visible {
+	display: block;
+}
+
 #btn_eliminar{
   background-color: #F2463B;
   width: 50px;
@@ -167,8 +191,7 @@ ul.dropdown-menu {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #fff;
-    width:500px;
-
+    margin-left: 20px;
 }
 
 #custom-search-input input{
