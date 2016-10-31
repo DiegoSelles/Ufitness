@@ -68,7 +68,7 @@ ul.dropdown-menu {
 .header_ejercicios{
   order: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;;
   align-items: center;
   padding-right: 5px;
   border-top-left-radius: 10px;
@@ -77,14 +77,16 @@ ul.dropdown-menu {
   padding: 2px;
 }
 .listado {
-    width: 980px;
+    width: 1100px;
     margin-top: 30px;
     border-top: 1px solid black;
 }
 
 .header_lista{
-  margin-top: 20px;
   display: flex;
+  flex-basis: 80%;
+  margin-top: 20px;
+  width: 1100px;
   justify-content: space-between;
   align-items: center;
 }
