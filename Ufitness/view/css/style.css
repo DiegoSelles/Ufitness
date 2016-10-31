@@ -90,6 +90,10 @@ ul.dropdown-menu {
   justify-content: space-between;
   align-items: center;
 }
+
+.titulo_lista{
+  width: 300px;
+}
 #contenido2 .listado h1{
   display: flex;
   font-size: 30px;
@@ -134,7 +138,13 @@ ul.dropdown-menu {
 .titulo_bloque{
   border:0px;
   display:flex;
+
 }
+
+.titulo_bloque h1{
+  font-size: 20px;
+}
+
 
 .info_bloque{
   width: 980px;
@@ -174,6 +184,10 @@ ul.dropdown-menu {
 #desplegable ul ul.visible {
 	display: block;
 }
+#icon_desplegar{
+margin-left: 5px;
+margin-bottom: 5px;
+}
 
 #btn_eliminar{
   background-color: #F2463B;
@@ -194,9 +208,11 @@ ul.dropdown-menu {
     border-bottom-right-radius: 30px;
     background-color: #fff;
     margin-left: 20px;
+    width: 300px;
 }
 
 #custom-search-input input{
+
     height: 30px;
     border: 0;
     box-shadow: none;
