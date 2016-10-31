@@ -62,8 +62,12 @@ ul.dropdown-menu {
 
 .titulo_seccion{
   font-family: 'Quattrocento Sans', sans-serif;
+  width: 1100px;
   font-size: 50px;
   margin-top: 20px;
+  display: inline-block;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 .header_ejercicios{
   order: 1;
@@ -78,8 +82,6 @@ ul.dropdown-menu {
 }
 .listado {
     width: 1100px;
-    margin-top: 30px;
-    border-top: 1px solid black;
 }
 
 .header_lista{
@@ -93,6 +95,10 @@ ul.dropdown-menu {
 
 .titulo_lista{
   width: 300px;
+}
+
+.titulo_lista h1{
+  font-size: 30px;
 }
 #contenido2 .listado h1{
   display: flex;
@@ -118,7 +124,7 @@ ul.dropdown-menu {
   background-color:#59E059;
 }
 
-.contenido_lista{
+.contenido_pagina{
   padding-top: 20px;
 }
 
@@ -199,6 +205,17 @@ margin-bottom: 5px;
 
 #btn_eliminar:hover{
   background-color: #F73224;
+}
+
+#btn_editar{
+  background-color: #F28F46;
+  align-self: auto;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+
+#btn_editar:hover{
+  background-color: #DF772B;
 }
 /*Search */
 #custom-search-input{
