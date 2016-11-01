@@ -126,6 +126,9 @@ ul.dropdown-menu {
 
 .contenido_pagina{
   padding-top: 20px;
+  padding-bottom: 20px;
+  width: 1100px;
+  height: auto;
 }
 
 .bloque_lista{
@@ -217,13 +220,24 @@ margin-bottom: 5px;
 
 .enlace_ejercicio{
   text-decoration: underline;
-
 }
 
 .enlace_ejercicio:hover{
   color:blue;
 }
 
+.info_ejercicio {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.info_ejercicio h1{
+  font-size: 25px;
+}
+
+.imgs_ejercicio{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 #btn_eliminar{
   background-color: #F2463B;
   width: 50px;
@@ -284,6 +298,49 @@ margin-bottom: 5px;
 
 #custom-search-input .glyphicon-search{
     font-size: 23px;
+}
+
+/*Image Galery*/
+div.img {
+    border: 1px solid #ccc;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* mobile fix */
