@@ -181,18 +181,47 @@ ul.dropdown-menu {
   align-items: center;
 }
 
-#desplegable ul {
+#desplegable1 ul {
 	list-style: none;
 }
-#desplegable ul ul {
+#desplegable1 ul ul {
 	display: none;
 }
-#desplegable ul ul.visible {
+#desplegable1 ul ul.visible {
+	display: block;
+}
+
+#desplegable2 ul {
+	list-style: none;
+}
+#desplegable2 ul ul {
+	display: none;
+}
+#desplegable2 ul ul.visible {
+	display: block;
+}
+
+#desplegable3 ul {
+	list-style: none;
+}
+#desplegable3 ul ul {
+	display: none;
+}
+#desplegable3 ul ul.visible {
 	display: block;
 }
 #icon_desplegar{
 margin-left: 5px;
 margin-bottom: 5px;
+}
+
+.enlace_ejercicio{
+  text-decoration: underline;
+
+}
+
+.enlace_ejercicio:hover{
+  color:blue;
 }
 
 #btn_eliminar{
