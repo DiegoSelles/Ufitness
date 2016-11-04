@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminEntrenamientos - Ufitness</title>
+    <title> AdminActividades - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -24,8 +24,6 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <script src="js/desplegarMenu.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Rubik|Quattrocento+Sans" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -94,81 +92,29 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
-
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
-                <i class="fa fa-futbol-o" aria-hidden="true"></i>
-                <strong>Actividades</strong>
+              <i class="fa fa-futbol-o" aria-hidden="true"></i>
+              <strong>Nombre Actividad</strong>
+              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
             </div>
-            <div class="listado">
-                <div class="header_lista">
-                    <div class="titulo_lista">
-                    <h1>Lista de Actividades </h1>
-                    </div>
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control input-lg" placeholder="Buscar Actividad">
-                            <span class="input-group-btn">
-                                <button class="btn btn-info btn-lg" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="anadir">
-                        <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Actividad</a>
-                    </div>
-                </div>      
-                    <ul>
-                        <div class="bloque_lista">
-                            <div class="titulo_bloque">
-                                <h1>Nombre Actividad1<h1>
-                            </div>
-                            <div class="info_bloque">
-                                <p>Horario:</p>
-                            </div>
-                            <div class="opciones_bloque">
-                                <a id="btn_modificar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </div>
-                            </div>
-                    </ul>
-                    <ul>
-                        <div class="bloque_lista">
-                            <div class="titulo_bloque">
-                                <h1>Nombre Actividad2<h1>
-                            </div>
-                            <div class="info_bloque">
-                                <p>Horario:</p>
-                            </div>
-                            <div class="opciones_bloque">
-                                <a id="btn_modificar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </ul>
-                    <ul>
-                        <div class="bloque_lista">
-                            <div class="titulo_bloque">
-                                <h1>Nombre Actividad3<h1>
-                            </div>
-                            <div class="info_bloque">
-                                <p>Horario:</p>
-                            </div>
-                            <div class="opciones_bloque">
-                                <a id="btn_modificar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </ul>
-
-
+            <div class="contenido_pagina">
+              <div class="info_actividad">
+                <div class="horario_actividad">
+                  <h1>Horario: </h1>
+                </div>
+                <div class="lugar_actividad">
+                  <h1>Lugar: </h1>
+                </div>
+                <div class="tipo_actividad">
+                  <h1>Tipo de actividad: </h1>
+                </div>
+                <div class="num_plazas">
+                  <h1>Numero de plazas: </h1>
+                </div>
+              </div>
             </div>
         </div>
-    </div>
-</div>
-
-
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
