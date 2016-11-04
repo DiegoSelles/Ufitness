@@ -26,6 +26,8 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Rubik|Quattrocento+Sans" rel="stylesheet">
 
+    <!--JavaScript-->
+    <script src="js/desplegarMenu.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -92,6 +94,119 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+        <div id="contenido" class="container-fluid">
+            <div class="titulo_seccion">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <strong>Deportistas</strong>
+            </div>
+            <div class="listado">
+              <div class="header_lista">
+                <div class="titulo_lista">
+                  <h1>Lista de Deportistas</h1>
+                </div>
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                      <input type="text" class="form-control input-lg" placeholder="Buscar Deportista" />
+                      <span class="input-group-btn">
+                          <button class="btn btn-info btn-lg" type="button">
+                              <i class="glyphicon glyphicon-search"></i>
+                          </button>
+                      </span>
+                  </div>
+                </div>
+                <div class="anadir">
+                  <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Deportista</a>
+                </div>
+              </div>
+
+              <div class="body_pagina">
+                <nav id = "desplegable1">
+                  <ul>
+              			<li id="nivel1"><a class= "btn_nivel" id = "activador_1"  href="#"><i id = "activador_1" class="fa fa-chevron-down" ></i> TDU</a>
+              				<ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <p>Nombre Deportista</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+              				</ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <p>Nombre Deportista</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                      </ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <p>Nombre Deportista</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                      </ul>
+              			</li>
+              		</ul>
+                </nav>
+                <nav id = "desplegable2">
+                  <ul>
+              			<li id="nivel2"><a class= "btn_nivel" id = "activador_2"  href="#"><i id = "activador_2" class="fa fa-chevron-down" ></i> PEF</a>
+              				<ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <p>Nombre Deportista</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+              				</ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <p>Nombre Deportista</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                             <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                      </ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <p>Nombre Deportista</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                      </ul>
+              			</li>
+              		</ul>
+                </nav>
+              </div>
+            </div>
+        </div>
     </div>
 
     <!-- jQuery -->

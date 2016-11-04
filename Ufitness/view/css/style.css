@@ -183,10 +183,10 @@ ul.dropdown-menu {
   padding-left: 20px;
   align-items: center;
 }
-
-#desplegable1 ul {
-	list-style: none;
+#contenido ul{
+  list-style: none;
 }
+
 #desplegable1 ul ul {
 	display: none;
 }
@@ -194,11 +194,6 @@ ul.dropdown-menu {
 	display: block;
 }
 
-
-
-#desplegable2 ul {
-	list-style: none;
-}
 #desplegable2 ul ul {
 	display: none;
 }
@@ -206,9 +201,7 @@ ul.dropdown-menu {
 	display: block;
 }
 
-#desplegable3 ul {
-	list-style: none;
-}
+
 #desplegable3 ul ul {
 	display: none;
 }

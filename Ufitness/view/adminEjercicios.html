@@ -26,6 +26,8 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Rubik|Quattrocento+Sans" rel="stylesheet">
 
+    <!--JavaScript-->
+    <script src="js/desplegarMenu.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -116,88 +118,164 @@
                   <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Ejercicio</a>
                 </div>
               </div>
-              <div class="contenido_pagina">
-                <ul>
-                  <ul class="grupo_muscular"><a class= "btn_nivel" href="#">Piernas<i id="icon_desplegar" class="fa fa-sort-desc" aria-hidden="true"></i></a>
-                    <ul>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <a href="verEjercicio.html"><h1>Nombre Ejercicio<h1></a>
+              <div class="body_pagina">
+                <nav id = "desplegable1">
+                  <ul>
+              			<li id="nivel1"><a class= "btn_nivel" id = "activador_1"  href="#"><i id = "activador_1" class="fa fa-chevron-down" ></i> Piernas</a>
+              				<ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                        <div class="info_bloque">
-                          <p>Máquina:</p>
-                          <p>Músculo:</p>
+              				</ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                      </ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                      </div>
-                    </ul>
-                    <ul>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <h1>Nombre Ejercicio<h1>
+                      </ul>
+              			</li>
+              		</ul>
+                </nav>
+
+                <nav id = "desplegable2">
+                  <ul>
+                    <li id="nivel2"><a class= "btn_nivel" id = "activador_2"  href="#"><i id = "activador_2" class="fa fa-chevron-down" ></i> Brazos</a>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                        <div class="info_bloque">
-                          <p>Máquina:</p>
-                          <p>Músculo:</p>
+              				</ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              				</ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                      </div>
-                    </ul>
+              				</ul>
+                    </li>
                   </ul>
-                  <ul class="grupo_muscular"><a class= "btn_nivel" href="#">Brazos<i id="icon_desplegar" class="fa fa-sort-desc" aria-hidden="true"></i></a>
-                    <ul>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <h1>Nombre Ejercicio<h1>
+                </nav>
+
+                <nav id = "desplegable3">
+                  <ul>
+              			<li id="nivel3"><a class= "btn_nivel" id = "activador_3"  href="#"><i id = "activador_3" class="fa fa-chevron-down" ></i> Espalda</a>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                        <div class="info_bloque">
-                          <p>Máquina:</p>
-                          <p>Músculo:</p>
+                      </ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              				</ul>
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> Nombre Ejercicio <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción</p>
+                            <p>Máquina</p>
+                            <p>Músculo</p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
                         </div>
-                      </div>
-                    </ul>
-                    <ul>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <h1>Nombre Ejercicio<h1>
-                        </div>
-                        <div class="info_bloque">
-                          <p>Máquina:</p>
-                          <p>Músculo:</p>
-                        </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                        </div>
-                      </div>
-                    </ul>
-                  </ul>
-                  <ul class="grupo_muscular"><a class= "btn_nivel" href="#">Espalda<i id="icon_desplegar" class="fa fa-sort-desc" aria-hidden="true"></i></a>
-                    <ul>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <h1>Nombre Ejercicio<h1>
-                        </div>
-                        <div class="info_bloque">
-                          <p>Máquina:</p>
-                          <p>Músculo:</p>
-                        </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                        </div>
-                      </div>
-                    </ul>
-                </ul>
-              </div>
-            </div>
-        </div>
-    </div>
+                      </ul>
+
+              			</li>
+              		</ul>
+                </nav>
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
