@@ -2,14 +2,17 @@
 
 class Entrenamiento
 {
-	public $idEntrenamiento;
-	public $duracion;
-	public $lugar;
-	public $tipoAct;
+	private $idEntrenamiento;
+	private $duracion;
+	private $lugar;
+	private $tipoAct;
 
-	function __construct($idEntrenamiento,$duracion){
+	function __construct($idEntrenamiento,$duracion,$lugar,$tipoAct)
+  {
 		$this ->idEntrenamiento = $idEntrenamiento;
 		$this ->duracion = $duracion;
+    $this ->lugar = $lugar;
+    $this ->tipoAct = $tipoAct;
 	}
 
   public function getidEntrenamiento() {
@@ -22,6 +25,14 @@ class Entrenamiento
 
   public function setDuracion ($duracion){
     $this ->duracion = $duracion;
+  }
+
+  public function getLugar() {
+    return $this ->lugar;
+  }
+
+  public function setTipoAct ($tipoAct){
+    $this ->duracion = $tipoAct;
   }
 
 }
