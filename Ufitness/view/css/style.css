@@ -5,14 +5,17 @@
   margin-right: 50px;
 }
 .navbar-logo{
+  width: 225px;
   float:left;
   padding: 5px;
   line-height: 20px;
+  display:flex;
+  justify-content:center;
 }
+
 .img-logo{
   height: 55px;
   width: auto;
-  margin-left: 20px;
 }
 .container{
   position: absolute;
@@ -29,7 +32,7 @@ ul.navbar-right{
 	margin-left: 850px;
 }
 ul.side-nav{
-	top: 61px;
+	top: 65px;
 }
 .img-rounded{
 	width: 1300px;
@@ -52,7 +55,7 @@ ul.side-nav{
 }
 .button-Actividades{
 	position: absolute;
-    display: inline-block;
+  display: inline-block;
 	margin-left: 700px;
 	margin-top: 200px;
 }
@@ -81,14 +84,15 @@ ul.dropdown-menu {
 }
 
 .titulo_seccion{
+  max-width: 1000px;
   font-family: 'Quattrocento Sans', sans-serif;
-  width: 1100px;
   font-size: 50px;
   margin-top: 20px;
   display: inline-block;
-  padding-bottom: 20px;
-  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+
 }
+
 .header_ejercicios{
   order: 1;
   display: flex;
@@ -99,36 +103,28 @@ ul.dropdown-menu {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 2px;
-}
-.listado {
-    width: 1100px;
+
 }
 
 .header_lista{
+  max-width: 1100px;
   display: flex;
-  flex-basis: 80%;
-  margin-top: 20px;
-  width: 1100px;
+  flex-wrap: wrap;
+  padding: 20px;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid black;
 }
-
 .titulo_lista{
-  width: 300px;
+  display:flex;
 }
-
 .titulo_lista h1{
   font-size: 30px;
 }
-#contenido2 .listado h1{
-  display: flex;
-  font-size: 30px;
-  color:#555555;
-}
+
 .anadir{
-  align-self: center;
   display: flex;
-  align-items: baseline;
+
 }
 
 #btn_anadir{
@@ -152,14 +148,16 @@ ul.dropdown-menu {
 }
 
 .bloque_lista{
-  width: 980px;
-  height: 80px;
+  max-width: 1000px;
+  min-height: 70px;
+  height: auto;
   margin-top:  10px;
   margin-bottom: 10px;
   padding: 5px;
   background: #EEEEEE;
   box-shadow: 0 10px 6px -6px #777;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -167,17 +165,12 @@ ul.dropdown-menu {
 .titulo_bloque{
   border:0px;
   display:flex;
-
 }
-
 .titulo_bloque h1{
   font-size: 20px;
 }
 
-
 .info_bloque{
-  width: 980px;
-  height: 80px;
   display:flex;
   flex-direction: column;
   font-size: 10px;
@@ -196,9 +189,6 @@ ul.dropdown-menu {
 }
 
 .opciones_bloque{
-  border:0px;
-  width:200px;
-  height: 80px;
   display:flex;
   padding-left: 20px;
   align-items: center;
@@ -206,7 +196,9 @@ ul.dropdown-menu {
 #contenido ul{
   list-style: none;
 }
-
+.desplegar{
+  display:flex;
+}
 #desplegable1 ul ul {
 	display: none;
 }
@@ -301,6 +293,7 @@ margin-bottom: 5px;
     background-color: #fff;
     margin-left: 20px;
     width: 300px;
+    display: flex;
 }
 
 #custom-search-input input{
