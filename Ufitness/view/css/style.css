@@ -6,18 +6,17 @@
 }
 .navbar-logo{
   float:left;
-  height: 50px:
-  padding: 15px;
+  padding: 5px;
   line-height: 20px;
 }
 .img-logo{
-  height: 50px;
-  width: 150px;
+  height: 70px;
+  width: auto;
+  margin-left: 5px;
 }
 .container{
   position: absolute;
   bottom: 5px;
-
 }
 
 ul.dropdown-lr {
