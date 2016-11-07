@@ -1,5 +1,5 @@
 <?php
-require_once("conexion.php");
+require_once("../resources/conexion.php");
 
 $usuario = $_POST['username'];
 $password = $_POST['password'];
@@ -15,7 +15,8 @@ $password = $_POST['password'];
 	if($row['password'] == $password){
 		session_start();
 		$_SESSION['Dni'] = $usuario;
-		header("Location: adminIndex.html");
+		$_SESSION['rol'] = $row['rol'];
+		header("Location: adminIndex.php");
 		}else{
 			header("Location: index.html");
 			exit();

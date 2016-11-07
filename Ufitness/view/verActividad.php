@@ -8,9 +8,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -19,7 +19,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> userIndex - Ufitness</title>
+    <title> AdminActividades - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -34,7 +34,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Rubik|Quattrocento+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Rubik|Quattrocento+Sans" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,20 +47,37 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 <body>
 
-			<?php 
-			include("navbar.php");
-			include("wrapper.php"); 
-			?>
-			
-			<div id="contenido" class="container-fluid">
-				<div id="titulo_index" class="titulo_seccion">
-					<h1><strong>Bienvenido a UFitness</strong></h1>
-				</div>
-				<div class="contenido_index">
-					<button type="button" id="btn_notificacion" class="btn btn-primary">nueva notificacion</button>
-				</div>
-			</div>
-			
+    <div id="wrapper">
+
+		<?php
+		include("navbar.php");
+		include("wrapper.php"); 
+		?>
+
+        <div id="contenido" class="container-fluid">
+            <div class="titulo_seccion">
+              <i class="fa fa-futbol-o" aria-hidden="true"></i>
+              <strong>Nombre Actividad</strong>
+              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+            </div>
+            <div class="contenido_pagina">
+              <div class="info_actividad">
+                <div class="horario_actividad">
+                  <h1>Horario: </h1>
+                </div>
+                <div class="lugar_actividad">
+                  <h1>Lugar: </h1>
+                </div>
+                <div class="tipo_actividad">
+                  <h1>Tipo de actividad: </h1>
+                </div>
+                <div class="num_plazas">
+                  <h1>Numero de plazas: </h1>
+                </div>
+              </div>
+            </div>
+        </div>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -70,6 +87,3 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-<?php session_destroy() ?>
-
-
