@@ -36,7 +36,7 @@ require_once("../resources/conexion.php");
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Desconectarse </a>
+                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Desconectarse </a>
                         </li>
                     </ul>
                 </li>
