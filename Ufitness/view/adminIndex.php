@@ -70,6 +70,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-<?php session_destroy() ?>
+
 
 

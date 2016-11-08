@@ -4,7 +4,7 @@ require_once("../resources/conexion.php");
 $usuario = $_POST['username'];
 $password = $_POST['password'];
 	if(empty($usuario) || empty($password)){
-		header("Location: index.html");
+		header("Location: index.php");
 		exit();
 	}
 
@@ -18,11 +18,11 @@ $password = $_POST['password'];
 		$_SESSION['rol'] = $row['rol'];
 		header("Location: adminIndex.php");
 		}else{
-			header("Location: index.html");
+			header("Location: index.php");
 			exit();
 		}
 	}else{
-		header("Location: index.html");
+		header("Location: index.php");
 		exit();
 	}
 	
