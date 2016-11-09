@@ -385,6 +385,25 @@ margin-bottom: 5px;
     font-size: 23px;
 }
 
+.formulario{
+  display:flex;
+  flex-direction: column;
+  max-width: 400px;
+  width:auto;
+  margin-top: 20px;
+  font-size:20px;
+  color:black;
+}
+
+#submit{
+  width: 400px;
+  background-color: #2C6DC8;
+}
+
+#submit:hover{
+  background-color: #125DC6;
+}
+
 /*Image Galery*/
 div.img {
     border: 1px solid #ccc;
