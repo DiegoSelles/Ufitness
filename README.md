@@ -8,5 +8,5 @@ Diego : reservar plaza actividad y asignar entrenamiento deportista </br>
 -Mirar html y responsive </br>
 -Formularios de: Perfil  </br>
 -Cambiar nombre BD: G_24(Acordarse de que si lo cambiamos hay que modificar el archivo conexion.php) (HECHO)  </br>
--Arreglar sesion  (session_destroy())(HECHO)
--Perfil con los datos del usuario </br>
+-Arreglar sesion  (session_destroy())(HECHO)</br>
+-Perfil con los datos del usuario (HECHO)</br>
