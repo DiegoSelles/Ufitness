@@ -220,6 +220,11 @@ ul.dropdown-menu {
   color: black;
 }
 
+#datos_user{
+	top:65px;
+	background-color: white;
+	margin-left:250px;
+}
 #contenido{
   top:65px;
   background-color: white;
