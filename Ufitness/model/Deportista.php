@@ -3,21 +3,16 @@
 
 class Deportista extends Usuario
 {
-	public $dni;
 	public $riesgos;
 	public $historialEntrenamiento;
 	public $tipo;
 
-	function __construct($nombre,$email,$password,$edad,$dni,$riesgos,$historialentrenamiento,$tipoDeportista)
+	function __construct($nombre,$email,$password,$edad,$dni,$rol,$riesgos,$historialentrenamiento,$tipoDeportista)
 	{
-		parent::__construct($nombre,$email,$password,$edad,$dni);
+		parent::__construct($nombre,$email,$password,$edad,$dni,$rol);
 		$this ->riesgos = $riesgos;
 		$this ->historialEntrenamiento = $historialentrenamiento;
 		$this ->tipo = $tipoDeportista;
-	}
-
-	public function getDni(){
-		return $this ->dni;
 	}
 
 	public function getRiesgos (){
@@ -44,17 +39,12 @@ class Deportista extends Usuario
 		$this ->tipo = $tipoDeportista;
 	}
 
-	public $dni;
-	public $riesgos;
-	public $historialEntrenamiento;
-	public $tipo;
-
 	public function comprobarDatos() {
 			$errors = array();
 
-			if (!validar_dni(this->dni)) {
+			/*if (!validar_dni(this->dni)) {
 				$errors["dni"] = "El DNI no es válido.";
-			}
+			}*/
 
 			if (strlen($this->edad) < 1) {
 				$errors["edad"] = "La edad no es válida.";
