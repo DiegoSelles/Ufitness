@@ -55,7 +55,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			$datos = mysql_fetch_array($consulta);
 			?>
 			
-			<div id="contenido" class="container-fluid">
+			<div id="datos_user" class="container-fluid">
 				<div id="titulo_perfil" class="titulo_seccion">
 					<h2><strong>Perfil:</strong><?php echo $_SESSION['rol']; ?></h2>
 						<div class="bloque_lista">
