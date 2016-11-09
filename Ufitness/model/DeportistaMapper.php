@@ -10,7 +10,7 @@ require_once(__DIR__."/../core/PDOConnection.php");
  *
  * @author lipido <lipido@gmail.com>
  */
-class UserMapper {
+class DeportistaMapper {
 
   /**
    * Reference to the PDO connection
@@ -29,9 +29,9 @@ class UserMapper {
    * @throws PDOException if a database error occurs
    * @return void
    */
-  public function save($user) {
-    $stmt = $this->db->prepare("INSERT INTO users values (?,?)");
-    $stmt->execute(array($user->getUsername(), $user->getPasswd()));
+  public function save($deportista) {
+    $stmt = $this->db->prepare("INSERT INTO Deportista values (?,?)");
+    $stmt->execute(array($deportista->getRiesgos(), $user->getTipo()));
   }
 
   /**
@@ -40,15 +40,6 @@ class UserMapper {
    * @param string $username the username to check
    * @return boolean true if the username exists, false otherwise
    */
-  public function usernameExists($username) {
-    $stmt = $this->db->prepare("SELECT count(username) FROM users where username=?");
-    $stmt->execute(array($username));
-
-    if ($stmt->fetchColumn() > 0) {
-      return true;
-    }
-  }
-
   /**
    * Checks if a given pair of username/password exists in the database
    *
