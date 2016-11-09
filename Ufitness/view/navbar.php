@@ -29,7 +29,7 @@ require_once("../resources/conexion.php");
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $sql['Nombre']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Perfil </a>
+                            <a href="perfil.php"><i class="fa fa-fw fa-user"></i> Perfil </a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Opciones </a>
