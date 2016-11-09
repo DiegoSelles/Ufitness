@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 if(!isset($_SESSION)) session_start();
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
@@ -76,7 +76,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                   </div>
                 </div>
                 <div class="anadir">
-                  <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Deportista</a>
+                  <a id="btn_anadir" href="../view/crearDeportista.php" class="btn btn-primary" type="button">Registrar Deportista</a>
                 </div>
               </div>
 
