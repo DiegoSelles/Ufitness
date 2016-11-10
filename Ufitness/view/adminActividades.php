@@ -1,5 +1,8 @@
-<?php 
+<?php
+
 require_once("../resources/conexion.php");
+require_once("../controller/ActividadController.php");
+
 if(!isset($_SESSION)) session_start();
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
@@ -36,6 +39,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <script src="js/desplegarMenu.js"></script>
+		<script src="js/confirmacionEliminar.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Rubik|Quattrocento+Sans" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -54,6 +59,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 		<?php
 			include("navbar.php");
 			include("wrapper.php");
+			$acontroler = new ActividadController();
+
+			/*Se comprueba si la peticion viene con el parametro para eliminar
+			y si es así se llama a la funcion del controlador*/
+			if (isset($_GET['eliminar'])){
+				$acontroler->eliminarActividad($_GET['eliminar']);
+
+				/*Molaba buscar una manera de que despues de que se eliminara una actividad no saliera en la
+				barra de direcciones el parametro eliminar=blabla que queda feo. Con la linea siguiente no funciona
+				PROBLEMA DE SEGURIDAD: si se conoce este parametro get podrían eliminarse desde la barra de direcciones*/
+				header ("Location: adminActividades.php?");
+			}
+
 		?>
 
         <div id="contenido" class="container-fluid">
@@ -80,48 +98,39 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Actividad</a>
                     </div>
                 </div>
-                    <ul>
+								<?php
+								//no utilizo la funcion listarActividades de ActividadControler porque luego no se como iterar ese resultado
+									$consulta = mysql_query("SELECT * FROM Actividad");
+									while ($actividad = mysql_fetch_assoc($consulta)) {
+									 ?>
+									  	<ul>
                         <div class="bloque_lista">
+
                             <div class="titulo_bloque">
-                                <h1>Nombre Actividad1<h1>
+															<a href = "verActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>">
+																<h1> <?php echo $actividad['nombre']; ?><h1>
+															</a>
                             </div>
+
                             <div class="info_bloque">
-                                <p>Horario:</p>
+                                <p>Horario: <?php echo $actividad['horario']; ?></p>
                             </div>
                             <div class="opciones_bloque">
-                                <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </div>
-                            </div>
-                    </ul>
-                    <ul>
-                        <div class="bloque_lista">
-                            <div class="titulo_bloque">
-                                <h1>Nombre Actividad2<h1>
-                            </div>
-                            <div class="info_bloque">
-                                <p>Horario:</p>
-                            </div>
-                            <div class="opciones_bloque">
-                              <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button">
+																	<i class="fa fa-edit" aria-hidden="true"></i>
+																</a>
+																<!--Cuando se pulsa el botón de eliminar se ejecuta una funcion javascript
+															 			que está en js/confirmacionEliminar-->
+                                <a id="btn_eliminar" href="#" onclick="confirmation(<?php echo $actividad['idActividad']; ?>)"class="btn btn-primary" title="Eliminar" type="button">
+
+																	<i class="fa fa-trash-o" aria-hidden="true"></i>
+																</a>
                             </div>
                         </div>
                     </ul>
-                    <ul>
-                        <div class="bloque_lista">
-                            <div class="titulo_bloque">
-                                <h1>Nombre Actividad3<h1>
-                            </div>
-                            <div class="info_bloque">
-                                <p>Horario:</p>
-                            </div>
-                            <div class="opciones_bloque">
-                              <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </ul>
+							<?php
+								}
+							?>
 
 
             </div>

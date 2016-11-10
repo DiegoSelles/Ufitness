@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/ActividadController.php");
 
@@ -53,7 +53,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 		<?php
 		include("navbar.php");
-		include("wrapper.php"); 
+		include("wrapper.php");
 		$acontroler = new ActividadController();
 		?>
 
@@ -73,21 +73,23 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                } ?>
               </form>
-              
+
             </div>
+
+						<?php $actividad = $acontroler->getActividad($_GET['idActividad']); ?>
             <div class="contenido_pagina">
               <div class="info_actividad">
                 <div class="horario_actividad">
-                  <h1>Horario: </h1>
+                  <h1>Horario: <?php echo $actividad['horario']; ?> </h1>
                 </div>
                 <div class="lugar_actividad">
-                  <h1>Lugar: </h1>
+                  <h1>Lugar: <?php echo $actividad['lugar']; ?></h1>
                 </div>
                 <div class="tipo_actividad">
-                  <h1>Tipo de actividad: </h1>
+                  <h1>Tipo de actividad: <?php echo $actividad['tipoAct']; ?></h1>
                 </div>
                 <div class="num_plazas">
-                  <h1>Numero de plazas: </h1>
+                  <h1>Numero de plazas: <?php echo $actividad['numPlazas']; ?></h1>
                 </div>
               </div>
             </div>
