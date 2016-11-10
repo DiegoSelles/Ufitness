@@ -236,8 +236,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `G24`;
-INSERT INTO `G24`.`Actividad` (`idActividad`, `Usuario_Dni`, `nombre`, `numPlazas`, `horario`, `lugar`, `tipoAct`) VALUES (1, '44444444B', 'spinning', 20, '2016-11-20 19:00:00', 'pabellon', 'individual');
-INSERT INTO `G24`.`Actividad` (`idActividad`, `Usuario_Dni`, `nombre`, `numPlazas`, `horario`, `lugar`, `tipoAct`) VALUES (2, '44444444B', 'bicicleta', 30, '2016-11-21 21:00:00', 'pabellon', 'grupo');
+INSERT INTO `G24`.`Actividad` (`idActividad`, `Usuario_Dni`, `nombre`, `numPlazas`, `horario`, `lugar`, `tipoAct`) VALUES (1, '44444444B', 'Spinning', 20, '2016-11-20 19:00', 'Pabellon', 'Individual');
+INSERT INTO `G24`.`Actividad` (`idActividad`, `Usuario_Dni`, `nombre`, `numPlazas`, `horario`, `lugar`, `tipoAct`) VALUES (2, '44444444B', 'Zumba', 30, '2016-11-21 21:00', 'Pabellon', 'Grupal');
 
 COMMIT;
 
