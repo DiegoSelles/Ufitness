@@ -1,5 +1,7 @@
 <?php 
 require_once("../resources/conexion.php");
+require_once("../controller/ActividadController.php");
+
 if(!isset($_SESSION)) session_start();
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
@@ -52,13 +54,26 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 		<?php
 		include("navbar.php");
 		include("wrapper.php"); 
+		$acontroler = new ActividadController();
 		?>
 
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
               <strong>Nombre Actividad</strong>
+              <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
               <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+              <?php } ?>
+              <?php if($_SESSION['rol'] == "deportista"){ ?>
+			  <form method="post" action="">
+              <input id="btn_reservar" type="submit" value="Reservar Plaza" name="ReservarPlaza">
+              <?php
+              if(isset($_POST['ReservarPlaza']))
+              $acontroler->reservarPlaza();
+
+               } ?>
+              </form>
+              
             </div>
             <div class="contenido_pagina">
               <div class="info_actividad">
