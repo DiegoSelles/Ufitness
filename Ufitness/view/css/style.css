@@ -314,6 +314,17 @@ margin-bottom: 5px;
   border-radius: 10px;
 }
 
+#btn_reservar{
+  background-color: #F28F46;
+  align-self: auto;
+  margin-left: 20px;
+  border-radius: 10px;
+  width:200px;
+  height:50px;
+  font-size:20px;
+
+}
+
 #btn_editar:hover{
   background-color: #DF772B;
 }
