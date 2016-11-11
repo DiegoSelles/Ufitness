@@ -1,6 +1,10 @@
 <?php 
 require_once("../resources/conexion.php");
+require_once("../controller/controlador_Usuario.php");
+
 if(!isset($_SESSION)) session_start();
+$ucontroler = new controlador_Usuario();
+$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();

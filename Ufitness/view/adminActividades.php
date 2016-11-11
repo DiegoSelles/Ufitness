@@ -1,9 +1,12 @@
 <?php
 
 require_once("../resources/conexion.php");
-require_once("../controller/ActividadController.php");
+require_once("../controller/controlador_Actividad.php");
+require_once("../controller/controlador_Usuario.php");
 
 if(!isset($_SESSION)) session_start();
+$ucontroler = new controlador_Usuario();
+$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();
@@ -22,7 +25,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminEntrenamientos - Ufitness</title>
+    <title> AdminActividades - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -69,7 +72,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				/*Molaba buscar una manera de que despues de que se eliminara una actividad no saliera en la
 				barra de direcciones el parametro eliminar=blabla que queda feo. Con la linea siguiente no funciona
 				PROBLEMA DE SEGURIDAD: si se conoce este parametro get podrían eliminarse desde la barra de direcciones*/
-				header ("Location: adminActividades.php?");
+				header("Location: adminActividades.php");
 			}
 
 		?>

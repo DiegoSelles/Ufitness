@@ -59,7 +59,7 @@ session_destroy();
                             <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
                                     <div class="form-group">
-                                      <form action="login.php" method="post">
+                                      <form action="../controller/controlador.php?controlador=controlador_Usuario&accion=login" method="post">
                                         <label for="username">Username</label>
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
                                         <label for="password">Password</label>

@@ -19,14 +19,8 @@ require_once("../resources/conexion.php");
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-				<?php
-					$login = $_SESSION['Dni'];
-					$consulta = "SELECT Nombre FROM Usuario WHERE Dni='". $login ."'";
-					$nombre = mysql_query($consulta);
-					$sql = mysql_fetch_array($nombre)
-					?>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $sql['Nombre']; ?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $usuarioActual->getNombre(); ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="perfil.php"><i class="fa fa-fw fa-user"></i> Perfil </a>
@@ -36,7 +30,7 @@ require_once("../resources/conexion.php");
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Desconectarse </a>
+                            <a href="../controller/controlador.php?controlador=controlador_Usuario&accion=logout"><i class="fa fa-fw fa-power-off"></i> Desconectarse </a>
                         </li>
                     </ul>
                 </li>
