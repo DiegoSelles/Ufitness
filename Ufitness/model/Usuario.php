@@ -1,5 +1,5 @@
 <?php
-
+require_once("UsuarioMapper.php");
 class Usuario
 {
 	private $nombre;
@@ -8,13 +8,14 @@ class Usuario
 	private $edad;
 	private $dni;
 	private $rol;
-	function __construct($nombre,$email,$password,$edad,$dni)
+	function __construct($nombre,$email,$password,$edad,$dni,$rol)
 	{
 		$this->nombre = $nombre;
 		$this->email = $email;
 		$this->password = $password;
 		$this->edad = $edad;
 		$this->dni = $dni;
+		$this->rol = $rol;
 	}
 
   	public function getNombre() {
@@ -53,7 +54,7 @@ class Usuario
     	return $this->edad;
   	}
 
-		public function getRol() {
+	public function getRol() {
     	return $this->rol;
   	}
 
@@ -71,7 +72,7 @@ class Usuario
 				if (strlen($this->edad) < 1) {
 					$errors["edad"] = "La edad no es válida.";
 	      }
-				if (!validar_dni(this->dni)) {
+				if (!validar_dni($this->dni)) {
 					$errors["dni"] = "El DNI no es válido.";
 	      }
 
@@ -82,6 +83,13 @@ class Usuario
 				if (sizeof($errors)>0){
 					throw new ValidationException($errors, "Existen errores. No se puede registrar el usuario.");
 	      }
+	  }
+	  
+	  public static function getbyDni($Dni){
+		  $mapper = UsuarioMapper::find($Dni);
+		  
+		  return new Usuario($mapper["Nombre"],$mapper["email"],$mapper["password"],$mapper["edad"],$mapper["Dni"],$mapper["rol"]);
+		  
 	  }
 
 		function validar_dni($dni){
