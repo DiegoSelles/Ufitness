@@ -1,7 +1,7 @@
 <?php
+require_once("Usuario.php");
 
-
-class Deportista extends Usuario
+class Deportista extends Usuario 
 {
 	public $riesgos;
 	public $historialEntrenamiento;
@@ -67,6 +67,7 @@ class Deportista extends Usuario
 		}else{
 			return false;
 	}
+}
 
 }
 ?>
