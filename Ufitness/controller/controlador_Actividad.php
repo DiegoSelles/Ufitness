@@ -1,0 +1,31 @@
+<?php
+require_once("../resources/conexion.php");
+class ActividadController{
+
+	function reservarPlaza($idActividad){
+	   $consulta = mysql_query("SELECT numPlazas FROM Actividad WHERE idActividad = $idActividad");
+	   $plazas = mysql_fetch_assoc($consulta);
+   }
+	function listarActividades (){
+		$consulta = mysql_query("SELECT * FROM Actividad");
+		$listaActividades = array();
+		while ($actividad = mysql_fetch_assoc($consulta)) {
+				array_push($actividades, $actividad);
+		}
+		$hola = "hola";
+		return $hola;
+	}
+
+	function getActividad ($idActividad){
+			$consulta = mysql_query("SELECT * FROM Actividad WHERE idActividad = $idActividad");
+			$actividad = mysql_fetch_assoc($consulta);
+			return $actividad;
+	}
+	function eliminarActividad ($idActividad){
+		mysql_query("DELETE FROM Actividad WHERE idActividad = $idActividad");
+
+	}
+}
+
+
+?>
