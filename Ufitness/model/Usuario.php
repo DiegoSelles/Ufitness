@@ -43,7 +43,7 @@ class Usuario
   	}
 
   	public function getDni() {
-    	return $this->Dni;
+    	return $this->dni;
   	}
 
   	public function setDni($dni) {
