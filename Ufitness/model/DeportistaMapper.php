@@ -1,7 +1,7 @@
 <?php
 // file: model/UserMapper.php
 
-require_once(__DIR__."/../core/PDOConnection.php");
+require_once(__DIR__."/../resources/conexion.php");
 
 /**
  * Class UserMapper
@@ -18,7 +18,7 @@ class DeportistaMapper {
    */
   private $db;
 
-  public function __construct() {
+/*  public function __construct() {
     $this->db = PDOConnection::getInstance();
   }
 
@@ -29,7 +29,7 @@ class DeportistaMapper {
    * @throws PDOException if a database error occurs
    * @return void
    */
-  public function save($deportista) {
+ /* public function save($deportista) {
     $stmt = $this->db->prepare("INSERT INTO Deportista values (?,?)");
     $stmt->execute(array($deportista->getRiesgos(), $user->getTipo()));
   }
@@ -47,12 +47,13 @@ class DeportistaMapper {
    * @param string $passwd the password
    * @return boolean true the username/passwrod exists, false otherwise.
    */
-  public function isValidUser($username, $passwd) {
+ /* public function isValidUser($username, $passwd) {
     $stmt = $this->db->prepare("SELECT count(username) FROM users where username=? and passwd=?");
     $stmt->execute(array($username, $passwd));
 
     if ($stmt->fetchColumn() > 0) {
       return true;
     }
-  }
+  }*/
 }
+?>
