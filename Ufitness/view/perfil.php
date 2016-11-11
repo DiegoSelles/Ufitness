@@ -1,6 +1,11 @@
 <?php 
 require_once("../resources/conexion.php");
+require_once("../controller/controlador_Usuario.php");
+
 if(!isset($_SESSION)) session_start();
+$ucontroler = new controlador_Usuario();
+$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
+
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();
@@ -50,9 +55,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php 
 			include("navbar.php");
 			include("wrapper.php"); 
-			$sql = "SELECT * FROM Usuario WHERE DNI ='". $_SESSION['Dni'] ."' ";
+			/*$sql = "SELECT * FROM Usuario WHERE DNI ='". $_SESSION['Dni'] ."' ";
 			$consulta = mysql_query($sql);
-			$datos = mysql_fetch_array($consulta);
+			$datos = mysql_fetch_array($consulta);*/
 			?>
 			
 			<div id="datos_user" class="container-fluid">
@@ -60,10 +65,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 					<h2><strong>Perfil:</strong><?php echo $_SESSION['rol']; ?></h2>
 						<div class="bloque_lista">
 							<div class="info_bloque">
-								<h4><strong> Nombre: </strong><br> <?php echo $datos['Nombre']; ?></br></h4>
-								<h4><strong> Dni: </strong><br> <?php echo $datos['Dni']; ?> </br></h4>
-								<h4><strong> Email: </strong><br> <?php echo $datos['email']; ?> </br></h4>
-								<h4><strong> Edad: </strong><br> <?php echo $datos['edad']; ?> </br></h4>
+								<h4><strong> Nombre: </strong><br> <?php echo $usuarioActual-> getNombre(); ?></br></h4>
+								<h4><strong> Dni: </strong><br> <?php echo $usuarioActual-> getDni(); ?> </br></h4>
+								<h4><strong> Email: </strong><br> <?php  echo $usuarioActual-> getEmail(); ?> </br></h4>
+								<h4><strong> Edad: </strong><br> <?php echo $usuarioActual-> getEdad(); ?> </br></h4>
 							</div>
 						</div>
 					</div>
