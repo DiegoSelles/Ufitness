@@ -1,6 +1,6 @@
 <?php
 
-require_once("../resources/conexion.php");
+//require_once("../resources/conexion.php");
 require_once("../controller/controlador_Actividad.php");
 require_once("../controller/controlador_Usuario.php");
 
@@ -62,7 +62,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 		<?php
 			include("navbar.php");
 			include("wrapper.php");
-			$acontroler = new ActividadController();
+			$acontroler = new controlador_Actividad();
 
 			/*Se comprueba si la peticion viene con el parametro para eliminar
 			y si es así se llama a la funcion del controlador*/
@@ -98,13 +98,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         </div>
                     </div>
                     <div class="anadir">
-                        <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Actividad</a>
+                        <a id="btn_anadir" href="../view/crearActividad.php" class="btn btn-primary" type="button">Añadir Actividad</a>
                     </div>
                 </div>
 								<?php
-								//no utilizo la funcion listarActividades de ActividadControler porque luego no se como iterar ese resultado
-									$consulta = mysql_query("SELECT * FROM Actividad");
-									while ($actividad = mysql_fetch_assoc($consulta)) {
+
+								  global $connect;
+									$arrayActividades = $acontroler->listarActividades();
+									foreach ($arrayActividades as $actividad ){
 									 ?>
 									  	<ul>
                         <div class="bloque_lista">
@@ -134,7 +135,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 							<?php
 								}
 							?>
-
 
             </div>
         </div>

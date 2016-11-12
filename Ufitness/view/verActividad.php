@@ -1,6 +1,6 @@
 <?php
 require_once("../resources/conexion.php");
-require_once("../controller/ActividadController.php");
+require_once("../controller/controlador_Actividad.php");
 require_once("../controller/controlador_Usuario.php");
 
 if(!isset($_SESSION)) session_start();
@@ -65,17 +65,17 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
               <strong>Nombre Actividad</strong>
               <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+              	<a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
               <?php } ?>
               <?php if($_SESSION['rol'] == "deportista"){ ?>
-			  <form method="post" action="">
-              <input id="btn_reservar" type="submit" value="Reservar Plaza" name="ReservarPlaza">
-              <?php
-              if(isset($_POST['ReservarPlaza']))
-              $acontroler->reservarPlaza();
+							  <form method="post" action="">
+		              <input id="btn_reservar" type="submit" value="Reservar Plaza" name="ReservarPlaza">
+		              <?php
+		              if(isset($_POST['ReservarPlaza']))
+		              	$acontroler->reservarPlaza();
 
-               } ?>
-              </form>
+		               } ?>
+	              </form>
 
             </div>
 
