@@ -36,24 +36,24 @@ class DeportistaMapper {
 
   public function listarDeportistas() {
     global $connect;
-		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.dni = D.dni";
+		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.Dni = D.DNI";
     $resultado = $connect->query($consulta);
 		$listaDeportistas = array();
 		while ($actual = mysqli_fetch_assoc($resultado)){
         $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],$actual["historialEntrenamiento"]);
-				array_push($listaDeportistas, $actual);
+				array_push($listaDeportistas, $deportista);
 		}
 		return $listaDeportistas;
 	}
 
   public function listarDeportistasTipo($tipo) {
     global $connect;
-		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.dni = D.dni AND tipoDep ='$tipo'";
+		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.Dni = D.DNI AND tipoDep ='$tipo'";
     $resultado = $connect->query($consulta);
 		$listaDeportistas = array();
 		while ($actual = mysqli_fetch_assoc($resultado)) {
         $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],$actual["historialEntrenamiento"]);
-				array_push($listaDeportistas, $actual);
+				array_push($listaDeportistas, $deportista);
 		}
 		return $listaDeportistas;
 	}
