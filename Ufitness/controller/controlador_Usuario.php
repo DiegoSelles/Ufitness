@@ -3,8 +3,8 @@ require_once("../resources/conexion.php");
 require_once("../model/Usuario.php");
 
 class controlador_Usuario{
-	
-	
+
+
 		public static function login(){
 			global $connect;
 			$usuario = $_POST['username'];
@@ -30,16 +30,25 @@ class controlador_Usuario{
 				exit();
 			}
 		}
-	
+
 		public static function logout(){
 			if(!isset($_SESSION)) session_start();
 			session_destroy();
-			header("Location: ../view/index.php");	
+			header("Location: ../view/index.php");
 		}
-		
+
 		public static function getUsuarioActual($Dni){
 			return Usuario::getbyDni($Dni);
-	
+
+		}
+		function listarEntrenadores (){
+			global $connect;
+			$consulta = $connect->query("SELECT * FROM Usuario WHERE rol = 'entrenador'");
+			$listaEntrenadores = array();
+			while ($entrenador = mysqli_fetch_assoc($consulta)) {
+					array_push($listaEntrenadores, $entrenador);
+			}
+			return $listaEntrenadores;
 		}
 }
 
