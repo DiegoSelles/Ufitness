@@ -94,7 +94,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 									  	<ul>
 												<div class="bloque_lista">
                           <div class="titulo_bloque">
-                            <a> <? echo $deportista->getNombre() ?></a>
+                            <a> <?php echo $deportista->getNombre(); ?></a>
                           </div>
                           <div class="info_bloque">
                             <p>Apellidos: </p>
