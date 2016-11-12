@@ -223,6 +223,8 @@ START TRANSACTION;
 USE `G24`;
 INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('11223344F', NULL, 'administrador', 'Samuel', 'samuel@gmail.com', 'root', 21);
 INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('44444444B', NULL, 'entrenador', 'Emily', 'emily@gmail.com', 'root', 21);
+INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('22222222B', NULL, 'entrenador', 'Pepe', 'pepe@gmail.com', 'root', 21);
+INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('33333333A', NULL, 'entrenador', 'Juan', 'juan@gmail.com', 'root', 21);
 INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('66666666C', NULL, 'deportista', 'Diego', 'diego@gmail.com', 'root', 21);
 INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('77777777D', NULL, 'deportista', 'Ruben', 'ruben@gmail.com', 'root', 21);
 INSERT INTO `G24`.`Usuario` (`Dni`, `Usuario_Dni`, `rol`, `Nombre`, `email`, `password`, `edad`) VALUES ('88888888E', NULL, 'deportista', 'Ismael', 'ismale@gmail.com', 'root', 21);
