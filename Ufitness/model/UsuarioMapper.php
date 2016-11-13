@@ -26,16 +26,6 @@ class UsuarioMapper {
 
 	}
 
-	function listarEntrenadores1 (){
-		global $connect;
-		$consulta = $connect->query("SELECT * FROM Usuario WHERE rol = 'entrenador'");
-		$listaEntrenadores = array();
-		while ($entrenador = mysqli_fetch_assoc($consulta)) {
-				array_push($listaEntrenadores, $entrenador);
-		}
-		return $listaEntrenadores;
-	}
-
 	public function guardarUsuario(Usuario $usuario)
 	{
 		global $connect;
