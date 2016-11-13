@@ -1,6 +1,8 @@
 <?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Actividad.php");
+
 
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
@@ -52,7 +54,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
-      $ucontroler = new controlador_Usuario();
 			?>
 
 			<div id="contenido" class="container-fluid">
@@ -64,12 +65,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
   				<form action="../controller/controlador.php?controlador=controlador_Actividad&accion=registrarActividad" method="post" class="formulario">
               <label for="nombre">Nombre Actividad:</label>
               <input type="text" name="nombre"/>
-              <label for="monitor">DNI del monitor:</label>
+              <label for="monitor">Monitor:</label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
               <select name="monitor">
                 <?php foreach ($entrenadores as $entrenador) { ?>
                   <!-- Parece que funciona el option pero no se ven los nobmres de los entrenadores -->
-                  <option value="dni_entrenador" selected><?php echo $entrenador['nombre']; ?></option>
+                  <option value="<?php echo $entrenador->getNombre(); ?>" ><?php echo $entrenador->getNombre(); ?></option>
                 <?php }?>
   						</select>
               <label for="horario">Horario:</label>
@@ -77,7 +78,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <label for="lugar">Lugar:</label>
               <input type="text" name="lugar"/>
               <label for="numPlazas">Numero de Plazas:</label>
-              <input type="number" name="lugar"/>
+              <input type="number" name="numPlazas"/>
               <label for="tipo">Tipo:</label>
               <input type="text" name="tipo"/>
 							<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
@@ -96,4 +97,3 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-<?php session_destroy() ?>
