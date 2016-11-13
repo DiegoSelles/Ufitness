@@ -101,41 +101,33 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         <a id="btn_anadir" href="../view/crearActividad.php" class="btn btn-primary" type="button">Añadir Actividad</a>
                     </div>
                 </div>
-								<?php
-
-								  global $connect;
-									$arrayActividades = $acontroler->listarActividades();
-									foreach ($arrayActividades as $actividad ){
-									 ?>
-									  	<ul>
-                        <div class="bloque_lista">
-
-                            <div class="titulo_bloque">
-															<a href = "verActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>">
-																<h1> <?php echo $actividad['nombre']; ?><h1>
-															</a>
-                            </div>
-
-                            <div class="info_bloque">
-                                <p>Horario: <?php echo $actividad['horario']; ?></p>
-                            </div>
-                            <div class="opciones_bloque">
-                                <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button">
-																	<i class="fa fa-edit" aria-hidden="true"></i>
-																</a>
-																<!--Cuando se pulsa el botón de eliminar se ejecuta una funcion javascript
-															 			que está en js/confirmacionEliminar-->
-                                <a id="btn_eliminar" href="#" onclick="confirmation(<?php echo $actividad['idActividad']; ?>)"class="btn btn-primary" title="Eliminar" type="button">
-
-																	<i class="fa fa-trash-o" aria-hidden="true"></i>
-																</a>
-                            </div>
-                        </div>
-                    </ul>
-							<?php
-								}
-							?>
-
+				<?php
+				global $connect;
+				$arrayActividades = $acontroler->listarActividades();
+				foreach ($arrayActividades as $actividad ){
+				?>
+				<ul>
+					<div class="bloque_lista">
+						<div class="titulo_bloque">
+							<a href = "verActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>">
+								<h1> <?php echo $actividad['nombre']; ?><h1>
+							</a>
+						</div>
+						<div class="info_bloque">
+							<p>Horario: <?php echo $actividad['horario']; ?></p>
+						</div>
+						<div class="opciones_bloque">
+							<a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button">
+								<i class="fa fa-edit" aria-hidden="true"></i>
+							</a>
+							<!--Cuando se pulsa el botón de eliminar se ejecuta una funcion javascript que está en js/confirmacionEliminar-->
+							<a id="btn_eliminar" href="#" onclick="confirmation(<?php echo $actividad['idActividad']; ?>)"class="btn btn-primary" title="Eliminar" type="button">
+								<i class="fa fa-trash-o" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+                 </ul>
+				<?php }	?>
             </div>
         </div>
     </div>

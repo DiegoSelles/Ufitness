@@ -4,8 +4,12 @@ require_once("../controller/controlador_Actividad.php");
 require_once("../controller/controlador_Usuario.php");
 
 if(!isset($_SESSION)) session_start();
+global $id;
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
+if(isset($_GET['idActividad'])){
+$id = $_GET['idActividad'];
+	}
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();
@@ -57,7 +61,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 		<?php
 		include("navbar.php");
 		include("wrapper.php");
-		$acontroler = new ActividadController();
+		$acontroler = new controlador_Actividad();
 		?>
 
         <div id="contenido" class="container-fluid">
@@ -65,21 +69,18 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
               <strong>Nombre Actividad</strong>
               <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-              	<a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
               <?php } ?>
               <?php if($_SESSION['rol'] == "deportista"){ ?>
-							  <form method="post" action="">
-		              <input id="btn_reservar" type="submit" value="Reservar Plaza" name="ReservarPlaza">
-		              <?php
-		              if(isset($_POST['ReservarPlaza']))
-		              	$acontroler->reservarPlaza();
+			  <form method="post" action="#">
+              <input id="btn_reservar" type="submit" value="Reservar Plaza" name="ReservarPlaza">
+              <?php if(isset($_POST['ReservarPlaza'])) $acontroler->reservarPlaza($id); ?>
+              <?php } ?>
+              </form>
+			  </div>
 
-		               } ?>
-	              </form>
-
-            </div>
-
-						<?php $actividad = $acontroler->getActividad($_GET['idActividad']); ?>
+			  <?php $actividad = $acontroler->getActividad($id);
+					$reserva = $acontroler->getReserva($id); ?>
             <div class="contenido_pagina">
               <div class="info_actividad">
                 <div class="horario_actividad">
@@ -94,6 +95,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <div class="num_plazas">
                   <h1>Numero de plazas: <?php echo $actividad['numPlazas']; ?></h1>
                 </div>
+                 <!--<div class="num_plazas_Reservadas">
+                  <h1>Numero de plazas reservadas: <?php echo $reserva['numero_Plazas_Reservadas']; ?></h1>
+                </div>-->
               </div>
             </div>
         </div>
