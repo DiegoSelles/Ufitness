@@ -82,7 +82,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                   </div>
                 </div>
                 <div class="anadir">
-                  <a id="btn_anadir"  href="#" class="btn btn-primary" type="button">Añadir Entrenador</a>
+                  <a id="btn_anadir"  href="../view/crearEntrenador.php" class="btn btn-primary" type="button">Añadir Entrenador</a>
                 </div>
               </div>
               <div class="body_pagina">
