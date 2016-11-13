@@ -82,7 +82,7 @@ class controlador_Usuario{
 
 		      	try{
 		      		$usuario->comprobarDatos();
-		      		$this->usuarioMapper->guardarUsuario($usuario);
+		      		$usuarioMapper->guardarUsuario($usuario);
 		      		header("Location: ../view/adminEntrenadores.php");
 		      	}catch(ValidationException $ex)
 		      	{
