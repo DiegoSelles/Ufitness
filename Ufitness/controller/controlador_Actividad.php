@@ -1,11 +1,7 @@
 <?php
 require_once("../resources/conexion.php");
-class controlador_Actividad{
 
-	function reservarPlaza($idActividad){
-	   $consulta = mysql_query("SELECT numPlazas FROM Actividad WHERE idActividad = $idActividad");
-	   $plazas = mysql_fetch_assoc($consulta);
-   }
+class controlador_Actividad{
 
 	//Estas funciones que sacan consultas de la base de datos no se si deberían de ir aqui o en ActividadMapper.php
 	function listarActividades (){
@@ -60,8 +56,6 @@ class controlador_Actividad{
 			$sentencia->execute();
 			//header("Location: ../view/adminActividades.php");
 		}
-
-
 	}
 
 	function eliminarActividad ($idActividad){
@@ -69,6 +63,34 @@ class controlador_Actividad{
 		$connect->query("DELETE FROM Actividad WHERE idActividad = $idActividad");
 
 	}
+	function getReserva($idActividad){
+		global $connect;
+		$consulta = "SELECT numero_Plazas_Reservadas FROM Reserva WHERE Actividad_idActividad ='" .$idActividad."'";
+		$resultado = $connect->query($consulta);
+		$reserva = mysqli_fetch_assoc($resultado);
+		return $reserva;
+	}
+	
+	function reservarPlaza($idActividad){
+	   global $connect;
+	   $consulta = "SELECT numPlazas FROM Actividad WHERE idActividad ='" .$idActividad. "'" ;
+	   $resultado= $connect->query($consulta);
+	   $plazas = mysqli_fetch_assoc($resultado);
+	   $query = "SELECT Deportista_Usuario_Dni FROM Reserva WHERE Actividad_idActividad='" .$idActividad."'";
+	   $result = $connect->query($query);   
+	   $filas = mysqli_num_rows($result);
+	   if($plazas['numPlazas'] == $filas){
+		   echo "<script language='javascript'>window.location='../view/error.php'</script>";
+		   exit();
+		}else{
+			$prueba = $plazas['numPlazas'] - 1;
+			mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$prueba. "' WHERE idActividad ='" .$idActividad. "'");
+			mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,numero_Plazas_Reservadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$prueba."')");
+			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+
+			exit();
+		} 
+   }
 }
 
 
