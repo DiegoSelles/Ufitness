@@ -88,50 +88,29 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <div class="body_pagina">
                 <ul>
                     <li>
+
+                      <?php
+                         $usuarios = $ucontroler->listarEntrenadores();
+                         foreach ($usuarios as $usuario) {
+                         ?>
+
                       <div class="bloque_lista">
                         <div class="titulo_bloque">
-                          <h1>Entrenador 1<h1>
+                          <h1> <?php echo $usuario->getNombre(); ?><h1>
                         </div>
                         <div class="info_bloque">
-                          <p>Apellidos: </p>
-                          <p>Edad:</p>
-                          <p>Sexo: </p>
+                          <p>Dni: <?php echo $usuario->getDni(); ?>    </p>
+                          <p>Edad: <?php echo $usuario->getEdad(); ?>    </p>
+                          <p>Email:   <?php echo $usuario->getEmail(); ?> </p>
                         </div>
                         <div class="opciones_bloque">
                             <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      <!--      <a id="btn_editar_entrenador" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a> -->
+                            <a id="btn_editar_entrenador" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a> 
                         </div>
                       </div>
-                    </li>
-                    <li>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <h1>Entrenador 2<h1>
-                        </div>
-                        <div class="info_bloque">
-                          <p>Apellidos: </p>
-                          <p>Edad:</p>
-                          <p>Sexo: </p>
-                        </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                          <h1>Entrenador 3<h1>
-                        </div>
-                        <div class="info_bloque">
-                          <p>Apellidos: </p>
-                          <p>Edad:</p>
-                          <p>Sexo: </p>
-                        </div>
-                        <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                        </div>
-                      </div>
+
+                       <?php }; ?>
+
                     </li>
                 </ul>
 
