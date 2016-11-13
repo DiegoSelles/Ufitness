@@ -51,10 +51,10 @@ class UsuarioMapper {
 	public function usuarioExiste($dni)
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(Dni) FROM Usuario WHERE Dni='". $Dni ."'";
-		$connect->query($consulta);
-
-		if($connect->fetchColumn() > 0)
+		$consulta = "SELECT * FROM Usuario WHERE Dni='". $dni ."'";
+		$resultado = $connect->query($consulta);
+		$filas = mysqli_num_rows($resultado);
+		if($filas > 0)
 			return true;
 
 	}
