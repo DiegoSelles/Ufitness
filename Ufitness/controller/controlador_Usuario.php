@@ -1,6 +1,6 @@
 <?php
 require_once("../model/Usuario.php");
-require_once("/../model/UsuarioMapper.php");
+require_once("../model/UsuarioMapper.php");
 
 class controlador_Usuario{
 
