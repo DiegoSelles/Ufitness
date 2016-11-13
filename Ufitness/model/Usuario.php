@@ -54,36 +54,40 @@ class Usuario
     	return $this->edad;
   	}
 
+  	public function setRol()
+  	{
+  		$this->rol = $rol;
+  	}
 	public function getRol() {
     	return $this->rol;
   	}
 
-		public function comprobarDatos() {
-	      $errors = array();
-	      if (strlen(trim($this->nombre)) < 5) {
-					$errors["username"] = "Debes introducir nombre y apellidos.";
-	      }
-				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				  echo "Esta dirección de correo ($email_a) es válida.";
-				}
-	      if (strlen($this->password) < 5) {
-					$errors["password"] = "La contraseña debe tener al menos 6 caracteres.";
-	      }
-				if (strlen($this->edad) < 1) {
-					$errors["edad"] = "La edad no es válida.";
-	      }
-				if (!validar_dni($this->dni)) {
-					$errors["dni"] = "El DNI no es válido.";
-	      }
+	public function comprobarDatos() {
+      $errors = array();
+      if (strlen(trim($this->nombre)) < 5) {
+				$errors["username"] = "Debes introducir nombre y apellidos.";
+      }
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			  echo "Esta dirección de correo ($email_a) es válida.";
+			}
+      if (strlen($this->password) < 5) {
+				$errors["password"] = "La contraseña debe tener al menos 6 caracteres.";
+      }
+			if (strlen($this->edad) < 1) {
+				$errors["edad"] = "La edad no es válida.";
+      }
+			if (!validar_dni($this->dni)) {
+				$errors["dni"] = "El DNI no es válido.";
+      }
 
-				if((strcasecmp ($this->rol , "administrador" )!=0) || (strcasecmp ($this->rol , "deportista" )!=0) || (strcasecmp ($this->rol , "entrenador" )!=0)){
-					$errors["rol"] = "El rol no es válido. Debe ser: administrador, entrenador o deportista.";
-				}
+			if((strcasecmp ($this->rol , "administrador" )!=0) || (strcasecmp ($this->rol , "deportista" )!=0) || (strcasecmp ($this->rol , "entrenador" )!=0)){
+				$errors["rol"] = "El rol no es válido. Debe ser: administrador, entrenador o deportista.";
+			}
 
-				if (sizeof($errors)>0){
-					throw new ValidationException($errors, "Existen errores. No se puede registrar el usuario.");
-	      }
-	  }
+			if (sizeof($errors)>0){
+				throw new ValidationException($errors, "Existen errores. No se puede registrar el usuario.");
+      }
+  }
 	  
 	  public static function getbyDni($Dni){
 		  $mapper = UsuarioMapper::find($Dni);
