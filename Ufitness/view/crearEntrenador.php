@@ -63,7 +63,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
           <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=anhadir" method="post" class="formulario">
               <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre"/>
               <?php echo "DNI" ?>: <input type="text" name="Dni"/>
-              <?php echo "Edad" ?>: <input type="text" name="edad"/>
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha"/>
               <?php echo "E-mail" ?>: <input type="text" name="email"/>
               <?php echo "Contraseña" ?>: <input type="password" name="password"/>
               <input type="text" name="rol" hidden="true" value="entrenador" />
