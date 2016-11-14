@@ -1,6 +1,6 @@
 <?php
 require_once("../model/Usuario.php");
-require_once("../model/UsuarioMapper.php");
+require_once("/../model/UsuarioMapper.php");
 
 class controlador_Usuario{
 
@@ -60,34 +60,35 @@ class controlador_Usuario{
 			
 		}
 
-		public function anhadir()
+		public static function anhadir()
 		{
 			
     		$usuarioMapper = new UsuarioMapper();
-    		$usuario = new Usuario();
+    		//$usuario = new Usuario();
 
-		    if(isset($_POST["submit"])){ 
+		    if(isset($_POST["nombre"])){ 
 
 		      $edad = date(DATE_ATOM)-$_POST["fecha"];//Calculamos la edad
 		      //echo $_POST["nombre"];
-		      //$usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"entrenador");
+		      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"entrenador");
 
-		      $usuario->setDni($_POST["dni"]);
+		  /*    $usuario->setDni($_POST["dni"]);
 		      $usuario->setNombre($_POST["nombre"]);
 		      $usuario->setEmail($_POST["email"]);
 		      $usuario->setPassword($_POST["password"]);
 		      $usuario->setEdad($edad);
-		      $usuario->setRol("entrenador");
-			}
+		      $usuario->setRol("entrenador"); */
+			
 
-		      	try{
-		      		$usuario->comprobarDatos();
+		     	try{
+		    //  		$usuario->comprobarDatos();
 		      		$usuarioMapper->guardarUsuario($usuario);
 		      		header("Location: ../view/adminEntrenadores.php");
 		      	}catch(ValidationException $ex)
 		      	{
 		      		//mensaje error
-		      	}
+		     	}
+		     }
 		}
 
 		public function editar()
