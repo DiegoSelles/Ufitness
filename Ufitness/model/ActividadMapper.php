@@ -20,41 +20,23 @@ class ActividadMapper {
 			return $actividad;
 	}
 
-  public function registrarActividad (){
-		global $connect;
-		//Obtener el dni del monitor
-		$nombre_monitor = $_POST['monitor'];
-		$sentencia = $connect->prepare("SELECT Dni FROM Usuario WHERE nombre = ?");
+  public function registrarActividad ($actividad, $nombre_monitor){
+    global $connect;
+    $sentencia = $connect->prepare("SELECT Dni FROM Usuario WHERE nombre = ?");
 		$sentencia->bind_param("s", $nombre_monitor);
 		$sentencia->execute();
 		$sentencia->bind_result($dni_monitor);
 		$sentencia->fetch();
 
-		//Obtener el nombre de la actividad
-		$nombre = $_POST['nombre'];
-		//Obtener la fecha y la hora de la actividad
-		$horario = $_POST['horario'];
-		//Obtener el lugar de la actividad
-		$lugar = $_POST['lugar'];
-		//Obtener el numero de plazas de la actividad
-		$numPlazas = $_POST['numPlazas'];
-		//Obtener el tipo de la actividad
-		$tipo = $_POST['tipo'];
-		//El id al ser autoincremental se pasa como nulo
-		$idActividad = NULL;
-
 		//Algo falla en la sentencia porque no se añade la actividad en la BD aunque no da ningun error ahora
-		$sql = "INSERT INTO Actividad (idActividad, Usuario_Dni, nombre, numPlazas, horario, lugar, tipoAct)
-		VALUES ('". $idActividad ."', '". $dni_monitor ."', '". $nombre ."', '". $numPlazas ."', '". $horario ."', '". $lugar ."', '". $tipo ."')";
-
-		//La sentencia anterior no se realiza por algun motivo entonces devuelve false
-		if($sentencia = $connect->query($sql)){
+		$sql = " INSERT INTO Actividad (Usuario_Dni, nombre, numPlazas, horario, lugar, tipoAct)
+		VALUES ('". $dni_monitor ."', '". $actividad->getNombre() ."', '". $actividad->getNumPlazas() ."', '". $actividad->getHorario() ."', '". $actividad->getLugar() ."', '". $actividad->getTipoActividad() ."')";
+    if($sql){
+      print_r($actividad);
       echo "hola";
-      //header("Location: ../view/adminActividades.php");
-    }else{
-      echo "La sentencia sql no funciona";
     }
-
+		//La sentencia anterior no se realiza por algun motivo entonces devuelve false
+		$connect->query($sql);
 	}
 
   public function findAllActividades() {

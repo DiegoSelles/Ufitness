@@ -2,7 +2,7 @@
 
 class Actividad
 {
-	public $id
+	public $id;
 	public $nombre;
 	public $numPlazas;
 	public $horario;
@@ -38,25 +38,32 @@ class Actividad
 		return $this ->numPlazas;
 	}
 
-	public function setNumPlazas ($numPlazas){
-		$this ->numPlazas = $numPlazas;
-	}
-
 	public function getLugar (){
 		return $this ->lugar;
-	}
-
-	public function setLugar ($lugar){
-		$this ->lugar = $lugar;
 	}
 
 	public function getTipoActividad (){
 		return $this ->tipoAct;
 	}
+	
+
+	/*
+	public function setNumPlazas ($numPlazas){
+		$this ->numPlazas = $numPlazas;
+	}
+
+
+
+	public function setLugar ($lugar){
+		$this ->lugar = $lugar;
+	}
+
+
 
 	public function setTipoActividad ($tipoActividad){
 		$this ->tipoAct = $tipoActividad;
 	}
+	*/
 
 	public function comprobarDatosNuevo() {
       $errors = array();
