@@ -21,22 +21,13 @@ class ActividadMapper {
 	}
 
   public function registrarActividad ($actividad, $nombre_monitor){
-    global $connect;
-    $sentencia = $connect->prepare("SELECT Dni FROM Usuario WHERE nombre = ?");
-		$sentencia->bind_param("s", $nombre_monitor);
-		$sentencia->execute();
-		$sentencia->bind_result($dni_monitor);
-		$sentencia->fetch();
-
-		//Algo falla en la sentencia porque no se añade la actividad en la BD aunque no da ningun error ahora
+		global $connect;
+		$consulta = $connect->query("SELECT Dni FROM Usuario WHERE nombre ='" .$nombre_monitor. "'");
+		$resultado = mysqli_fetch_assoc($consulta);
 		$sql = " INSERT INTO Actividad (Usuario_Dni, nombre, numPlazas, horario, lugar, tipoAct)
-		VALUES ('". $dni_monitor ."', '". $actividad->getNombre() ."', '". $actividad->getNumPlazas() ."', '". $actividad->getHorario() ."', '". $actividad->getLugar() ."', '". $actividad->getTipoActividad() ."')";
-    if($sql){
-      print_r($actividad);
-      echo "hola";
-    }
-		//La sentencia anterior no se realiza por algun motivo entonces devuelve false
-		$connect->query($sql);
+		VALUES ('". $resultado['Dni'] ."', '". $actividad->getNombre() ."', '". $actividad->getNumPlazas() ."', '". $actividad->getHorario() ."', '". $actividad->getLugar() ."', '". $actividad->getTipoActividad() ."')";
+		if($connect->query($sql))
+		echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 	}
 
   public function findAllActividades() {
