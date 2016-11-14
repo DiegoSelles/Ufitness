@@ -1,6 +1,8 @@
 <?php
 require_once("../resources/conexion.php");
 require_once("../model/ActividadMapper.php");
+require_once("../model/Actividad.php");
+
 
 class controlador_Actividad{
 
@@ -23,7 +25,22 @@ class controlador_Actividad{
 		//Liada: al llamar a esta accion directamente desde un formulario no se llama al constructor
 		//y por tanto no se crea el ActividadMapper()
 		$actividadMapper = new ActividadMapper();
-		$actividadMapper->registrarActividad();
+		global $connect;
+		//Obtener el nombre del monitor
+		$nombre_monitor = $_POST['monitor'];
+		//Obtener el nombre de la actividad
+		$nombre = $_POST['nombre'];
+		//Obtener la fecha y la hora de la actividad
+		$horario = $_POST['horario'];
+		//Obtener el lugar de la actividad
+		$lugar = $_POST['lugar'];
+		//Obtener el numero de plazas de la actividad
+		$numPlazas = $_POST['numPlazas'];
+		//Obtener el tipo de la actividad
+		$tipo = $_POST['tipo'];
+		$actividad = new Actividad ($nombre,$numPlazas,$horario,$lugar,$tipo);
+		$actividadMapper->registrarActividad($actividad, $nombre_monitor);
+
 	}
 
 	public function eliminarActividad ($idActividad){
