@@ -1,14 +1,14 @@
 <?php
 require_once("../resources/conexion.php");
-require_once("../controller/controlador_Usuario.php");
+require_once("../controller/UsuariosController.php");
 
 if(!isset($_SESSION)) session_start();
-$ucontroler = new controlador_Usuario();
-$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
-  header("Location: error.php");
-  exit();
+	header("Location: error.php");
+	exit();
 }
+
+$usuarios = new UsuariosController();
 
 ?>
 
@@ -49,21 +49,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 <body>
     <div id="wrapper">
-      <?php
-      include("navbar.php");
-      include("wrapper.php");
-      ?>
+			<?php
+			include("navbar.php");
+			include("wrapper.php");
+      $usuario = $usuarios->listarPorDni($_GET['dni']);
+			?>
 
-      <div id="contenido" class="container-fluid">
+			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <strong>Nuevo Entrenador</strong>
+          <strong>Modificar Entrenador</strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=anhadir" method="post" class="formulario">
-              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni"/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha"/>
+  				<form action="adminEntrenadores.php?controller=usuarios&amp;action=editar" method="post" class="formulario">
+              <?php echo $usuario->getNombre(); ?>: <input  type="text" name="nombre" value="" />
+              <?php echo "DNI" ?>: <input type="text" name="Dni"/>
+              <?php echo "Edad" ?>: <input type="text" name="edad"/>
               <?php echo "E-mail" ?>: <input type="text" name="email"/>
               <?php echo "Contraseña" ?>: <input type="password" name="password"/>
               <input type="text" name="rol" hidden="true" value="entrenador" />
@@ -71,11 +72,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <br/>
               <br/>
 
-              <input id="submit" class="btn btn-primary" type="submit" value="Añadir">
+							<input id="submit" class="btn btn-primary" type="submit" value="Actualizar">
 
           </form>
         </div>
-      </div>
+			</div>
     </div>
 
     <!-- jQuery -->
