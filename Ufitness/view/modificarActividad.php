@@ -88,7 +88,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <input type="number" name="numPlazas" value="<?php echo $actividad->getNumPlazas(); ?>"/>
               <label for="tipo">Tipo:</label>
               <input type="text" name="tipo" value="<?php echo $actividad->getTipoActividad(); ?>"/>
-			  <input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+			  <input id="submit" class="btn btn-primary" type="submit" value="Modificar">
 			</form>
 		</div>
 	</div>

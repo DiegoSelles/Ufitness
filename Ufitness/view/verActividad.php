@@ -69,7 +69,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
               <strong>Nombre Actividad</strong>
               <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+              <a id="btn_editar" href="modificarActividad.php?idActividad=<?php echo $id; ?>" class="btn btn-primary" type="button"> Editar </a>
               <?php } ?>
               <?php if($_SESSION['rol'] == "deportista"){ ?>
 			  <form method="post" action="#">
@@ -95,9 +95,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <div class="num_plazas">
                   <h1>Numero de plazas: <?php echo $actividad['numPlazas']; ?></h1>
                 </div>
-                 <!--<div class="num_plazas_Reservadas">
-                  <h1>Numero de plazas reservadas: <?php echo $reserva['numero_Plazas_Reservadas']; ?></h1>
-                </div>-->
               </div>
             </div>
         </div>

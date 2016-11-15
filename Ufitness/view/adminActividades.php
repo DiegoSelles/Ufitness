@@ -1,6 +1,4 @@
 <?php
-
-//require_once("../resources/conexion.php");
 require_once("../controller/controlador_Actividad.php");
 require_once("../controller/controlador_Usuario.php");
 
@@ -64,14 +62,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			include("wrapper.php");
 			$acontroler = new controlador_Actividad();
 
-			/*Se comprueba si la peticion viene con el parametro para eliminar
-			y si es así se llama a la funcion del controlador*/
 			if (isset($_GET['eliminar'])){
 				$acontroler->eliminarActividad($_GET['eliminar']);
-
-				/*Molaba buscar una manera de que despues de que se eliminara una actividad no saliera en la
-				barra de direcciones el parametro eliminar=blabla que queda feo. Con la linea siguiente no funciona
-				PROBLEMA DE SEGURIDAD: si se conoce este parametro get podrían eliminarse desde la barra de direcciones*/
 				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";				
 			}
 
@@ -120,7 +112,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 							<a id="btn_edit_bloque" href="modificarActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>" class="btn btn-primary" title="Editar" type="button">
 								<i class="fa fa-edit" aria-hidden="true"></i>
 							</a>
-							<!--Cuando se pulsa el botón de eliminar se ejecuta una funcion javascript que está en js/confirmacionEliminar-->
 							<a id="btn_eliminar" href="#" onclick="confirmation(<?php echo $actividad['idActividad']; ?>)"class="btn btn-primary" title="Eliminar" type="button">
 								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</a>
