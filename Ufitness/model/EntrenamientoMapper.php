@@ -1,9 +1,8 @@
 <?php
 // file: model/PostMapper.php
-require_once(__DIR__."/../core/PDOConnection.php");
 
-require_once(__DIR__."/../model/Entrenamiento.php");
-require_once(__DIR__."/../model/Deportista.php");
+require_once("../model/Entrenamiento.php");
+require_once("../model/Deportista.php");
 
 
 /**
