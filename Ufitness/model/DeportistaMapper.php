@@ -63,14 +63,21 @@ class DeportistaMapper {
 
   public function buscarDni($dni){
     global $connect;
-    $consulta = "SELECT FROM Usuario U, Deportista D WHERE U.dni = D.dni AND U.dni='$dni' ";
-    $resultado = $connect->query($consulta);
+    $consulta = "SELECT * FROM Usuario U, Deportista D WHERE U.dni = D.dni AND U.dni='$dni' ";
+    $res = $connect->query($consulta);
+    $resultado = mysqli_fetch_assoc($res);
 
     if($resultado != null) {
-      return new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],$actual["historialEntrenamiento"]);
+      return new Deportista($resultado["Nombre"],$resultado["email"],$resultado["password"],$resultado["edad"],$resultado["DNI"],$resultado["rol"],$resultado["riesgos"],$resultado["tipoDep"],$resultado["historialEntrenamiento"]);
     } else {
       return NULL;
     }
+  }
+
+  public function modificar($deportista,$dniAntiguo){
+    global $connect;
+    $consulta= "UPDATE Deportista set riesgos='".$deportista->getRiesgos()."' tipo='".$deportista->getTipo()."' WHERE DNI='".$dniAntiguo."'";
+    $connect->query($consulta);
   }
 }
 ?>
