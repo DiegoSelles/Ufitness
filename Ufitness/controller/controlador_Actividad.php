@@ -20,6 +20,7 @@ class controlador_Actividad{
 	public function getActividad ($idActividad){
 		return $this->actividadMapper->getActividad($idActividad);
 	}
+	
 	public function buscarActividadById($idActividad){
 		return $this->actividadMapper->findActividadById($idActividad);
 	}
@@ -53,7 +54,6 @@ class controlador_Actividad{
 	}
 	public function modificarActividad (){
 		$actividadMapper = new ActividadMapper();
-		global $connect;
 		//Obtener el nombre del monitor
 		$nombre_monitor = $_POST['monitor'];
 		//Obtener el nombre de la actividad
@@ -69,6 +69,7 @@ class controlador_Actividad{
 		$actividad = new Actividad ($nombre_monitor,$nombre,$numPlazas,$horario,$lugar,$tipo);
 		$actividadMapper->updateActividad($actividad,$nombre_monitor);
 	}
+	
 	public function getReserva($idActividad){
 		global $connect;
 		$consulta = "SELECT numero_Plazas_Reservadas FROM Reserva WHERE Actividad_idActividad ='" .$idActividad."'";
