@@ -1,6 +1,7 @@
 <?php
 require_once("../model/Usuario.php");
 require_once("/../model/UsuarioMapper.php");
+require_once("../resources/conexion.php");
 
 class controlador_Usuario{
 
@@ -56,7 +57,9 @@ class controlador_Usuario{
 
 		public function buscarPorDni($Dni)
 		{
-			return $this->usuarioMapper->find($Dni);
+			//return $this->usuarioMapper->find($Dni);
+			return $this->usuarioMapper->buscar($Dni);
+
 			
 		}
 
@@ -91,52 +94,76 @@ class controlador_Usuario{
 		     }
 		}
 
-		public function editar()
+		public static function editar()
 		{
+			//$usuarioMapper = new UsuarioMapper();
+			$dni = $_POST["Dni"];
+			$dniAdmin = $_POST["DniAdmin"];
+			$dniAntiguo = $_POST["dniAntiguo"];
+			//$usuario = $usuarioMapper->buscar($dni);
 
-			$dni = $_REQUEST["dni"];
-			$usuario = $this->usuarioMapper->find($dni);
-
-			if($usuario == NULL)
+			$nombre = $_POST["nombre"];
+			$email = $_POST["email"];
+			$password = $_POST["password"];
+			//$edad = date(DATE_ATOM)-($_POST["fecha"]);
+			//$rol = $_POST["rol"];
+		/*	if($usuario == NULL)
 			{
 				throw new Exception("deportista no existe: ".$usuario);
-			}
+			}*/
+
+			//echo $nombre;
 
 		///si va por POST
 
-			if(isset($_POST["submit"]))
-			{
-				$usuario->setDni($_POST["Dni"]);
-				$usuario->setDniAdmin($_POST["DniAdmin"]); //currentUser
+		//	if(isset($_POST["submit"]))
+			//{
+			/*	$usuario->setDni($_POST["Dni"]);
 				$usuario->setRol($_POST["rol"]);
 				$usuario->setNombre($_POST["nombre"]);
 				$usuario->setEmail($_POST["email"]);
 				$usuario->setPassword($_POST["password"]);
-				$usuario->setEdad($_POST["edad"]);
+			//	$usuario->setEdad($_POST["edad"]);
 
-				$usuario->comprobarDatos();
-				$this->usuarioMapper->modificarUsuario($usuario);
-			}
+			//	$usuario->comprobarDatos();
+				$usuarioMapper->modificarUsuario($usuario);*/
+
+
+		global $connect;
+			 $consulta= "UPDATE Usuario SET Dni='". $dni ."' ,Nombre='". $nombre ."', email='". $email ."', password='". $password ."' WHERE Dni='". $dniAntiguo ."'";
+			 $connect->query($consulta);
+
+				header("Location: ../view/adminEntrenadores.php");
+			//}
 		}
 
-	public function eliminar()
+	public static function eliminar()
 	{
-		 if (!isset($_POST["dni"])) {
+		/* if (!isset($_POST["dni"])) {
       		throw new Exception("dni is mandatory");
-    	}
+    	}*/
 
-		$dni = $_REQUEST["dni"];
-		$usuario = $this->usuarioMapper->buscarPorDni($dni);
+		$dni = $_POST["dni"];
+		//$usuario = $this->usuarioMapper->find($dni);
 
 
-		if($usuario == NULL)
+		/*if($usuario == NULL)
 		{
 			throw new Exception("deportista no existe: ".$usuario);
 			
-		}
+		}*/
 
-		$this->usuarioMapper->eliminarUsuario($dni);
-		header("Location: ../view/adminEntrenadores.php");
+		//$this->usuarioMapper->eliminarUsuario($dni);
+		//
+
+		//echo $dni;
+
+		global $connect;
+	    $consulta = "DELETE FROM Usuario WHERE Dni='". $dni ."'" ;
+	    $connect->query($consulta);
+
+
+	    header("Location: ../view/adminEntrenadores.php");
 	}
 
 }
