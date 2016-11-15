@@ -1,6 +1,6 @@
 <?php
 require_once("../model/Usuario.php");
-require_once("../model/UsuarioMapper.php");
+require_once("/../model/UsuarioMapper.php");
 require_once("../resources/conexion.php");
 
 class controlador_Usuario{
@@ -96,15 +96,18 @@ class controlador_Usuario{
 
 		public static function editar()
 		{
-			//$usuarioMapper = new UsuarioMapper();
+			$usuarioMapper = new UsuarioMapper();
 			$dni = $_POST["Dni"];
 			$dniAdmin = $_POST["DniAdmin"];
 			$dniAntiguo = $_POST["dniAntiguo"];
-			//$usuario = $usuarioMapper->buscar($dni);
-
 			$nombre = $_POST["nombre"];
 			$email = $_POST["email"];
 			$password = $_POST["password"];
+
+			//$actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["Dni"],$actual["rol"]
+
+			$usuario = new Usuario($nombre,$email,$password,"NULL",$dni,"entrenador");
+
 			//$edad = date(DATE_ATOM)-($_POST["fecha"]);
 			//$rol = $_POST["rol"];
 		/*	if($usuario == NULL)
@@ -125,13 +128,13 @@ class controlador_Usuario{
 				$usuario->setPassword($_POST["password"]);
 			//	$usuario->setEdad($_POST["edad"]);
 
-			//	$usuario->comprobarDatos();
-				$usuarioMapper->modificarUsuario($usuario);*/
+			//	$usuario->comprobarDatos();*/
+				$usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
 
 
-		global $connect;
+		/*global $connect;
 			 $consulta= "UPDATE Usuario SET Dni='". $dni ."' ,Nombre='". $nombre ."', email='". $email ."', password='". $password ."' WHERE Dni='". $dniAntiguo ."'";
-			 $connect->query($consulta);
+			 $connect->query($consulta);*/
 
 				header("Location: ../view/adminEntrenadores.php");
 			//}
@@ -146,7 +149,8 @@ class controlador_Usuario{
 		$dni = $_POST["dni"];
 		//$usuario = $this->usuarioMapper->find($dni);
 
-
+		$usuarioMapper = new UsuarioMapper();
+		$usuarioMapper->eliminarUsuario($dni);
 		/*if($usuario == NULL)
 		{
 			throw new Exception("deportista no existe: ".$usuario);
@@ -158,9 +162,9 @@ class controlador_Usuario{
 
 		//echo $dni;
 
-		global $connect;
+	/*	global $connect;
 	    $consulta = "DELETE FROM Usuario WHERE Dni='". $dni ."'" ;
-	    $connect->query($consulta);
+	    $connect->query($consulta);*/
 
 
 	    header("Location: ../view/adminEntrenadores.php");
