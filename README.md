@@ -1,13 +1,13 @@
 # Ufitness
 EMILY : casos de usos monitorizar entrenamiento y gestion de entrenadores </br>
 DANIEL : casos de uso gestionar deportistas y gestionar entrenamiento </br>
-SAMUEL : casos de usos gestionar actividades y ejercicios </br>
-Diego : reservar plaza actividad y asignar entrenamiento deportista </br>
--boton de desconectarse, incluir session_destroy() y redirigir al index.php (HECHO) </br>
--modificar vistas para ver cada ejercicio,actividad o entrenamiento, me explico cuando clicamos en un ejercicio,actividad o </br> -entrenamiento que salte a las vistas de cada uno.  </br>
+SAMUEL : casos de usos gestionar actividades(Hecho) y ejercicios </br>
+Diego : reservar plaza actividad(HECHO) y asignar entrenamiento deportista </br>
+IMPORTANTE instalar bd automaticamente</br>
 -Mirar html y responsive </br>
--Formularios de: Perfil  </br>
--Cambiar nombre BD: G_24(Acordarse de que si lo cambiamos hay que modificar el archivo conexion.php) (HECHO)  </br>
--Arreglar sesion  (session_destroy())(HECHO)</br>
--Perfil con los datos del usuario (HECHO)</br>
--Cambiar Funcion MySql fech array
+-Quitar comentarios irrelevantes</br>
+--Quitar archivos javascript inutilles</br>
+-Tabular para que tenga un orden coherente</br>
+-Archivo de instalacion</br>
+
+
