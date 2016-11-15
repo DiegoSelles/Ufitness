@@ -27,7 +27,25 @@ class ActividadMapper {
 		$sql = " INSERT INTO Actividad (Usuario_Dni, nombre, numPlazas, horario, lugar, tipoAct)
 		VALUES ('". $resultado['Dni'] ."', '". $actividad->getNombre() ."', '". $actividad->getNumPlazas() ."', '". $actividad->getHorario() ."', '". $actividad->getLugar() ."', '". $actividad->getTipoActividad() ."')";
 		if($connect->query($sql))
-		echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+	}
+	
+	public function updateActividad($actividad, $nombre_monitor){
+		global $connect;
+		$consulta = $connect->query("SELECT Dni FROM Usuario WHERE nombre ='" .$nombre_monitor. "'");
+		$resultado = mysqli_fetch_assoc($consulta);
+		$sql =$connect->query("SELECT idActividad FROM Actividad WHERE nombre = '".$actividad->getNombre()."' and Usuario_Dni = '".$resultado['Dni']."'");
+		//SELECT `idActividad` FROM `Actividad` WHERE `Usuario_Dni`="66666666C" and `nombre`="Spinnig"
+		$result = mysqli_fetch_assoc($sql);
+		$consult = "UPDATE Actividad set Usuario_Dni ='" .$resultado['Dni']."',nombre='".$actividad->getNombre()."', numPlazas='".$actividad->getNumPlazas()."', horario='".$actividad->getHorario()."', lugar='".$actividad->getLugar()."', tipoAct='".$actividad->getTipoActividad()."' where idActividad = '".$result['idActividad']."'";
+		//UPDATE `Actividad` SET `Usuario_Dni`="66666666C",`nombre`="Spinnig",`numPlazas`="50",`horario`="11",`lugar` ="Ou",`tipoAct`="individual" WHERE `idActividad` = "1"
+		if($connect->query($consult)){
+			//echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+			//echo $modificar;
+			echo $result['idActividad']."\n";
+			echo $resultado['Dni']."\n";
+			echo $actividad->getNombre()."\n";
+		}
 	}
 
   public function findAllActividades() {
@@ -44,12 +62,14 @@ class ActividadMapper {
   }
 
   public function findActividadById($actividadid){
-    $stmt = $this->db->prepare("SELECT * FROM Actividad WHERE id=?");
-    $stmt->execute(array($actividadid));
-    $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
+	global $connect;
+    $consulta = $connect->query("SELECT * FROM Actividad WHERE idActividad='" .$actividadid. "'");
+	$actividad = mysqli_fetch_assoc($consulta);
+	$query = $connect->query("SELECT Nombre FROM Usuario WHERE Dni = '" .$actividad['Usuario_Dni']. "' ");
+	$monitor = mysqli_fetch_assoc($query);
 
     if($actividad != null) {
-      return new Actividad($actividad["nombre"], $actividad["numPlazas"], $actividad["horario"], $actividad["lugar"], $actividad["tipoActividad"]);
+      return new Actividad($monitor['Nombre'],$actividad["nombre"], $actividad["numPlazas"], $actividad["horario"], $actividad["lugar"], $actividad["tipoAct"],$actividad['idActividad']);
     } else {
       return NULL;
     }

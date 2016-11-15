@@ -3,13 +3,16 @@
 class Actividad
 {
 	public $id;
+	public $monitor;
 	public $nombre;
 	public $numPlazas;
 	public $horario;
 	public $lugar;
 	public $tipoAct;
 
-	function __construct($nombre,$numPlazas,$horario,$lugar,$tipoActividad){
+	function __construct($monitor,$nombre,$numPlazas,$horario,$lugar,$tipoActividad,$id=NULL){
+		$this ->id = $id;
+		$this ->monitor = $monitor;
 		$this ->nombre = $nombre;
 		$this ->numPlazas = $numPlazas;
 		$this ->horario = $horario;
@@ -20,6 +23,10 @@ class Actividad
 
 	public function getId (){
 		return $this ->id;
+	}
+	
+	public function getMonitor (){
+		return $this ->monitor;
 	}
 
 	public function getNombre (){
