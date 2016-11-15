@@ -4,7 +4,7 @@ class Ejercicio
 {
  	private $idEjercicio;
   private $nombre;
-  private $usuario;
+  private $usuario_Dni;
 	private $tipoEjercicio;
 	private $maquina;
 	private $grupoMuscular;
@@ -12,38 +12,42 @@ class Ejercicio
   private $imagen;
   private $video;
 
-	function __construct($idEjercicio,$nombre,$usuario,$tipoEjercicio,$grupoMuscular,$maquina,$descripcion, $imagen, $video)
+	function __construct($nombre,$usuario_Dni,$tipoEjercicio,$grupoMuscular,$maquina,$descripcion, $imagen, $video, $idEjercicio = null)
 	{
 		$this ->idEjercicio = $idEjercicio;
     $this ->nombre = $nombre;
-    $this ->usuario = $usuario;
-    	$this ->tipoEjercicio = $tipoEjercicio;
+    $this ->usuario_Dni = $usuario_Dni;
+    $this ->tipoEjercicio = $tipoEjercicio;
 		$this ->grupoMuscular = $grupoMuscular;
 		$this ->maquina = $maquina;
 		$this ->grupoMuscular = $grupoMuscular;
-    	$this ->descripcion = $descripcion;
-   	 	$this ->imagen = $imagen;
-    	$this ->video = $video;
+    $this ->descripcion = $descripcion;
+   	$this ->imagen = $imagen;
+    $this ->video = $video;
 
 	}
+
+  public function getNombre (){
+    return $this ->nombre;
+  }
 
 	public function getIdEjercicio (){
 		return $this ->idEjercicio;
 	}
 
-  	public function getTipoEjercicio (){
+  public function getTipoEjercicio (){
 		return $this ->tipoEjercicio;
 	}
 
   public function getUsuario (){
-  return $this ->usuario;
-}
+    return $this ->usuario;
+  }
 
 	public function setTipoEjercicio ($tipoEjercicio){
 		$this ->tipoEjercicio = $tipoEjercicio;
 	}
 
-  	public function getMaquina (){
+  public function getMaquina (){
 		return $this ->maquina;
 	}
 
@@ -75,14 +79,6 @@ class Ejercicio
     return $this ->video;
   }
 
-  private $idEjercicio;
-  private $usuario
-	private $tipoEjercicio;
-	private $maquina;
-	private $grupoMuscular;
-	private $descripcion;
-  private $imagen;
-  private $video;
   public function comprobarDatosNuevo() {
       $errors = array();
 

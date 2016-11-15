@@ -1,119 +1,68 @@
 <?php
-// file: model/PostMapper.php
-require_once(__DIR__."/../core/PDOConnection.php");
 
+
+require_once(__DIR__."/../resources/conexion.php");
 require_once(__DIR__."/../model/Ejercicio.php");
-require_once(__DIR__."/../model/Usuario.php");
+if(!isset($_SESSION)) session_start();
 
-/**
- * Class PostMapper
- *
- * Database interface for Post entities
- *
- * @author lipido <lipido@gmail.com>
- */
 class EjercicioMapper {
 
-  /**
-   * Reference to the PDO connection
-   * @var PDO
-   */
-  private $db;
-
-  public function __construct() {
-    $this->db = PDOConnection::getInstance();
+    public function guardarDeportista($deportista) {
+    global $connect;
+    $consulta= " INSERT INTO Deportista (DNI, Usuario_Dni, riesgos, tipoDep) VALUES ('". $deportista->getDni() ."',
+     '". $_SESSION["Dni"] ."', '". $deportista->getRiesgos() ."', '". $deportista->getTipo() ."')";
+    $connect->query($consulta);
   }
 
-  /**
-   * Retrieves all posts
-   *
-   * Note: Comments are not added to the Post instances
-   *
-   * @throws PDOException if a database error occurs
-   * @return mixed Array of Post instances (without comments)
-   */
-  public function findAllEjercicios() {
-    $stmt = $this->db->query("SELECT * FROM Ejercicio");
-    $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function isValidUser($username, $passwd) {
+    $stmt = $this->db->prepare("SELECT count(username) FROM users where username=? and passwd=?");
+    $stmt->execute(array($username, $passwd));
 
-    $ejercicios = array();
-
-    foreach ($ejercicios_db as $ejercicio) {
-      array_push($ejercicios, new Ejercicio($ejercicio["idEjercicio"], new Usuario($ejercicio["Usuario_DNI"]), $ejercicio["tipoEjercicio"],$ejercicio["maquina"],$ejercicio["grupoMuscular"],
-      $ejercicio["descripcion"],$ejercicio["imagen"],$ejercicio["video"]));
+    if ($stmt->fetchColumn() > 0) {
+      return true;
     }
-
-    return $ejercicios;
   }
 
-  /**
-   * Loads a Post from the database given its id
-   *
-   * Note: Comments are not added to the Post
-   *
-   * @throws PDOException if a database error occurs
-   * @return Post The Post instances (without comments). NULL
-   * if the Post is not found
-   */
-  public function findEjercicioById($idEjercicio){
-    $stmt = $this->db->prepare("SELECT * FROM Ejercicio WHERE id=?");
-    $stmt->execute(array($idEjercicio));
-    $ejercicio = $stmt->fetch(PDO::FETCH_ASSOC);
+  public function listarDeportistas() {
+    global $connect;
+		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.Dni = D.DNI";
+    $resultado = $connect->query($consulta);
+		$listaDeportistas = array();
+		while ($actual = mysqli_fetch_assoc($resultado)){
+        $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],NULL);
+				array_push($listaDeportistas, $deportista);
+		}
+		return $listaDeportistas;
+	}
 
-    if($ejercicio != null) {
-      return new Ejercicio($ejercicio["idEjercicio"],
-      new Usuario($ejercicio["Usuario_DNI"]),
-      $ejercicio["tipoEjercicio"],
-      $ejercicio["maquina"],
-      $ejercicio["grupoMuscular"],
-      $ejercicio["descripcion"],
-      $ejercicio["imagen"],
-      $ejercicio["video"]);
-      } else {
-        return NULL;
-      }
+  public function listarEjerciciosGrupo($grupo) {
+    global $connect;
+		$consulta = "SELECT * FROM Ejercicio WHERE grupoMuscular = '$grupo'";
+    $resultado = mysqli_query($connect, $consulta) or die (mysqli_error($connect));
+		$listaEjercicios = array();
+		while ($actual = mysqli_fetch_assoc($resultado)) {
+        $ejercicio = new Ejercicio($actual["nombre"],$actual["Usuario_Dni"],$actual["tipoEjer"],$actual["grupoMuscular"],$actual["maquina"],$actual["descripcion"],$actual["imagen"],$actual["video"]);
+				array_push($listaEjercicios, $ejercicio);
+		}
+		return $listaEjercicios;
+	}
+
+  public function eliminarDeportista(Deportista $deportista) {
+    global $connect;
+    $consulta = "DELETE FROM Deportista WHERE Dni='".$deportista->getDni()."' ";
+    $connect->query($consulta);
+  }
+
+  public function buscarDni($dni){
+    global $connect;
+    $consulta = "SELECT FROM Usuario U, Deportista D WHERE U.dni = D.dni AND U.dni='$dni' ";
+    $resultado = $connect->query($consulta);
+
+    if($resultado != null) {
+      return new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],$actual["historialEntrenamiento"]);
+    } else {
+      return NULL;
     }
-
-
-
-  /**
-   * Saves a Post into the database
-   *
-   * @param Post $post The post to be saved
-   * @throws PDOException if a database error occurs
-   * @return int The mew post id
-   */
-  public function save(Ejercicio $ejercicio) {
-    $stmt = $this->db->prepare("INSERT INTO Ejercicio(/*idEjercicio???,*/ Usuario_Dni, tipoEjer,maquina, grupoMuscular, descripcion, imagen, video) values (?,?,?,?,?,?,?)");
-    $stmt->execute(array($ejercicio->getUsuario()->getDni(),$ejercicio->getTipoEjercicio(),$ejercicio->getMaquina(),
-    $ejercicio->getGrupoMuscular(),$ejercio->getDescripcion(),$ejercio->getImagen(),$ejercio->getVideo()));
-
-    return $this->db->lastInsertId();
   }
-
-  /**
-   * Updates a Post in the database
-   *
-   * @param Post $post The post to be updated
-   * @throws PDOException if a database error occurs
-   * @return void
-   */
-   public function update(Ejercicio $ejercicio) {
-    $stmt = $this->db->prepare("UPDATE Ejercicio set tipoEjer=?,maquina=?, grupoMuscular=?, descripcion=?, imagen=?, video=? where id=?");
-    $stmt->execute(array($ejercicio->getTipoEjercicio(),$ejercicio->getMaquina(), $ejercicio->getGrupoMuscular(),$ejercio->getDescripcion(),
-    $ejercio->getImagen(),$ejercio->getVideo(),$ejercicio->getIdEjercicio()));
-  }
-
-  /**
-   * Deletes a Post into the database
-   *
-   * @param Post $post The post to be deleted
-   * @throws PDOException if a database error occurs
-   * @return void
-   */
-  public function delete(Ejercicio $ejercicio) {
-    $stmt = $this->db->prepare("DELETE from Ejercicio WHERE id=?");
-    $stmt->execute(array($ejercicio->getidEjercicio()));
-  }
-
 }
+?>
