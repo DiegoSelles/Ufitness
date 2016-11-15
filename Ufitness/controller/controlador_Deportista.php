@@ -36,14 +36,13 @@ class controlador_Deportista{
 
             $deportistaMapper->guardarDeportista($deportista);
             $usuarioMapper->guardarUsuario($usuario);
-            echo "Se ha creado?";
-            //header("Location: ../view/adminDeportistas.php");
+
+            header("Location: ../view/adminDeportistas.php");
       	} else {
 
       	  $errors = array();
       	  $errors["dni"] = "El deportista ya existe";
       	  print_r($errors);
-          //header("Location: ../view/error.php");
       	}
       }catch(ValidationException $ex) {
 	    // Get the errors array inside the exepction...
@@ -71,24 +70,26 @@ class controlador_Deportista{
   }
 
   public function eliminar() {
+
+    $deportistaMapper = new DeportistaMapper();
+    $usuarioMapper = new UsuarioMapper();
     if (!isset($_POST["dni"])) {
       throw new Exception("id is mandatory");
     }
     /*if (!isset($this->currentUser)) {
       throw new Exception("Not in session. Editing posts requires login");
     }*/
-
-
     $deportistadni = $_REQUEST["dni"];
-    $deportista = $this->deportistaMapper->buscarDni($deportistadni);
-
+    echo $deportistadni;
+    $deportista = $deportistaMapper->buscarDni($deportistadni);
+    print_r($deportista);
     if ($deportista == NULL) {
-      throw new Exception("no such post with id: ".$deportistadni);
+      throw new Exception("No existe deportista con DNI: ".$deportistadni);
     }
 
     // Delete the Post object from the database
-    $this->deportistaMapper->eliminarDeportista($deportista);
-    $this->usuarioMapper->eliminarUsuario($deportista);
+    $deportistaMapper->eliminarDeportista($deportista);
+    $usuarioMapper->eliminarUsuario($deportista->getDni());
 
     // POST-REDIRECT-GET
     // Everything OK, we will redirect the user to the list of posts
@@ -110,6 +111,7 @@ class controlador_Deportista{
 
   public function modificarDeportista(){
     $deportistaMapper  = new DeportistaMapper();
+    $usuarioMapper  = new UsuarioMapper();
     $nombre_deportista = $_POST['nombre'];
     $dni_deportista = $_POST['dni'];
     $email_deportista = $_POST['email'];
@@ -120,7 +122,7 @@ class controlador_Deportista{
     $dniAntiguo = $_POST['dniAntiguo'];
 
     $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$edad_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
-    return $deportistaMapper->modificar($deportista,$dniAntiguo);
+    return $deportistaMapper->modificarDeportista($deportista,$dniAntiguo);
   }
 
 }
