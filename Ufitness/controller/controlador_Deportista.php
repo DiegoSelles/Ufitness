@@ -104,6 +104,24 @@ class controlador_Deportista{
     header("Location: ../view/adminDeportistas.php");
   }
 
+  public function buscarDeportistaDni($dni){
+    return $this->deportistaMapper->buscarDni($dni);
+  }
+
+  public function modificarDeportista(){
+    $nombre_deportista = $_POST['nombre'];
+    $dni_deportista = $_POST['dni'];
+    $email_deportista = $_POST['email'];
+    $tipo_deportista = $_POST['tipo'];
+    $riesgos_deportista = $_POST['riesgos'];
+    $edad_deportista = $_POST['edad'];
+    $password_deportista = $_POST['password'];
+    $dniAntiguo = $_POST['dniAntiguo'];
+
+    $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$edad_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
+    return $this->deportistaMapper->modificar($deportista,$dniAntiguo);
+  }
+
 }
 
 ?>
