@@ -76,8 +76,10 @@ class DeportistaMapper {
 
   public function modificar($deportista,$dniAntiguo){
     global $connect;
-    $consulta= "UPDATE Deportista set riesgos='".$deportista->getRiesgos()."' tipo='".$deportista->getTipo()."' WHERE DNI='".$dniAntiguo."'";
+    $consulta= "UPDATE Deportista set DNI='".$deportista->getDni()."', riesgos='".$deportista->getRiesgos()."', tipoDep='".$deportista->getTipo()."' WHERE DNI='".$dniAntiguo."'";
     $connect->query($consulta);
+    echo $deportista->getDni();
+    echo $dniAntiguo;
   }
 }
 ?>
