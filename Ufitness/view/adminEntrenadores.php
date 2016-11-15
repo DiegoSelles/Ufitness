@@ -43,6 +43,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
     <!--JavaScript-->
     <script src="js/desplegarMenu.js"></script>
+    <script src="js/confirmacionEliminarEntrenador.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,6 +60,21 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
+
+      if (isset($_GET['eliminar'])){
+        $ucontroler->eliminar($_GET['eliminar']);
+       // echo "    blabla";
+        /*Molaba buscar una manera de que despues de que se eliminara una actividad no saliera en la
+        barra de direcciones el parametro eliminar=blabla que queda feo. Con la linea siguiente no funciona
+        PROBLEMA DE SEGURIDAD: si se conoce este parametro get podrían eliminarse desde la barra de direcciones*/
+        //header("Location: adminEntrenadores.php");
+      }
+      else
+      {
+        //header("Location: error.php");
+      }
+
+
 			?>
 
  <div id="contenido" class="container-fluid">
@@ -73,12 +89,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
-                      <input type="text" class="form-control input-lg" placeholder="Buscar Entrenador" />
-                      <span class="input-group-btn">
-                          <button class="btn btn-info btn-lg" type="button">
-                              <i class="glyphicon glyphicon-search"></i>
-                          </button>
-                      </span>
+                      
                   </div>
                 </div>
                 <div class="anadir">
@@ -104,8 +115,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                           <p>Email:   <?php echo $usuario->getEmail(); ?> </p>
                         </div>
                         <div class="opciones_bloque">
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a> 
+                                                     
+                           <?php $usuarioEliminar = $usuario->getDni(); ?>
+                           <script type="text/javascript">
+                             var usuarioEliminar = '<?php echo $usuarioEliminar; ?>'
+                           </script>
+
+                            <a id="btn_edit_bloque" href="../view/modificarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a> 
+
+                            <a id="btn_eliminar" href="eliminarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </div>
                       </div>
 

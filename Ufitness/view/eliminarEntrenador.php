@@ -6,7 +6,7 @@ if(!isset($_SESSION)) session_start();
 global $dni;
 if(isset($_GET['dni'])){
 $dni = $_GET['dni'];
-}
+  }
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
@@ -63,31 +63,26 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
-          <i class="fa fa-edit" aria-hidden="true"></i>
-          <strong>Modificar Entrenador</strong>
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <strong>¿Está seguro que quiere eliminar a este usuario?</strong>
         </div>
         <div >
-         <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=editar" method="post" class="formulario">
-              <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" /> <br/>
-              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>" />
-              <br/>
-              <!--<?php echo "Fecha" ?>: <input type="text" name="fecha" value="<?php echo $usuario->getEdad(); ?>" /> -->
-              <br/>
-              <?php echo "E-mail" ?>: <input type="text" name="email" value="<?php echo $usuario->getEmail(); ?>" />
-              <br/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" />
-
-              <input type="text" name="rol" hidden="true" value="entrenador" />
-              <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $usuario->getDni(); ?>" />
-              <input type="text" name="DniAdmin" hidden="true" value=$_SESSION['Dni'] />
-
-              <br />
-
-             <!-- <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />-->
-             <input id="submit" class="btn btn-primary" type="submit" value="Actualizar">
+          <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=eliminar" method="post" class="formulario">
+              <?php echo $usuario->getNombre(); ?>
+               <br/>
+              <?php echo $usuario->getDni(); ?>
+               <br/>
+              <?php echo $usuario->getEdad(); ?>
+               <br/>
+              <?php echo $usuario->getEmail(); ?>
               <br/>
 
-             
+              <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />
+              
+              <input id="submit" class="btn btn-primary" type="submit" value="SI">
+              <br/>
+
+              <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">NO</a>
 
           </form>
         </div>
