@@ -55,21 +55,23 @@ class DeportistaMapper {
 
   public function buscarDni($dni){
     global $connect;
-    $consulta = "SELECT * FROM Usuario U, Deportista D WHERE U.dni = D.dni AND U.dni='$dni' ";
+    $consulta = "SELECT * FROM Usuario U, Deportista D WHERE U.Dni = D.DNI AND U.Dni='$dni' ";
     $res = $connect->query($consulta);
     $resultado = mysqli_fetch_assoc($res);
 
     if($resultado != null) {
-      return new Deportista($resultado["Nombre"],$resultado["email"],$resultado["password"],$resultado["edad"],$resultado["DNI"],$resultado["rol"],$resultado["riesgos"],$resultado["tipoDep"],$resultado["historialEntrenamiento"]);
+      return new Deportista($resultado["Nombre"],$resultado["email"],$resultado["password"],$resultado["edad"],$resultado["Dni"],$resultado["rol"],$resultado["riesgos"],$resultado["tipoDep"],$resultado["historialEntrenamiento"]);
     } else {
       return NULL;
     }
   }
 
-	public function modificar($deportista,$dniAntiguo){
+	public function modificarDeportista($deportista,$dniAntiguo){
 		global $connect;
 		$consulta= "UPDATE Deportista set DNI='".$deportista->getDni()."', riesgos='".$deportista->getRiesgos()."', tipoDep='".$deportista->getTipo()."' WHERE DNI='".$dniAntiguo."'";
 		$connect->query($consulta);
+    $consulta2= "UPDATE Usuario SET Dni='". $deportista->getDni() ."' ,Nombre='". $deportista->getNombre() ."', email='". $deportista->getEmail() ."', password='". $deportista->getPassword() ."' WHERE Dni='". $dniAntiguo ."'";
+    $connect->query($consulta2);
 		header("Location: ../view/adminDeportistas.php");
 	}
 }
