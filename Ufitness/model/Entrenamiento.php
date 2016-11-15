@@ -3,7 +3,7 @@
 class Entrenamiento
 {
 	public $idEntrenamiento;
-	public $deportista
+	public $deportista;
 	public $duracion;
 
 
