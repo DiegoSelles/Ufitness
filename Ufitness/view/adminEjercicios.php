@@ -1,8 +1,11 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Ejercicio.php");
+
 
 if(!isset($_SESSION)) session_start();
+$econtroler = new controlador_Ejercicio();
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
@@ -82,58 +85,33 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                   </div>
                 </div>
                 <div class="anadir">
-                  <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Ejercicio</a>
+                  <a id="btn_anadir" href="crearEjercicio.php" class="btn btn-primary" type="button">Añadir Ejercicio</a>
                 </div>
               </div>
               <div class="body_pagina">
                 <nav id = "desplegable1">
                   <ul>
               			<li id="nivel1"><a class= "btn_nivel" id = "activador_1"  href="#"><i id = "activador_1" class="fa fa-chevron-down" ></i> Piernas</a>
-              				<ul>
+											<?php
+											 $ejercicios = $econtroler->listaEjerciciosGrupo("Piernas");
+											 foreach ($ejercicios as $ejercicio) {
+											 ?>
+											<ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
+                            <h1> <?php echo $ejercicio->getNombre(); ?> <h1>
                           </div>
                           <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
+                            <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
                           <div class="opciones_bloque">
                               <a id="btn_eliminar" href="#" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                           </div>
                         </div>
               				</ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
-                          </div>
-                          <div class="opciones_bloque">
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
-                          </div>
-                          <div class="opciones_bloque">
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
+											<?php } ?>
               			</li>
               		</ul>
                 </nav>
@@ -141,51 +119,26 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <nav id = "desplegable2">
                   <ul>
                     <li id="nivel2"><a class= "btn_nivel" id = "activador_2"  href="#"><i id = "activador_2" class="fa fa-chevron-down" ></i> Brazos</a>
-                      <ul>
+											<?php
+											 $ejercicios = $econtroler->listaEjerciciosGrupo("Brazos");
+											 foreach ($ejercicios as $ejercicio) {
+											 ?>
+											<ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
+                            <h1> <?php echo $ejercicio->getNombre(); ?> <h1>
                           </div>
                           <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
+                            <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
                           <div class="opciones_bloque">
                               <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                           </div>
                         </div>
               				</ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
-                          </div>
-                          <div class="opciones_bloque">
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-              				</ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
-                          </div>
-                          <div class="opciones_bloque">
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-              				</ul>
+                      <?php } ?>
                     </li>
                   </ul>
                 </nav>
@@ -193,54 +146,57 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <nav id = "desplegable3">
                   <ul>
               			<li id="nivel3"><a class= "btn_nivel" id = "activador_3"  href="#"><i id = "activador_3" class="fa fa-chevron-down" ></i> Espalda</a>
-                      <ul>
+											<?php
+											 $ejercicios = $econtroler->listaEjerciciosGrupo("Brazos");
+											 foreach ($ejercicios as $ejercicio) {
+											 ?>
+											<ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
+                            <h1> <?php echo $ejercicio->getNombre(); ?> <h1>
                           </div>
                           <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
+                            <p>Descripción: <?php echo $ejercicio->getNombre(); ?></p>
+                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
                           <div class="opciones_bloque">
                               <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                           </div>
                         </div>
                       </ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
-                          </div>
-                          <div class="opciones_bloque">
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-              				</ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <h1> Nombre Ejercicio <h1>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Descripción</p>
-                            <p>Máquina</p>
-                            <p>Músculo</p>
-                          </div>
-                          <div class="opciones_bloque">
-                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
+                      <?php } ?>
               			</li>
               		</ul>
                 </nav>
+								<!--
+								<nav id = "desplegable4">
+                  <ul>
+              			<li id="nivel4"><a class= "btn_nivel" id = "activador_4"  href="#"><i id = "activador_4" class="fa fa-chevron-down" ></i> Pectorales</a>
+											<?php
+											 $ejercicios = $econtroler->listaEjerciciosGrupo("Pectorales");
+											 foreach ($ejercicios as $ejercicio) {
+											 ?>
+											<ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                            <h1> <?php echo $ejercicio->getNombre(); ?> <h1>
+                          </div>
+                          <div class="info_bloque">
+                            <p>Descripción: <?php echo $ejercicio->getNombre(); ?></p>
+                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                          </div>
+                          <div class="opciones_bloque">
+                              <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          </div>
+                        </div>
+                      </ul>
+                      <?php } ?>
+              			</li>
+              		</ul>
+                </nav>
+							-->
 
 
     <!-- jQuery -->
