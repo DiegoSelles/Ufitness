@@ -72,7 +72,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				/*Molaba buscar una manera de que despues de que se eliminara una actividad no saliera en la
 				barra de direcciones el parametro eliminar=blabla que queda feo. Con la linea siguiente no funciona
 				PROBLEMA DE SEGURIDAD: si se conoce este parametro get podrían eliminarse desde la barra de direcciones*/
-				header("Location: adminActividades.php");
+				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";				
 			}
 
 		?>
@@ -117,7 +117,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 							<p>Horario: <?php echo $actividad['horario']; ?></p>
 						</div>
 						<div class="opciones_bloque">
-							<a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button">
+							<a id="btn_edit_bloque" href="modificarActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>" class="btn btn-primary" title="Editar" type="button">
 								<i class="fa fa-edit" aria-hidden="true"></i>
 							</a>
 							<!--Cuando se pulsa el botón de eliminar se ejecuta una funcion javascript que está en js/confirmacionEliminar-->
