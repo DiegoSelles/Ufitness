@@ -44,17 +44,17 @@ class UsuarioMapper {
 	    $connect->query($consulta);
 	}
 
-	public function modificarUsuario(Usuario $usuario)
+	public function modificarUsuario(Usuario $usuario, $dniAntiguo)
 	{
 		global $connect;
-	    $consulta= " UPDATE Usuario SET DNI='". $usuario->getDni() ."' , Usuario_Dni='". $_SESSION["Dni"] ."', rol= '". $usuario->getRol() ."', Nombre= '". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password= '". $usuario->getPassword() ."',edad='". $usuario->getEdad() ."' ";
-
+		$consulta= "UPDATE Usuario SET Dni='". $usuario->getDni() ."' ,Nombre='". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password='". $usuario->getPassword() ."' WHERE Dni='". $dniAntiguo ."'";
+			 $connect->query($consulta);
 	}
 
 	public function eliminarUsuario($dni)
 	{
 		global $connect;
-	    $consulta = "DELETE FROM Usuario WHERE Dni=$dni ";
+	    $consulta = "DELETE FROM Usuario WHERE Dni='". $dni ."'" ;
 	    $connect->query($consulta);
 	}
 
