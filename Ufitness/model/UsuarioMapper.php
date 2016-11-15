@@ -12,7 +12,17 @@ class UsuarioMapper {
 		return mysqli_fetch_assoc($resultado);
 	}
 
-		function listarEntrenadores (){
+	public static function buscar($Dni){
+		global $connect;
+		$consulta = "SELECT * FROM Usuario WHERE Dni='". $Dni ."'"; 
+		$resultado = $connect->query($consulta);
+		$actual = mysqli_fetch_assoc($resultado);
+		$entrenador = new Usuario($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["Dni"],$actual["rol"]);
+		return $entrenador;
+	}
+
+
+	function listarEntrenadores (){
 		global $connect;
 		$consulta ="SELECT * FROM Usuario WHERE rol = 'entrenador'";
 		$resultado = $connect->query($consulta);
@@ -34,17 +44,17 @@ class UsuarioMapper {
 	    $connect->query($consulta);
 	}
 
-	public function modificaUsuario(Usuario $usuario)
+	public function modificarUsuario(Usuario $usuario)
 	{
 		global $connect;
-	    $consulta= " UPDATE Usuario SET DNI='". $usuario->getDni() ."' , Usuario_Dni='". $_SESSION["Dni"] ."', rol= '". $usuario->getRol() ."', Nombre= '". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password= '". $usuario->getPassword() ."',edad='". $usuario->getEdad() ."'";
+	    $consulta= " UPDATE Usuario SET DNI='". $usuario->getDni() ."' , Usuario_Dni='". $_SESSION["Dni"] ."', rol= '". $usuario->getRol() ."', Nombre= '". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password= '". $usuario->getPassword() ."',edad='". $usuario->getEdad() ."' ";
 
 	}
 
-	public function eliminarUsuario(Usuario $usuario)
+	public function eliminarUsuario($dni)
 	{
 		global $connect;
-	    $consulta = "DELETE FROM Usuario WHERE Dni='".$usuario->getDni()."' ";
+	    $consulta = "DELETE FROM Usuario WHERE Dni=$dni ";
 	    $connect->query($consulta);
 	}
 
