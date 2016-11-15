@@ -109,6 +109,7 @@ class controlador_Deportista{
   }
 
   public function modificarDeportista(){
+    $deportistaMapper  = new DeportistaMapper();
     $nombre_deportista = $_POST['nombre'];
     $dni_deportista = $_POST['dni'];
     $email_deportista = $_POST['email'];
@@ -119,7 +120,7 @@ class controlador_Deportista{
     $dniAntiguo = $_POST['dniAntiguo'];
 
     $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$edad_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
-    return $this->deportistaMapper->modificar($deportista,$dniAntiguo);
+    return $deportistaMapper->modificar($deportista,$dniAntiguo);
   }
 
 }
