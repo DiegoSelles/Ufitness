@@ -73,7 +73,7 @@ $dcontroler = new controlador_Deportista();
   				<form action="../controller/controlador.php?controlador=controlador_Deportista&amp;accion=modificarDeportista" method="post" class="formulario">
               <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>"/>
               <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>"/>
-              <input type="text" name="dniAntiguo" value="<?php echo $deportista->getDni(); ?>"/>
+              <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $deportista->getDni(); ?>"/>
               <?php echo "Edad" ?>: <input type="text" name="edad"  value="<?php echo $deportista->getEdad(); ?>"/>
               <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>"/>
               <!--<?php echo "Contraseña" ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>"/>
