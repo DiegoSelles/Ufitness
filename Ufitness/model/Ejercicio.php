@@ -4,7 +4,7 @@ class Ejercicio
 {
  	private $idEjercicio;
   private $nombre;
-  private $usuario
+  private $usuario;
 	private $tipoEjercicio;
 	private $maquina;
 	private $grupoMuscular;
