@@ -108,7 +108,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 								              <div class="opciones_bloque">
 								                <a id="btn_edit_bloque" href="modificarDeportista.php?dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
 								                <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-								                <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								                <a id="btn_eliminar" href="eliminarDeportista.php?dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								              </div>
 								            </div>
 								          </ul>
@@ -137,7 +137,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 													 <div class="opciones_bloque">
 														 <a id="btn_edit_bloque" href="modificarDeportista.php?dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
 														 <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-														 <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														 <a id="btn_eliminar" href="eliminarDeportista.php?dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 													 </div>
 												 </div>
 											 </ul>
