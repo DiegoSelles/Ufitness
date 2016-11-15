@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__."/../resources/conexion.php");
-require_once(__DIR__."/../model/Deportista.php");
+require_once("../resources/conexion.php");
+require_once("../model/Deportista.php");
 if(!isset($_SESSION)) session_start();
 
 class DeportistaMapper {
