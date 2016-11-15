@@ -6,15 +6,15 @@ class UsuarioMapper {
 
 	public static function find($Dni){
 		global $connect;
-		$consulta = "SELECT * FROM Usuario WHERE Dni='". $Dni ."'"; 
+		$consulta = "SELECT * FROM Usuario WHERE Dni='". $Dni ."'";
 		$resultado = $connect->query($consulta);
-		
+
 		return mysqli_fetch_assoc($resultado);
 	}
 
 	public static function buscar($Dni){
 		global $connect;
-		$consulta = "SELECT * FROM Usuario WHERE Dni='". $Dni ."'"; 
+		$consulta = "SELECT * FROM Usuario WHERE Dni='". $Dni ."'";
 		$resultado = $connect->query($consulta);
 		$actual = mysqli_fetch_assoc($resultado);
 		$entrenador = new Usuario($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["Dni"],$actual["rol"]);
@@ -44,7 +44,7 @@ class UsuarioMapper {
 	    $connect->query($consulta);
 	}
 
-	public function modificarUsuario(Usuario $usuario, $dniAntiguo)
+	public function modificarUsuario($usuario, $dniAntiguo)
 	{
 		global $connect;
 		$consulta= "UPDATE Usuario SET Dni='". $usuario->getDni() ."' ,Nombre='". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password='". $usuario->getPassword() ."' WHERE Dni='". $dniAntiguo ."'";
@@ -61,12 +61,11 @@ class UsuarioMapper {
 	public function usuarioExiste($dni)
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(Dni) FROM Usuario WHERE Dni='". $Dni ."'";
-		$connect->query($consulta);
-
-		if($connect->fetchColumn() > 0)
-			return true;
-
+		$consulta = "SELECT * FROM Usuario WHERE Dni='". $dni ."'";
+		$resultado = $connect->query($consulta);
+ 		$filas = mysqli_num_rows($resultado);
+ 		if($filas > 0)
+  			return true;
 	}
 
 	public function isValidUser($dni, $passwd)
@@ -82,5 +81,5 @@ class UsuarioMapper {
 
 
 
-}	
+}
  ?>
