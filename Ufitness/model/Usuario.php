@@ -67,7 +67,7 @@ class Usuario
     	return $this->rol;
   	}
 
-	public function comprobarDatos() {
+	/*public function comprobarDatos() {
       $errors = array();
       if (strlen(trim($this->nombre)) < 5) {
 				$errors["username"] = "Debes introducir nombre y apellidos.";
@@ -109,7 +109,7 @@ class Usuario
 			}else{
 				return false;
 		}
-}
+}*/
 }
 
 ?>
