@@ -1,6 +1,6 @@
 <?php
 require_once("../model/Usuario.php");
-require_once("/../model/UsuarioMapper.php");
+require_once("../model/UsuarioMapper.php");
 require_once("../resources/conexion.php");
 
 class controlador_Usuario{
@@ -52,7 +52,7 @@ class controlador_Usuario{
 		public function listarEntrenadores()
 		{
 			return $this->usuarioMapper->listarEntrenadores();
-			
+
 		}
 
 		public function buscarPorDni($Dni)
@@ -60,16 +60,16 @@ class controlador_Usuario{
 			//return $this->usuarioMapper->find($Dni);
 			return $this->usuarioMapper->buscar($Dni);
 
-			
+
 		}
 
 		public static function anhadir()
 		{
-			
+
     		$usuarioMapper = new UsuarioMapper();
     		//$usuario = new Usuario();
 
-		    if(isset($_POST["nombre"])){ 
+		    if(isset($_POST["nombre"])){
 
 		      $edad = date(DATE_ATOM)-$_POST["fecha"];//Calculamos la edad
 		      //echo $_POST["nombre"];
@@ -81,7 +81,7 @@ class controlador_Usuario{
 		      $usuario->setPassword($_POST["password"]);
 		      $usuario->setEdad($edad);
 		      $usuario->setRol("entrenador"); */
-			
+
 
 		     	try{
 		    //  		$usuario->comprobarDatos();
@@ -154,7 +154,7 @@ class controlador_Usuario{
 		/*if($usuario == NULL)
 		{
 			throw new Exception("deportista no existe: ".$usuario);
-			
+
 		}*/
 
 		//$this->usuarioMapper->eliminarUsuario($dni);
