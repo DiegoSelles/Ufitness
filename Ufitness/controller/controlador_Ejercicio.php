@@ -41,6 +41,20 @@ class controlador_Ejercicio{
     return $this->ejercicioMapper->buscarId($id);
   }
 
+  public function modificarEjercicio(){
+    $ejercicioMapper  = new EjercicioMapper();
+    $nombre = $_POST['nombre'];
+    $dniCreador = $_POST['dniCreador'];
+    $tipo = $_POST['tipoEjercicio'];
+    $grupoMuscular = $_POST['grupoMuscular'];
+    $maquina = $_POST['maquina'];
+    $descripcion = $_POST['descripcion'];
+    $idEjercicio = $_POST['idEjercicio'];
+
+    $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion);
+    return $ejercicioMapper->modificarEjercicio($ejercicio, $idEjercicio);
+  }
+
   public function eliminarEjercicio() {
     if (!isset($_POST["id"])) {
       throw new Exception("id is mandatory");
