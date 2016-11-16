@@ -1,6 +1,7 @@
 <?php
 require_once("../model/Deportista.php");
 require_once("../model/EntrenamientoMapper.php");
+require_once("../model/EntrenamientoHasEjercicioMapper.php");
 require_once("../model/UsuarioMapper.php");
 
 class controlador_Entrenamiento{
@@ -12,6 +13,7 @@ class controlador_Entrenamiento{
 
     $this->entrenamientoMapper = new EntrenamientoMapper();
     $this->usuarioMapper = new UsuarioMapper();
+    $this->entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
   }
 
   public function buscarEntrenamientoId($id){
@@ -27,18 +29,36 @@ class controlador_Entrenamiento{
   }
 
   public function ejerciciosEntrenamiento($id){
-    return $this->entrenamientoMapper->ejerciciosEntrenamiento($id);
+    return $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($id);
   }
 
   public function anhadir() {
-
+    echo "hola";
     $entrenamientoMapper = new EntrenamientoMapper();
-    $usuarioMapper = new UsuarioMapper();
-
+    $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+  }
+/*
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
 
-      $entrenamiento = new Deportista($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"deportista",$_POST["riesgos"],$_POST["tipo"]);
-      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"deportista");
+      $entrenamiento = new Entrenamiento($_POST["nombre"],$_POST["duracion"],$_POST["nivel"]);
+      $entrenamientoMapper->save($entrenamiento);
+
+      $idEntrenamiento  = $EntrenamientoMapper->buscarEntrenamientoId($entrenamiento);
+      $ejercicio = $_POST['ejercicio'];
+      if(empty($ejercicio))
+      {
+        echo "No has añadido Ejercicios";
+      }
+      else
+      {
+        $N = count($ejercicio);
+        for($i=0; $i < $N; $i++)
+        {
+          $entrenamientoHasEjerc = new EntrenamientoHasEjercicio($idEntrenamiento,$ejercicio[$i],$_POST["seriesxRep"],$_POST["carga"]);
+          $entrenamientoHasEjercicioMapper->save($entrenamientoHasEjerc);
+        }
+      }
+
 
       try{
 	       //$usuario->comprobarDatos(); // if it fails, ValidationException
@@ -51,7 +71,7 @@ class controlador_Entrenamiento{
             $usuarioMapper->guardarUsuario($usuario);
 
             header("Location: ../view/adminDeportistas.php");
-      	} else {
+      	}} else {
 
       	  $errors = array();
       	  $errors["dni"] = "El deportista ya existe";
@@ -63,17 +83,17 @@ class controlador_Entrenamiento{
 	     $errors = $ex->getErrors();
        print_r($errors);
 
-      }
+     }
     }
-    /*
+
     // Put the User object visible to the view
     $this->view->setVariable("user", $user);
 
     // render the view (/view/users/register.php)
     $this->view->render("users", "register");
-    */
 
-  }
+
+  }*/
 
   public function eliminar() {
     if (!isset($_POST["dni"])) {
