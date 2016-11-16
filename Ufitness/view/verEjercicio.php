@@ -1,6 +1,8 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Ejercicio.php");
+
 
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
@@ -56,6 +58,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 		<?php
 			include("navbar.php");
 			include("wrapper.php");
+			$econtroler = new controlador_Ejercicio();
+			$id = $_GET['idEjercicio'];
 		?>
 
         <div id="contenido" class="container-fluid">
@@ -64,18 +68,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <strong>Nombre Ejercicio</strong>
               <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
             </div>
+
+						<?php $ejercicio = $econtroler->buscarId($id); ?>
+
             <div class="contenido_pagina">
               <div class="info_ejercicio">
                 <div class="descripcion_ejer">
-                  <h1>Descripción: </h1>
+                  <h1>Descripción: <?php echo $ejercicio->getDescripcion(); ?></h1>
                 </div>
                 <div class="musculo_ejer">
-                  <h1>Músculos: </h1>
+                  <h1>Músculos: <?php echo $ejercicio->getGrupoMuscular(); ?></h1>
                 </div>
                 <div class="maquina_ejer">
-                  <h1>Máquina: </h1>
+                  <h1>Máquina: <?php echo $ejercicio->getMaquina(); ?></h1>
                 </div>
               </div>
+							<!-- faltan mostrar las imagenes almacenadas -->
               <div class="imgs_ejercicio">
                 <div class="responsive">
                   <div class="img">
@@ -109,6 +117,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               </div>
             <div>
         </div>
+
     </div>
 
     <!-- jQuery -->

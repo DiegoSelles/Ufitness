@@ -3,13 +3,18 @@ require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Ejercicio.php");
 
-
 if(!isset($_SESSION)) session_start();
+global $id;
+
+if(isset($_GET['idEjercicio'])){
+  $id = $_GET['idEjercicio'];
+}
 $ucontroler = new controlador_Usuario();
+$econtroler = new controlador_Ejercicio();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
-	header("Location: error.php");
-	exit();
+  header("Location: error.php");
+  exit();
 }
 
 ?>
@@ -23,7 +28,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> userIndex - Ufitness</title>
+    <title> Eliminar Ejercicio - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -51,50 +56,43 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 <body>
     <div id="wrapper">
-			<?php
-			include("navbar.php");
-			include("wrapper.php");
-			?>
+      <?php
+      include("navbar.php");
+      include("wrapper.php");
 
-			<div id="contenido" class="container-fluid">
+      $ejercicio = $econtroler->buscarId($id);
+
+      ?>
+
+      <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-bicycle" aria-hidden="true"></i>
-          <strong>Nuevo Ejercicio</strong>
+          <strong>¿Está seguro que quiere eliminar este ejercicio?</strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Ejercicio&accion=registrarEjercicio" method="post" class="formulario">
-              <label for="nombre">Nombre Ejercicio:</label>
-              <input type="text" name="nombre"/>
-              <label for="tipoEjercicio">Tipo del ejercicio:</label>
-              <select name="tipoEjercicio">
-                  <option value="Cardio" >Cardio</option>
-                  <option value="Estiramientos">Estiramientos</option>
-                  <option value="Muscular">Muscular</option>
-  						</select>
-              <label for="maquina">Maquina:</label>
-              <input type="text" name="maquina"/>
-              <label for="grupoMuscular">Grupo Muscular:</label>
-              <select name="grupoMuscular">
-                  <option value="Piernas" >Piernas</option>
-                  <option value="Brazos">Brazos</option>
-                  <option value="Espalda">Espalda</option>
-  						</select>
-              <label for="descripcion">Descripcion:</label>
-              <input type="text" name="descripcion"/>
-							<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+          <form action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=eliminarEjercicio" method="post" class="formulario">
+              <label>Nombre: <?php echo $ejercicio->getNombre(); ?></label>
+               <br/>
+              <label>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></label>
+               <br/>
+              <label>Grupo Muscular: <?php echo $ejercicio->getGrupoMuscular(); ?></label>
+               <br/>
+              <label>Descripción: <?php echo $ejercicio->getDescripcion(); ?></label>
+              <br/>
+              <label>Dni del creador: <?php echo $ejercicio->getUsuarioDni(); ?></label>
+              <br/>
+
+              <!-- Habría que meter imagen y video aqui tambien -->
+
+              <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
+
+              <input id="submit" class="btn btn-primary" type="submit" value="SI">
+              <br/>
+              <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">NO</a>
+
           </form>
-					<!--
-          <form enctype = "multipart/form-data" action="uploader.php" method="post" class="formulario">
-              <label for="imagen">Imagen:</label>
-              <input type="file" name="uploadedFile"/>
-              <input type="submit" value="subirArchivo"/>
-              <label for="video">Video:</label>
-              <input type="file" name="uploadedFile"/>
-              <input type="submit" value="subirArchivo"/>
-          </form>
-				-->
         </div>
-			</div>
+      </div>
     </div>
 
     <!-- jQuery -->
