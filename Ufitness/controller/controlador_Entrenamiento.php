@@ -13,6 +13,10 @@ class controlador_Entrenamiento{
     $this->entrenamientoMapper = new EntrenamientoMapper();
     $this->usuarioMapper = new UsuarioMapper();
   }
+  
+  	public function listarEntrenamientos (){
+		return $this->entrenamientoMapper->listarEntrenamientos();
+	}
 
 
   public function anhadir() {
