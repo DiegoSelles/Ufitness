@@ -84,7 +84,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                     </div>
                   </div>
                   <div class="anadir">
-                    <a id="btn_anadir" href="#" class="btn btn-primary" type="button">Añadir Entrenamiento</a>
+                    <a id="btn_anadir" href="../view/crearEntrenamiento.php" class="btn btn-primary" type="button">Añadir Entrenamiento</a>
                   </div>
                 </div>
             <div class="body_pagina">
@@ -111,8 +111,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         <p>Grupo Muscular: </p>
                       </div>
                       <div class="opciones_bloque">
+												<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                           <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
+												<?php } ?>
+											</div>
                     </div>
           				</ul>
 									<?php }} ?>
