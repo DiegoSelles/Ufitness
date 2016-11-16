@@ -7,8 +7,8 @@ if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
 $econtroler = new controlador_Entrenamiento();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
-if(isset($_GET['Dni'])){
-$id = $_GET['Dni'];
+if(isset($_GET['DniDeportista'])){
+$dni = $_GET['DniDeportista'];
 	}
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
@@ -67,17 +67,23 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				</div>
 			<div >
 							
-              <label for="lista">Entrenamientos</label>
-              <select name="entrenamiento">
-              <?php foreach ($entrenamientos as $entrenamiento) { ?>
-               <option value="Entrenamiento" selected><?php echo $entrenamiento->getNombre(); } ?></option>             
-  			   </select>
-  			   <form method="post" action="#">
-				<input id="btn_reservar" type="submit" value="Asignar entrenamiento" name="AsignarEntrenamiento">
-              </form>
-              <a href="adminEntrenamientos.php"><input id="btn_crear" type="submit" value="Crear entrenamiento" name="Crear entrenamiento"></a>
+  			<form method="post" action="#">
+				<label for="lista">Entrenamientos</label>
+				<?php $entrenamientos = $econtroler->listarEntrenamientos(); ?>
+				<select name="entrenamiento">
+					<?php foreach ($entrenamientos as $entrenamiento) { ?>
+					<option value="<?php echo $entrenamiento->getNombre(); ?>" ><?php echo $entrenamiento->getNombre(); ?></option>
+					<?php }?>
+				</select>
+				<input id="btn_asignarD" type="submit" value="Asignar" name="AsignarEntrenamiento">
+				<input id="btn_asignarD" type="submit" value="Crear entrenamiento" name="CrearEntrenamiento">
+             </form>
+  
               <?php if(isset($_POST['AsignarEntrenamiento'])){
-				   $econtroler->asignarEntrenamiento($id,$entrenamiento['nombre']); }?>
+				   $econtroler->asignarEntrenamiento($dni,$_POST['entrenamiento']);
+				   }else if(isset($_POST['CrearEntrenamiento'])){
+					  echo "<script language='javascript'>window.location='../view/crearEntrenamiento.php'</script>";
+				    }?>
 			</div>
 		</div>
 	</div>
