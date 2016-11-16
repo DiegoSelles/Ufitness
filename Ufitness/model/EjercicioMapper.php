@@ -1,8 +1,8 @@
 <?php
 
 
-require_once(__DIR__."/../resources/conexion.php");
-require_once(__DIR__."/../model/Ejercicio.php");
+require_once("../resources/conexion.php");
+require_once("../model/Ejercicio.php");
 if(!isset($_SESSION)) session_start();
 
 class EjercicioMapper {
@@ -15,18 +15,6 @@ class EjercicioMapper {
       return true;
     }
   }
-
-  public function listarDeportistas() {
-    global $connect;
-		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.Dni = D.DNI";
-    $resultado = $connect->query($consulta);
-		$listaDeportistas = array();
-		while ($actual = mysqli_fetch_assoc($resultado)){
-        $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],NULL);
-				array_push($listaDeportistas, $deportista);
-		}
-		return $listaDeportistas;
-	}
 
   public function registrarEjercicio($ejercicio) {
     global $connect;
