@@ -12,7 +12,7 @@ class Ejercicio
   private $imagen;
   private $video;
 
-	function __construct($nombre,$usuario_Dni,$tipoEjercicio,$grupoMuscular,$maquina,$descripcion, $imagen, $video, $idEjercicio = null)
+	function __construct($nombre,$usuario_Dni,$tipoEjercicio,$grupoMuscular,$maquina,$descripcion, $imagen = null, $video = null, $idEjercicio = null)
 	{
 		$this ->idEjercicio = $idEjercicio;
     $this ->nombre = $nombre;
@@ -39,8 +39,8 @@ class Ejercicio
 		return $this ->tipoEjercicio;
 	}
 
-  public function getUsuario (){
-    return $this ->usuario;
+  public function getUsuarioDni (){
+    return $this ->usuario_Dni;
   }
 
 	public function setTipoEjercicio ($tipoEjercicio){
@@ -56,7 +56,7 @@ class Ejercicio
 	}
 
   	public function getGrupoMuscular (){
-		return $this ->getGrupoMuscular;
+		return $this ->grupoMuscular;
 	}
 
   	public function setGrupoMuscular ($grupoMuscular){

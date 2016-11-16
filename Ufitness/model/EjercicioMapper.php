@@ -7,14 +7,7 @@ if(!isset($_SESSION)) session_start();
 
 class EjercicioMapper {
 
-    public function guardarDeportista($deportista) {
-    global $connect;
-    $consulta= " INSERT INTO Deportista (DNI, Usuario_Dni, riesgos, tipoDep) VALUES ('". $deportista->getDni() ."',
-     '". $_SESSION["Dni"] ."', '". $deportista->getRiesgos() ."', '". $deportista->getTipo() ."')";
-    $connect->query($consulta);
-  }
-
-    public function isValidUser($username, $passwd) {
+  public function isValidUser($username, $passwd) {
     $stmt = $this->db->prepare("SELECT count(username) FROM users where username=? and passwd=?");
     $stmt->execute(array($username, $passwd));
 
@@ -35,34 +28,45 @@ class EjercicioMapper {
 		return $listaDeportistas;
 	}
 
+  public function registrarEjercicio($ejercicio) {
+    global $connect;
+    //Falta insertar imagen y video
+	    $consulta= " INSERT INTO Ejercicio (Usuario_Dni, nombre, tipoEjer, maquina, grupoMuscular, descripcion)
+      VALUES ('". $ejercicio->getUsuarioDni() ."','". $ejercicio->getNombre() ."', '". $ejercicio->getTipoEjercicio() ."',
+      '". $ejercicio->getMaquina() ."' ,'". $ejercicio->getGrupoMuscular() ."' ,'". $ejercicio->getDescripcion() ."')";
+	    $connect->query($consulta);
+
+	}
+
   public function listarEjerciciosGrupo($grupo) {
     global $connect;
 		$consulta = "SELECT * FROM Ejercicio WHERE grupoMuscular = '$grupo'";
     $resultado = mysqli_query($connect, $consulta) or die (mysqli_error($connect));
 		$listaEjercicios = array();
 		while ($actual = mysqli_fetch_assoc($resultado)) {
-        $ejercicio = new Ejercicio($actual["nombre"],$actual["Usuario_Dni"],$actual["tipoEjer"],$actual["grupoMuscular"],$actual["maquina"],$actual["descripcion"],$actual["imagen"],$actual["video"]);
+        $ejercicio = new Ejercicio($actual["nombre"],$actual["Usuario_Dni"],$actual["tipoEjer"],$actual["grupoMuscular"],$actual["maquina"],$actual["descripcion"],$actual["imagen"],$actual["video"], $actual["idEjercicio"]);
 				array_push($listaEjercicios, $ejercicio);
 		}
 		return $listaEjercicios;
 	}
 
-  public function eliminarDeportista(Deportista $deportista) {
+  public function eliminarEjercicio($ejercicio) {
     global $connect;
-    $consulta = "DELETE FROM Deportista WHERE Dni='".$deportista->getDni()."' ";
+    $consulta = "DELETE FROM Ejercicio WHERE idEjercicio ='".$ejercicio->getIdEjercicio()."' ";
     $connect->query($consulta);
+    $consulta = "DELETE FROM Entrenamiento_has_Ejercicio WHERE idEjercicio ='".$ejercicio->getIdEjercicio()."' ";
+    $connect->query($consulta);
+
   }
 
-  public function buscarDni($dni){
+  public function buscarId($id){
     global $connect;
-    $consulta = "SELECT FROM Usuario U, Deportista D WHERE U.dni = D.dni AND U.dni='$dni' ";
-    $resultado = $connect->query($consulta);
-
-    if($resultado != null) {
-      return new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],$actual["historialEntrenamiento"]);
-    } else {
-      return NULL;
-    }
+		$consulta = "SELECT * FROM Ejercicio WHERE idEjercicio ='". $id ."'";
+		$resultado = $connect->query($consulta);
+		$actual = mysqli_fetch_assoc($resultado);
+		$ejercicio = new Ejercicio($actual["nombre"],$actual["Usuario_Dni"],$actual["tipoEjer"],$actual["grupoMuscular"],
+    $actual["maquina"],$actual["descripcion"], $actual["imagen"], $actual["video"], $actual["idEjercicio"]);
+		return $ejercicio;
   }
 }
 ?>
