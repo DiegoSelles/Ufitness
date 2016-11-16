@@ -60,16 +60,17 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			include("wrapper.php");
 			$econtroler = new controlador_Ejercicio();
 			$id = $_GET['idEjercicio'];
+			$ejercicio = $econtroler->buscarId($id);
 		?>
 
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-bicycle" aria-hidden="true"></i>
-              <strong>Nombre Ejercicio</strong>
-              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+              <strong><?php echo $ejercicio->getNombre(); ?></strong>
+							<a id="btn_editar" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $id; ?>" class="btn btn-primary" type="button">Modificar</a>
             </div>
 
-						<?php $ejercicio = $econtroler->buscarId($id); ?>
+
 
             <div class="contenido_pagina">
               <div class="info_ejercicio">

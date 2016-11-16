@@ -85,7 +85,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <!-- Habría que meter imagen y video aqui tambien -->
 
               <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
-
+              
               <input id="submit" class="btn btn-primary" type="submit" value="SI">
               <br/>
               <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">NO</a>

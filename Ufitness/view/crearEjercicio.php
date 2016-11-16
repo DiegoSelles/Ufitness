@@ -81,6 +81,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
   						</select>
               <label for="descripcion">Descripcion:</label>
               <input type="text" name="descripcion"/>
+							<br/>
 							<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
           </form>
 					<!--
