@@ -1,6 +1,7 @@
 <?php
 require_once("../model/Entrenamiento.php");
 require_once("../model/Deportista.php");
+require_once("../model/EntrenamientoHasEjercicio.php");
 
 
 
@@ -61,11 +62,11 @@ class EntrenamientoMapper {
   	$consulta ="SELECT * FROM Entrenamiento_has_Ejercicio WHERE Entrenamiento_idEntrenamiento='".$id."' ";
   	$resultado = $connect->query($consulta);
   	$listaEjercicios = array();
-    while ($actual = mysqli_fetch_assoc($resultado)) { /*#############*/
-        $consulta ="SELECT * FROM Ejercicio WHERE idEjerc='".$id."' ";
+    while ($actual = mysqli_fetch_assoc($resultado)) {
+        $ejercicio=new EntrenamientoHasEjercicio($actual['Entrenamiento_idEntrenamiento'],$actual['Ejercicio_idEjercicio'],$actual['series_repeticiones'],$actual['carga']);
   			array_push($listaEjercicios, $ejercicio);
   	}
-  	return $listaEntrenamientos;
+  	return $listaEjercicios;
   }
 
   public function update(Entrenamiento $entrenamiento) {
