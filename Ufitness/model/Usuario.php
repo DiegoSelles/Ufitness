@@ -66,7 +66,13 @@ class Usuario
 	public function getRol() {
     	return $this->rol;
   	}
+	
+	public static function getbyDni($Dni){
+		  $mapper = UsuarioMapper::find($Dni);
 
+		  return new Usuario($mapper["Nombre"],$mapper["email"],$mapper["password"],$mapper["fecha_nacimiento"],$mapper["Dni"],$mapper["rol"]);
+
+	  }
 	/*public function comprobarDatos() {
       $errors = array();
       if (strlen(trim($this->nombre)) < 5) {
@@ -92,14 +98,7 @@ class Usuario
 			if (sizeof($errors)>0){
 				throw new ValidationException($errors, "Existen errores. No se puede registrar el usuario.");
       }
-  }*/
-
-	  public static function getbyDni($Dni){
-		  $mapper = UsuarioMapper::find($Dni);
-
-		  return new Usuario($mapper["Nombre"],$mapper["email"],$mapper["password"],$mapper["fecha_nacimiento"],$mapper["Dni"],$mapper["rol"]);
-
-	  }/*
+  }
 
 		function validar_dni($dni){
 			$letra = substr($dni, -1);
