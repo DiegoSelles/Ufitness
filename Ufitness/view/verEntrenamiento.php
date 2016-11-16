@@ -1,6 +1,9 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Entrenamiento.php");
+
+$econtroller = new controlador_Entrenamiento();
 
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
@@ -23,7 +26,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminEntrenamientos - Ufitness</title>
+    <title> Entrenamiento - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -53,15 +56,20 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
     <div id="wrapper">
 
-			<?php 
+			<?php
 			include("navbar.php");
-			include("wrapper.php"); 
+			include("wrapper.php");
+			if(isset($_GET['idEntrenamiento'])){
+				$idEntrenamiento=$_GET['idEntrenamiento'];
+				$entrenamiento=$econtroller->buscarEntrenamientoId($idEntrenamiento);
+			}else header("Location: ../view/error.php");
+
 			?>
- 
+
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-trophy" aria-hidden="true"></i>
-              <strong>Nombre Entrenamiento1</strong>
+              <strong><?php echo $entrenamiento->getNombre(); ?></strong>
               <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
             </div>
             <div class="contenido_pagina">
