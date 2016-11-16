@@ -129,13 +129,8 @@ ul.dropdown-menu {
 .titulo_lista{
   display:flex;
 }
-
 .titulo_lista h1{
   font-size: 30px;
-}
-
-.header_lista p{
-  font-size: 25px;
 }
 
 .anadir{
@@ -327,7 +322,17 @@ margin-bottom: 5px;
   width:200px;
   height:50px;
   font-size:20px;
+}
 
+#btn_asignarD{
+  background-color: #F28F46;
+  align-self: auto;
+  margin-left: 20px;
+  border-radius: 10px;
+  width:250px;
+  height:50px;
+  font-size:20px;
+  float:right;
 }
 
 #btn_editar:hover{
@@ -361,6 +366,7 @@ margin-bottom: 5px;
 #btn_asignar:hover{
   background-color: #125DC6;
 }
+
 /*Search */
 #custom-search-input{
     padding: 3px;
