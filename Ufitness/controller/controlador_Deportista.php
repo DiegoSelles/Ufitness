@@ -22,10 +22,8 @@ class controlador_Deportista{
 
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
 
-      $edad = date(DATE_ATOM)-$_POST["fecha"];//Calculamos la edad
-
-      $deportista = new Deportista($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"deportista",$_POST["riesgos"],$_POST["tipo"]);
-      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"deportista");
+      $deportista = new Deportista($_POST["nombre"],$_POST["email"],$_POST["password"],$_POST["fecha"],$_POST["dni"],"deportista",$_POST["riesgos"],$_POST["tipo"]);
+      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$_POST["fecha"],$_POST["dni"],"deportista");
 
       try{
 	       //$usuario->comprobarDatos(); // if it fails, ValidationException
