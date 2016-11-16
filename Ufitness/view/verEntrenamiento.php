@@ -72,7 +72,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             <div class="titulo_seccion">
               <i class="fa fa-trophy" aria-hidden="true"></i>
               <strong><?php echo $entrenamiento->getNombre(); ?></strong>
+							<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
               <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+							<?php } ?>
+							<?php if($_SESSION['rol'] == "deportista"){ ?>
+              	<a id="btn_editar" href="#" class="btn btn-primary" type="button"> Monitorizar Entrenamiento </a>
+							<?php } ?>
             </div>
             <div class="body_pagina">
 							<div class="header_lista">
@@ -101,6 +106,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 													<p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
 													<p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
 													<p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+													<p>series X Repeticion: <?php echo $entrenamientoHasEjercicio->getSxR(); ?></p>
+													<p>Carga: <?php echo $entrenamientoHasEjercicio->getCarga(); ?></p>
 												</div>
 											</div>
 										</ul>
