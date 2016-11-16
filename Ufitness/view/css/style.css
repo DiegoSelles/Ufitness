@@ -129,8 +129,13 @@ ul.dropdown-menu {
 .titulo_lista{
   display:flex;
 }
+
 .titulo_lista h1{
   font-size: 30px;
+}
+
+.header_lista p{
+  font-size: 25px;
 }
 
 .anadir{
