@@ -8,16 +8,17 @@ class Entrenamiento
 	public $nombre;
 
 
-	function __construct($deportista,$duracion,$nombre)
+	function __construct($duracion,$nombre,$deportista=NULL,$idEntrenamiento=NULL)
   {
-		$this ->deportista = $deportista;
 		$this ->duracion = $duracion;
 		$this ->nombre = $nombre;
+		$this ->deportista = $deportista;
+		$this ->idEntrenamiento = $idEntrenamiento;
 
 	}
 
-  public function getidEntrenamiento() {
-    return $this ->idEntrnamiento;
+  public function getId() {
+    return $this ->idEntrenamiento;
   }
 
   public function getDuracion() {
@@ -31,7 +32,7 @@ class Entrenamiento
   public function getDeportista() {
     return $this ->deportista;
   }
-  
+
   public function getNombre(){
 	  return $this ->nombre;
   }
