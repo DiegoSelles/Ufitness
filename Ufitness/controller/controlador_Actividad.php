@@ -83,20 +83,18 @@ class controlador_Actividad{
 	   $consulta = "SELECT numPlazas FROM Actividad WHERE idActividad ='" .$idActividad. "'" ;
 	   $resultado= $connect->query($consulta);
 	   $plazas = mysqli_fetch_assoc($resultado);
-	   $query = "SELECT Deportista_Usuario_Dni FROM Reserva WHERE Actividad_idActividad='" .$idActividad."'";
-	   $result = $connect->query($query);
-	   $filas = mysqli_num_rows($result);
-	   if($plazas['numPlazas'] == $filas){
-		   echo "<script language='javascript'>window.location='../view/error.php'</script>";
-		   exit();
-		}else{
-			$prueba = $plazas['numPlazas'] - 1;
-			mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$prueba. "' WHERE idActividad ='" .$idActividad. "'");
-			mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,numero_Plazas_Reservadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$prueba."')");
-			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+
+		if($plazas['numPlazas'] == 0){
+			echo "<script language='javascript'>window.location='../view/error.php'</script>";
 			exit();
+			}else{
+				$plazasRestantes = $plazas['numPlazas'] - 1;
+				mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$plazasRestantes. "' WHERE idActividad ='" .$idActividad. "'");
+				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,numero_Plazas_Reservadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasRestantes."')");
+				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+				exit();
+			}	
 		}
-   }
    
 }
 
