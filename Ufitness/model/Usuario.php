@@ -5,15 +5,15 @@ class Usuario
 	private $nombre;
 	private $email;
 	private $password;
-	private $edad;
+	private $fecha;
 	private $dni;
 	private $rol;
-	function __construct($nombre,$email,$password,$edad,$dni,$rol)
+	function __construct($nombre,$email,$password,$fecha,$dni,$rol)
 	{
 		$this->nombre = $nombre;
 		$this->email = $email;
 		$this->password = $password;
-		$this->edad = $edad;
+		$this->fecha = $fecha;
 		$this->dni = $dni;
 		$this->rol = $rol;
 	}
@@ -51,7 +51,12 @@ class Usuario
   	}
 
   	public function getEdad() {
-    	return $this->edad;
+
+    	return date('Y-m-d') - $this->fecha;
+  	}
+
+		public function getFecha() {
+    	return $this->fecha;
   	}
 
   	public function setRol()
@@ -88,12 +93,12 @@ class Usuario
 				throw new ValidationException($errors, "Existen errores. No se puede registrar el usuario.");
       }
   }
-	  
+
 	  public static function getbyDni($Dni){
 		  $mapper = UsuarioMapper::find($Dni);
-		  
+
 		  return new Usuario($mapper["Nombre"],$mapper["email"],$mapper["password"],$mapper["edad"],$mapper["Dni"],$mapper["rol"]);
-		  
+
 	  }
 
 		function validar_dni($dni){
