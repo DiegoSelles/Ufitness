@@ -128,6 +128,15 @@ class controlador_Entrenamiento{
     //$this->view->redirect("posts", "index");
     header("Location: ../view/adminDeportistas.php");
   }
+    public function asignarEntrenamiento($dni,$nombre){
+	  global $connect;
+	  $consulta = "SELECT idEntrenamiento FROM Entrenamiento WHERE nombre= '" .$nombre."'";
+	  $resultado = $connect->query($consulta);
+	  $entrenamiento = mysqli_fetch_assoc($resultado);
+	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
+	  $connect->query($consult);
+	  
+  }
 
 }
 
