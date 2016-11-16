@@ -1,10 +1,12 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Entrenamiento.php");
 
+$econtroller = new controlador_Entrenamiento();
 if(!isset($_SESSION)) session_start();
-$ucontroler = new controlador_Usuario();
-$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
+$ucontroller = new controlador_Usuario();
+$usuarioActual =  $ucontroller->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();
@@ -23,7 +25,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminEntrenamientos - Ufitness</title>
+    <title> Entrenamientos - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -55,9 +57,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
     <div id="wrapper">
 
-			<?php 
+			<?php
 			include("navbar.php");
 			include("wrapper.php");
+
 			?>
 
           <div id="contenido" class="container-fluid">
@@ -85,16 +88,25 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                   </div>
                 </div>
             <div class="body_pagina">
+						<?php
+									$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
+									if($entrenamientos != NULL){
+						?>
             <nav id = "desplegable1">
               <ul>
           			<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
-          				<ul>
+									<?php
+											foreach ($entrenamientos as $entrenamiento) {
+									?>
+									<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento<h1>
+                        <a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+													<h1><?php echo $entrenamiento->getNombre(); ?></h1>
+												</a>
                       </div>
                       <div class="info_bloque">
-                        <p>Duración: </p>
+                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
@@ -103,51 +115,28 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                       </div>
                     </div>
           				</ul>
-                  <ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento<h1>
-                      </div>
-                      <div class="info_bloque">
-                        <p>Duración: </p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
-                      </div>
-                      <div class="opciones_bloque">
-                          <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-          				</ul>
-                  <ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento<h1>
-                      </div>
-                      <div class="info_bloque">
-                        <p>Duración: </p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
-                      </div>
-                      <div class="opciones_bloque">
-                          <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-          				</ul>
-
+									<?php }} ?>
           			</li>
           		</ul>
             </nav>
 
+						<?php
+									$entrenamientos = $econtroller->listarEntrenamientosNivel("intermedio");
+									if($entrenamientos != NULL){
+						?>
             <nav id = "desplegable2">
               <ul>
           			<li id="nivel2"><a id = "activador_2" class= "btn_nivel" href="#"><i id = "activador_2" class="fa fa-chevron-down"></i>Intermedio</a>
-          				<ul>
+									<?php
+											foreach ($entrenamientos as $entrenamiento) {
+									?>
+									<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento<h1>
+                        <a href="../view/verEntrenamiento.php"><?php echo $entrenamiento->getNombre(); ?></a>
                       </div>
                       <div class="info_bloque">
-                        <p>Duración: </p>
+                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
@@ -156,90 +145,37 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                       </div>
                     </div>
           				</ul>
-                  <ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento<h1>
-                      </div>
-                      <div class="info_bloque">
-                        <p>Duración: </p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
-                      </div>
-                      <div class="opciones_bloque">
-                          <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-          				</ul>
-                  <ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento<h1>
-                      </div>
-                      <div class="info_bloque">
-                        <p>Duración: </p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
-                      </div>
-                      <div class="opciones_bloque">
-                          <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-          				</ul>
-
+                  <?php }} ?>
           			</li>
           		</ul>
             </nav>
 
+						<?php
+									$entrenamientos = $econtroller->listarEntrenamientosNivel("avanzado");
+									if($entrenamientos != NULL){
+						?>
             <nav id = "desplegable3">
               <ul>
           			<li id="nivel3"><a id = "activador_3" class= "btn_nivel" href="#"><i id = "activador_3" class="fa fa-chevron-down"></i>Avanzado</a>
-          				<ul>
+									<?php
+											foreach ($entrenamientos as $entrenamiento) {
+									?>
+									<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento7<h1>
+                        <a href="../view/verEntrenamiento.php"><?php echo $entrenamiento->getNombre(); ?></a>
                       </div>
                       <div class="info_bloque">
-                        <p>Duración: </p>
+                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
-                      <div class="opciones_ejercicio">
+                      <div class="opciones_bloque">
                           <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       </div>
                     </div>
           				</ul>
-                  <ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento8<h1>
-                      </div>
-                      <div class="info_bloque">
-                        <p>Duración: </p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
-                      </div>
-                      <div class="opciones_ejercicio">
-                          <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-          				</ul>
-                  <ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-                        <h1>Nombre Entrenamiento9<h1>
-                      </div>
-                      <div class="info_bloque">
-                        <p>Duración: </p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
-                      </div>
-                      <div class="opciones_ejercicio">
-                          <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                    </div>
-          				</ul>
-
+              		<?php }} ?>
           			</li>
           		</ul>
             </nav>
