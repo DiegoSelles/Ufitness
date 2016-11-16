@@ -49,6 +49,18 @@ class EjercicioMapper {
 		}
 		return $listaEjercicios;
 	}
+	
+  public function listarEjercicios() {
+    global $connect;
+		$consulta = "SELECT * FROM Ejercicio";
+    $resultado = mysqli_query($connect, $consulta) or die (mysqli_error($connect));
+		$listaEjercicios = array();
+		while ($actual = mysqli_fetch_assoc($resultado)) {
+        $ejercicio = new Ejercicio($actual["nombre"],$actual["Usuario_Dni"],$actual["tipoEjer"],$actual["grupoMuscular"],$actual["maquina"],$actual["descripcion"],$actual["imagen"],$actual["video"], $actual["idEjercicio"]);
+				array_push($listaEjercicios, $ejercicio);
+		}
+		return $listaEjercicios;
+	}
 
   public function modificarEjercicio($ejercicio, $idEjercicio){
 		global $connect;
