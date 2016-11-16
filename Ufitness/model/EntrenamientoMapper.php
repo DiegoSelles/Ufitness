@@ -1,37 +1,11 @@
 <?php
-// file: model/PostMapper.php
-
 require_once("../model/Entrenamiento.php");
 require_once("../model/Deportista.php");
 
 
-/**
- * Class PostMapper
- *
- * Database interface for Post entities
- *
- * @author lipido <lipido@gmail.com>
- */
+
 class EntrenamientoMapper {
-
-  /**
-   * Reference to the PDO connection
-   * @var PDO
-   */
-  private $db;
-
-  public function __construct() {
-    $this->db = PDOConnection::getInstance();
-  }
-
-  /**
-   * Retrieves all posts
-   *
-   * Note: Comments are not added to the Post instances
-   *
-   * @throws PDOException if a database error occurs
-   * @return mixed Array of Post instances (without comments)
-   */
+	
   public function findAllEntrenamientos() {
     $stmt = $this->db->query("SELECT * FROM Entrenamiento");
     $entrenamientos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,15 +20,6 @@ class EntrenamientoMapper {
     return $entrenamientos;
   }
 
-  /**
-   * Loads a Post from the database given its id
-   *
-   * Note: Comments are not added to the Post
-   *
-   * @throws PDOException if a database error occurs
-   * @return Post The Post instances (without comments). NULL
-   * if the Post is not found
-   */
   public function findEntrenamientoById($idEntrenamiento){
     $stmt = $this->db->prepare("SELECT * FROM Entrenamiento WHERE id=?");
     $stmt->execute(array($idEntrenamiento));
@@ -71,27 +36,26 @@ class EntrenamientoMapper {
     }
 
 
-
-  /**
-   * Saves a Post into the database
-   *
-   * @param Post $post The post to be saved
-   * @throws PDOException if a database error occurs
-   * @return int The mew post id
-   */
   public function save(Entrenamiento $entrenamiento) {
     $stmt = $this->db->prepare("INSERT INTO Entrenamiento(Deportista_DNI, duracion) values (?,?)");
     $stmt->execute(array($entrenamiento->getDeportista()->getDni(),$entrenamiento->getDuracion()));
     return $this->db->lastInsertId();
   }
+  
+  	function listarEntrenamientos (){
+		global $connect;
+		$consulta ="SELECT * FROM Entrenamiento ";
+		$resultado = $connect->query($consulta);
+		$listaEntrenamientos = array();
+		while ($actual = mysqli_fetch_assoc($resultado)) {
 
-  /**
-   * Updates a Post in the database
-   *
-   * @param Post $post The post to be updated
-   * @throws PDOException if a database error occurs
-   * @return void
-   */
+				$entrenamiento = new Entrenamiento($actual["Deportista_DNI"],$actual["duracion"],$actual["nombre"]);
+				array_push($listaEntrenamientos, $entrenamiento);
+		}
+		return $listaEntrenamientos;
+
+	}
+	
   public function update(Entrenamiento $entrenamiento) {
     $stmt = $this->db->prepare("UPDATE Entrenamiento set duracion=? where id=?");
     $stmt->execute(array($entrenamiento->getDuracion(), $entrenamiento->getidEntrenamiento()));
