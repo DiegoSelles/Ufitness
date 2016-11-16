@@ -3,16 +3,16 @@
 class Entrenamiento
 {
 	public $idEntrenamiento;
-	public $deportista;
 	public $duracion;
 	public $nombre;
+	public $nivel;
 
 
-	function __construct($duracion,$nombre,$deportista=NULL,$idEntrenamiento=NULL)
+	function __construct($duracion,$nombre,$nivel,$idEntrenamiento=NULL)
   {
 		$this ->duracion = $duracion;
 		$this ->nombre = $nombre;
-		$this ->deportista = $deportista;
+		$this ->nivel = $nivel;
 		$this ->idEntrenamiento = $idEntrenamiento;
 
 	}
@@ -29,13 +29,18 @@ class Entrenamiento
     $this ->duracion = $duracion;
   }
 
-  public function getDeportista() {
-    return $this ->deportista;
-  }
-
   public function getNombre(){
 	  return $this ->nombre;
   }
+
+
+		public function getNivel() {
+	    return $this ->nivel;
+	  }
+
+	  public function setNivel ($nivel){
+	    $this ->nivel = $nivel;
+	  }
 
 	public function comprobarDatos() {
 			$errors = array();
