@@ -26,6 +26,9 @@ class controlador_Entrenamiento{
     return $this->entrenamientoMapper->listarEntrenamientosNivel($nivel);
   }
 
+  public function ejerciciosEntrenamiento($id){
+    return $this->entrenamientoMapper->ejerciciosEntrenamiento($id);
+  }
 
   public function anhadir() {
 
