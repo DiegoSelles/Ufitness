@@ -7,28 +7,41 @@ require_once("../model/EntrenamientoHasEjercicio.php");
 
 class EntrenamientoMapper {
 
+  public function save($entrenamiento) {
+      global $connect;
+	    $consulta= " INSERT INTO Entrenamiento (duracion, nombre, nivel)
+      VALUES ('". $entrenamiento->getDuracion() ."','". $ejercicio->getNombre() ."', '". $ejercicio->getNivel() ."')";
+	    $connect->query($consulta);
+      echo "hoooooola";
+
+	}
+
+  public function obtenerIdEntrenamiento($entrenamiento) {
+      global $connect;
+	    $consulta= " SELECT * FROM Entrenamiento WHERE nombre='".$entrenamiento->getNombre()."' ";
+      $resultado = $connect->query($consulta);
+      $entrenamiento = mysqli_fetch_assoc($resultado);
+
+      if($entrenamiento!=NULL) {
+    			return  new Entrenamiento($entrenamiento["duracion"],$entrenamiento["nombre"],$entrenamiento["nivel"], $entrenamiento["idEntrenamiento"] );
+    	}else {
+        return NULL;
+      }
+	}
 
   public function buscarEntrenamientoId($id){
-
     global $connect;
   	$consulta ="SELECT * FROM Entrenamiento WHERE idEntrenamiento='".$id."' ";
   	$resultado = $connect->query($consulta);
     $entrenamiento = mysqli_fetch_assoc($resultado);
 
   	if($entrenamiento!=NULL) {
-  			return  new Entrenamiento($entrenamiento["duracion"],$entrenamiento["nombre"],$entrenamiento["Deportista_DNI"], $entrenamiento["idEntrenamiento"] );
+  			return  new Entrenamiento($entrenamiento["duracion"],$entrenamiento["nombre"],$entrenamiento["nivel"], $entrenamiento["idEntrenamiento"] );
   	}else {
       return NULL;
     }
 
     }
-
-
-  public function save(Entrenamiento $entrenamiento) {
-    $stmt = $this->db->prepare("INSERT INTO Entrenamiento(Deportista_DNI, duracion) values (?,?)");
-    $stmt->execute(array($entrenamiento->getDeportista()->getDni(),$entrenamiento->getDuracion()));
-    return $this->db->lastInsertId();
-  }
 
   public function listarEntrenamientos (){
 		global $connect;
@@ -37,7 +50,7 @@ class EntrenamientoMapper {
 		$listaEntrenamientos = array();
 		while ($actual = mysqli_fetch_assoc($resultado)) {
 
-				$entrenamiento = new Entrenamiento($actual["Deportista_DNI"],$actual["duracion"],$actual["nombre"]);
+				$entrenamiento = new Entrenamiento($actual["duracion"],$actual["nombre"],$actual["nivel"]);
 				array_push($listaEntrenamientos, $entrenamiento);
 		}
 		return $listaEntrenamientos;
@@ -50,37 +63,13 @@ class EntrenamientoMapper {
   	$resultado = $connect->query($consulta);
   	$listaEntrenamientos = array();
   	while ($actual = mysqli_fetch_assoc($resultado)) {
-  			$entrenamiento = new Entrenamiento($actual["duracion"],$actual["nombre"],$actual["Deportista_DNI"], $actual["idEntrenamiento"] );
+  			$entrenamiento = new Entrenamiento($actual["duracion"],$actual["nombre"],$actual["nivel"], $actual["idEntrenamiento"] );
   			array_push($listaEntrenamientos, $entrenamiento);
   	}
   	return $listaEntrenamientos;
 
 	}
 
-  public function ejerciciosEntrenamiento($id){
-    global $connect;
-  	$consulta ="SELECT * FROM Entrenamiento_has_Ejercicio WHERE Entrenamiento_idEntrenamiento='".$id."' ";
-  	$resultado = $connect->query($consulta);
-  	$listaEjercicios = array();
-    while ($actual = mysqli_fetch_assoc($resultado)) {
-        $ejercicio=new EntrenamientoHasEjercicio($actual['Entrenamiento_idEntrenamiento'],$actual['Ejercicio_idEjercicio'],$actual['series_repeticiones'],$actual['carga']);
-  			array_push($listaEjercicios, $ejercicio);
-  	}
-  	return $listaEjercicios;
-  }
-
-  public function update(Entrenamiento $entrenamiento) {
-    $stmt = $this->db->prepare("UPDATE Entrenamiento set duracion=? where id=?");
-    $stmt->execute(array($entrenamiento->getDuracion(), $entrenamiento->getidEntrenamiento()));
-  }
-
-  /**
-   * Deletes a Post into the database
-   *
-   * @param Post $post The post to be deleted
-   * @throws PDOException if a database error occurs
-   * @return void
-   */
   public function delete(Entrenamiento $entrenamiento) {
     $stmt = $this->db->prepare("DELETE from Entrenamiento WHERE id=?");
     $stmt->execute(array($ejercicio->getidEntrenamiento()));
