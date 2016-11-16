@@ -29,7 +29,7 @@ class controlador_Ejercicio{
     }
 
 
-  public function listaEjercicios(){
+  public function listarEjercicios(){
     return $this->ejercicioMapper->listarEjercicios();
   }
 
