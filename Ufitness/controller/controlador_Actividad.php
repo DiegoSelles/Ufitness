@@ -90,7 +90,7 @@ class controlador_Actividad{
 			}else{
 				$plazasRestantes = $plazas['numPlazas'] - 1;
 				mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$plazasRestantes. "' WHERE idActividad ='" .$idActividad. "'");
-				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,numero_Plazas_Reservadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasRestantes."')");
+				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,plazas_ocupadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasRestantes."')");
 				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 				exit();
 			}	
