@@ -25,7 +25,7 @@ class EntrenamientoHasEjercicio
     return $this ->idEjercicio;
   }
 
-  public function getSxP() {
+  public function getSxR() {
     return $this ->seriesxRep;
   }
 
