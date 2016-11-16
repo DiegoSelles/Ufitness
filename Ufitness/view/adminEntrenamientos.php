@@ -133,7 +133,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 									<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <a href="../view/verEntrenamiento.php"><?php echo $entrenamiento->getNombre(); ?></a>
+												<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+													<h1><?php echo $entrenamiento->getNombre(); ?></h1>
+												</a>
                       </div>
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
@@ -163,7 +165,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 									<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <a href="../view/verEntrenamiento.php"><?php echo $entrenamiento->getNombre(); ?></a>
+												<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+													<h1><?php echo $entrenamiento->getNombre(); ?></h1>
+												</a>
                       </div>
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
