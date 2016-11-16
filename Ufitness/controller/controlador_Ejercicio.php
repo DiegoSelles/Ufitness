@@ -8,56 +8,26 @@ class controlador_Ejercicio{
 
   public function __construct() {
 
-    $this->ejercicioMapper = new ejercicioMapper();
+    $this->ejercicioMapper = new EjercicioMapper();
   }
 
 
-  public function register() {
+  public function registrarEjercicio() {
 
-    $deportistaMapper = new DeportistaMapper();
-    $usuarioMapper = new UsuarioMapper();
+    $ucontroler = new controlador_Usuario();
+    $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 
-    if(isset($_POST["nombre"])){ //Cogemos los datos de http
+    $ejercicioMapper = new EjercicioMapper();
+    //Falta mirar como meterle la imagen y el video
+    $ejercicio = new Ejercicio($_POST["nombre"], $usuarioActual->getDni(), $_POST["tipoEjercicio"],
+    $_POST["grupoMuscular"], $_POST["maquina"], $_POST["descripcion"]);
 
-      $edad = date(DATE_ATOM)-$_POST["fecha"];//Calculamos la edad
+    $ejercicioMapper->registrarEjercicio($ejercicio);
 
-      $deportista = new Deportista($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"deportista",$_POST["riesgos"],$_POST["tipo"]);
-      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"deportista");
+    header("Location: ../view/adminEjercicios.php");
 
-      try{
-	       //$usuario->comprobarDatos(); // if it fails, ValidationException
-         //$deportista->comprobarDatos();
-
-      	//#####
-      	if (!$usuarioMapper->usuarioExiste($deportista->getDni())){
-
-            $deportistaMapper->guardarDeportista($deportista);
-            $usuarioMapper->guardarUsuario($usuario);
-            echo "Se ha creado?";
-            //header("Location: ../view/adminDeportistas.php");
-      	} else {
-
-      	  $errors = array();
-      	  $errors["dni"] = "El deportista ya existe";
-      	  print_r($errors);
-          //header("Location: ../view/error.php");
-      	}
-      }catch(ValidationException $ex) {
-	    // Get the errors array inside the exepction...
-	     $errors = $ex->getErrors();
-       print_r($errors);
-
-      }
     }
-    /*
-    // Put the User object visible to the view
-    $this->view->setVariable("user", $user);
 
-    // render the view (/view/users/register.php)
-    $this->view->render("users", "register");
-    */
-
-  }
 
   public function listaEjercicios(){
     return $this->ejercicioMapper->listarEjercicios();
@@ -67,25 +37,26 @@ class controlador_Ejercicio{
     return $this->ejercicioMapper->listarEjerciciosGrupo($grupo);
   }
 
-  public function eliminar() {
-    if (!isset($_POST["dni"])) {
+  public function buscarId($id){
+    return $this->ejercicioMapper->buscarId($id);
+  }
+
+  public function eliminarEjercicio() {
+    if (!isset($_POST["id"])) {
       throw new Exception("id is mandatory");
     }
-    /*if (!isset($this->currentUser)) {
-      throw new Exception("Not in session. Editing posts requires login");
-    }*/
 
+    $idEjercicio = $_REQUEST["id"];
+    $ejercicioMapper = new EjercicioMapper();
 
-    $deportistadni = $_REQUEST["dni"];
-    $deportista = $this->deportistaMapper->buscarDni($deportistadni);
+    $ejercicio = $ejercicioMapper->buscarId($idEjercicio);
 
-    if ($deportista == NULL) {
-      throw new Exception("no such post with id: ".$deportistadni);
+    if ($ejercicio == NULL) {
+      throw new Exception("no such post with id: ". $idEjercicio);
     }
 
     // Delete the Post object from the database
-    $this->deportistaMapper->eliminarDeportista($deportista);
-    $this->usuarioMapper->eliminarUsuario($deportista);
+    $ejercicioMapper->eliminarEjercicio($ejercicio);
 
     // POST-REDIRECT-GET
     // Everything OK, we will redirect the user to the list of posts
@@ -98,7 +69,7 @@ class controlador_Ejercicio{
     // header("Location: index.php?controller=posts&action=index")
     // die();
     //$this->view->redirect("posts", "index");
-    header("Location: ../view/adminDeportistas.php");
+    header("Location: ../view/adminejercicios.php");
   }
 
 }
