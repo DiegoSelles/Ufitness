@@ -1,10 +1,13 @@
 <?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Ejercicio.php");
+
+$ejercontroller = new controlador_Ejercicio();
 
 if(!isset($_SESSION)) session_start();
-$ucontroler = new controlador_Usuario();
-$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
+$ucontroller = new controlador_Usuario();
+$usuarioActual =  $ucontroller->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();
@@ -21,7 +24,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> userIndex - Ufitness</title>
+    <title> Crear Deportista - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -52,6 +55,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
+			$ejercicios = $ejercontroller->listarEjercicios();
 			?>
 
 			<div id="contenido" class="container-fluid">
@@ -60,11 +64,28 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
           <strong>Nuevo Deportista</strong>
         </div>
         <div >
-  				<form action="../?controller=entrenamiento&amp;action=add" method="post" class="formulario">
+  				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=anhadir" method="post" class="formulario">
               <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre"/>
               <?php echo "Duración" ?>: <input type="text" name="dni"/>
-              <?php echo "Añade los ejercicios que formarán parte del entrenamiento" ?>: <input type="date" name="nombre"/>
-
+							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel">
+			                                            <option value="principiante" selected>Principiante</option>
+			                                            <option value="intermedio">Intermedio</option>
+																									<option value="avanzado">Avanzado</option>
+            																	 </select>
+              <?php echo "Selecciona los ejercicios que formarán parte del entrenamiento" ?>:
+								<?php
+									foreach ($ejercicios as $ejercicio) {
+								?>
+								<ul>
+									<li>
+										<input type="checkbox" name="ejercicio[]" value="<?php echo $ejercicio->getIdEjercicio();?>"> <strong><?php echo $ejercicio->getNombre();?></strong>
+										<p>SeriesxRepetición: <input type="text" name = "seriesxRep" placeholder="Ej: 3x12"></p>
+										<p>Carga:<input type="text" name ="Carga" placeholder="Ej: 3"></p>
+									</li>
+								</ul>
+								<?php
+									}
+								?>
 							<input id="submit" class="btn btn-primary" type="submit" value="Guardar">
 
           </form>
@@ -81,4 +102,3 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-<?php session_destroy() ?>
