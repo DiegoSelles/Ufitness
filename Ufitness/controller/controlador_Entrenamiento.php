@@ -13,10 +13,18 @@ class controlador_Entrenamiento{
     $this->entrenamientoMapper = new EntrenamientoMapper();
     $this->usuarioMapper = new UsuarioMapper();
   }
-  
+
+  public function buscarEntrenamientoId($id){
+    return $this->entrenamientoMapper->buscarEntrenamientoId($id);
+  }
+
   	public function listarEntrenamientos (){
 		return $this->entrenamientoMapper->listarEntrenamientos();
 	}
+
+  public function listarEntrenamientosNivel($nivel){
+    return $this->entrenamientoMapper->listarEntrenamientosNivel($nivel);
+  }
 
 
   public function anhadir() {
@@ -62,14 +70,6 @@ class controlador_Entrenamiento{
     $this->view->render("users", "register");
     */
 
-  }
-
-  public function listaDeportistas(){
-    return $this->deportistaMapper->listarDeportistas();
-  }
-
-  public function listaDeportistasTipo($tipo){
-    return $this->deportistaMapper->listarDeportistasTipo($tipo);
   }
 
   public function eliminar() {
