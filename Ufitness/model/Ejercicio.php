@@ -12,7 +12,7 @@ class Ejercicio
   private $imagen;
   private $video;
 
-	function __construct($nombre,$usuario_Dni,$tipoEjercicio,$grupoMuscular,$maquina,$descripcion, $imagen = null, $video = null, $idEjercicio = null)
+	function __construct($nombre, $usuario_Dni, $tipoEjercicio, $grupoMuscular, $maquina, $descripcion, $imagen = null, $video = null, $idEjercicio = null)
 	{
 		$this ->idEjercicio = $idEjercicio;
     $this ->nombre = $nombre;

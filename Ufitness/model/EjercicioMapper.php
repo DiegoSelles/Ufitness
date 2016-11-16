@@ -50,6 +50,16 @@ class EjercicioMapper {
 		return $listaEjercicios;
 	}
 
+  public function modificarEjercicio($ejercicio, $idEjercicio){
+		global $connect;
+		$consulta= "UPDATE Ejercicio set Usuario_Dni='".$ejercicio->getUsuarioDni()."',nombre='".$ejercicio->getNombre()."',
+    tipoEjer='".$ejercicio->getTipoEjercicio()."', maquina='".$ejercicio->getMaquina()."',
+    grupoMuscular='".$ejercicio->getGrupoMuscular()."', descripcion='".$ejercicio->getDescripcion()."'
+    WHERE idEjercicio='".$idEjercicio."'";
+		$connect->query($consulta);
+		header("Location: ../view/adminEjercicios.php");
+	}
+
   public function eliminarEjercicio($ejercicio) {
     global $connect;
     $consulta = "DELETE FROM Ejercicio WHERE idEjercicio ='".$ejercicio->getIdEjercicio()."' ";
