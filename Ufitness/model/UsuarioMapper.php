@@ -17,7 +17,7 @@ class UsuarioMapper {
 		$consulta = "SELECT * FROM Usuario WHERE Dni='". $Dni ."'";
 		$resultado = $connect->query($consulta);
 		$actual = mysqli_fetch_assoc($resultado);
-		$entrenador = new Usuario($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["Dni"],$actual["rol"]);
+		$entrenador = new Usuario($actual["Nombre"],$actual["email"],$actual["password"],$actual["fecha_nacimiento"],$actual["Dni"],$actual["rol"]);
 		return $entrenador;
 	}
 
@@ -29,7 +29,7 @@ class UsuarioMapper {
 		$listaEntrenadores = array();
 		while ($actual = mysqli_fetch_assoc($resultado)) {
 
-				$entrenador = new Usuario($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["Dni"],$actual["rol"]);
+				$entrenador = new Usuario($actual["Nombre"],$actual["email"],$actual["password"],$actual["fecha_nacimiento"],$actual["Dni"],$actual["rol"]);
 				array_push($listaEntrenadores, $entrenador);
 		}
 		return $listaEntrenadores;
@@ -39,8 +39,8 @@ class UsuarioMapper {
 	public function guardarUsuario(Usuario $usuario)
 	{
 		global $connect;
-	    $consulta= " INSERT INTO Usuario (DNI, Usuario_Dni, rol, Nombre, email, password,edad) VALUES ('". $usuario->getDni() ."',
-	     '". $_SESSION["Dni"] ."', '". $usuario->getRol() ."', '". $usuario->getNombre() ."', '". $usuario->getEmail() ."' ,'". $usuario->getPassword() ."' ,'". $usuario->getEdad() ."')";
+	    $consulta= " INSERT INTO Usuario (DNI, Usuario_Dni, rol, Nombre, email, password,fecha_nacimiento) VALUES ('". $usuario->getDni() ."',
+	     '". $_SESSION["Dni"] ."', '". $usuario->getRol() ."', '". $usuario->getNombre() ."', '". $usuario->getEmail() ."' ,'". $usuario->getPassword() ."' ,'". $usuario->getFecha() ."')";
 	    $connect->query($consulta);
 	}
 
