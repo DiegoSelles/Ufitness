@@ -2,12 +2,14 @@
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Entrenamiento.php");
+require_once("../controller/controlador_Ejercicio.php");
 
-$econtroller = new controlador_Entrenamiento();
+$entcontroller = new controlador_Entrenamiento();
+$ejercontroller = new controlador_Ejercicio();
 
 if(!isset($_SESSION)) session_start();
-$ucontroler = new controlador_Usuario();
-$usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
+$ucontroller = new controlador_Usuario();
+$usuarioActual =  $ucontroller->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
 	exit();
@@ -61,7 +63,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			include("wrapper.php");
 			if(isset($_GET['idEntrenamiento'])){
 				$idEntrenamiento=$_GET['idEntrenamiento'];
-				$entrenamiento=$econtroller->buscarEntrenamientoId($idEntrenamiento);
+				$entrenamiento=$entcontroller->buscarEntrenamientoId($idEntrenamiento);
 			}else header("Location: ../view/error.php");
 
 			?>
@@ -72,11 +74,43 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <strong><?php echo $entrenamiento->getNombre(); ?></strong>
               <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
             </div>
-            <div class="contenido_pagina">
+            <div class="body_pagina">
+							<div class="header_lista">
+                <div class="titulo_lista">
+                  <h1>Lista de Ejercicios </h1>
+                </div>
+								<div>
+	                <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
+                </div>
+              </div>
 
-            <div>
-        </div>
+							<div class="listado">
+								<ul>
+										<?php
+										 $entrenamientoHasEjercicios = $entcontroller->ejerciciosEntrenamiento($entrenamiento->getId());
+										 foreach ($entrenamientoHasEjercicios as $entrenamientoHasEjercicio) {
+											 $ejercicio = $ejercontroller->buscarId($entrenamientoHasEjercicio->getIdEjercicio());
+										 ?>
+										<ul>
+											<div class="bloque_lista">
+												<div class="titulo_bloque">
+														<h1> <?php echo $ejercicio->getNombre(); ?> <h1>
+													</a>
+												</div>
+												<div class="info_bloque">
+													<p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
+													<p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
+													<p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+												</div>
+											</div>
+										</ul>
+										<?php } ?>
+									</li>
+								</ul>
+        			</div>
     </div>
+
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
