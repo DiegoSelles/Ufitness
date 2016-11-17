@@ -7,8 +7,11 @@ class ActividadMapper {
 		global $connect;
 		$consulta = $connect->query("SELECT * FROM Actividad");
 		$listaActividades = array();
-		while ($actividad = mysqli_fetch_assoc($consulta)) {
-				array_push($listaActividades, $actividad);
+		while ($actual = mysqli_fetch_assoc($consulta)) {
+
+      $actividad = new Actividad ($actual["Usuario_Dni"], $actual["nombre"], $actual["numPlazas"], $actual["horario"],
+      $actual["lugar"], $actual["tipoAct"], $actual["idActividad"]);
+			array_push($listaActividades, $actividad);
 		}
 		return $listaActividades;
 	}
@@ -16,7 +19,11 @@ class ActividadMapper {
   public function getActividad ($idActividad){
 			global $connect;
 			$consulta = $connect->query("SELECT * FROM Actividad WHERE idActividad = $idActividad");
-			$actividad = mysqli_fetch_assoc($consulta);
+      $actual = mysqli_fetch_assoc($consulta);
+
+      $actividad = new Actividad ($actual["Usuario_Dni"], $actual["nombre"], $actual["numPlazas"], $actual["horario"],
+      $actual["lugar"], $actual["tipoAct"], $actual["idActividad"]);
+
 			return $actividad;
 	}
 
@@ -29,7 +36,12 @@ class ActividadMapper {
 		if($connect->query($sql))
 			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 	}
-	
+
+  public function eliminarActividad ($idActividad){
+    global $connect;
+		$connect->query("DELETE FROM Actividad WHERE idActividad = $idActividad");
+	}
+
 	public function updateActividad($actividad,$id){
 		global $connect;
 		$consulta = $connect->query("SELECT Dni FROM Usuario WHERE nombre ='" .$actividad->getMonitor(). "'");

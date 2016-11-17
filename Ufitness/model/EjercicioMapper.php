@@ -16,24 +16,12 @@ class EjercicioMapper {
     }
   }
 
-  public function listarDeportistas() {
-    global $connect;
-		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.Dni = D.DNI";
-    $resultado = $connect->query($consulta);
-		$listaDeportistas = array();
-		while ($actual = mysqli_fetch_assoc($resultado)){
-        $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],NULL);
-				array_push($listaDeportistas, $deportista);
-		}
-		return $listaDeportistas;
-	}
-
   public function registrarEjercicio($ejercicio) {
     global $connect;
     //Falta insertar imagen y video
-	    $consulta= " INSERT INTO Ejercicio (Usuario_Dni, nombre, tipoEjer, maquina, grupoMuscular, descripcion, imagen)
+	    $consulta= " INSERT INTO Ejercicio (Usuario_Dni, nombre, tipoEjer, maquina, grupoMuscular, descripcion, imagen, video)
       VALUES ('". $ejercicio->getUsuarioDni() ."','". $ejercicio->getNombre() ."', '". $ejercicio->getTipoEjercicio() ."',
-      '". $ejercicio->getMaquina() ."' ,'". $ejercicio->getGrupoMuscular() ."' ,'". $ejercicio->getDescripcion() ."','". $ejercicio->getImagen() ."')";
+      '". $ejercicio->getMaquina() ."' ,'". $ejercicio->getGrupoMuscular() ."' ,'". $ejercicio->getDescripcion() ."','". $ejercicio->getImagen() ."','". $ejercicio->getVideo() ."')";
 	    $connect->query($consulta);
 
 	}
@@ -66,7 +54,7 @@ class EjercicioMapper {
 		global $connect;
 		$consulta= "UPDATE Ejercicio set Usuario_Dni='".$ejercicio->getUsuarioDni()."',nombre='".$ejercicio->getNombre()."',
     tipoEjer='".$ejercicio->getTipoEjercicio()."', maquina='".$ejercicio->getMaquina()."',
-    grupoMuscular='".$ejercicio->getGrupoMuscular()."', descripcion='".$ejercicio->getDescripcion()."'
+    grupoMuscular='".$ejercicio->getGrupoMuscular()."', descripcion='".$ejercicio->getDescripcion()."', imagen='".$ejercicio->getImagen()."'
     WHERE idEjercicio='".$idEjercicio."'";
 		$connect->query($consulta);
 		header("Location: ../view/adminEjercicios.php");
@@ -78,8 +66,10 @@ class EjercicioMapper {
     $connect->query($consulta);
     $consulta = "DELETE FROM Entrenamiento_has_Ejercicio WHERE idEjercicio ='".$ejercicio->getIdEjercicio()."' ";
     $connect->query($consulta);
-
+    //elimina la imagen asociada
+    unlink ("../imagenesSubidas/". $ejercicio->getImagen());
   }
+
 
   public function buscarId($id){
     global $connect;

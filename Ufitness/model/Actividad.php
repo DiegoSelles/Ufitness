@@ -24,7 +24,7 @@ class Actividad
 	public function getId (){
 		return $this ->id;
 	}
-	
+
 	public function getMonitor (){
 		return $this ->monitor;
 	}
@@ -42,7 +42,7 @@ class Actividad
 	}
 
 	public function getHorario(){
-		return $this ->numPlazas;
+		return $this ->horario;
 	}
 
 	public function getLugar (){
@@ -52,7 +52,7 @@ class Actividad
 	public function getTipoActividad (){
 		return $this ->tipoAct;
 	}
-	
+
 
 	/*
 	public function setNumPlazas ($numPlazas){
