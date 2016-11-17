@@ -80,19 +80,24 @@ class controlador_Actividad{
 		return $reserva;
 	}
 
-	public function reservarPlaza($idActividad){
+	public function reservarPlaza($idActividad,$usuarioActual){
 	   global $connect;
 	   $consulta = "SELECT numPlazas FROM Actividad WHERE idActividad ='" .$idActividad. "'" ;
 	   $resultado= $connect->query($consulta);
 	   $plazas = mysqli_fetch_assoc($resultado);
+	   $query = "SELECT count(idReserva) FROM Reserva WHERE Deportista_Usuario_Dni = '".$usuarioActual."'";
+	   $result = $connect->query($query);
+	   $existe = mysqli_fetch_assoc($result);
 
-		if($plazas['numPlazas'] == 0){
+		if($plazas['numPlazas'] == 0 || $existe['count(idReserva)'] != 0 ){
 			echo "<script language='javascript'>window.location='../view/error.php'</script>";
 			exit();
 			}else{
 				$plazasRestantes = $plazas['numPlazas'] - 1;
+				$plazasOcupadas = 0;
+				$plazasOcupadas++;
 				mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$plazasRestantes. "' WHERE idActividad ='" .$idActividad. "'");
-				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,plazas_ocupadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasRestantes."')");
+				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,plazas_ocupadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasOcupadas."')");
 				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 				exit();
 			}	
