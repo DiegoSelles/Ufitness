@@ -71,6 +71,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
   			<form action="../controller/controlador.php?controlador=controlador_Actividad&accion=modificarActividad" method="post" class="formulario">
               <label for="nombre">Nombre Actividad: </label>
               <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?>"/>
+              <input type="text" name="id" hidden="True" value =<?php echo $idActividad ?> />
               <label for="monitor">Monitor actual : <?php echo $actividad->getMonitor(); ?> </label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
               <label for="monitor">Modificar monitor :</label>
