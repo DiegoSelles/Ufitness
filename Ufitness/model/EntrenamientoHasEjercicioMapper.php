@@ -1,7 +1,7 @@
 <?php
 require_once("../model/EntrenamientoHasEjercicio.php");
 
-class EntrenamientoHasEjercicioMApper{
+class EntrenamientoHasEjercicioMapper{
 
   public function __construct(){}
 
@@ -23,6 +23,26 @@ class EntrenamientoHasEjercicioMApper{
       VALUES ('". $entHasEjer->getIdEntrenamiento() ."','". $entHasEjer->getIdEjercicio() ."', '". $entHasEjer->getSxR() ."','". $entHasEjer->getCarga() ."')";
 	    $connect->query($consulta);
     }
+
+    public function modificarEntrenamiento($entHasEjer){
+      global $connect;
+      $consulta= "UPDATE Entrenamiento_has_Ejercicio set series_repeticiones='".$entHasEjer->getSxR()."', carga='".$entHasEjer->getCarga()."' WHERE Entrenamiento_idEntrenamiento='".$entHasEjer->getIdEntrenamiento()."' AND Ejercicio_idEjercicio='".$entHasEjer->getIdEjercicio()."' ";
+      $connect->query($consulta);
+    }
+
+    public function eliminarEntHasEjer($id) {
+      global $connect;
+      $consulta = "DELETE FROM Entrenamiento_has_Ejercicio WHERE Entrenamiento_idEntrenamiento='".$id."' ";
+      $connect->query($consulta);
+    }
+
+    public function eliminarEjerEntHasEjer($idEnt,$idEjerAnt) {
+      global $connect;
+      $consulta = "DELETE FROM Entrenamiento_has_Ejercicio WHERE Entrenamiento_idEntrenamiento='".$idEnt."' AND Ejercicio_idEjercicio='".$idEjerAnt."' ";
+      $connect->query($consulta);
+    }
+
+
 }
 
 ?>
