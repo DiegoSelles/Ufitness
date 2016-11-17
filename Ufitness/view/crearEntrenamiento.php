@@ -61,12 +61,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <strong>Nuevo Deportista</strong>
+          <strong>Nuevo Entrenamiento</strong>
         </div>
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=anhadir" method="post" class="formulario">
               <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre"/>
-              <?php echo "Duración" ?>: <input type="text" name="dni"/>
+              <?php echo "Duración" ?>: <input type="text" name="duracion"/>
 							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel">
 			                                            <option value="principiante" selected>Principiante</option>
 			                                            <option value="intermedio">Intermedio</option>
@@ -75,12 +75,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <?php echo "Selecciona los ejercicios que formarán parte del entrenamiento" ?>:
 								<?php
 									foreach ($ejercicios as $ejercicio) {
+										$sxr="seriesxRep".$ejercicio->getIdEjercicio();
+										$carga="carga".$ejercicio->getIdEjercicio();
 								?>
 								<ul>
 									<li>
+
 										<input type="checkbox" name="ejercicio[]" value="<?php echo $ejercicio->getIdEjercicio();?>"> <strong><?php echo $ejercicio->getNombre();?></strong>
-										<p>SeriesxRepetición: <input type="text" name = "seriesxRep" placeholder="Ej: 3x12"></p>
-										<p>Carga:<input type="text" name ="Carga" placeholder="Ej: 3"></p>
+										<p>Series x Repeticion: <input type="text" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12"></p>
+										<p>Carga:<input type="number" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>
 									</li>
 								</ul>
 								<?php
