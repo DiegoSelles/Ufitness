@@ -8,6 +8,7 @@ class controlador_Entrenamiento{
 
   private $entrenamientoMapper;
   private $usuarioMapper;
+  private $entrenamientoHasEjercicioMapper;
 
   public function __construct() {
 
@@ -32,18 +33,44 @@ class controlador_Entrenamiento{
     return $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($id);
   }
 
-  public function anhadir() {
-    echo "hola";
-    $entrenamientoMapper = new EntrenamientoMapper();
-    $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+  public function ejercicioEnEntrenamiento($idEnt,$idEjer){
+    $listaEjercicios = $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEnt);
+
+    foreach ($listaEjercicios as $ejercicio) {
+      if($ejercicio->getIdEjercicio()==$idEjer){
+        return $ejercicio;
+      }
+    }
+    return NULL;
   }
-/*
+
+  public function entrenamientoTieneEjer($idEnt,$idEjer){
+    $listaEjercicios = $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEnt);
+
+    foreach ($listaEjercicios as $ejercicio) {
+      if($ejercicio->getIdEjercicio()==$idEjer){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public function modificarEntrenamiento (){
+		$entrenamientoMapper = new EntrenamientoMapper();
+    $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
+      $idEntrenamiento  = $_POST['idEnt'];
+      $entrenamiento = new Entrenamiento($_POST["duracion"],$_POST["nombre"],$_POST["nivel"]);
+      $entrenamientoMapper->modificarEntrenamiento($entrenamiento);
 
-      $entrenamiento = new Entrenamiento($_POST["nombre"],$_POST["duracion"],$_POST["nivel"]);
-      $entrenamientoMapper->save($entrenamiento);
+      $listaEjerEntAntiguos = $entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEntrenamiento);
+      $listaIdEjerAntiguos = array();
+      foreach ($listaEjerEntAntiguos as $ejerEntAntiguo) {
+        array_push($listaIdEjerAntiguos,$ejerEntAntiguo->getIdEjercicio());
+      }
 
-      $idEntrenamiento  = $EntrenamientoMapper->buscarEntrenamientoId($entrenamiento);
+
       $ejercicio = $_POST['ejercicio'];
       if(empty($ejercicio))
       {
@@ -54,12 +81,61 @@ class controlador_Entrenamiento{
         $N = count($ejercicio);
         for($i=0; $i < $N; $i++)
         {
-          $entrenamientoHasEjerc = new EntrenamientoHasEjercicio($idEntrenamiento,$ejercicio[$i],$_POST["seriesxRep"],$_POST["carga"]);
+          $sxr="seriesxRep".$ejercicio[$i];
+          $carga="carga".$ejercicio[$i];
+          echo $ejercicio[$i]."->".$_POST[$sxr]."->".$_POST[$carga]."    ";
+          $entrenamientoHasEjer = new EntrenamientoHasEjercicio($idEntrenamiento,$ejercicio[$i], $_POST[$sxr] , $_POST[$carga]);
+
+          $entcontroller= new controlador_Entrenamiento();
+          $entTieneEjer = $entcontroller->entrenamientoTieneEjer($idEntrenamiento,$ejercicio[$i]);
+
+          if($entTieneEjer){
+            echo "hola 1";
+            $entrenamientoHasEjercicioMapper->modificarEntrenamiento($entrenamientoHasEjer);
+          }elseif(!$entTieneEjer){
+            echo "hola 2";
+            $entrenamientoHasEjercicioMapper->save($entrenamientoHasEjer);
+          }
+        }
+        foreach ($listaIdEjerAntiguos as $idEjerAntiguo) {
+          if(!in_array($idEjerAntiguo, $ejercicio)){
+            $entrenamientoHasEjercicioMapper->eliminarEjerEntHasEjer($idEntrenamiento,$idEjerAntiguo);
+          }
+        }
+      }
+	   }
+  }
+
+  public function anhadir() {
+    $entrenamientoMapper = new EntrenamientoMapper();
+    $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+
+
+    if(isset($_POST["nombre"])){ //Cogemos los datos de http
+
+      $entrenamiento = new Entrenamiento($_POST["duracion"],$_POST["nombre"],$_POST["nivel"]);
+      $entrenamientoMapper->save($entrenamiento);
+
+      $idEntrenamiento  = $entrenamientoMapper->obtenerIdEntrenamiento($entrenamiento);
+      $ejercicio = $_POST['ejercicio'];
+      if(empty($ejercicio))
+      {
+        echo "No has añadido Ejercicios";
+      }
+      else
+      {
+        $N = count($ejercicio);
+        for($i=0; $i < $N; $i++)
+        {
+          $sxr="seriesxRep".$ejercicio[$i];
+          $carga="carga".$ejercicio[$i];
+          $entrenamientoHasEjerc = new EntrenamientoHasEjercicio($idEntrenamiento,$ejercicio[$i], $_POST[$sxr] , $_POST[$carga] );
+
           $entrenamientoHasEjercicioMapper->save($entrenamientoHasEjerc);
         }
       }
 
-
+      /*
       try{
 	       //$usuario->comprobarDatos(); // if it fails, ValidationException
          //$deportista->comprobarDatos();
@@ -71,7 +147,7 @@ class controlador_Entrenamiento{
             $usuarioMapper->guardarUsuario($usuario);
 
             header("Location: ../view/adminDeportistas.php");
-      	}} else {
+      	} else {
 
       	  $errors = array();
       	  $errors["dni"] = "El deportista ya existe";
@@ -83,51 +159,36 @@ class controlador_Entrenamiento{
 	     $errors = $ex->getErrors();
        print_r($errors);
 
-     }
+     }*/
     }
-
-    // Put the User object visible to the view
-    $this->view->setVariable("user", $user);
-
-    // render the view (/view/users/register.php)
-    $this->view->render("users", "register");
+    header("Location: ../view/adminEntrenamientos.php");
 
 
-  }*/
+  }
 
-  public function eliminar() {
-    if (!isset($_POST["dni"])) {
+  public function eliminarEntrenamiento() {
+
+    if (!isset($_POST["id"])) {
       throw new Exception("id is mandatory");
     }
-    /*if (!isset($this->currentUser)) {
-      throw new Exception("Not in session. Editing posts requires login");
-    }*/
+    $entrenamientoMapper = new EntrenamientoMapper();
+    $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
 
+    $idEntrenamiento = $_REQUEST["id"];
+    $entrenamiento = $entrenamientoMapper->buscarEntrenamientoId($idEntrenamiento);
+    $listaEntrenamientoHasEjercicio = $entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEntrenamiento);
 
-    $deportistadni = $_REQUEST["dni"];
-    $deportista = $this->deportistaMapper->buscarDni($deportistadni);
+    if ($entrenamiento != NULL) {
+        $entrenamientoMapper->eliminarEntrenamiento($entrenamiento);
+    }else throw new Exception("No existe un Entrenamiento con ID: ".$idEntrenamiento);
 
-    if ($deportista == NULL) {
-      throw new Exception("no such post with id: ".$deportistadni);
+    if ($listaEntrenamientoHasEjercicio != NULL) {
+      $entrenamientoHasEjercicioMapper->eliminarEntHasEjer($entrenamiento->getId());
     }
-
-    // Delete the Post object from the database
-    $this->deportistaMapper->eliminarDeportista($deportista);
-    $this->usuarioMapper->eliminarUsuario($deportista);
-
-    // POST-REDIRECT-GET
-    // Everything OK, we will redirect the user to the list of posts
-    // We want to see a message after redirection, so we establish
-    // a "flash" message (which is simply a Session variable) to be
-    // get in the view after redirection.
-    //$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."),$post ->getTitle()));
-
-    // perform the redirection. More or less:
-    // header("Location: index.php?controller=posts&action=index")
-    // die();
-    //$this->view->redirect("posts", "index");
-    header("Location: ../view/adminDeportistas.php");
+    
+    header("Location: ../view/adminEntrenamientos.php");
   }
+
     public function asignarEntrenamiento($dni,$nombre){
 	  global $connect;
 	  $consulta = "SELECT idEntrenamiento FROM Entrenamiento WHERE nombre= '" .$nombre."'";
@@ -135,7 +196,7 @@ class controlador_Entrenamiento{
 	  $entrenamiento = mysqli_fetch_assoc($resultado);
 	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
 	  $connect->query($consult);
-	  
+
   }
 
 }
