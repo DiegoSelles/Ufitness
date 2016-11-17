@@ -10,9 +10,9 @@ class EntrenamientoMapper {
   public function save($entrenamiento) {
       global $connect;
 	    $consulta= " INSERT INTO Entrenamiento (duracion, nombre, nivel)
-      VALUES ('". $entrenamiento->getDuracion() ."','". $ejercicio->getNombre() ."', '". $ejercicio->getNivel() ."')";
+      VALUES ('". $entrenamiento->getDuracion() ."','". $entrenamiento->getNombre() ."', '". $entrenamiento->getNivel() ."')";
 	    $connect->query($consulta);
-      echo "hoooooola";
+
 
 	}
 
@@ -23,7 +23,7 @@ class EntrenamientoMapper {
       $entrenamiento = mysqli_fetch_assoc($resultado);
 
       if($entrenamiento!=NULL) {
-    			return  new Entrenamiento($entrenamiento["duracion"],$entrenamiento["nombre"],$entrenamiento["nivel"], $entrenamiento["idEntrenamiento"] );
+    			return $entrenamiento["idEntrenamiento"];
     	}else {
         return NULL;
       }
@@ -41,7 +41,7 @@ class EntrenamientoMapper {
       return NULL;
     }
 
-    }
+  }
 
   public function listarEntrenamientos (){
 		global $connect;
@@ -70,9 +70,16 @@ class EntrenamientoMapper {
 
 	}
 
-  public function delete(Entrenamiento $entrenamiento) {
-    $stmt = $this->db->prepare("DELETE from Entrenamiento WHERE id=?");
-    $stmt->execute(array($ejercicio->getidEntrenamiento()));
+  public function eliminarEntrenamiento($entrenamiento) {
+    global $connect;
+    $consulta = "DELETE FROM Entrenamiento WHERE idEntrenamiento='".$entrenamiento->getId()."' ";
+    $connect->query($consulta);
+  }
+
+  public function modificarEntrenamiento($entrenamiento){
+    global $connect;
+    $consulta= "UPDATE Entrenamiento set duracion='".$entrenamiento->getDuracion()."',nombre='".$entrenamiento->getNombre()."',nivel='".$entrenamiento->getNivel()."' WHERE idEntrenamiento='".$entrenamiento->getId()."'";
+    $connect->query($consulta);
   }
 
 }
