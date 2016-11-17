@@ -1,8 +1,0 @@
-sudo apt-get install spamc spampd
-
-sudo vi /etc/default/spamassassin
-  ENABLED=1
-
-sudo service spamassassin start
-
-
