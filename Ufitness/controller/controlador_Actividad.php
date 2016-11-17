@@ -20,7 +20,7 @@ class controlador_Actividad{
 	public function getActividad ($idActividad){
 		return $this->actividadMapper->getActividad($idActividad);
 	}
-	
+
 	public function buscarActividadById($idActividad){
 		return $this->actividadMapper->findActividadById($idActividad);
 	}
@@ -35,7 +35,8 @@ class controlador_Actividad{
 		//Obtener el nombre de la actividad
 		$nombre = $_POST['nombre'];
 		//Obtener la fecha y la hora de la actividad
-		$horario = $_POST['horario'];
+		$date = $_POST['horario'];
+		$horario = date("Y-m-d H:i:s", strtotime($date));
 		//Obtener el lugar de la actividad
 		$lugar = $_POST['lugar'];
 		//Obtener el numero de plazas de la actividad
@@ -47,9 +48,16 @@ class controlador_Actividad{
 
 	}
 
-	public function eliminarActividad ($idActividad){
-		global $connect;
-		$connect->query("DELETE FROM Actividad WHERE idActividad = $idActividad");
+	public function eliminarActividad (){
+		if (!isset($_POST["idActividad"])) {
+			//Esta excepcion habría que capturarla en algun lado
+      //throw new Exception("id is mandatory");
+    }
+		$idActividad = $_REQUEST["idActividad"];
+		$actividadMapper = new ActividadMapper();
+		$actividadMapper->eliminarActividad($idActividad);
+		header ("Location: ../view/adminActividades.php");
+
 
 	}
 	public function modificarActividad (){
@@ -71,7 +79,7 @@ class controlador_Actividad{
 		$actividad = new Actividad ($nombre_monitor,$nombre,$numPlazas,$horario,$lugar,$tipo);
 		$actividadMapper->updateActividad($actividad,$id);
 	}
-	
+
 	public function getReserva($idActividad){
 		global $connect;
 		$consulta = "SELECT plazas_ocupadas FROM Reserva WHERE Actividad_idActividad ='" .$idActividad."'";
@@ -100,9 +108,9 @@ class controlador_Actividad{
 				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,plazas_ocupadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasOcupadas."')");
 				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 				exit();
-			}	
+			}
 		}
-   
+
 }
 
 

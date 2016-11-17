@@ -26,7 +26,7 @@ class controlador_Ejercicio{
     $nombreImagen = round (microtime(true)) . '.' . end($temp);
 
     // Comprueba la longitud del archivo
-    if ($_FILES["media"]["size"] > 1000000) {
+    if ($_FILES["media"]["size"] > 1000000 ) {
         echo "Tu archivo es demasiado largo. <br/>";
         $uploadOk = 0;
     }
@@ -43,19 +43,40 @@ class controlador_Ejercicio{
     }
 
     $ucontroler = new controlador_Usuario();
+    $econtroler = new controlador_Ejercicio();
     $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 
     $ejercicioMapper = new EjercicioMapper();
+    $urlVideo = null;
+    $bool = $econtroler->youtubeId($_POST['urlYoutube']);
+    if ($bool){
+      $urlVideo = $_POST['urlYoutube'];
+    }
 
     $ejercicio = new Ejercicio($_POST["nombre"], $usuarioActual->getDni(), $_POST["tipoEjercicio"],
-    $_POST["grupoMuscular"], $_POST["maquina"], $_POST["descripcion"], $nombreImagen);
+    $_POST["grupoMuscular"], $_POST["maquina"], $_POST["descripcion"], $nombreImagen, $urlVideo);
 
     $ejercicioMapper->registrarEjercicio($ejercicio);
 
     header("Location: ../view/adminEjercicios.php");
 
-    }
+  }
 
+  public function youtubeId($url) {
+    if($url != '') {
+      $rx = '~
+            ^(?:https?://)?              # Optional protocol
+             (?:www\.)?                  # Optional subdomain
+             (?:youtube\.com|youtu\.be)  # Mandatory domain name
+             /watch\?v=([^&]+)           # URI with video id as capture group 1
+             ~x';
+        $match = preg_match($rx, $url, $matches);
+        if((int) $match > 0) {
+                return true;
+        }
+    }
+    return false;
+  }
 
   public function listaEjercicios(){
     return $this->ejercicioMapper->listarEjercicios();
@@ -70,6 +91,8 @@ class controlador_Ejercicio{
   }
 
   public function modificarEjercicio(){
+
+    $econtroler = new controlador_Ejercicio();
     $ejercicioMapper  = new EjercicioMapper();
     $nombre = $_POST['nombre'];
     $dniCreador = $_POST['dniCreador'];
@@ -78,9 +101,45 @@ class controlador_Ejercicio{
     $maquina = $_POST['maquina'];
     $descripcion = $_POST['descripcion'];
     $idEjercicio = $_POST['idEjercicio'];
+    $imagenActual = null;
+    if (isset ($_POST['imagenActual'])){
+      $imagenActual = $_POST['imagenActual'];
+    }
 
-    $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion);
+    //Manejar la imagen
+    $target_dir = '../imagenesSubidas/';
+    $target_file = $target_dir . basename($_FILES['imagen']['name']);
+    $uploadOk = 1;
+
+
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    $temp = explode (".", $_FILES['imagen']['name']);
+    $nombreImagen = round (microtime(true)) . '.' . end($temp);
+
+    // Comprueba la longitud del archivo
+    if ($_FILES["imagen"]["size"] > 1000000 ) {
+        echo "Tu archivo es demasiado largo. <br/>";
+        $uploadOk = 0;
+    }
+    // Permiso de tipos de imagenes: JPG, JPEG, PNG & GIF
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Lo siento, solo JPG, JPEG, PNG o GIF archivos son permitidos. <br/>";
+        $uploadOk = 0;
+    }
+    if ($uploadOk == 0){
+      $nombreImagen = $imagenActual;
+    }else{
+      move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_dir . $nombreImagen);
+      $econtroler->eliminarImagen ($imagenActual);
+    }
+
+    $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion, $nombreImagen);
     return $ejercicioMapper->modificarEjercicio($ejercicio, $idEjercicio);
+  }
+
+  public function eliminarImagen ($nombreImagen){
+    unlink ("../imagenesSubidas/". $nombreImagen);
   }
 
   public function eliminarEjercicio() {
@@ -97,21 +156,9 @@ class controlador_Ejercicio{
       throw new Exception("no such post with id: ". $idEjercicio);
     }
 
-    // Delete the Post object from the database
     $ejercicioMapper->eliminarEjercicio($ejercicio);
 
-    // POST-REDIRECT-GET
-    // Everything OK, we will redirect the user to the list of posts
-    // We want to see a message after redirection, so we establish
-    // a "flash" message (which is simply a Session variable) to be
-    // get in the view after redirection.
-    //$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."),$post ->getTitle()));
-
-    // perform the redirection. More or less:
-    // header("Location: index.php?controller=posts&action=index")
-    // die();
-    //$this->view->redirect("posts", "index");
-    header("Location: ../view/adminejercicios.php");
+    header("Location: ../view/adminEjercicios.php");
   }
 
 }
