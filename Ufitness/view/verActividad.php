@@ -76,7 +76,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <?php if($_SESSION['rol'] == "deportista"){ ?>
 			  <form method="post" action="#">
               <input id="btn_reservar" type="submit" value="Reservar Plaza" name="ReservarPlaza">
-              <?php if(isset($_POST['ReservarPlaza'])) $acontroler->reservarPlaza($id); ?>
+              <?php if(isset($_POST['ReservarPlaza'])) $acontroler->reservarPlaza($id,$_SESSION['Dni']); ?>
               <?php } ?>
               </form>
 			  </div>
