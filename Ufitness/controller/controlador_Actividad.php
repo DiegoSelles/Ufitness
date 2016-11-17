@@ -56,6 +56,8 @@ class controlador_Actividad{
 		$actividadMapper = new ActividadMapper();
 		//Obtener el nombre del monitor
 		$nombre_monitor = $_POST['monitor'];
+		//Obtener el id de  la actividad
+		$id = $_POST['id'];
 		//Obtener el nombre de la actividad
 		$nombre = $_POST['nombre'];
 		//Obtener la fecha y la hora de la actividad
@@ -67,12 +69,12 @@ class controlador_Actividad{
 		//Obtener el tipo de la actividad
 		$tipo = $_POST['tipo'];
 		$actividad = new Actividad ($nombre_monitor,$nombre,$numPlazas,$horario,$lugar,$tipo);
-		$actividadMapper->updateActividad($actividad,$nombre_monitor);
+		$actividadMapper->updateActividad($actividad,$id);
 	}
 	
 	public function getReserva($idActividad){
 		global $connect;
-		$consulta = "SELECT numero_Plazas_Reservadas FROM Reserva WHERE Actividad_idActividad ='" .$idActividad."'";
+		$consulta = "SELECT plazas_ocupadas FROM Reserva WHERE Actividad_idActividad ='" .$idActividad."'";
 		$resultado = $connect->query($consulta);
 		$reserva = mysqli_fetch_assoc($resultado);
 		return $reserva;
