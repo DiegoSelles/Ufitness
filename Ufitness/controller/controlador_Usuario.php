@@ -17,7 +17,7 @@ class controlador_Usuario{
 			$usuario = $_POST['username'];
 			$password = $_POST['password'];
 			if(empty($usuario) || empty($password)){
-				header("Location: ../view/index.php");
+				header("Location: ../index.php");
 				exit();
 			}
 			$consulta = "SELECT * FROM Usuario WHERE Dni='". $usuario."'";
@@ -29,11 +29,11 @@ class controlador_Usuario{
 				$_SESSION['rol'] = $row['rol'];
 				header("Location: ../view/adminIndex.php");
 				}else{
-					header("Location: ../view/index.php");
+					header("Location: ../index.php");
 					exit();
 				}
 			}else{
-				header("Location: ../view/index.php");
+				header("Location: ../index.php");
 				exit();
 			}
 		}
@@ -41,7 +41,7 @@ class controlador_Usuario{
 		public static function logout(){
 			if(!isset($_SESSION)) session_start();
 			session_destroy();
-			header("Location: ../view/index.php");
+			header("Location: ../index.php");
 		}
 
 		public static function getUsuarioActual($Dni){
