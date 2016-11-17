@@ -1,8 +1,8 @@
 <?php
 
 
-require_once("../resources/conexion.php");
-require_once("../model/Ejercicio.php");
+require_once(__DIR__."/../resources/conexion.php");
+require_once(__DIR__."/../model/Ejercicio.php");
 if(!isset($_SESSION)) session_start();
 
 class EjercicioMapper {
@@ -16,12 +16,24 @@ class EjercicioMapper {
     }
   }
 
+  public function listarDeportistas() {
+    global $connect;
+		$consulta = "SELECT * FROM Usuario U, Deportista D  WHERE U.Dni = D.DNI";
+    $resultado = $connect->query($consulta);
+		$listaDeportistas = array();
+		while ($actual = mysqli_fetch_assoc($resultado)){
+        $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],NULL);
+				array_push($listaDeportistas, $deportista);
+		}
+		return $listaDeportistas;
+	}
+
   public function registrarEjercicio($ejercicio) {
     global $connect;
     //Falta insertar imagen y video
-	    $consulta= " INSERT INTO Ejercicio (Usuario_Dni, nombre, tipoEjer, maquina, grupoMuscular, descripcion)
+	    $consulta= " INSERT INTO Ejercicio (Usuario_Dni, nombre, tipoEjer, maquina, grupoMuscular, descripcion, imagen)
       VALUES ('". $ejercicio->getUsuarioDni() ."','". $ejercicio->getNombre() ."', '". $ejercicio->getTipoEjercicio() ."',
-      '". $ejercicio->getMaquina() ."' ,'". $ejercicio->getGrupoMuscular() ."' ,'". $ejercicio->getDescripcion() ."')";
+      '". $ejercicio->getMaquina() ."' ,'". $ejercicio->getGrupoMuscular() ."' ,'". $ejercicio->getDescripcion() ."','". $ejercicio->getImagen() ."')";
 	    $connect->query($consulta);
 
 	}
@@ -37,7 +49,7 @@ class EjercicioMapper {
 		}
 		return $listaEjercicios;
 	}
-	
+
   public function listarEjercicios() {
     global $connect;
 		$consulta = "SELECT * FROM Ejercicio";
