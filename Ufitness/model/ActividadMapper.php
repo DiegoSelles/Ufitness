@@ -30,13 +30,11 @@ class ActividadMapper {
 			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 	}
 	
-	public function updateActividad($actividad, $nombre_monitor){
+	public function updateActividad($actividad,$id){
 		global $connect;
-		$consulta = $connect->query("SELECT Dni FROM Usuario WHERE nombre ='" .$nombre_monitor. "'");
+		$consulta = $connect->query("SELECT Dni FROM Usuario WHERE nombre ='" .$actividad->getMonitor(). "'");
 		$resultado = mysqli_fetch_assoc($consulta);
-		$sql =$connect->query("SELECT idActividad FROM Actividad WHERE Usuario_Dni = '".$resultado['Dni']."'");
-		$result = mysqli_fetch_assoc($sql);
-		$consult = "UPDATE Actividad set Usuario_Dni ='" .$resultado['Dni']."',nombre='".$actividad->getNombre()."', numPlazas='".$actividad->getNumPlazas()."', horario='".$actividad->getHorario()."', lugar='".$actividad->getLugar()."', tipoAct='".$actividad->getTipoActividad()."' where idActividad = '".$result['idActividad']."'";
+		$consult = "UPDATE Actividad set Usuario_Dni ='" .$resultado['Dni']."',nombre='".$actividad->getNombre()."', numPlazas='".$actividad->getNumPlazas()."', horario='".$actividad->getHorario()."', lugar='".$actividad->getLugar()."', tipoAct='".$actividad->getTipoActividad()."' where idActividad = '".$id."'";
 		if($connect->query($consult))
 			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 	}
