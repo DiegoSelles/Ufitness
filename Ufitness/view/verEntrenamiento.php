@@ -73,7 +73,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-trophy" aria-hidden="true"></i>
               <strong><?php echo $entrenamiento->getNombre(); ?></strong>
 							<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-              <a id="btn_editar" href="#" class="btn btn-primary" type="button"> Editar </a>
+              <a id="btn_editar" href="../view/modificarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" type="button"> Editar </a>
 							<?php } ?>
 							<?php if($_SESSION['rol'] == "deportista"){ ?>
               	<a id="btn_editar" href="#" class="btn btn-primary" type="button"> Monitorizar Entrenamiento </a>
@@ -99,7 +99,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 										<ul>
 											<div class="bloque_lista">
 												<div class="titulo_bloque">
-														<h1> <?php echo $ejercicio->getNombre(); ?> <h1>
+														<a href="../view/verEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>"><h1> <?php echo $ejercicio->getNombre(); ?> </h1></a>
 													</a>
 												</div>
 												<div class="info_bloque">
