@@ -62,38 +62,36 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
           <strong>Nuevo Ejercicio</strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Ejercicio&accion=registrarEjercicio" method="post" class="formulario">
-              <label for="nombre">Nombre Ejercicio:</label>
-              <input type="text" name="nombre"/>
-              <label for="tipoEjercicio">Tipo del ejercicio:</label>
-              <select name="tipoEjercicio">
-                  <option value="Cardio" >Cardio</option>
-                  <option value="Estiramientos">Estiramientos</option>
-                  <option value="Muscular">Muscular</option>
-  						</select>
-              <label for="maquina">Maquina:</label>
-              <input type="text" name="maquina"/>
-              <label for="grupoMuscular">Grupo Muscular:</label>
-              <select name="grupoMuscular">
-                  <option value="Piernas" >Piernas</option>
-                  <option value="Brazos">Brazos</option>
-                  <option value="Espalda">Espalda</option>
-  						</select>
-              <label for="descripcion">Descripcion:</label>
-              <input type="text" name="descripcion"/>
-							<br/>
-							<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+
+          <form enctype = "multipart/form-data" action="../controller/controlador.php?controlador=controlador_Ejercicio&accion=registrarEjercicio" method="post" class="formulario">
+						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+
+						<label for="nombre">Nombre Ejercicio:</label>
+						<input type="text" name="nombre"/>
+						<label for="tipoEjercicio">Tipo del ejercicio:</label>
+						<select name="tipoEjercicio">
+								<option value="Cardio" >Cardio</option>
+								<option value="Estiramientos">Estiramientos</option>
+								<option value="Muscular">Muscular</option>
+						</select>
+						<label for="maquina">Maquina:</label>
+						<input type="text" name="maquina"/>
+						<label for="grupoMuscular">Grupo Muscular:</label>
+						<select name="grupoMuscular">
+								<option value="Piernas" >Piernas</option>
+								<option value="Brazos">Brazos</option>
+								<option value="Espalda">Espalda</option>
+						</select>
+						<label for="descripcion">Descripcion:</label>
+						<input type="text" name="descripcion"/>
+						<br/>
+
+            <label for="imagen">Imagen:</label>
+            <input type="file" name="imagen"/>
+						<br/>
+						<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
           </form>
-					<!--
-          <form enctype = "multipart/form-data" action="uploader.php" method="post" class="formulario">
-              <label for="imagen">Imagen:</label>
-              <input type="file" name="uploadedFile"/>
-              <input type="submit" value="subirArchivo"/>
-              <label for="video">Video:</label>
-              <input type="file" name="uploadedFile"/>
-              <input type="submit" value="subirArchivo"/>
-          </form>
-				-->
+
         </div>
 			</div>
     </div>
