@@ -2,6 +2,7 @@
 require_once("../model/Ejercicio.php");
 require_once("../model/EjercicioMapper.php");
 
+
 class controlador_Ejercicio{
 
   private $ejercicioMapper;
@@ -14,13 +15,40 @@ class controlador_Ejercicio{
 
   public function registrarEjercicio() {
 
+
+    $target_dir = '../imagenesSubidas/';
+    $target_file = $target_dir . basename($_FILES['imagen']['name']);
+    $uploadOk = 1;
+
+
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    $temp = explode (".", $_FILES['imagen']['name']);
+    $nombreImagen = round (microtime(true)) . '.' . end($temp);
+
+    // Comprueba la longitud del archivo
+    if ($_FILES["media"]["size"] > 1000000) {
+        echo "Tu archivo es demasiado largo. <br/>";
+        $uploadOk = 0;
+    }
+    // Permiso de tipos de imagenes: JPG, JPEG, PNG & GIF
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Lo siento, solo JPG, JPEG, PNG o GIF archivos son permitidos. <br/>";
+        $uploadOk = 0;
+    }
+    if ($uploadOk == 0){
+      $nombreImagen = null;
+    }else{
+      move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_dir . $nombreImagen);
+    }
+
     $ucontroler = new controlador_Usuario();
     $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 
     $ejercicioMapper = new EjercicioMapper();
-    //Falta mirar como meterle la imagen y el video
+
     $ejercicio = new Ejercicio($_POST["nombre"], $usuarioActual->getDni(), $_POST["tipoEjercicio"],
-    $_POST["grupoMuscular"], $_POST["maquina"], $_POST["descripcion"]);
+    $_POST["grupoMuscular"], $_POST["maquina"], $_POST["descripcion"], $nombreImagen);
 
     $ejercicioMapper->registrarEjercicio($ejercicio);
 
@@ -29,7 +57,7 @@ class controlador_Ejercicio{
     }
 
 
-  public function listarEjercicios(){
+  public function listaEjercicios(){
     return $this->ejercicioMapper->listarEjercicios();
   }
 
