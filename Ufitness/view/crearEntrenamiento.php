@@ -55,7 +55,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
-			$ejercicios = $ejercontroller->listarEjercicios();
+			$ejercicios = $ejercontroller->listaEjercicios();
 			?>
 
 			<div id="contenido" class="container-fluid">
