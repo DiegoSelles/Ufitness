@@ -93,7 +93,7 @@ class controlador_Actividad{
 	   $consulta = "SELECT numPlazas FROM Actividad WHERE idActividad ='" .$idActividad. "'" ;
 	   $resultado= $connect->query($consulta);
 	   $plazas = mysqli_fetch_assoc($resultado);
-	   $query = "SELECT count(idReserva) FROM Reserva WHERE Deportista_Usuario_Dni = '".$usuarioActual."'";
+	   $query = "SELECT count(idReserva) FROM Reserva WHERE Deportista_Usuario_Dni = '".$usuarioActual."' and Actividad_idActividad ='".$idActividad."'";
 	   $result = $connect->query($query);
 	   $existe = mysqli_fetch_assoc($result);
 
