@@ -67,7 +67,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 					<strong>Modificar actividad</strong>
 				</div>
 			<div >
-				
+
   			<form action="../controller/controlador.php?controlador=controlador_Actividad&accion=modificarActividad" method="post" class="formulario">
               <label for="nombre">Nombre Actividad: </label>
               <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?>"/>
@@ -82,6 +82,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <?php }?>
 			  </select>
               <label for="horario">Horario:</label>
+							<!--El horario no muestra la fecha anterior como debería -->
               <input type="datetime-local" name="horario" value="<?php echo $actividad->getHorario(); ?>"/>
               <label for="lugar">Lugar:</label>
               <input type="text" name="lugar" value="<?php echo $actividad->getLugar(); ?>"/>
@@ -104,4 +105,3 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-

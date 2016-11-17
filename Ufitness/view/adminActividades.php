@@ -64,7 +64,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 			if (isset($_GET['eliminar'])){
 				$acontroler->eliminarActividad($_GET['eliminar']);
-				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";				
+				echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 			}
 
 		?>
@@ -94,25 +94,27 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                     </div>
                 </div>
 				<?php
-				global $connect;
+
 				$arrayActividades = $acontroler->listarActividades();
 				foreach ($arrayActividades as $actividad ){
 				?>
 				<ul>
 					<div class="bloque_lista">
 						<div class="titulo_bloque">
-							<a href = "verActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>">
-								<h1> <?php echo $actividad['nombre']; ?><h1>
+							<a href = "verActividad.php?idActividad=<?php echo $actividad->getId(); ?>">
+								<h1> <?php echo $actividad->getNombre(); ?><h1>
 							</a>
 						</div>
 						<div class="info_bloque">
-							<p>Horario: <?php echo $actividad['horario']; ?></p>
+							<p>Horario: <?php echo $actividad->getHorario(); ?></p>
+							<p>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></p>
+							<p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
 						</div>
 						<div class="opciones_bloque">
-							<a id="btn_edit_bloque" href="modificarActividad.php?idActividad=<?php echo $actividad['idActividad']; ?>" class="btn btn-primary" title="Editar" type="button">
+							<a id="btn_edit_bloque" href="modificarActividad.php?idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Editar" type="button">
 								<i class="fa fa-edit" aria-hidden="true"></i>
 							</a>
-							<a id="btn_eliminar" href="#" onclick="confirmation(<?php echo $actividad['idActividad']; ?>)"class="btn btn-primary" title="Eliminar" type="button">
+							<a id="btn_eliminar" href="eliminarActividad.php?idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button">
 								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</a>
 						</div>

@@ -84,6 +84,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 						</select>
 						<label for="descripcion">Descripcion:</label>
 						<input type="text" name="descripcion"/>
+						<label for="video">Video:</label>
+						<input type="text" name="urlYoutube"/>
 						<br/>
 
             <label for="imagen">Imagen:</label>

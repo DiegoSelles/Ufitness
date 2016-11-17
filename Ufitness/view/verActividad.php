@@ -62,12 +62,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 		include("navbar.php");
 		include("wrapper.php");
 		$acontroler = new controlador_Actividad();
+		$actividad = $acontroler->buscarActividadById($id);
+		$reserva = $acontroler->getReserva($id);
 		?>
 
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
-              <strong>Nombre Actividad</strong>
+              <strong><?php echo $actividad->getNombre(); ?></strong>
               <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
               <a id="btn_editar" href="modificarActividad.php?idActividad=<?php echo $id; ?>" class="btn btn-primary" type="button"> Editar </a>
               <?php } ?>
@@ -79,21 +81,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               </form>
 			  </div>
 
-			  <?php $actividad = $acontroler->getActividad($id);
-					$reserva = $acontroler->getReserva($id); ?>
             <div class="contenido_pagina">
               <div class="info_actividad">
                 <div class="horario_actividad">
-                  <h1>Horario: <?php echo $actividad['horario']; ?> </h1>
+                  <h1>Horario: <?php echo $actividad->getHorario(); ?> </h1>
                 </div>
                 <div class="lugar_actividad">
-                  <h1>Lugar: <?php echo $actividad['lugar']; ?></h1>
+                  <h1>Lugar: <?php echo $actividad->getLugar(); ?></h1>
                 </div>
                 <div class="tipo_actividad">
-                  <h1>Tipo de actividad: <?php echo $actividad['tipoAct']; ?></h1>
+                  <h1>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></h1>
                 </div>
                 <div class="num_plazas">
-                  <h1>Numero de plazas: <?php echo $actividad['numPlazas']; ?></h1>
+                  <h1>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></h1>
+                </div>
+								<div class="num_plazas">
+                  <h1>Monitor de la actividad: <?php echo $actividad->getMonitor(); ?></h1>
                 </div>
               </div>
             </div>

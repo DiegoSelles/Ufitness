@@ -1,16 +1,16 @@
 <?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
-require_once("../controller/controlador_Ejercicio.php");
+require_once("../controller/controlador_Actividad.php");
 
 if(!isset($_SESSION)) session_start();
 global $id;
 
-if(isset($_GET['idEjercicio'])){
-  $id = $_GET['idEjercicio'];
+if(isset($_GET['idActividad'])){
+  $id = $_GET['idActividad'];
 }
 $ucontroler = new controlador_Usuario();
-$econtroler = new controlador_Ejercicio();
+$acontroler = new controlador_Actividad();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
   header("Location: error.php");
@@ -28,7 +28,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Eliminar Ejercicio - Ufitness</title>
+    <title> Eliminar Actividad - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -60,35 +60,37 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
       include("navbar.php");
       include("wrapper.php");
 
-      $ejercicio = $econtroler->buscarId($id);
+      $actividad = $acontroler->getActividad($id);
 
       ?>
 
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
-          <i class="fa fa-bicycle" aria-hidden="true"></i>
-          <strong>¿Está seguro que quiere eliminar este ejercicio?</strong>
+          <i class="fa fa-futbol-o" aria-hidden="true"></i>
+          <strong>¿Está seguro que quiere eliminar esta actividad?</strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=eliminarEjercicio" method="post" class="formulario">
-              <label>Nombre: <?php echo $ejercicio->getNombre(); ?></label>
+          <form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=eliminarActividad" method="post" class="formulario">
+              <label>Nombre: <?php echo $actividad->getNombre(); ?></label>
                <br/>
-              <label>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></label>
+              <label>Numero de Plazas: <?php echo $actividad->getNumPlazas(); ?></label>
                <br/>
-              <label>Grupo Muscular: <?php echo $ejercicio->getGrupoMuscular(); ?></label>
+              <label>Horario: <?php echo $actividad->getHorario(); ?></label>
                <br/>
-              <label>Descripción: <?php echo $ejercicio->getDescripcion(); ?></label>
+              <label>Lugar: <?php echo $actividad->getLugar(); ?></label>
               <br/>
-              <label>Dni del creador: <?php echo $ejercicio->getUsuarioDni(); ?></label>
+              <label>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></label>
+              <br/>
+              <label>Monitor de la actividad: <?php echo $actividad->getMonitor(); ?></label>
               <br/>
 
               <!-- Habría que meter imagen y video aqui tambien -->
 
-              <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
+              <input type="text" hidden="true" name="idActividad" value="<?php echo $id; ?>" />
 
               <input id="submit" class="btn btn-primary" type="submit" value="SI">
               <br/>
-              <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">NO</a>
+              <a id="submit" href="adminActividades.php" class="btn btn-primary" type="button">NO</a>
 
           </form>
         </div>

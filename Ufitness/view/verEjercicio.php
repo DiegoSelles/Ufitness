@@ -84,36 +84,35 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                   <h1>Máquina: <?php echo $ejercicio->getMaquina(); ?></h1>
                 </div>
               </div>
-							<!-- faltan mostrar las imagenes almacenadas -->
-              <div class="imgs_ejercicio">
-                <div class="responsive">
-                  <div class="img">
-                    <a target="_blank" href="img/img.png">
-                      <img src="img/img.png" alt="Trolltunga Norway" width="300" height="200">
-                    </a>
-                  </div>
-                </div>
-                <div class="responsive">
-                  <div class="img">
-                    <a target="_blank" href="img/img.png">
-                      <img src="img/img.png" alt="Forest" width="600" height="400">
-                    </a>
-                  </div>
-                </div>
-                <div class="responsive">
-                  <div class="img">
-                    <a target="_blank" href="img/img.png">
-                      <img src="img/img.png" alt="Northern Lights" width="600" height="400">
-                    </a>
-                  </div>
-                </div>
-                <div class="responsive">
-                  <div class="img">
-                    <a target="_blank" href="img/img.png">
-                      <img src="img/img.png" alt="Mountains" width="600" height="400">
-                    </a>
-                  </div>
-                </div>
+							<?php if ($ejercicio->getImagen() != null){ ?>
+	                <div class="responsive">
+	                  <div class="img">
+	                    <a target="_blank" href="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>">
+	                      <img src="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>"  alt="Trolltunga Norway" width="300" height="200">
+	                    </a>
+	                  </div>
+	                </div>
+							<?php }else { ?>
+								<div class="imgs_ejercicio">
+	                <div class="responsive">
+	                  <div class="img">
+	                    <a target="_blank" href="img/img.png">
+	                      <img src="img/img.png" alt="Trolltunga Norway" width="300" height="200">
+	                    </a>
+	                  </div>
+	                </div>
+							<?php } ?>
+							<?php if ($ejercicio->getVideo() != null){ ?>
+								<a target="_blank" href="<?php echo $ejercicio->getVideo(); ?>">
+									<img src="img/imgYoutube.png" alt="Trolltunga Norway" width="300" height="200">
+								</a>
+
+
+							 <?php } ?>
+
+
+
+
                 <div class="clearfix"></div>
               </div>
             <div>

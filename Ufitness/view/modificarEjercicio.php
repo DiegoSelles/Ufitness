@@ -69,8 +69,9 @@ $econtroler = new controlador_Ejercicio();
           <strong>Modificar Ejercicio</strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=modificarEjercicio" method="post" class="formulario">
-            <label for="nombre">Nombre Ejercicio:</label>
+  				<form enctype = "multipart/form-data" action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=modificarEjercicio" method="post" class="formulario">
+						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+						<label for="nombre">Nombre Ejercicio:</label>
             <input type="text" name="nombre" value="<?php echo $ejercicio->getNombre(); ?>"/>
             <label for="tipoEjercicio">Tipo del ejercicio:</label>
             <select name="tipoEjercicio">
@@ -93,6 +94,33 @@ $econtroler = new controlador_Ejercicio();
             <input type="text" hidden="true" name="dniCreador" value="<?php echo $ejercicio->getUsuarioDni(); ?>" />
 
             <input type="text" hidden="true" name="idEjercicio" value="<?php echo $id; ?>" />
+
+						<label for="imagen">Imagen:</label>
+
+						<?php if ($ejercicio->getImagen() != null){ ?>
+								<div class="responsive">
+									<div class="img">
+										<a target="_blank" href="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>">
+											<img src="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>"  alt="Trolltunga Norway" width="300" height="200">
+										</a>
+									</div>
+								</div>
+								<input type="text" hidden="true" name="imagenActual" value="<?php echo $ejercicio->getImagen(); ?>">
+
+						<?php }else { ?>
+							<div class="imgs_ejercicio">
+								<div class="responsive">
+									<div class="img">
+										<a target="_blank" href="img/img.png">
+											<img src="img/img.png" alt="Trolltunga Norway" width="300" height="200">
+										</a>
+									</div>
+								</div>
+						<?php } ?>
+
+
+						<input type="file" name="imagen"/>
+						<br/>
 
             <input id="submit" class="btn btn-primary" type="submit" value="Guardar Cambios">
             <br/>
