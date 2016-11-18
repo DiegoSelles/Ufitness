@@ -57,7 +57,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
-			$ejercicios = $ejercontroller->listarEjercicios();
+			$ejercicios = $ejercontroller->listaEjercicios();
 			if(isset($_GET['idEnt'])){
         $idEnt = $_GET['idEnt'];
         $entrenamiento = $entcontroller->buscarEntrenamientoId($idEnt);
