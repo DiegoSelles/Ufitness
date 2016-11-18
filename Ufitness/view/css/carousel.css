@@ -37,10 +37,25 @@
 /*margin-bottom: 60px;
 */
 }
+
 .carousel p, .carousel h1, .carousel h2, .carousel  h3, .carousel h4, .carousel h5, .carousel a {
   font-family: "Orbitron", sans-serif;
   text-align: center;
 }
+
+.carousel-caption a:hover {
+	color: blue;
+}
+
+.carousel-caption a:link {
+	color:  #fff;
+	text-shadow:2px 2px 4px #000;
+}
+
+.carousel-caption a:visited {
+	color: #fff;
+	text-shadow:2px 2px 4px #000;
+}	
 
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {

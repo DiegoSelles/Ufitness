@@ -1,9 +1,10 @@
 #maps{
   width: 1175px;
-  height: 450px;
+  height: 400px;
   margin-left: 50px;
   margin-right: 50px;
 }
+
 .navbar-logo{
   width: 225px;
   float:left;
@@ -293,6 +294,7 @@ margin-bottom: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 #btn_eliminar{
   background-color: #F2463B;
   width: 50px;
