@@ -90,6 +90,17 @@ class EntrenamientoMapper {
        '". $sesion->getidHasEntrenamiento() ."', '". $sesion->getIdHasEjercicio() ."', '". $sesion->getAnotaciones() ."', '". $sesion->getFechaSesion() ."')";
       $connect->query($consulta);
   }
+	
+	  public function listarIdEntrenamientosDeportista($dniDeportista){
+    global $connect;
+    $consulta ="SELECT * FROM Entrenamiento_has_Deportista WHERE Deportista_DNI='". $dniDeportista ."' ";
+    $resultado = $connect->query($consulta);
+    $listaIdEntDepor = array();
+    while ($actual = mysqli_fetch_assoc($resultado)) {
+        array_push($listaIdEntDepor, $actual['Entrenamiento_idEntrenamiento']);
+    }
+    return $listaIdEntDepor;
+  }
 
 
 }
