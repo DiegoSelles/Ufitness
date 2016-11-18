@@ -71,9 +71,9 @@ class controlador_Usuario{
 
 		    if(isset($_POST["nombre"])){
 
-		      $edad = date(DATE_ATOM)-$_POST["fecha"];//Calculamos la edad
+
 		      //echo $_POST["nombre"];
-		      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$edad,$_POST["dni"],"entrenador");
+		      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$_POST["fecha"],$_POST["dni"],"entrenador");
 
 		  /*    $usuario->setDni($_POST["dni"]);
 		      $usuario->setNombre($_POST["nombre"]);
