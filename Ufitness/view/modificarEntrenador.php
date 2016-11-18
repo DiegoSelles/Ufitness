@@ -71,7 +71,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input"/> <br/>
               <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input"/>
               <br/>
-              <!--<?php echo "Fecha" ?>: <input type="text" name="fecha" value="<?php echo $usuario->getEdad(); ?>" /> -->
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" value="<?php echo $usuario->getFecha(); ?>" /> 
               <br/>
               <?php echo "E-mail" ?>: <input type="text" name="email" value="<?php echo $usuario->getEmail(); ?>" class="input"/>
               <br/>
@@ -87,9 +87,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">Volver</a>
  						</div>
               <br/>
-
-
-
           </form>
         </div>
       </div>
