@@ -65,7 +65,7 @@ $econtroler = new controlador_Ejercicio();
 
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
-          <i class="fa fa-users" aria-hidden="true"></i>
+					<i class="fa fa-bicycle" aria-hidden="true"></i>
           <strong>Modificar Ejercicio</strong>
         </div>
         <div >
@@ -109,19 +109,25 @@ $econtroler = new controlador_Ejercicio();
 
 						<?php }else { ?>
 							<div class="imgs_ejercicio">
-								<div class="responsive">
 									<div class="img">
 										<a target="_blank" href="img/img.png">
-											<img src="img/img.png" alt="Trolltunga Norway" width="300" height="200">
+											<img src="img/img.png" alt="img/img.png" width="300" height="200">
 										</a>
 									</div>
-								</div>
 						<?php } ?>
-
 
 						<input type="file" name="imagen"/>
 						<br/>
+						<input type="text" hidden="true" name="videoActual" value="<?php echo $ejercicio->getVideo(); ?>">
 
+						<label for="video">Video:</label>
+
+						<?php if ($ejercicio->getVideo() != null){ ?>
+							<iframe width="420" height="315" src="<?php echo $ejercicio->getVideo(); ?>" allowfullscreen></iframe>
+						 <?php } ?>
+
+ 						<input type="text" name="urlYoutube" placeholder="https://www.youtube.com/watch?v=OgIRAjnnJzI"/>
+						<br/>
             <input id="submit" class="btn btn-primary" type="submit" value="Guardar Cambios">
             <br/>
             <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">Salir</a>

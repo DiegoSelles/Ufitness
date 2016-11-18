@@ -88,7 +88,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	                <div class="responsive">
 	                  <div class="img">
 	                    <a target="_blank" href="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>">
-	                      <img src="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>"  alt="Trolltunga Norway" width="300" height="200">
+	                      <img src="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>"  alt="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>" width="300" height="200">
 	                    </a>
 	                  </div>
 	                </div>
@@ -97,24 +97,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	                <div class="responsive">
 	                  <div class="img">
 	                    <a target="_blank" href="img/img.png">
-	                      <img src="img/img.png" alt="Trolltunga Norway" width="300" height="200">
+	                      <img src="img/img.png" alt="img/img.png" width="300" height="200">
 	                    </a>
 	                  </div>
 	                </div>
 							<?php } ?>
-							<?php if ($ejercicio->getVideo() != null){ ?>
-								<a target="_blank" href="<?php echo $ejercicio->getVideo(); ?>">
-									<img src="img/imgYoutube.png" alt="Trolltunga Norway" width="300" height="200">
-								</a>
-
-
-							 <?php } ?>
-
-
-
-
-                <div class="clearfix"></div>
               </div>
+							<?php if ($ejercicio->getVideo() != null){ ?>
+								<iframe width="420" height="315" src="<?php echo $ejercicio->getVideo(); ?>" allowfullscreen></iframe>
+							<?php } ?>
             <div>
         </div>
 

@@ -82,8 +82,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <label>Dni del creador: <?php echo $ejercicio->getUsuarioDni(); ?></label>
               <br/>
 
-              <!-- Habría que meter imagen y video aqui tambien -->
+              <?php if ($ejercicio->getImagen() != null){ ?>
 
+                  <div class="img">
+                    <a target="_blank" href="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>">
+                      <img src="../imagenesSubidas/<?php echo $ejercicio->getImagen(); ?>"  alt="Trolltunga Norway" width="300" height="200">
+                    </a>
+                  </div>
+                  <br/>
+              <?php } ?>
+
+              <?php if ($ejercicio->getVideo() != null){ ?>
+								<iframe width="420" height="315" src="<?php echo $ejercicio->getVideo(); ?>" allowfullscreen></iframe>
+							 <?php } ?>
+
+
+               <br/>
               <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
 
               <input id="submit" class="btn btn-primary" type="submit" value="SI">
