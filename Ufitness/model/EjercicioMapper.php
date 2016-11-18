@@ -55,6 +55,7 @@ class EjercicioMapper {
 		$consulta= "UPDATE Ejercicio set Usuario_Dni='".$ejercicio->getUsuarioDni()."',nombre='".$ejercicio->getNombre()."',
     tipoEjer='".$ejercicio->getTipoEjercicio()."', maquina='".$ejercicio->getMaquina()."',
     grupoMuscular='".$ejercicio->getGrupoMuscular()."', descripcion='".$ejercicio->getDescripcion()."', imagen='".$ejercicio->getImagen()."'
+    , video='".$ejercicio->getVideo()."'
     WHERE idEjercicio='".$idEjercicio."'";
 		$connect->query($consulta);
 		header("Location: ../view/adminEjercicios.php");
