@@ -26,7 +26,7 @@ class controlador_Ejercicio{
     $nombreImagen = round (microtime(true)) . '.' . end($temp);
 
     // Comprueba la longitud del archivo
-    if ($_FILES["media"]["size"] > 1000000 ) {
+    if ($_FILES["imagen"]["size"] > 1000000 ) {
         echo "Tu archivo es demasiado largo. <br/>";
         $uploadOk = 0;
     }
