@@ -102,7 +102,7 @@ class controlador_Entrenamiento{
         }
       }
      }
-     //header("Location: ../view/verEntrenamiento.php?idEntrenamiento=".$idEntrenamiento);
+     header("Location: ../view/verEntrenamiento.php?idEntrenamiento=".$idEntrenamiento);
   }
 
   public function anhadir() {
