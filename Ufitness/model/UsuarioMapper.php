@@ -24,7 +24,7 @@ class UsuarioMapper {
 
 	function listarEntrenadores (){
 		global $connect;
-		$consulta ="SELECT * FROM Usuario WHERE rol = 'entrenador'";
+		$consulta ="SELECT * FROM Usuario WHERE rol = 'entrenador' ORDER BY Nombre";
 		$resultado = $connect->query($consulta);
 		$listaEntrenadores = array();
 		while ($actual = mysqli_fetch_assoc($resultado)) {
