@@ -52,36 +52,23 @@ class controlador_Usuario{
 		public function listarEntrenadores()
 		{
 			return $this->usuarioMapper->listarEntrenadores();
-
 		}
 
 		public function buscarPorDni($Dni)
 		{
-			//return $this->usuarioMapper->find($Dni);
 			return $this->usuarioMapper->buscar($Dni);
-
-
 		}
 
 		public static function anhadir()
 		{
-
     		$usuarioMapper = new UsuarioMapper();
-    		//$usuario = new Usuario();
-
+    	
 		    if(isset($_POST["nombre"])){
 
-
-		      //echo $_POST["nombre"];
-		      $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$_POST["fecha"],$_POST["dni"],"entrenador");
-
-		  /*    $usuario->setDni($_POST["dni"]);
-		      $usuario->setNombre($_POST["nombre"]);
-		      $usuario->setEmail($_POST["email"]);
-		      $usuario->setPassword($_POST["password"]);
-		      $usuario->setEdad($edad);
-		      $usuario->setRol("entrenador"); */
-
+		    $fecha = $_POST["fecha"];
+		    $fechaNac = str_replace("/","-",$fecha);
+			
+		    $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$fechaNac,$_POST["dni"],"entrenador");
 
 		     	try{
 		    //  		$usuario->comprobarDatos();
@@ -103,39 +90,18 @@ class controlador_Usuario{
 			$nombre = $_POST["nombre"];
 			$email = $_POST["email"];
 			$password = $_POST["password"];
+			$fecha = $_POST["fecha"];
+		    $fechaNac = str_replace("/","-",$fecha);
 
-			//$actual["Nombre"],$actual["email"],$actual["password"],$actual["edad"],$actual["Dni"],$actual["rol"]
+			$usuario = new Usuario($nombre,$email,$password,$fechaNac,$dni,"entrenador");
 
-			$usuario = new Usuario($nombre,$email,$password,"NULL",$dni,"entrenador");
-
-			//$edad = date(DATE_ATOM)-($_POST["fecha"]);
-			//$rol = $_POST["rol"];
 		/*	if($usuario == NULL)
 			{
 				throw new Exception("deportista no existe: ".$usuario);
 			}*/
 
-			//echo $nombre;
-
-		///si va por POST
-
-		//	if(isset($_POST["submit"]))
-			//{
-			/*	$usuario->setDni($_POST["Dni"]);
-				$usuario->setRol($_POST["rol"]);
-				$usuario->setNombre($_POST["nombre"]);
-				$usuario->setEmail($_POST["email"]);
-				$usuario->setPassword($_POST["password"]);
-			//	$usuario->setEdad($_POST["edad"]);
-
 			//	$usuario->comprobarDatos();*/
 				$usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
-
-
-		/*global $connect;
-			 $consulta= "UPDATE Usuario SET Dni='". $dni ."' ,Nombre='". $nombre ."', email='". $email ."', password='". $password ."' WHERE Dni='". $dniAntiguo ."'";
-			 $connect->query($consulta);*/
-
 				header("Location: ../view/adminEntrenadores.php");
 			//}
 		}
@@ -156,17 +122,6 @@ class controlador_Usuario{
 			throw new Exception("deportista no existe: ".$usuario);
 
 		}*/
-
-		//$this->usuarioMapper->eliminarUsuario($dni);
-		//
-
-		//echo $dni;
-
-	/*	global $connect;
-	    $consulta = "DELETE FROM Usuario WHERE Dni='". $dni ."'" ;
-	    $connect->query($consulta);*/
-
-
 	    header("Location: ../view/adminEntrenadores.php");
 	}
 
