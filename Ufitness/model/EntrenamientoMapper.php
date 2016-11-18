@@ -1,6 +1,7 @@
 <?php
 require_once("../model/Entrenamiento.php");
 require_once("../model/Deportista.php");
+require_once("../model/Sesion.php");
 require_once("../model/EntrenamientoHasEjercicio.php");
 
 
@@ -81,5 +82,14 @@ class EntrenamientoMapper {
     $consulta= "UPDATE Entrenamiento set duracion='".$entrenamiento->getDuracion()."',nombre='".$entrenamiento->getNombre()."',nivel='".$entrenamiento->getNivel()."' WHERE idEntrenamiento='".$entrenamiento->getId()."'";
     $connect->query($consulta);
   }
+	
+	  public static function  ejerciciosRealizados(Sesion $sesion)
+  {
+      global $connect;
+      $consulta= "INSERT INTO Sesion(Deportista_Usuario_Dni,Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento,Entrenamiento_has_Ejercicio_Ejercicio_idEjercicio,anotaciones,fecha) VALUES ('". $sesion->getDniDeportista() ."',
+       '". $sesion->getidHasEntrenamiento() ."', '". $sesion->getIdHasEjercicio() ."', '". $sesion->getAnotaciones() ."', '". $sesion->getFechaSesion() ."')";
+      $connect->query($consulta);
+  }
+
 
 }
