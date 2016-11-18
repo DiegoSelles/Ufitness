@@ -61,17 +61,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Deportista&amp;accion=register" method="post" class="formulario">
-              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni"/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha"/>
-              <?php echo "e-mail" ?>: <input type="text" name="email"/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password"/>
-              <?php echo "Tipo Deportista" ?>: <select name="tipo">
+              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" class="input"/>
+              <?php echo "DNI" ?>: <input type="text" name="dni" class="input"/>
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" class="input"/>
+              <?php echo "e-mail" ?>: <input type="text" name="email" class="input"/>
+              <?php echo "Contraseña" ?>: <input type="password" name="password" class="input"/>
+              <?php echo "Tipo Deportista" ?>: <select name="tipo" class="select">
 			                                            <option value="tdu" selected>TDU</option>
 			                                            <option value="pef">PEF</option>
             																	 </select>
-              <?php echo "Riesgos" ?>: <textarea name="riesgos" rows="5" cols="20"></textarea>
-							<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+              <?php echo "Riesgos" ?>: <textarea name="riesgos" rows="5" cols="5"></textarea>
+							<div class="form_submit">
+								<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+							</div>
 
           </form>
         </div>

@@ -83,7 +83,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         </span>
                     </div>
                   </div>
-                  <?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
+                  <?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                   <div class="anadir">
                     <a id="btn_anadir" href="../view/crearEntrenamiento.php" class="btn btn-primary" type="button">Añadir Entrenamiento</a>
                   </div>
@@ -99,20 +99,20 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
           			<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
 					<?php foreach ($entrenamientos as $entrenamiento) {	?>
 					<ul>
-						
+
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
                         <a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
-                      
+
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
-                      
+
                        <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
                       <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -140,13 +140,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
-                      
+
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
-                      
+
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
                           <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -176,7 +176,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 						<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 					</a>
                  </div>
-                 
+
                  <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>

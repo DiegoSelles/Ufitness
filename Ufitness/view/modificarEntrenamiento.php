@@ -75,9 +75,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=modificarEntrenamiento" method="post" class="formulario">
-              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre" value="<?php echo $entrenamiento->getNombre(); ?>"/>
-              <?php echo "Duración" ?>: <input type="text" name="duracion" value="<?php echo $entrenamiento->getDuracion(); ?>"/>
-							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel" >
+              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre" value="<?php echo $entrenamiento->getNombre(); ?>" class="input"/>
+              <?php echo "Duración" ?>: <input type="text" name="duracion" value="<?php echo $entrenamiento->getDuracion(); ?>" class="input"/>
+							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel" class="select">
 			                                            <option value="principiante" <?php echo (($entrenamiento->getNivel()=="principiante")?"selected":""); ?>>Principiante</option>
 			                                            <option value="intermedio" <?php echo (($entrenamiento->getNivel()=="intermedio")?"selected":""); ?>>Intermedio</option>
 																									<option value="avanzado" <?php echo (($entrenamiento->getNivel()=="avanzado")?"selected":""); ?>>Avanzado</option>
@@ -93,9 +93,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 								?>
 								<ul>
 									<li>
-										<input type="checkbox" name="ejercicio[]" value="<?php echo $ejercicio->getIdEjercicio();?>" <?php echo (($tieneEjer)?"checked":""); ?>> <strong><?php echo $ejercicio->getNombre();?></strong>
-										<p>Series x Repetición: <input type="text" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12" <?php if($tieneEjer){ ?> value = <?php echo $entrenamientoHasEjercicio->getSxR(); } ?>  ></p>
-										<p>Carga: <input type="text" name ="<?php echo $carga;?>" placeholder="Ej: 3" <?php if($tieneEjer){ ?>value = <?php echo $entrenamientoHasEjercicio->getCarga(); } ?> ></p>
+										<input type="checkbox" name="ejercicio[]"  value="<?php echo $ejercicio->getIdEjercicio();?>" <?php echo (($tieneEjer)?"checked":""); ?>> <strong><?php echo $ejercicio->getNombre();?></strong>
+										<p>Series x Repetición: <input type="text"  class="input_ejer" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12" <?php if($tieneEjer){ ?> value = <?php echo $entrenamientoHasEjercicio->getSxR(); } ?>  ></p>
+										<p>Carga: <input type="text" class="input_ejer" name ="<?php echo $carga;?>" placeholder="Ej: 3" <?php if($tieneEjer){ ?>value = <?php echo $entrenamientoHasEjercicio->getCarga(); } ?> ></p>
 
 									</li>
 								</ul>
@@ -103,8 +103,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 							}
 								?>
 							<input  type="text" name="idEnt" hidden="true" value="<?php echo $entrenamiento->getId(); ?>"/>
-							<input id="submit" class="btn btn-primary" type="submit" value="Guardar">
-
+							<div class="form_submit">
+								<input id="submit" class="btn btn-primary" type="submit" value="Guardar Cambios">
+							  <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">Volver</a>
+							</div>
           </form>
         </div>
 			</div>

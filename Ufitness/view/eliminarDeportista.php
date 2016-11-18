@@ -86,12 +86,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <label>Riesgos: <?php echo $deportista->getRiesgos(); ?></label>
 
               <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />
-
-              <input id="submit" class="btn btn-primary" type="submit" value="SI">
-              <br/>
-
-              <a id="submit" href="adminDeportistas.php" class="btn btn-primary" type="button">NO</a>
-
+              <div class="form_submit">
+                <input id="submit" class="btn btn-primary" type="submit" value="SI">
+                <a id="submit" href="adminDeportistas.php" class="btn btn-primary" type="button">NO</a>
+              </div>
           </form>
         </div>
       </div>

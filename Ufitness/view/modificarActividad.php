@@ -68,14 +68,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				</div>
 			<div >
 
-  			<form action="../controller/controlador.php?controlador=controlador_Actividad&accion=modificarActividad" method="post" class="formulario">
+  			<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=modificarActividad" method="post" class="formulario">
               <label for="nombre">Nombre Actividad: </label>
-              <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?>"/>
-              <input type="text" name="id" hidden="True" value =<?php echo $idActividad ?> />
+              <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?> class="input""/>
+              <input type="text" name="id" hidden="True" value =<?php echo $idActividad ?> class="input"/>
               <label for="monitor">Monitor actual : <?php echo $actividad->getMonitor(); ?> </label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
               <label for="monitor">Modificar monitor :</label>
-              <select name="monitor">
+              <select name="monitor" class="select">
                 <?php foreach ($entrenadores as $entrenador) { ?>
                   <!-- Parece que funciona el option pero no se ven los nobmres de los entrenadores -->
                   <option value="<?php echo $entrenador->getNombre(); ?>"><?php echo $entrenador->getNombre(); ?></option>
@@ -83,14 +83,17 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			  </select>
               <label for="horario">Horario:</label>
 							<!--El horario no muestra la fecha anterior como debería -->
-              <input type="datetime-local" name="horario" value="<?php echo $actividad->getHorario(); ?>"/>
+              <input type="datetime-local" name="horario" value="<?php echo $actividad->getHorario(); ?>" class="input"/>
               <label for="lugar">Lugar:</label>
-              <input type="text" name="lugar" value="<?php echo $actividad->getLugar(); ?>"/>
+              <input type="text" name="lugar" value="<?php echo $actividad->getLugar(); ?>" class="input"/>
               <label for="numPlazas">Numero de Plazas:</label>
-              <input type="number" name="numPlazas" value="<?php echo $actividad->getNumPlazas(); ?>"/>
+              <input type="number" name="numPlazas" value="<?php echo $actividad->getNumPlazas(); ?>" class="input"/>
               <label for="tipo">Tipo:</label>
-              <input type="text" name="tipo" value="<?php echo $actividad->getTipoActividad(); ?>"/>
-			  <input id="submit" class="btn btn-primary" type="submit" value="Modificar">
+              <input type="text" name="tipo" value="<?php echo $actividad->getTipoActividad(); ?>" class="input"/>
+				<div class="form_submit">
+			  	<input id="submit" class="btn btn-primary" type="submit" value="Modificar">
+					<a id="submit" href="adminActividades.php" class="btn btn-primary" type="button">Volver</a>
+				</div>
 			</form>
 		</div>
 	</div>

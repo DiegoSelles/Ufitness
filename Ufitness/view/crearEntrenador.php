@@ -61,18 +61,16 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
           <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=anhadir" method="post" class="formulario">
-              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni"/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha"/>
-              <?php echo "E-mail" ?>: <input type="text" name="email"/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password"/>
-              <input type="text" name="rol" hidden="true" value="entrenador" />
-              <input type="text" name="DniAdmin" hidden="true" value=$_SESSION['Dni'] />
-              <br/>
-              <br/>
-
-              <input id="submit" class="btn btn-primary" type="submit" value="Añadir">
-
+              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" class="input"/>
+              <?php echo "DNI" ?>: <input type="text" name="dni" class="input"/>
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" class="input"/>
+              <?php echo "E-mail" ?>: <input type="text" name="email" class="input"/>
+              <?php echo "Contraseña" ?>: <input type="password" name="password" class="input"/>
+              <input type="text" name="rol" hidden="true" value="entrenador" class="input"/>
+              <input type="text" name="DniAdmin" hidden="true" value=$_SESSION['Dni'] class="input"/>
+              <div class="form_submit">
+                <input id="submit" class="btn btn-primary" type="submit" value="Añadir">
+              </div>
           </form>
         </div>
       </div>

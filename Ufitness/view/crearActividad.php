@@ -62,27 +62,28 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
           <strong>Nueva Actividad</strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Actividad&accion=registrarActividad" method="post" class="formulario">
+  				<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=registrarActividad" method="post" class="formulario">
               <label for="nombre">Nombre Actividad:</label>
-              <input type="text" name="nombre"/>
+              <input type="text" name="nombre" class="input"/>
               <label for="monitor">Monitor:</label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
-              <select name="monitor">
+              <select name="monitor" class="select">
                 <?php foreach ($entrenadores as $entrenador) { ?>
                   <!-- Parece que funciona el option pero no se ven los nobmres de los entrenadores -->
                   <option value="<?php echo $entrenador->getNombre(); ?>" ><?php echo $entrenador->getNombre(); ?></option>
                 <?php }?>
   						</select>
               <label for="horario">Horario:</label>
-              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" name="horario"/>
+              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" name="horario" class="input"/>
               <label for="lugar">Lugar:</label>
-              <input type="text" name="lugar"/>
+              <input type="text" name="lugar" class="input"/>
               <label for="numPlazas">Numero de Plazas:</label>
-              <input type="number" name="numPlazas"/>
+              <input type="number" name="numPlazas" class="input"/>
               <label for="tipo">Tipo:</label>
-              <input type="text" name="tipo"/>
-							<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
-
+              <input type="text" name="tipo" class="input"/>
+							<div class="form_submit">
+								<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+							</div>
           </form>
         </div>
 			</div>

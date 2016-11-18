@@ -68,26 +68,27 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
          <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=editar" method="post" class="formulario">
-              <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" /> <br/>
-              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>" />
+              <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input"/> <br/>
+              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input"/>
               <br/>
               <!--<?php echo "Fecha" ?>: <input type="text" name="fecha" value="<?php echo $usuario->getEdad(); ?>" /> -->
               <br/>
-              <?php echo "E-mail" ?>: <input type="text" name="email" value="<?php echo $usuario->getEmail(); ?>" />
+              <?php echo "E-mail" ?>: <input type="text" name="email" value="<?php echo $usuario->getEmail(); ?>" class="input"/>
               <br/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" />
+              <?php echo "Contraseña" ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" class="input" />
 
-              <input type="text" name="rol" hidden="true" value="entrenador" />
-              <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $usuario->getDni(); ?>" />
-              <input type="text" name="DniAdmin" hidden="true" value=$_SESSION['Dni'] />
-
-              <br />
+              <input type="text" name="rol" hidden="true" value="entrenador" class="input"/>
+              <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $usuario->getDni(); ?>" class="input"/>
+              <input type="text" name="DniAdmin" hidden="true" value=$_SESSION['Dni'] class="input"/>
 
              <!-- <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />-->
-             <input id="submit" class="btn btn-primary" type="submit" value="Actualizar">
+             <div class="form_submit">
+               <input id="submit" class="btn btn-primary" type="submit" value="Guardar Cambios">
+               <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">Volver</a>
+ 						</div>
               <br/>
 
-             
+
 
           </form>
         </div>

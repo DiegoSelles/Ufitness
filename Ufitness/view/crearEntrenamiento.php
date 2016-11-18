@@ -64,10 +64,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
           <strong>Nuevo Entrenamiento</strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=anhadir" method="post" class="formulario">
-              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre"/>
-              <?php echo "Duración" ?>: <input type="text" name="duracion"/>
-							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel">
+  				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=anhadir" method="post" class="formulario ">
+              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre" class="input"/>
+              <?php echo "Duración" ?>: <input type="text" name="duracion" class="input"/>
+							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel" class="select">
 			                                            <option value="principiante" selected>Principiante</option>
 			                                            <option value="intermedio">Intermedio</option>
 																									<option value="avanzado">Avanzado</option>
@@ -80,17 +80,17 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 								?>
 								<ul>
 									<li>
-
-										<input type="checkbox" name="ejercicio[]" value="<?php echo $ejercicio->getIdEjercicio();?>"> <strong><?php echo $ejercicio->getNombre();?></strong>
-										<p>Series x Repeticion: <input type="text" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12"></p>
-										<p>Carga:<input type="number" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>
+											<input type="checkbox" name="ejercicio[]"  value="<?php echo $ejercicio->getIdEjercicio();?>"> <strong><?php echo $ejercicio->getNombre();?></strong>
+											<p>Series x Repeticion: <input type="text"  class="input_ejer" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12"></p>
+											<p>Carga:<input type="number" class="input_ejer" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>									
 									</li>
 								</ul>
 								<?php
 									}
 								?>
-							<input id="submit" class="btn btn-primary" type="submit" value="Guardar">
-
+								<div class="form_submit">
+										<input id="submit" class="btn btn-primary" type="submit" value="Guardar">
+								</div>
           </form>
         </div>
 			</div>

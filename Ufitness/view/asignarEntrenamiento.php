@@ -66,19 +66,21 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 					<strong>Asignacion de entrenamientos</strong>
 				</div>
 			<div >
-							
-  			<form method="post" action="#">
+
+  			<form method="post" action="#" class="formulario">
 				<label for="lista">Entrenamientos</label>
 				<?php $entrenamientos = $econtroler->listarEntrenamientos(); ?>
-				<select name="entrenamiento">
+				<select name="entrenamiento" class="select">
 					<?php foreach ($entrenamientos as $entrenamiento) { ?>
 					<option value="<?php echo $entrenamiento->getNombre(); ?>" ><?php echo $entrenamiento->getNombre(); ?></option>
 					<?php }?>
 				</select>
-				<input id="btn_asignarD" type="submit" value="Asignar" name="AsignarEntrenamiento">
-				<input id="btn_asignarD" type="submit" value="Crear entrenamiento" name="CrearEntrenamiento">
+				<div class="form_submit">
+					<input id="submit" class="btn btn-primary" type="submit" value="Asignar" name="AsignarEntrenamiento">
+					<input id="btn_anadir" class="btn btn-primary" type="submit" value="Crear entrenamiento" name="CrearEntrenamiento">
+				</div>
              </form>
-  
+
               <?php if(isset($_POST['AsignarEntrenamiento'])){
 				   $econtroler->asignarEntrenamiento($dni,$_POST['entrenamiento']);
 				   }else if(isset($_POST['CrearEntrenamiento'])){
@@ -97,4 +99,3 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-

@@ -63,35 +63,37 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
 
-          <form enctype = "multipart/form-data" action="../controller/controlador.php?controlador=controlador_Ejercicio&accion=registrarEjercicio" method="post" class="formulario">
-						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+          <form enctype = "multipart/form-data" action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=registrarEjercicio" method="post" class="formulario">
+						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" class="input"/>
 
 						<label for="nombre">Nombre Ejercicio:</label>
-						<input type="text" name="nombre"/>
+						<input type="text" name="nombre" class="input"/>
 						<label for="tipoEjercicio">Tipo del ejercicio:</label>
-						<select name="tipoEjercicio">
+						<select name="tipoEjercicio" class="select">
 								<option value="Cardio" >Cardio</option>
 								<option value="Estiramientos">Estiramientos</option>
 								<option value="Muscular">Muscular</option>
 						</select>
 						<label for="maquina">Maquina:</label>
-						<input type="text" name="maquina"/>
+						<input type="text" name="maquina" class="input"/>
 						<label for="grupoMuscular">Grupo Muscular:</label>
-						<select name="grupoMuscular">
+						<select name="grupoMuscular" class="select">
 								<option value="Piernas" >Piernas</option>
 								<option value="Brazos">Brazos</option>
 								<option value="Espalda">Espalda</option>
 						</select>
 						<label for="descripcion">Descripcion:</label>
-						<input type="text" name="descripcion"/>
+						<input type="text" name="descripcion" class="input"/>
 						<label for="video">Video:</label>
-						<input type="text" name="urlYoutube"/>
+						<input type="text" name="urlYoutube" class="input"/>
 						<br/>
 
             <label for="imagen">Imagen:</label>
-            <input type="file" name="imagen"/>
+            <input type="file" name="imagen" />
 						<br/>
+						<div class="form_submit">
 						<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+						</div>
           </form>
 
         </div>

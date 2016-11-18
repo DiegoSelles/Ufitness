@@ -68,7 +68,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-bicycle" aria-hidden="true"></i>
               <strong><?php echo $ejercicio->getNombre(); ?></strong>
 							<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){?>
-							<a id="btn_editar" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $id; ?>" class="btn btn-primary" type="button">Modificar</a>
+							<a id="btn_editar" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $id; ?>" class="btn btn-primary" type="button">Editar</a>
 							<?php } ?>
 						</div>
 

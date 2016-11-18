@@ -68,22 +68,20 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
           <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=eliminar" method="post" class="formulario">
-              <?php echo $usuario->getNombre(); ?>
+              <label>Nombre: <?php echo $usuario->getNombre(); ?></label>
                <br/>
-              <?php echo $usuario->getDni(); ?>
+              <label>DNI: <?php echo $usuario->getDni(); ?></label>
                <br/>
-              <?php echo $usuario->getEdad(); ?>
+              <label>Edad: <?php echo $usuario->getEdad(); ?></label>
                <br/>
-              <?php echo $usuario->getEmail(); ?>
+              <label>E-mail: <?php echo $usuario->getEmail(); ?></label>
               <br/>
 
               <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />
-              
-              <input id="submit" class="btn btn-primary" type="submit" value="SI">
-              <br/>
-
-              <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">NO</a>
-
+              <div class="form_submit">
+                <input id="submit" class="btn btn-primary" type="submit" value="SI">
+                <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">NO</a>
+              </div>
           </form>
         </div>
       </div>

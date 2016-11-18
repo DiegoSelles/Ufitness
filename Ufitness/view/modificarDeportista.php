@@ -71,20 +71,22 @@ $dcontroler = new controlador_Deportista();
         </div>
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Deportista&amp;accion=modificarDeportista" method="post" class="formulario">
-              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>"/>
+              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>" class="input"/>
+              <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>"class="input"/>
               <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $deportista->getDni(); ?>"/>
-              <?php echo "Edad" ?>: <input type="text" name="edad"  value="<?php echo $deportista->getEdad(); ?>"/>
-              <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>"/>
-              <!--<?php echo "Contraseña" ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>"/>
+              <!--<?php echo "Edad" ?>: <input type="text" name="edad"  value="<?php echo $deportista->getEdad(); ?>"class="input"/>-->
+              <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>"class="input"/>
+              <!--<?php echo "Contraseña" ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>" class="input"/>
               <label for="tipo">Tipo Actual: <?php echo $deportista->getTipo(); ?>  </label>
-              <?php echo "Modificar Tipo Deportista" ?>: <select name="tipo">
+              <?php echo "Modificar Tipo Deportista" ?>: <select name="tipo" class="select">
         			                                            <option value="tdu" selected>TDU</option>
         			                                            <option value="pef">PEF</option>
             																	           </select>
               <?php echo "Riesgos" ?>: <textarea name="riesgos" rows="5" cols="20"><?php echo $deportista->getRiesgos(); ?> </textarea>
-							<input id="submit" class="btn btn-primary" type="submit" value="Guardar cambios">
-
+							<div class="form_submit">
+								<input id="submit" class="btn btn-primary" type="submit" value="Guardar cambios">
+								<a id="submit" href="adminDeportistas.php" class="btn btn-primary" type="button">Volver</a>
+							</div>
           </form>
         </div>
 			</div>
