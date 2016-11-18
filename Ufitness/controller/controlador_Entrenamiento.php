@@ -62,7 +62,6 @@ class controlador_Entrenamiento{
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
       $idEntrenamiento  = $_POST['idEnt'];
       $entrenamiento = new Entrenamiento($_POST["duracion"],$_POST["nombre"],$_POST["nivel"],$idEntrenamiento);
-      print_r($entrenamiento);
       $entrenamientoMapper->modificarEntrenamiento($entrenamiento);
 
       $listaEjerEntAntiguos = $entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEntrenamiento);
