@@ -47,7 +47,7 @@ class UsuarioMapper {
 	public function modificarUsuario($usuario, $dniAntiguo)
 	{
 		global $connect;
-		$consulta= "UPDATE Usuario SET Dni='". $usuario->getDni() ."' ,Nombre='". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password='". $usuario->getPassword() ."' WHERE Dni='". $dniAntiguo ."'";
+		$consulta= "UPDATE Usuario SET Dni='". $usuario->getDni() ."' ,Nombre='". $usuario->getNombre() ."', email='". $usuario->getEmail() ."', password='". $usuario->getPassword() ."', fecha_nacimiento='". $usuario->getFecha() ."' WHERE Dni='". $dniAntiguo ."'";
 			 $connect->query($consulta);
 	}
 

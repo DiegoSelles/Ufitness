@@ -52,11 +52,19 @@ class Usuario
 
   	public function getEdad() {
 
-    	return date('Y-m-d') - $this->fecha;
+    	$fecha = str_replace("/","-",$this->fecha);
+   		$fecha = date('Y/m/d',strtotime($this->fecha));
+    	$hoy = date('Y/m/d');
+    	$edad = $hoy - $fecha;
+   		return $edad;
   	}
 
-		public function getFecha() {
+	public function getFecha() {
     	return $this->fecha;
+  	}
+
+  	public function setFecha($fecha) {
+    	 $this->fecha=$fecha;
   	}
 
   	public function setRol()
