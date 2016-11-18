@@ -1,8 +1,9 @@
 <?php
 require_once("../model/Ejercicio.php");
 require_once("../model/EjercicioMapper.php");
-
-
+?>
+<script src="js/convertEmbed.js"></script>
+<?php
 class controlador_Ejercicio{
 
   private $ejercicioMapper;
@@ -51,10 +52,17 @@ class controlador_Ejercicio{
     $urlVideo = null;
     $bool = $econtroler->youtubeId($_POST['urlYoutube']);
     if ($bool){
-      $urlVideo = $_POST['urlYoutube'];
+      $urlVideo = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i"
+      ,"//www.youtube.com/embed/$1"
+      ,$_POST['urlYoutube']);
+    }else{
+      echo "La url del vídeo no es válida";
     }
-
-    $ejercicio = new Ejercicio($_POST["nombre"], $usuarioActual->getDni(), $_POST["tipoEjercicio"],
+    $nombre = $_POST["nombre"];
+    if ($nombre == ""){
+      $nombre = "Nombre por defecto";
+    }
+    $ejercicio = new Ejercicio($nombre, $usuarioActual->getDni(), $_POST["tipoEjercicio"],
     $_POST["grupoMuscular"], $_POST["maquina"], $_POST["descripcion"], $nombreImagen, $urlVideo);
 
     $ejercicioMapper->registrarEjercicio($ejercicio);
@@ -136,7 +144,17 @@ class controlador_Ejercicio{
       $econtroler->eliminarImagen ($imagenActual);
     }
 
-    $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion, $nombreImagen);
+    $urlVideo = $_POST["videoActual"];
+    $bool = $econtroler->youtubeId($_POST['urlYoutube']);
+    if ($bool){
+      $urlVideo = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i"
+      ,"//www.youtube.com/embed/$1"
+      ,$_POST['urlYoutube']);
+    }else{
+      echo "La url del vídeo no es válida";
+    }
+
+    $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion, $nombreImagen, $urlVideo);
     return $ejercicioMapper->modificarEjercicio($ejercicio, $idEjercicio);
   }
 
