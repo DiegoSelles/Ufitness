@@ -109,8 +109,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
                       </div>
 
                        <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
@@ -143,8 +141,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
                       </div>
 
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
@@ -179,8 +175,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                  <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
-                        <p>Número Ejercicios: </p>
-                        <p>Grupo Muscular: </p>
                       </div>
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
