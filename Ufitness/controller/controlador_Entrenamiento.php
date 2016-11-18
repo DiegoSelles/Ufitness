@@ -187,6 +187,24 @@ class controlador_Entrenamiento{
 
     header("Location: ../view/adminEntrenamientos.php");
   }
+    
+	public static function ejerciciosRealizados()
+   	{
+   
+     $entrenamientoMapper = new EntrenamientoMapper();
+     $dniDeportista=$_POST["dniDeportista"];
+     $idEntrenamiento=$_POST["idEntrenamiento"];
+     $idEjercicio=$_POST["idEjercicio"];
+     $anotaciones=$_POST["anotacion"];
+     $fecha=$_POST["fecha"];
+     
+     $sesion = new Sesion($dniDeportista,$idEntrenamiento,$idEjercicio,$anotaciones,$fecha);
+       
+     $entrenamientoMapper->ejerciciosRealizados($sesion);
+ 
+     header("Location: ../view/monitorizarEntrenamiento.php?idEntrenamiento=$idEntrenamiento&idEjercicio=$idEjercicio");
+ 
+   }
 
     public function asignarEntrenamiento($dni,$nombre){
 	  global $connect;
