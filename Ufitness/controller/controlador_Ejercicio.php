@@ -32,7 +32,8 @@ class controlador_Ejercicio{
     }
     // Permiso de tipos de imagenes: JPG, JPEG, PNG & GIF
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+    && $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "JPEG"
+    && $imageFileType != "GIF" ) {
         echo "Lo siento, solo JPG, JPEG, PNG o GIF archivos son permitidos. <br/>";
         $uploadOk = 0;
     }
@@ -123,7 +124,8 @@ class controlador_Ejercicio{
     }
     // Permiso de tipos de imagenes: JPG, JPEG, PNG & GIF
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+    && $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "JPEG"
+    && $imageFileType != "GIF") {
         echo "Lo siento, solo JPG, JPEG, PNG o GIF archivos son permitidos. <br/>";
         $uploadOk = 0;
     }
