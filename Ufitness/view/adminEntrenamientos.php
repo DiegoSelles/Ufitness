@@ -83,117 +83,113 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         </span>
                     </div>
                   </div>
+                  <?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
                   <div class="anadir">
                     <a id="btn_anadir" href="../view/crearEntrenamiento.php" class="btn btn-primary" type="button">Añadir Entrenamiento</a>
                   </div>
-                </div>
+                  <?php }  ?>
+				</div>
             <div class="body_pagina">
 						<?php
-									if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){
-										$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
-									}else{
-										$entrenamientos= $econtroller->listarEntrenamientosDeportistaNivel($_SESSION['Dni'],"principiante");
-									}
-
+						$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
+						if($entrenamientos != NULL){
 						?>
-            <nav id = "desplegable1">
-              <ul>
+				<nav id = "desplegable1">
+					<ul>
           			<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
-									<?php
-												foreach ($entrenamientos as $entrenamiento) {
-									?>
-									<ul>
+					<?php foreach ($entrenamientos as $entrenamiento) {	?>
+					<ul>
+						
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
                         <a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
-													<h1><?php echo $entrenamiento->getNombre(); ?></h1>
-												</a>
+							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
+						</a>
                       </div>
+                      
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
+                      
+                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
-												<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-                          <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-												<?php } ?>
-											</div>
+                      <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+					  <?php } ?>
+					  </div>
                     </div>
-          				</ul>
-									<?php } ?>
+          			</ul>
+					<?php }} ?>
           			</li>
           		</ul>
             </nav>
 
-						<?php
-								if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){
-									$entrenamientos = $econtroller->listarEntrenamientosNivel("intermedio");
-								}else{
-									$entrenamientos= $econtroller->listarEntrenamientosDeportistaNivel($_SESSION['Dni'],"intermedio");
-								}
-
-						?>
+			<?php
+			$entrenamientos = $econtroller->listarEntrenamientosNivel("intermedio");
+			if($entrenamientos != NULL){
+			?>
             <nav id = "desplegable2">
               <ul>
-          			<li id="nivel2"><a id = "activador_2" class= "btn_nivel" href="#"><i id = "activador_2" class="fa fa-chevron-down"></i>Intermedio</a>
-									<?php
-											foreach ($entrenamientos as $entrenamiento) {
-									?>
-									<ul>
+          		<li id="nivel2"><a id = "activador_2" class= "btn_nivel" href="#"><i id = "activador_2" class="fa fa-chevron-down"></i>Intermedio</a>
+					<?php foreach ($entrenamientos as $entrenamiento) { ?>
+					<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-												<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
-													<h1><?php echo $entrenamiento->getNombre(); ?></h1>
-												</a>
+						<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
+						</a>
                       </div>
+                      
                       <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
+                      
+                      <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
                           <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       </div>
+                      <?php } ?>
                     </div>
-          				</ul>
-                  <?php } ?>
+          		</ul>
+                  <?php }} ?>
           			</li>
           		</ul>
             </nav>
 
-						<?php
-								if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){
-									$entrenamientos = $econtroller->listarEntrenamientosNivel("avanzado");
-								}else{
-									$entrenamientos= $econtroller->listarEntrenamientosDeportistaNivel($_SESSION['Dni'],"avanzado");
-								}
-
-						?>
+			<?php
+			$entrenamientos = $econtroller->listarEntrenamientosNivel("avanzado");
+			if($entrenamientos != NULL){
+			?>
             <nav id = "desplegable3">
               <ul>
-          			<li id="nivel3"><a id = "activador_3" class= "btn_nivel" href="#"><i id = "activador_3" class="fa fa-chevron-down"></i>Avanzado</a>
-									<?php
-											foreach ($entrenamientos as $entrenamiento) {
-									?>
-									<ul>
-                    <div class="bloque_lista">
-                      <div class="titulo_bloque">
-												<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
-													<h1><?php echo $entrenamiento->getNombre(); ?></h1>
-												</a>
-                      </div>
-                      <div class="info_bloque">
+          		<li id="nivel3"><a id = "activador_3" class= "btn_nivel" href="#"><i id = "activador_3" class="fa fa-chevron-down"></i>Avanzado</a>
+					<?php
+					foreach ($entrenamientos as $entrenamiento) {
+					?>
+			<ul>
+            <div class="bloque_lista">
+				<div class="titulo_bloque">
+					<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+						<h1><?php echo $entrenamiento->getNombre(); ?></h1>
+					</a>
+                 </div>
+                 
+                 <div class="info_bloque">
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                         <p>Número Ejercicios: </p>
                         <p>Grupo Muscular: </p>
                       </div>
+                      <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
                           <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       </div>
+                      <?php } ?>
                     </div>
-          				</ul>
-              		<?php } ?>
+          	</ul>
+              		<?php }} ?>
           			</li>
           		</ul>
             </nav>
