@@ -1,6 +1,5 @@
 <?php
 require_once("../model/Deportista.php");
-require_once("../model/Sesion.php");
 require_once("../model/EntrenamientoMapper.php");
 require_once("../model/EntrenamientoHasEjercicioMapper.php");
 require_once("../model/UsuarioMapper.php");
@@ -62,7 +61,8 @@ class controlador_Entrenamiento{
 
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
       $idEntrenamiento  = $_POST['idEnt'];
-      $entrenamiento = new Entrenamiento($_POST["duracion"],$_POST["nombre"],$_POST["nivel"]);
+      $entrenamiento = new Entrenamiento($_POST["duracion"],$_POST["nombre"],$_POST["nivel"],$idEntrenamiento);
+      print_r($entrenamiento);
       $entrenamientoMapper->modificarEntrenamiento($entrenamiento);
 
       $listaEjerEntAntiguos = $entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEntrenamiento);
@@ -84,17 +84,14 @@ class controlador_Entrenamiento{
         {
           $sxr="seriesxRep".$ejercicio[$i];
           $carga="carga".$ejercicio[$i];
-          echo $ejercicio[$i]."->".$_POST[$sxr]."->".$_POST[$carga]."    ";
           $entrenamientoHasEjer = new EntrenamientoHasEjercicio($idEntrenamiento,$ejercicio[$i], $_POST[$sxr] , $_POST[$carga]);
 
           $entcontroller= new controlador_Entrenamiento();
           $entTieneEjer = $entcontroller->entrenamientoTieneEjer($idEntrenamiento,$ejercicio[$i]);
 
           if($entTieneEjer){
-            echo "hola 1";
             $entrenamientoHasEjercicioMapper->modificarEntrenamiento($entrenamientoHasEjer);
           }elseif(!$entTieneEjer){
-            echo "hola 2";
             $entrenamientoHasEjercicioMapper->save($entrenamientoHasEjer);
           }
         }
@@ -105,7 +102,7 @@ class controlador_Entrenamiento{
         }
       }
      }
-     header("Location: ../view/verEntrenamiento.php?idEntrenamiento=".$idEntrenamiento);
+     //header("Location: ../view/verEntrenamiento.php?idEntrenamiento=".$idEntrenamiento);
   }
 
   public function anhadir() {
@@ -187,7 +184,7 @@ class controlador_Entrenamiento{
     if ($listaEntrenamientoHasEjercicio != NULL) {
       $entrenamientoHasEjercicioMapper->eliminarEntHasEjer($entrenamiento->getId());
     }
-    
+
     header("Location: ../view/adminEntrenamientos.php");
   }
 
@@ -198,24 +195,6 @@ class controlador_Entrenamiento{
 	  $entrenamiento = mysqli_fetch_assoc($resultado);
 	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
 	  $connect->query($consult);
-
-  }
-	
-	 public static function ejerciciosRealizados()
-  {
-  
-    $entrenamientoMapper = new EntrenamientoMapper();
-    $dniDeportista=$_POST["dniDeportista"];
-    $idEntrenamiento=$_POST["idEntrenamiento"];
-    $idEjercicio=$_POST["idEjercicio"];
-    $anotaciones=$_POST["anotacion"];
-    $fecha=$_POST["fecha"];
-    
-    $sesion = new Sesion($dniDeportista,$idEntrenamiento,$idEjercicio,$anotaciones,$fecha);
-      
-    $entrenamientoMapper->ejerciciosRealizados($sesion);
-
-    header("Location: ../view/monitorizarEntrenamiento.php?idEntrenamiento=$idEntrenamiento&idEjercicio=$idEjercicio");
 
   }
 
