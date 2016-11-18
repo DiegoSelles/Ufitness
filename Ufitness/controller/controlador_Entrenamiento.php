@@ -28,6 +28,22 @@ class controlador_Entrenamiento{
   public function listarEntrenamientosNivel($nivel){
     return $this->entrenamientoMapper->listarEntrenamientosNivel($nivel);
   }
+	
+  public function listarEntrenamientosDeportistaNivel($dniDeportista,$nivel){
+    $entrenamientos = $this->entrenamientoMapper->listarEntrenamientosNivel($nivel);
+    $listaIdEntDeportista = $this->entrenamientoMapper->listarIdEntrenamientosDeportista($dniDeportista);
+    $listaEntrenamientosDepor=array();
+
+    foreach ($entrenamientos as $entrenamiento) {
+      if(in_array($entrenamiento->getId(),$listaIdEntDeportista)){
+        $entDep = $this->entrenamientoMapper->buscarEntrenamientoId($entrenamiento->getId());
+        if($entDep->getNivel()==$nivel){
+          array_push($listaEntrenamientosDepor, $entrenamiento);
+        }
+      }
+    }
+    return $listaEntrenamientosDepor;
+  }
 
   public function ejerciciosEntrenamiento($id){
     return $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($id);
