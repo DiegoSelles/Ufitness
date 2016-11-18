@@ -1,5 +1,6 @@
 <?php
 require_once("../model/Deportista.php");
+require_once("../model/Sesion.php");
 require_once("../model/EntrenamientoMapper.php");
 require_once("../model/EntrenamientoHasEjercicioMapper.php");
 require_once("../model/UsuarioMapper.php");
@@ -197,6 +198,24 @@ class controlador_Entrenamiento{
 	  $entrenamiento = mysqli_fetch_assoc($resultado);
 	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
 	  $connect->query($consult);
+
+  }
+	
+	 public static function ejerciciosRealizados()
+  {
+  
+    $entrenamientoMapper = new EntrenamientoMapper();
+    $dniDeportista=$_POST["dniDeportista"];
+    $idEntrenamiento=$_POST["idEntrenamiento"];
+    $idEjercicio=$_POST["idEjercicio"];
+    $anotaciones=$_POST["anotacion"];
+    $fecha=$_POST["fecha"];
+    
+    $sesion = new Sesion($dniDeportista,$idEntrenamiento,$idEjercicio,$anotaciones,$fecha);
+      
+    $entrenamientoMapper->ejerciciosRealizados($sesion);
+
+    header("Location: ../view/monitorizarEntrenamiento.php?idEntrenamiento=$idEntrenamiento&idEjercicio=$idEjercicio");
 
   }
 
