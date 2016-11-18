@@ -84,7 +84,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                       </span>
                   </div>
                 </div>
-								<?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
+								<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                 <div class="anadir">
                   <a id="btn_anadir" href="crearEjercicio.php" class="btn btn-primary" type="button">Añadir Ejercicio</a>
                 </div>
@@ -111,7 +111,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                             <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
                             <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
-													<?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
+													<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                           <div class="opciones_bloque">
 														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>"
 															 class="btn btn-primary" type="button" title="modificar"><i class="fa fa-edit" aria-hidden="true" ></i></a>
@@ -144,7 +144,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                             <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
                             <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
-													<?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
+													<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                           <div class="opciones_bloque">
 														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a>
 														<a id="btn_eliminar" href="eliminarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>                          </div>
@@ -177,7 +177,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                             <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
                             <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
-													<?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
+													<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                           <div class="opciones_bloque">
 														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a>
 														<a id="btn_eliminar" href="eliminarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>                          </div>
