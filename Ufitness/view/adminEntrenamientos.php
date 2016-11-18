@@ -90,13 +90,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             <div class="body_pagina">
 						<?php
 									$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
-									if($entrenamientos != NULL){
+
 						?>
             <nav id = "desplegable1">
               <ul>
           			<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
 									<?php
-											foreach ($entrenamientos as $entrenamiento) {
+												foreach ($entrenamientos as $entrenamiento) {
 									?>
 									<ul>
                     <div class="bloque_lista">
@@ -117,14 +117,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 											</div>
                     </div>
           				</ul>
-									<?php }} ?>
+									<?php } ?>
           			</li>
           		</ul>
             </nav>
 
 						<?php
 									$entrenamientos = $econtroller->listarEntrenamientosNivel("intermedio");
-									if($entrenamientos != NULL){
+
 						?>
             <nav id = "desplegable2">
               <ul>
@@ -149,14 +149,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                       </div>
                     </div>
           				</ul>
-                  <?php }} ?>
+                  <?php } ?>
           			</li>
           		</ul>
             </nav>
 
 						<?php
 									$entrenamientos = $econtroller->listarEntrenamientosNivel("avanzado");
-									if($entrenamientos != NULL){
+
 						?>
             <nav id = "desplegable3">
               <ul>
@@ -181,7 +181,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                       </div>
                     </div>
           				</ul>
-              		<?php }} ?>
+              		<?php } ?>
           			</li>
           		</ul>
             </nav>
