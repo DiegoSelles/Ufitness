@@ -106,16 +106,16 @@ session_destroy();
             <div class="item active item-1">
                 <img class="img-rounded img-responsive body-img" src="view/img/correr.jpg" alt="imagen corriendo"/>
               <div class="container">
+				<a href="view/userActividades.php" class="btn btn-circle page-scroll">
                 <div class="carousel-caption">
-                  <h1>Unete</h1>
+                  <h1>Consulta nuestras actividades</h1>
                   <p>Accede a la web con contenidos deportivos de todo tipo</p>
-                  <a href="#about" class="btn btn-circle page-scroll">
-                  </a>
+                 </a>
                 </div>
               </div>
             </div>
             <div class="item item-2">
-                <img class="img-rounded img-responsive body-img" src="view/img/pabellon.jpg" alt="pabellon"/>
+                <img class="img-rounded img-responsive body-img" src="view/img/pabellon.JPG" alt="pabellon"/>
               <div class="container">
                 <div class="carousel-caption">
                   <h1>Visita nuestras instalaciones</h1>
@@ -147,14 +147,8 @@ session_destroy();
         </div>
     </div>
 
-    <iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1432.5318683749404!2d-7.851455647052176!3d42.3421717493788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2ffebfc4e9e631%3A0x8a96205e37b805b4!2sPolideportivo+Universitario%2C+%E2%9B%89+Campus+As+Lagoas%2C+4.%C2%BA+piso%2C+32004+Orense%2C+Ourense!5e0!3m2!1ses!2ses!4v1478299773129" frameborder="0" style="border:0" allowfullscreen></iframe>
+	<iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1432.5318683749404!2d-7.851455647052176!3d42.3421717493788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2ffebfc4e9e631%3A0x8a96205e37b805b4!2sPolideportivo+Universitario%2C+%E2%9B%89+Campus+As+Lagoas%2C+4.%C2%BA+piso%2C+32004+Orense%2C+Ourense!5e0!3m2!1ses!2ses!4v1478299773129" frameborder="0" style="border:0" allowfullscreen></iframe>
 
-    <div class="container">
-      <footer class="bg-white">
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>© 2016 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-      </footer>
-    </div>
 
     <!-- jQuery -->
     <script src="view/js/jquery.js"></script>
