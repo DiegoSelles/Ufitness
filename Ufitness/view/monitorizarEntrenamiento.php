@@ -8,9 +8,6 @@ if(!isset($_SESSION)) session_start();
 
 global $idEntrenamiento;
 global $idEjercicio;
-//if(isset($_GET['idEntrenamiento'])){
-//  $idEntrenamiento = $_GET['idEntrenamiento'];
-//}
 
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
@@ -64,11 +61,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             div2 = document.getElementById('botones-'+id);
             div2.style.display = 'none';
             div3 = document.getElementById('info-'+id);
-            div3.style.display = 'none';
-          
-          //    document.getElementById("texto_Anotacion").hidden = "";
-              
-          
+            div3.style.display = 'none';                                 
         }
 
         function cerrar(id) {
@@ -85,12 +78,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             document.getElementById("texto_Anotacion").value = "";
         }
 
-        function mostrarMensaje(id){  
-        //  alert("hola "+id+ document.getElementById('realizado-'+id).style);
-          document.getElementById('realizado-'+id).style.display = "inline";
-
-        }
-        
+  
 
 
 
@@ -165,16 +153,18 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                           <div class="opciones_bloque">
                             <div id="botones-<?= $ejercicio->getIdEjercicio()?>" style="display:block;">                            
                               <input type="text" name="idEjercicio" hidden="true" value="<?php echo $ejercicio->getIdEjercicio();?>" />
-
+                              <?php $idEjercicio = $ejercicio->getIdEjercicio() ?>
                               <input  type="text" name="dniDeportista" hidden="true" value="<?php echo $usuarioDni;?>" />
 
                               <input  type="text" name="idEntrenamiento" hidden="true" value="<?php echo $idEntrenamiento;?>" />
 
                               <input  type="text" name="fecha" hidden="true" value="<?php echo $fecha;?>" />
-                              
-                              <label id="realizado-<?=$ejercicio->getIdEjercicio()?>" style="display:none">Ejercicio Realizado</label>
-                             
-                              <input id="btn_edit_bloque" title="Verificar" class="btn btn-primary btn_verificar" type="submit" value="V" onclick="mostrarMensaje(<?=$ejercicio->getIdEjercicio()?>)">
+
+                              <?php if($entcontroller->ejercicioDiario($usuarioDni,$idEntrenamiento,$idEjercicio,$fecha)): ?>         
+                                    <label>Ejercicio Realizado</label>
+                              <?php endif ?>
+                                                           
+                              <input id="btn_edit_bloque" title="Verificar" class="btn btn-primary btn_verificar" type="submit" value="V" >
 
                               <a id="btn_eliminar" href="javascript:mostrar(<?=$ejercicio->getIdEjercicio()?>);" class="btn btn-primary" title="Anotaciones" type="button"><i class="fa fa-book" aria-hidden="true"></i></a>                              
                           </div>     
@@ -201,11 +191,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
       <!-- Bootstrap Core JavaScript -->
       <script src="js/bootstrap.min.js"></script>
-      <?php if(isset($_GET['idEjercicio'])): ?>         
-                  <script type="text/javascript">
-                       mostrarMensaje(<?=$_GET['idEjercicio']?>);
-                  </script>
-      <?php endif ?>
+      
 </body>
 
 </html>
