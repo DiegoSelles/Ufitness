@@ -89,7 +89,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 </div>
             <div class="body_pagina">
 						<?php
-									$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
+									if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){
+										$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
+									}else{
+										$entrenamientos= $econtroller->listarEntrenamientosDeportistaNivel($_SESSION['Dni'],"principiante");
+									}
 
 						?>
             <nav id = "desplegable1">
@@ -123,7 +127,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             </nav>
 
 						<?php
+								if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){
 									$entrenamientos = $econtroller->listarEntrenamientosNivel("intermedio");
+								}else{
+									$entrenamientos= $econtroller->listarEntrenamientosDeportistaNivel($_SESSION['Dni'],"intermedio");
+								}
 
 						?>
             <nav id = "desplegable2">
@@ -155,7 +163,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             </nav>
 
 						<?php
+								if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){
 									$entrenamientos = $econtroller->listarEntrenamientosNivel("avanzado");
+								}else{
+									$entrenamientos= $econtroller->listarEntrenamientosDeportistaNivel($_SESSION['Dni'],"avanzado");
+								}
 
 						?>
             <nav id = "desplegable3">
