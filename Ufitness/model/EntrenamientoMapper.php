@@ -91,6 +91,21 @@ class EntrenamientoMapper {
       $connect->query($consulta);
   }
 	
+	public static function ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha)
+  {
+    global $connect;
+
+    $consulta="SELECT * FROM Sesion WHERE Deportista_Usuario_Dni='". $dniDeportista."' AND Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento='". $idEntrenamiento."' AND Entrenamiento_has_Ejercicio_Ejercicio_idEjercicio='". $idEjercicio ."' AND fecha='". $fecha."'";
+
+    $res=$connect->query($consulta);
+    
+    $fila = $res->num_rows;
+
+    if($fila > 0)
+      return true;
+ 
+  }
+	
 	  public function listarIdEntrenamientosDeportista($dniDeportista){
     global $connect;
     $consulta ="SELECT * FROM Entrenamiento_has_Deportista WHERE Deportista_DNI='". $dniDeportista ."' ";
