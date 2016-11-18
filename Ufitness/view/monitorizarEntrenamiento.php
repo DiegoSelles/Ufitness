@@ -1,15 +1,27 @@
 <?php 
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
-//ejercicios 
-//entrenamientos
+require_once("../controller/controlador_Entrenamiento.php");
+require_once("../controller/controlador_Ejercicio.php");
 
 if(!isset($_SESSION)) session_start();
+
+global $idEntrenamiento;
+global $idEjercicio;
+//if(isset($_GET['idEntrenamiento'])){
+//  $idEntrenamiento = $_GET['idEntrenamiento'];
+//}
+
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
+$usuarioDni = $_SESSION['Dni'];
+$fecha = date("Y-m-d");
+$entcontroller = new controlador_Entrenamiento();
+$ejercontroller = new controlador_Ejercicio();
+
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
-	header("Location: error.php");
-	exit();
+  header("Location: error.php");
+  exit();
 }
 
 ?>
@@ -45,6 +57,45 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
     <!--JavaScript-->
     <script src="js/desplegarMenu.js"></script>
+     <script languague="javascript">
+        function mostrar(id) {
+            div = document.getElementById('oculto-'+id);
+            div.style.display = 'block';
+            div2 = document.getElementById('botones-'+id);
+            div2.style.display = 'none';
+            div3 = document.getElementById('info-'+id);
+            div3.style.display = 'none';
+          
+          //    document.getElementById("texto_Anotacion").hidden = "";
+              
+          
+        }
+
+        function cerrar(id) {
+            div = document.getElementById('oculto-'+id);
+            div.style.display = 'none';
+            div2 = document.getElementById('botones-'+id);
+            div2.style.display = 'block';
+            div3 = document.getElementById('info-'+id);
+            div3.style.display = 'block';
+            
+        }
+
+        function borrarTexto() {
+            document.getElementById("texto_Anotacion").value = "";
+        }
+
+        function mostrarMensaje(id){  
+        //  alert("hola "+id+ document.getElementById('realizado-'+id).style);
+          document.getElementById('realizado-'+id).style.display = "inline";
+
+        }
+        
+
+
+
+
+  </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,86 +106,106 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </head>
 
 <body>
+  <div id="wrapper">
+      <?php
+      include("navbar.php");
+      include("wrapper.php");
 
-    <div id="wrapper">
+      //$entrenamiento=$entcontroller->buscarEntrenamientoId($idEntrenamiento);
 
-			<?php
-			include("navbar.php");
-			include("wrapper.php");
-			?>
+      if(isset($_GET['idEntrenamiento'])){
+        $idEntrenamiento=$_GET['idEntrenamiento'];
+        $entrenamiento=$entcontroller->buscarEntrenamientoId($idEntrenamiento);
+      
+      }else header("Location: ../view/error.php");
 
- <div id="contenido" class="container-fluid">
-            <div class="titulo_seccion">
-              <i class="fa fa-table" aria-hidden="true"></i>
-              <strong>Monitorizar Entrenamiento</strong>
-            </div>
-            <div class="listado">
+
+      
+
+      ?>
+
+      <div id="contenido" class="container-fluid">
+         <div class="titulo_seccion">
+            <i class="fa fa-table" aria-hidden="true"></i>
+              <strong>Monitorizar Entrenamiento - <?php echo $entrenamiento->getNombre(); ?> </strong>
+          </div>
+          <div class="listado">
               <div class="header_lista">
                 <div class="titulo_lista">
-                  <h1>Lista de Ejercicios </h1>
+                  <h1>Lista de Ejercicios</h1>
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
-          
                   </div>
                 </div>
                 <div class="anadir">
-                <a id="btn_anadir"  href="#" class="btn btn-primary" type="button">Finalizar Entrenamiento</a>
+                    <a id="btn_anadir"  href="../view/verEntrenamiento.php?idEntrenamiento=<?php echo$idEntrenamiento; ?>" class="btn btn-primary" type="button">Volver</a>
                 </div>
               </div>
-
               <div class="body_pagina">
-                <ul>
-                    <li>
+                <?php $entrenamientoHasEjercicios = $entcontroller->ejerciciosEntrenamiento($entrenamiento->getId());
+                    foreach ($entrenamientoHasEjercicios as $entrenamientoHasEjercicio) {
+                        $ejercicio = $ejercontroller->buscarId($entrenamientoHasEjercicio->getIdEjercicio());
+                ?>
+                  <ul>
+                    <form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=ejerciciosRealizados" method="post">                      
+                      <ul>
+                        <div class="bloque_lista">
+                          <div class="titulo_bloque">
+                              <h1>  <?php echo $ejercicio->getNombre(); ?></h1>                      
+                          </div>
+                          <div id="info-<?=$ejercicio->getIdEjercicio()?>" class="info_bloque">
+                            <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                            <p>series X Repeticion: <?php echo $entrenamientoHasEjercicio->getSxR(); ?></p>
+                            <p>Carga: <?php echo $entrenamientoHasEjercicio->getCarga(); ?></p>
+                            <p>fecha: <?php echo $fecha; ?></p>
+                          </div>
+                          <div class="opciones_bloque">
+                            <div id="botones-<?= $ejercicio->getIdEjercicio()?>" style="display:block;">                            
+                              <input type="text" name="idEjercicio" hidden="true" value="<?php echo $ejercicio->getIdEjercicio();?>" />
 
-                  <!--    <?php
-                         $usuarios = $ucontroler->listarEntrenadores();
-                         foreach ($usuarios as $usuario) {
-                         ?> -->
+                              <input  type="text" name="dniDeportista" hidden="true" value="<?php echo $usuarioDni;?>" />
 
-                      <div class="bloque_lista">
-                        <div class="titulo_bloque">
-                        <h1> Ejercicio 1 </h1>
-                      <!--      <h1> <?php echo $usuario->getNombre(); ?><h1> -->
-                        </div>
-                        <div class="info_bloque">
-                      <!--    <p>Dni: <?php echo $usuario->getDni(); ?>    </p>
-                          <p>Edad: <?php echo $usuario->getEdad(); ?>    </p>
-                          <p>Email:   <?php echo $usuario->getEmail(); ?> </p> -->
-                        </div>
-                        <div class="opciones_bloque">
-                            
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Verificar" type="button" ><i class="fa fa-check" aria-hidden="true"></i></a> 
+                              <input  type="text" name="idEntrenamiento" hidden="true" value="<?php echo $idEntrenamiento;?>" />
 
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Anotaciones" type="button"><i class="fa fa-book" aria-hidden="true" onclick=""></i></a>
-
-
-                            <form hidden="true" name="anotaciones_form">
-                            <textarea rows="4" cols="50" name="Anotacion" hidden="true">
+                              <input  type="text" name="fecha" hidden="true" value="<?php echo $fecha;?>" />
                               
-                            </textarea>
-                            <input type="button" name="submit" value="guardar">
-                            </form>
+                              <label id="realizado-<?=$ejercicio->getIdEjercicio()?>" style="display:none">Ejercicio Realizado</label>
+                             
+                              <input id="btn_edit_bloque" title="Verificar" class="btn btn-primary btn_verificar" type="submit" value="V" onclick="mostrarMensaje(<?=$ejercicio->getIdEjercicio()?>)">
 
-                        </div>
-                      </div>
-
-                    <!--   <?php }; ?> -->
-
-                    </li>
-                </ul>
-
-            </div>
-
+                              <a id="btn_eliminar" href="javascript:mostrar(<?=$ejercicio->getIdEjercicio()?>);" class="btn btn-primary" title="Anotaciones" type="button"><i class="fa fa-book" aria-hidden="true"></i></a>                              
+                          </div>     
+                          <div id="oculto-<?=$ejercicio->getIdEjercicio()?>" style="display:none"> 
+                              <h4>Anotaciones</h4>
+                              <textarea rows="4" cols="50" name="anotacion" ></textarea>
+                              <input  type="button" name="submit" value="guardar" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>)">
+                              <input  type="button" name="submit" value="borrar" onclick="borrarTexto(<?=$ejercicio->getIdEjercicio()?>)">
+                              <input  type="button" name="submit" value="cancelar" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>);">
+                          </div> 
+                        </div>  
+                       </div>
+                      </ul>
+                    </form>     
+                  </ul>              
+                    <?php } ?>
+              </div>
         </div>
     </div>
+</div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+      <!-- jQuery -->
+      <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
+      <?php if(isset($_GET['idEjercicio'])): ?>         
+                  <script type="text/javascript">
+                       mostrarMensaje(<?=$_GET['idEjercicio']?>);
+                  </script>
+      <?php endif ?>
 </body>
 
 </html>
