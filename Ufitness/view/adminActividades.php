@@ -89,9 +89,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                             </span>
                         </div>
                     </div>
+										<?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
                     <div class="anadir">
                         <a id="btn_anadir" href="../view/crearActividad.php" class="btn btn-primary" type="button">Añadir Actividad</a>
                     </div>
+										<?php }?>
                 </div>
 				<?php
 
@@ -109,7 +111,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 							<p>Horario: <?php echo $actividad->getHorario(); ?></p>
 							<p>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></p>
 							<p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
+							<p>Lugar: <?php echo $actividad->getLugar(); ?></p>
 						</div>
+						<?php if($_SESSION['rol'] == "administrador" && $_SESSION['rol'] == "entrenador"){?>
 						<div class="opciones_bloque">
 							<a id="btn_edit_bloque" href="modificarActividad.php?idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Editar" type="button">
 								<i class="fa fa-edit" aria-hidden="true"></i>
@@ -118,6 +122,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</a>
 						</div>
+						<?php }	?>
 					</div>
                  </ul>
 				<?php }	?>
