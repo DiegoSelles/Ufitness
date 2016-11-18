@@ -18,7 +18,7 @@ class EjercicioMapper {
 
   public function registrarEjercicio($ejercicio) {
     global $connect;
-    //Falta insertar imagen y video
+	  
 	    $consulta= " INSERT INTO Ejercicio (Usuario_Dni, nombre, tipoEjer, maquina, grupoMuscular, descripcion, imagen, video)
       VALUES ('". $ejercicio->getUsuarioDni() ."','". $ejercicio->getNombre() ."', '". $ejercicio->getTipoEjercicio() ."',
       '". $ejercicio->getMaquina() ."' ,'". $ejercicio->getGrupoMuscular() ."' ,'". $ejercicio->getDescripcion() ."','". $ejercicio->getImagen() ."','". $ejercicio->getVideo() ."')";
