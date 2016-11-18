@@ -107,7 +107,7 @@ class controlador_Actividad{
 				$plazasOcupadas++;
 				mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$plazasRestantes. "' WHERE idActividad ='" .$idActividad. "'");
 				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,plazas_ocupadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasOcupadas."')");
-				header("Location: ../view/verActividad.php?idActividad=$idActividad");
+				header("Location: ../view/adminActividades.php?idActividad=$idActividad");
 				exit();
 			}
 		}
