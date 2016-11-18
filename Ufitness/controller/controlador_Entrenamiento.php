@@ -222,6 +222,14 @@ class controlador_Entrenamiento{
     header("Location: ../view/monitorizarEntrenamiento.php?idEntrenamiento=$idEntrenamiento&idEjercicio=$idEjercicio");
 
   }
+	
+	public function ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha)
+   {
+     $entrenamientoMapper = new EntrenamientoMapper();
+   
+   return  $entrenamientoMapper->ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha);
+ 
+   }
 
 }
 
