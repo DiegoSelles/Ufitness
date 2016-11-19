@@ -61,9 +61,9 @@ session_destroy();
                                     <div class="form-group">
                                       <form action="controller/controlador.php?controlador=controlador_Usuario&amp;accion=login" method="post">
                                         <label for="username">DNI</label>
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="DNI del usuario" value="" autocomplete="off">
                                         <label for="password">Contraseña</label>
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña" autocomplete="off">
                                         <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
                                       </form>
                                     </div>
