@@ -62,23 +62,36 @@ class controlador_Usuario{
 		public static function anhadir()
 		{
     		$usuarioMapper = new UsuarioMapper();
-    	
-		    if(isset($_POST["nombre"])){
 
-		    $fecha = $_POST["fecha"];
-		    $fechaNac = str_replace("/","-",$fecha);
-			
-		    $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$fechaNac,$_POST["dni"],"entrenador");
+		    if(isset($_POST["nombre"]))
+		    {
 
-		     	try{
-		    //  		$usuario->comprobarDatos();
-		      		$usuarioMapper->guardarUsuario($usuario);
-		      		header("Location: ../view/adminEntrenadores.php");
+			    $fecha = $_POST["fecha"];
+			    $fechaNac = str_replace("/","-",$fecha);
+				
+			    $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$fechaNac,$_POST["dni"],"entrenador");
+
+			     	try{
+			     		if (!$usuarioMapper->usuarioExiste($usuario->getDni()))
+			     		{
+				    //  		$usuario->comprobarDatos();
+				      		$usuarioMapper->guardarUsuario($usuario);
+				      		header("Location: ../view/adminEntrenadores.php");
+						}
+						else 
+						{
+							header("Location: ../view/usuarioYaExiste.php");
+				      	  $errors = array();
+				      	  $errors["dni"] = "El Usuario ya existe";
+				      	 // print_r($errors);
+				      	}
+
 		      	}catch(ValidationException $ex)
 		      	{
-		      		//mensaje error
+		      		$errors = $ex->getErrors();
+						//print_r($errors);
 		     	}
-		     }
+			}
 		}
 
 		public static function editar()
@@ -95,33 +108,18 @@ class controlador_Usuario{
 
 			$usuario = new Usuario($nombre,$email,$password,$fechaNac,$dni,"entrenador");
 
-		/*	if($usuario == NULL)
-			{
-				throw new Exception("deportista no existe: ".$usuario);
-			}*/
-
-			//	$usuario->comprobarDatos();*/
-				$usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
-				header("Location: ../view/adminEntrenadores.php");
-			//}
+			$usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
+			header("Location: ../view/adminEntrenadores.php");
 		}
 
 	public static function eliminar()
 	{
-		/* if (!isset($_POST["dni"])) {
-      		throw new Exception("dni is mandatory");
-    	}*/
-
 		$dni = $_POST["dni"];
 		//$usuario = $this->usuarioMapper->find($dni);
 
 		$usuarioMapper = new UsuarioMapper();
 		$usuarioMapper->eliminarUsuario($dni);
-		/*if($usuario == NULL)
-		{
-			throw new Exception("deportista no existe: ".$usuario);
-
-		}*/
+		
 	    header("Location: ../view/adminEntrenadores.php");
 	}
 
