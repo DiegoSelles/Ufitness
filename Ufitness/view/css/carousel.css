@@ -44,18 +44,18 @@
 }
 
 .carousel-caption a:hover {
-	color: blue;
+	color: black;
 }
 
 .carousel-caption a:link {
 	color:  #fff;
-	text-shadow:2px 2px 4px #000;
+	text-shadow: 0 0 10px #333, 0 0 10px #333;
 }
 
 .carousel-caption a:visited {
 	color: #fff;
-	text-shadow:2px 2px 4px #000;
-}	
+	text-shadow: 0 0 3px #333, 0 0 5px #333;
+}
 
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -85,10 +85,10 @@
   background-color:#e95c40;
 }
 .carousel-inner > .item-2 {
-  background-color:#00c0ef; 
+  background-color:#00c0ef;
 }
 .carousel-inner > .item-3 {
-  background-color:#84c708;  
+  background-color:#84c708;
 }
 
 /* MARKETING CONTENT
