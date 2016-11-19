@@ -75,8 +75,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=modificarEntrenamiento" method="post" class="formulario">
-              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre" value="<?php echo $entrenamiento->getNombre(); ?>" class="input"/>
-              <?php echo "Duración" ?>: <input type="text" name="duracion" value="<?php echo $entrenamiento->getDuracion(); ?>" class="input"/>
+              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre" value="<?php echo $entrenamiento->getNombre(); ?>" class="input" required="true"/>
+              <?php echo "Duración" ?>: <input type="text" name="duracion" value="<?php echo $entrenamiento->getDuracion(); ?>" class="input" required="true"/>
 							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel" class="select">
 			                                            <option value="principiante" <?php echo (($entrenamiento->getNivel()=="principiante")?"selected":""); ?>>Principiante</option>
 			                                            <option value="intermedio" <?php echo (($entrenamiento->getNivel()=="intermedio")?"selected":""); ?>>Intermedio</option>

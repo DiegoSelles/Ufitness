@@ -67,7 +67,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" class="input"/>
 
 						<label for="nombre">Nombre Ejercicio:</label>
-						<input type="text" name="nombre" class="input"/>
+						<input type="text" name="nombre" class="input" required="true"/>
 						<label for="tipoEjercicio">Tipo del ejercicio:</label>
 						<select name="tipoEjercicio" class="select">
 								<option value="Cardio" >Cardio</option>

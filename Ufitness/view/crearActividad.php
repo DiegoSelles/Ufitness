@@ -64,7 +64,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=registrarActividad" method="post" class="formulario">
               <label for="nombre">Nombre Actividad:</label>
-              <input type="text" name="nombre" class="input"/>
+              <input type="text" name="nombre" class="input" required="true"/>
               <label for="monitor">Monitor:</label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
               <select name="monitor" class="select">
@@ -74,13 +74,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <?php }?>
   						</select>
               <label for="horario">Horario:</label>
-              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" name="horario" class="input"/>
+              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" name="horario" class="input" required="true"/>
               <label for="lugar">Lugar:</label>
-              <input type="text" name="lugar" class="input"/>
+              <input type="text" name="lugar" class="input" required="true"/>
               <label for="numPlazas">Numero de Plazas:</label>
-              <input type="number" name="numPlazas" class="input"/>
+              <input type="number" name="numPlazas" class="input" required="true"/>
               <label for="tipo">Tipo:</label>
-              <input type="text" name="tipo" class="input"/>
+              <input type="text" name="tipo" class="input" required="true"/>
 							<div class="form_submit">
 								<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
 							</div>

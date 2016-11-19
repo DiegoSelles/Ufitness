@@ -61,11 +61,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
           <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=anhadir" method="post" class="formulario">
-              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" class="input"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni" class="input"/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" class="input"/>
-              <?php echo "E-mail" ?>: <input type="text" name="email" class="input"/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password" class="input"/>
+              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" class="input" required="true" />
+              <?php echo "DNI" ?>: <input type="text" name="dni" class="input" required="true" pattern="[0-9]{8}[A-Z]{1}" title="El formato debe coincidir con 8 números y 1 letra."/>
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" class="input" required="true"/>
+              <?php echo "E-mail" ?>: <input type="text" name="email" class="input" />
+              <?php echo "Contraseña" ?>: <input type="password" name="password" class="input" required="true"/>
               <input type="text" name="rol" hidden="true" value="entrenador" class="input"/>
               <input type="text" name="DniAdmin" hidden="true" value=$_SESSION['Dni'] class="input"/>
               <div class="form_submit">

@@ -68,14 +68,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         </div>
         <div >
          <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=editar" method="post" class="formulario">
-              <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input"/> <br/>
-              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input"/>
+              <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input" required="true"/> <br/>
+              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input" required="true"/>
               <br/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" value="<?php echo $usuario->getFecha(); ?>" /> 
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" value="<?php echo $usuario->getFecha(); ?>" required="true" /> 
               <br/>
               <?php echo "E-mail" ?>: <input type="text" name="email" value="<?php echo $usuario->getEmail(); ?>" class="input"/>
               <br/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" class="input" />
+              <?php echo "Contraseña" ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" class="input" required="true" />
 
               <input type="text" name="rol" hidden="true" value="entrenador" class="input"/>
               <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $usuario->getDni(); ?>" class="input"/>
