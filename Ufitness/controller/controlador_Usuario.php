@@ -68,7 +68,7 @@ class controlador_Usuario{
 
 			    $fecha = $_POST["fecha"];
 			    $fechaNac = str_replace("/","-",$fecha);
-				
+
 			    $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$fechaNac,$_POST["dni"],"entrenador");
 
 			     	try{
@@ -78,12 +78,9 @@ class controlador_Usuario{
 				      		$usuarioMapper->guardarUsuario($usuario);
 				      		header("Location: ../view/adminEntrenadores.php");
 						}
-						else 
+						else
 						{
-							header("Location: ../view/usuarioYaExiste.php");
-				      	  $errors = array();
-				      	  $errors["dni"] = "El Usuario ya existe";
-				      	 // print_r($errors);
+							echo '<script language="javascript">alert("Ya existe un entrenador con el mismo DNI."); window.location.href="../view/adminEntrenadores.php";</script>';
 				      	}
 
 		      	}catch(ValidationException $ex)
@@ -119,7 +116,7 @@ class controlador_Usuario{
 
 		$usuarioMapper = new UsuarioMapper();
 		$usuarioMapper->eliminarUsuario($dni);
-		
+
 	    header("Location: ../view/adminEntrenadores.php");
 	}
 
