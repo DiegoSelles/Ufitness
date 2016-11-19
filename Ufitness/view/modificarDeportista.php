@@ -72,7 +72,7 @@ $dcontroler = new controlador_Deportista();
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Deportista&amp;accion=modificarDeportista" method="post" class="formulario">
               <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>" class="input" required="true"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>" class="input" pattern="[0-9]{8}[A-Z]{1}"/>
+              <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>" class="input" pattern="[0-9]{8}[A-Z]{1}" title="El formato debe coincidir con 8 números y 1 letra."/>
               <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $deportista->getDni(); ?>"/>
               <!--<?php echo "Edad" ?>: <input type="text" name="edad"  value="<?php echo $deportista->getEdad(); ?>"class="input"/>-->
               <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>" class="input"/>
