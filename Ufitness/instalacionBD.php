@@ -2,7 +2,7 @@
 $G24 = file_get_contents("G24.sql");
 $servername = "localhost";
 $username = "root";
-$password = "root";// ASI SI
+$password = "root";
 // Create connection
 global  $conection;
 $conection = new mysqli($servername, $username, $password);
