@@ -74,7 +74,7 @@ $dcontroler = new controlador_Deportista();
               <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>" class="input" required="true"/>
               <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>" class="input" pattern="[0-9]{8}[A-Z]{1}" title="El formato debe coincidir con 8 números y 1 letra."/>
               <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $deportista->getDni(); ?>"/>
-              <!--<?php echo "Edad" ?>: <input type="text" name="edad"  value="<?php echo $deportista->getEdad(); ?>"class="input"/>-->
+              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" class="input" required="true" value="<?php echo $deportista->getFecha(); ?>"/>
               <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>" class="input"/>
               <!--<?php echo "Contraseña" ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>" class="input"/>
               <label for="tipo">Tipo Actual: <?php echo $deportista->getTipo(); ?>  </label>

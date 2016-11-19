@@ -74,7 +74,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 <?php }?>
   						</select>
               <label for="horario">Horario:</label>
-              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" name="horario" class="input" required="true"/>
+              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" name="horario" class="input" required="true"/>
               <label for="lugar">Lugar:</label>
               <input type="text" name="lugar" class="input" required="true"/>
               <label for="numPlazas">Numero de Plazas:</label>

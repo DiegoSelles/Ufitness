@@ -83,7 +83,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			  </select>
               <label for="horario">Horario:</label>
 							<!--El horario no muestra la fecha anterior como debería -->
-              <input type="datetime-local" name="horario" value="<?php echo $actividad->getHorario(); ?>" class="input" />
+              <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" name="horario" class="input" required="true" value="<?php echo $actividad->getHorario(); ?>"/>
               <label for="lugar">Lugar:</label>
               <input type="text" name="lugar" value="<?php echo $actividad->getLugar(); ?>" class="input" required="true"/>
               <label for="numPlazas">Numero de Plazas:</label>
