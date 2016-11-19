@@ -54,15 +54,15 @@ session_destroy();
             <!-- Top Menu Items -->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown"> Entrar <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
-                                <div class="text-center"><h3><b>Log In</b></h3></div>
+                                <div class="text-center"><h3><b>Entrar</b></h3></div>
                                     <div class="form-group">
-                                      <form action="controller/controlador.php?controlador=controlador_Usuario&accion=login" method="post">
-                                        <label for="username">Username</label>
+                                      <form action="controller/controlador.php?controlador=controlador_Usuario&amp;accion=login" method="post">
+                                        <label for="username">DNI</label>
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
-                                        <label for="password">Password</label>
+                                        <label for="password">Contraseña</label>
                                         <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
                                         <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
                                       </form>
@@ -72,20 +72,11 @@ session_destroy();
                                         <div class="row">
                                             <div class="col-xs-7">
                                                 <input type="checkbox" tabindex="3" name="remember" id="remember">
-                                                <label for="remember"> Remember Me</label>
+                                                <label for="remember"> Recordarme </label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="text-center">
-                                                    <a tabindex="5" class="forgot-password">Forgot Password?</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
                             </div>
                         </ul>
@@ -105,35 +96,30 @@ session_destroy();
           <div class="carousel-inner" role="listbox">
             <div class="item active item-1">
                 <img class="img-rounded img-responsive body-img" src="view/img/correr.jpg" alt="imagen corriendo"/>
-              <div class="container">
-				<a href="view/userActividades.php" class="btn btn-circle page-scroll">
                 <div class="carousel-caption">
+                  <a href="view/userActividades.php" class="btn btn-circle page-scroll">
                   <h1>Consulta nuestras actividades</h1>
                   <p>Accede a la web con contenidos deportivos de todo tipo</p>
                  </a>
                 </div>
-              </div>
             </div>
             <div class="item item-2">
                 <img class="img-rounded img-responsive body-img" src="view/img/pabellon.JPG" alt="pabellon"/>
-              <div class="container">
                 <div class="carousel-caption">
-                  <h1>Visita nuestras instalaciones</h1>
                   <a href="#about" class="btn btn-circle page-scroll">
+                    <h1>Visita nuestras instalaciones</h1>
+                    <p>Ven a conocernos!</p>
                   </a>
                 </div>
-              </div>
             </div>
             <div class="item item-3">
                 <img class="img-rounded img-responsive body-img" src="view/img/instalaciones.jpg" alt="instalaciones pabellon"/>
-              <div class="container">
                 <div class="carousel-caption">
-                  <h1>¿A qué esperas?</h1>
-                  <p>Vente</p>
                   <a href="#about" class="btn btn-circle page-scroll">
+                    <h1>¿A qué esperas?</h1>
+                    <p>Vente</p>
                   </a>
                 </div>
-              </div>
             </div>
           </div>
           <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -147,8 +133,9 @@ session_destroy();
         </div>
     </div>
 
-	<iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1432.5318683749404!2d-7.851455647052176!3d42.3421717493788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2ffebfc4e9e631%3A0x8a96205e37b805b4!2sPolideportivo+Universitario%2C+%E2%9B%89+Campus+As+Lagoas%2C+4.%C2%BA+piso%2C+32004+Orense%2C+Ourense!5e0!3m2!1ses!2ses!4v1478299773129" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+    <div class=content_map>
+	     <iframe id="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1432.5318683749404!2d-7.851455647052176!3d42.3421717493788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2ffebfc4e9e631%3A0x8a96205e37b805b4!2sPolideportivo+Universitario%2C+%E2%9B%89+Campus+As+Lagoas%2C+4.%C2%BA+piso%2C+32004+Orense%2C+Ourense!5e0!3m2!1ses!2ses!4v1478299773129" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
 
     <!-- jQuery -->
     <script src="view/js/jquery.js"></script>
