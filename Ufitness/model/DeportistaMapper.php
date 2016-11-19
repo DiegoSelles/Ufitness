@@ -72,7 +72,6 @@ class DeportistaMapper {
 		$connect->query($consulta);
     $consulta2= "UPDATE Usuario SET Dni='". $deportista->getDni() ."' ,Nombre='". $deportista->getNombre() ."', email='". $deportista->getEmail() ."', password='". $deportista->getPassword() ."' WHERE Dni='". $dniAntiguo ."'";
     $connect->query($consulta2);
-		header("Location: ../view/adminDeportistas.php");
 	}
 }
 ?>
