@@ -35,12 +35,10 @@ class controlador_Deportista{
             $deportistaMapper->guardarDeportista($deportista);
             $usuarioMapper->guardarUsuario($usuario);
 
-            header("Location: ../view/adminDeportistas.php");
+            echo '<script language="javascript">alert("Se ha creado el deportista."); window.location.href="../view/adminDeportistas.php";</script>';
       	} else {
+      	  echo '<script language="javascript">alert("Ya existe un deportista con el mismo DNI."); window.location.href="../view/adminDeportistas.php";</script>';
 
-      	  $errors = array();
-      	  $errors["dni"] = "El deportista ya existe";
-      	  print_r($errors);
       	}
       }catch(ValidationException $ex) {
 	    // Get the errors array inside the exepction...
@@ -49,14 +47,6 @@ class controlador_Deportista{
 
       }
     }
-    /*
-    // Put the User object visible to the view
-    $this->view->setVariable("user", $user);
-
-    // render the view (/view/users/register.php)
-    $this->view->render("users", "register");
-    */
-
   }
 
   public function listaDeportistas(){
@@ -115,12 +105,15 @@ class controlador_Deportista{
     $email_deportista = $_POST['email'];
     $tipo_deportista = $_POST['tipo'];
     $riesgos_deportista = $_POST['riesgos'];
-    $edad_deportista = $_POST['edad'];
+    $fecha_deportista = $_POST['fecha'];
     $password_deportista = $_POST['password'];
     $dniAntiguo = $_POST['dniAntiguo'];
 
-    $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$edad_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
-    return $deportistaMapper->modificarDeportista($deportista,$dniAntiguo);
+    $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$fecha_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
+    $usuario = new Usuario($nombre_deportista,$email_deportista,$password_deportista,$fecha_deportista,$dni_deportista,"deportista");
+    $deportistaMapper->modificarDeportista($deportista,$dniAntiguo);
+    $usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
+    echo '<script language="javascript">alert("Se ha modificado el deportista."); window.location.href="../view/adminDeportistas.php";</script>';
   }
 
 }
