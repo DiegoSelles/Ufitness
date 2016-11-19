@@ -24,7 +24,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Crear Deportista - Ufitness</title>
+    <title> Nuevo Entrenamiento - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -82,7 +82,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 									<li>
 											<input type="checkbox" name="ejercicio[]"  value="<?php echo $ejercicio->getIdEjercicio();?>"> <strong><?php echo $ejercicio->getNombre();?></strong>
 											<p>Series x Repeticion: <input type="text"  class="input_ejer" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12" ></p>
-											<p>Carga:<input type="number" class="input_ejer" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>									
+											<p>Carga:<input type="number" class="input_ejer" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>
 									</li>
 								</ul>
 								<?php

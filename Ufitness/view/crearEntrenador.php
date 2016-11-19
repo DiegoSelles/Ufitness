@@ -21,7 +21,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Añadir Entrenador - Ufitness</title>
+    <title> Nuevo Entrenador - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 

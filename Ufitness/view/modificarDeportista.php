@@ -23,7 +23,7 @@ $dcontroler = new controlador_Deportista();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> userIndex - Ufitness</title>
+    <title> Modificar Deportista - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 

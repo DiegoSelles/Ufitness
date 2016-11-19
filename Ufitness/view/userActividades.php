@@ -14,7 +14,7 @@ $acontroler = new controlador_Actividad();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> user Actividades - Ufitness</title>
+    <title> Actividades - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -55,48 +55,39 @@ $acontroler = new controlador_Actividad();
                 <a class="navbar-logo" href="../index.php"><img class="img-logo" src="img/logo.png" alt="logo"/></a>
             </div>
             <!-- Top Menu Items -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
-                            <div class="col-lg-12">
-                                <div class="text-center"><h3><b>Log In</b></h3></div>
-                                    <div class="form-group">
-                                      <form action="../controller/controlador.php?controlador=controlador_Usuario&accion=login" method="post">
-                                        <label for="username">Username</label>
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
-                                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
-                                      </form>
-                                    </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"> Entrar <span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                        <div class="col-lg-12">
+                            <div class="text-center"><h3><b>Entrar</b></h3></div>
+                                <div class="form-group">
+                                  <form action="controller/controlador.php?controlador=controlador_Usuario&amp;accion=login" method="post">
+                                    <label for="username">DNI</label>
+                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                    <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
+                                  </form>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-7">
-                                                <input type="checkbox" tabindex="3" name="remember" id="remember">
-                                                <label for="remember"> Remember Me</label>
-                                            </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                            <label for="remember"> Recordarme </label>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="text-center">
-                                                    <a tabindex="5" class="forgot-password">Forgot Password?</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
-                            </div>
-                        </ul>
-                    </li>
-                </ul>
+                                <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+                        </div>
+                    </ul>
+                </li>
+            </ul>
         </nav>
     </div>
-		
+
 
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
@@ -155,4 +146,3 @@ $acontroler = new controlador_Actividad();
 </body>
 
 </html>
-

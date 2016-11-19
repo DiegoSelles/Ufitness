@@ -31,7 +31,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Eliminar Ejercicio - Ufitness</title>
+    <title> Eliminar Entrenamiento - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 

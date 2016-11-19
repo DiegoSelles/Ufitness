@@ -65,7 +65,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
           <div id="contenido" class="container-fluid">
               <div class="titulo_seccion">
-                <i class="fa fa-table" aria-hidden="true"></i>
+                <i class="fa fa-trophy" aria-hidden="true"></i>
                 <strong>Entrenamientos</strong>
               </div>
               <div class="listado">

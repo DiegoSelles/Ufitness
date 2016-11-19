@@ -28,7 +28,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminActividades - Ufitness</title>
+    <title> Actividad- Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 if(!isset($_SESSION)) session_start();
@@ -22,7 +22,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> userIndex - Ufitness</title>
+    <title> Inicio - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -50,20 +50,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 <body>
 
-			<?php 
+			<?php
 			include("navbar.php");
-			include("wrapper.php"); 
+			include("wrapper.php");
 			?>
-			
+
 			<div id="contenido" class="container-fluid">
 				<div id="titulo_index" class="titulo_seccion">
 					<h1><strong>Bienvenido a UFitness</strong></h1>
 				</div>
+				<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
 				<div class="contenido_index">
-					<button type="button" id="btn_notificacion" class="btn btn-primary">nueva notificacion</button>
+					<button type="button" id="btn_notificacion" class="btn btn-primary">Nueva Notificacion</button>
 				</div>
+				<?php }?>
 			</div>
-			
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -73,6 +75,3 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </body>
 
 </html>
-
-
-

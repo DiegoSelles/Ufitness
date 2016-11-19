@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Entrenamiento.php");
@@ -35,7 +35,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminEntrenadores - Ufitness</title>
+    <title> Monitorizar Entrenamiento- Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -61,7 +61,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             div2 = document.getElementById('botones-'+id);
             div2.style.display = 'none';
             div3 = document.getElementById('info-'+id);
-            div3.style.display = 'none';                                 
+            div3.style.display = 'none';
         }
 
         function cerrar(id) {
@@ -71,14 +71,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             div2.style.display = 'block';
             div3 = document.getElementById('info-'+id);
             div3.style.display = 'block';
-            
+
         }
 
         function borrarTexto() {
             document.getElementById("texto_Anotacion").value = "";
         }
 
-  
+
 
 
 
@@ -104,11 +104,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
       if(isset($_GET['idEntrenamiento'])){
         $idEntrenamiento=$_GET['idEntrenamiento'];
         $entrenamiento=$entcontroller->buscarEntrenamientoId($idEntrenamiento);
-      
+
       }else header("Location: ../view/error.php");
 
 
-      
+
 
       ?>
 
@@ -136,11 +136,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         $ejercicio = $ejercontroller->buscarId($entrenamientoHasEjercicio->getIdEjercicio());
                 ?>
                   <ul>
-                    <form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=ejerciciosRealizados" method="post">                      
+                    <form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=ejerciciosRealizados" method="post">
                       <ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
-                              <h1>  <?php echo $ejercicio->getNombre(); ?></h1>                      
+                              <h1>  <?php echo $ejercicio->getNombre(); ?></h1>
                           </div>
                           <div id="info-<?=$ejercicio->getIdEjercicio()?>" class="info_bloque">
                             <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
@@ -151,7 +151,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                             <p>fecha: <?php echo $fecha; ?></p>
                           </div>
                           <div class="opciones_bloque">
-                            <div id="botones-<?= $ejercicio->getIdEjercicio()?>" style="display:block;">                            
+                            <div id="botones-<?= $ejercicio->getIdEjercicio()?>" style="display:block;">
                               <input type="text" name="idEjercicio" hidden="true" value="<?php echo $ejercicio->getIdEjercicio();?>" />
                               <?php $idEjercicio = $ejercicio->getIdEjercicio() ?>
                               <input  type="text" name="dniDeportista" hidden="true" value="<?php echo $usuarioDni;?>" />
@@ -160,26 +160,26 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                               <input  type="text" name="fecha" hidden="true" value="<?php echo $fecha;?>" />
 
-                              <?php if($entcontroller->ejercicioDiario($usuarioDni,$idEntrenamiento,$idEjercicio,$fecha)): ?>         
+                              <?php if($entcontroller->ejercicioDiario($usuarioDni,$idEntrenamiento,$idEjercicio,$fecha)): ?>
                                     <label>Ejercicio Realizado</label>
                               <?php endif ?>
-                                                           
+
                               <input id="btn_edit_bloque" title="Verificar" class="btn btn-primary btn_verificar" type="submit" value="V" >
 
-                              <a id="btn_eliminar" href="javascript:mostrar(<?=$ejercicio->getIdEjercicio()?>);" class="btn btn-primary" title="Anotaciones" type="button"><i class="fa fa-book" aria-hidden="true"></i></a>                              
-                          </div>     
-                          <div id="oculto-<?=$ejercicio->getIdEjercicio()?>" style="display:none"> 
+                              <a id="btn_eliminar" href="javascript:mostrar(<?=$ejercicio->getIdEjercicio()?>);" class="btn btn-primary" title="Anotaciones" type="button"><i class="fa fa-book" aria-hidden="true"></i></a>
+                          </div>
+                          <div id="oculto-<?=$ejercicio->getIdEjercicio()?>" style="display:none">
                               <h4>Anotaciones</h4>
                               <textarea rows="4" cols="50" name="anotacion" ></textarea>
                               <input  type="button" name="submit" value="guardar" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>)">
                               <input  type="button" name="submit" value="borrar" onclick="borrarTexto(<?=$ejercicio->getIdEjercicio()?>)">
                               <input  type="button" name="submit" value="cancelar" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>);">
-                          </div> 
-                        </div>  
+                          </div>
+                        </div>
                        </div>
                       </ul>
-                    </form>     
-                  </ul>              
+                    </form>
+                  </ul>
                     <?php } ?>
               </div>
         </div>
@@ -191,7 +191,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
       <!-- Bootstrap Core JavaScript -->
       <script src="js/bootstrap.min.js"></script>
-      
+
 </body>
 
 </html>

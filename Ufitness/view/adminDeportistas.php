@@ -24,7 +24,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminDeportistas - Ufitness</title>
+    <title> Deportistas - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -98,7 +98,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 												 <ul>
 														<div class="bloque_lista">
 								              <div class="titulo_bloque">
-								               	<a> <?php echo $deportista->getNombre(); ?></a>
+								               	<h1> <?php echo $deportista->getNombre(); ?></h1>
 								              </div>
 								              <div class="info_bloque">
 								                <p>DNI: <?php echo $deportista->getDni(); ?></p>
@@ -127,7 +127,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 											<ul>
 												 <div class="bloque_lista">
 													 <div class="titulo_bloque">
-														 <a> <?php echo $deportista->getNombre(); ?></a>
+														 <h1> <?php echo $deportista->getNombre(); ?></h1>
 													 </div>
 													 <div class="info_bloque">
 														 <p>DNI: <?php echo $deportista->getDni(); ?></p>
@@ -145,121 +145,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               			</li>
               		</ul>
                 </nav>
-
-                <!--<nav id = "desplegable1">
-                  <ul>
-              			<li id="nivel1"><a class= "btn_nivel" id = "activador_1"  href="#"><i id = "activador_1" class="fa fa-chevron-down" ></i> TDU</a>
-              				<ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <p>Nombre Deportista</p>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Apellidos: </p>
-                            <p>Edad:</p>
-                            <p>Sexo: </p>
-                          </div>
-                          <div class="opciones_bloque">
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-              				</ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <p>Nombre Deportista</p>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Apellidos: </p>
-                            <p>Edad:</p>
-                            <p>Sexo: </p>
-                          </div>
-                          <div class="opciones_bloque">
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <p>Nombre Deportista</p>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Apellidos: </p>
-                            <p>Edad:</p>
-                            <p>Sexo: </p>
-                          </div>
-                          <div class="opciones_bloque">
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
-              			</li>
-              		</ul>
-                </nav>
-                <nav id = "desplegable2">
-                  <ul>
-              			<li id="nivel2"><a class= "btn_nivel" id = "activador_2"  href="#"><i id = "activador_2" class="fa fa-chevron-down" ></i> PEF</a>
-              				<ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <p>Nombre Deportista</p>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Apellidos: </p>
-                            <p>Edad:</p>
-                            <p>Sexo: </p>
-                          </div>
-                          <div class="opciones_bloque">
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-              				</ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <p>Nombre Deportista</p>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Apellidos: </p>
-                            <p>Edad:</p>
-                            <p>Sexo: </p>
-                          </div>
-                          <div class="opciones_bloque">
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
-                      <ul>
-                        <div class="bloque_lista">
-                          <div class="titulo_bloque">
-                            <p>Nombre Deportista</p>
-                          </div>
-                          <div class="info_bloque">
-                            <p>Apellidos: </p>
-                            <p>Edad: </p>
-                            <p>Sexo: </p>
-                          </div>
-                          <div class="opciones_bloque">
-                            <a id="btn_edit_bloque" href="#" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            <a id="btn_asignar" href="#" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            <a id="btn_eliminar" href="#" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                          </div>
-                        </div>
-                      </ul>
-              			</li>
-              		</ul>
-                </nav>-->
               </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 
@@ -24,7 +24,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> AdminEntrenadores - Ufitness</title>
+    <title> Entrenadores - Ufitness</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -89,7 +89,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
-                      
+
                   </div>
                 </div>
                 <div class="anadir">
@@ -115,13 +115,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                           <p>Email:   <?php echo $usuario->getEmail(); ?> </p>
                         </div>
                         <div class="opciones_bloque">
-                                                     
+
                            <?php $usuarioEliminar = $usuario->getDni(); ?>
                            <script type="text/javascript">
                              var usuarioEliminar = '<?php echo $usuarioEliminar; ?>'
                            </script>
 
-                            <a id="btn_edit_bloque" href="../view/modificarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a> 
+                            <a id="btn_edit_bloque" href="../view/modificarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a>
 
                             <a id="btn_eliminar" href="eliminarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </div>
