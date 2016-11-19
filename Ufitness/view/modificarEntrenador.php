@@ -69,7 +69,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         <div >
          <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=editar" method="post" class="formulario">
               <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input" required="true"/> <br/>
-              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input" required="true"/>
+              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input" required="true" pattern="[0-9]{8}[A-Z]{1}" title="El formato debe coincidir con 8 números y 1 letra."/>
               <br/>
               <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" value="<?php echo $usuario->getFecha(); ?>" required="true" /> 
               <br/>
