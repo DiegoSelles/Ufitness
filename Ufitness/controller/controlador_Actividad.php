@@ -107,7 +107,7 @@ class controlador_Actividad{
 				$plazasOcupadas++;
 				mysqli_query($connect,"UPDATE Actividad SET numPlazas = '" .$plazasRestantes. "' WHERE idActividad ='" .$idActividad. "'");
 				mysqli_query($connect,"INSERT INTO Reserva(Deportista_Usuario_Dni,Actividad_idActividad,fecha,plazas_ocupadas) VALUES('" .$_SESSION['Dni']."', '" .$idActividad."', '" .date("Y-m-d")."', '" .$plazasOcupadas."')");
-				echo '<script language="javascript">alert("Has reservado plaza en esta actividad");</script>';
+				echo '<script language="javascript">alert("Has reservado plaza en esta actividad");window.location.href="../view/adminActividades.php";</script>';
 			}
 
 		}
