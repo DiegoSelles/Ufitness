@@ -51,8 +51,8 @@ class controlador_Actividad{
 	public function eliminarActividad (){
 		if (!isset($_POST["idActividad"])) {
 			//Esta excepcion habría que capturarla en algun lado
-      //throw new Exception("id is mandatory");
-    }
+			//throw new Exception("id is mandatory");
+	   	 }
 		$idActividad = $_REQUEST["idActividad"];
 		$actividadMapper = new ActividadMapper();
 		$actividadMapper->eliminarActividad($idActividad);
@@ -61,6 +61,11 @@ class controlador_Actividad{
 
 	}
 	public function modificarActividad (){
+		if (!isset($_POST["id"])) {
+			//Esta excepcion habría que capturarla en algun lado
+			//throw new Exception("id is mandatory");
+	   	 }
+		
 		$actividadMapper = new ActividadMapper();
 		//Obtener el nombre del monitor
 		$nombre_monitor = $_POST['monitor'];
