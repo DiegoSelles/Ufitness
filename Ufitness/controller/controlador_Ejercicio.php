@@ -164,7 +164,7 @@ class controlador_Ejercicio{
 
   public function eliminarEjercicio() {
     if (!isset($_POST["id"])) {
-      throw new Exception("id is mandatory");
+    //Poner alert
     }
 
     $idEjercicio = $_REQUEST["id"];
