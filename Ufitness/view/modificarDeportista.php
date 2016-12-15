@@ -6,7 +6,7 @@ require_once("../controller/controlador_Deportista.php");
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
-if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
+if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	header("Location: error.php");
 	exit();
 }

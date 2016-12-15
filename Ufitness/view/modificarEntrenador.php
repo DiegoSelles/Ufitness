@@ -9,7 +9,7 @@ $dni = $_GET['dni'];
 }
 $ucontroler = new controlador_Usuario();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
-if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
+if($_SESSION['rol'] != "administrador"){
   header("Location: error.php");
   exit();
 }

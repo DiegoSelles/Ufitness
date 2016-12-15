@@ -8,7 +8,7 @@ $ejercontroller = new controlador_Ejercicio();
 if(!isset($_SESSION)) session_start();
 $ucontroller = new controlador_Usuario();
 $usuarioActual =  $ucontroller->getUsuarioActual($_SESSION['Dni']);
-if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
+if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	header("Location: error.php");
 	exit();
 }

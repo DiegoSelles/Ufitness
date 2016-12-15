@@ -16,7 +16,7 @@ $fecha = date("Y-m-d");
 $entcontroller = new controlador_Entrenamiento();
 $ejercontroller = new controlador_Ejercicio();
 
-if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
+if($_SESSION['rol'] != "deportista"){
   header("Location: error.php");
   exit();
 }

@@ -14,7 +14,7 @@ $ucontroler = new controlador_Usuario();
 $dcontroler = new controlador_Deportista();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 
-if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
+if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   header("Location: error.php");
   exit();
 }

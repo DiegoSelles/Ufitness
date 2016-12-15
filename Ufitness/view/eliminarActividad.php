@@ -12,7 +12,7 @@ if(isset($_GET['idActividad'])){
 $ucontroler = new controlador_Usuario();
 $acontroler = new controlador_Actividad();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
-if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
+if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   header("Location: error.php");
   exit();
 }
