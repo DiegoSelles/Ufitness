@@ -89,15 +89,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                   </div>
                   <?php }  ?>
 				</div>
+				
             <div class="body_pagina">
-						<?php
-						$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
-						if($entrenamientos != NULL){
-						?>
+				<?php
+				$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
+				if($entrenamientos != NULL){ ?>		
 				<nav id = "desplegable1">
 					<ul>
-          			<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
-					<?php foreach ($entrenamientos as $entrenamiento) {	?>
+						<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
+						<?php foreach ($entrenamientos as $entrenamiento) {	?>
 					<ul>
 
                     <div class="bloque_lista">
@@ -111,17 +111,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                       </div>
 
-                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
+                      <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
+						   
                       <div class="opciones_bloque">
-                      <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<a id="btn_imprimir" href="imprimirEntrenamiento" class="btn btn-primary" title="Imprimir" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>  
+						<a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					  <?php } ?>
 					  </div>
-                    </div>
-          			</ul>
+                  </div>
+				</ul>
 					<?php }} ?>
-          			</li>
-          		</ul>
-            </nav>
+          	</li>
+          </ul>
+         </nav>
 
 			<?php
 			$entrenamientos = $econtroller->listarEntrenamientosNivel("intermedio");
@@ -145,6 +147,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
+						  <a id="btn_imprimir" href="imprimirEntrenamiento" class="btn btn-primary" title="Imprimir" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
                           <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       </div>
                       <?php } ?>
@@ -174,24 +177,25 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                  </div>
 
                  <div class="info_bloque">
-                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
-                      </div>
-                      <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-                      <div class="opciones_bloque">
-                          <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                      </div>
-                      <?php } ?>
-                    </div>
-          	</ul>
+					<p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
+                 </div>
+                     <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
+                 <div class="opciones_bloque">
+					 <a id="btn_imprimir" href="imprimirEntrenamiento" class="btn btn-primary" title="Imprimir" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
+                    <a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                 </div>
+                     <?php } ?>
+                 </div>
+			 </ul>
               		<?php }} ?>
-          			</li>
-          		</ul>
-            </nav>
-          </div>
+          	</li>
+          </ul>
+         </nav>
+        </div>
 
-              </div>
-          </div>
-          </div>
+       </div>
+      </div>
+     </div>
 
     </div>
 
