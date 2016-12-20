@@ -330,7 +330,19 @@ margin-bottom: 5px;
 
 #btn_eliminar:hover{
   background-color: #F73224;
+}
 
+#btn_imprimir{
+  background-color: #2C6DC8;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  padding: 5px;
+  margin: 5px;
+}
+
+#btn_imprimir:hover{
+  background-color: #125DC6;
 }
 
 #btn_editar{
