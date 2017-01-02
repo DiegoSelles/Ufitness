@@ -49,7 +49,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 </head>
 
 <body>
-
+	<div id="wrapper">
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
@@ -59,12 +59,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				<div id="titulo_index" class="titulo_seccion">
 					<h1><strong>Bienvenido a UFitness</strong></h1>
 				</div>
-				<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
+				<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"):?>
 				<div class="contenido_index">
-					<button type="button" id="btn_notificacion" class="btn btn-primary">Nueva Notificacion</button>
+					<a type="button" id="btn_notificacion" class="btn btn-primary" href="crearNotificacion.php" >Nueva Notificacion</a>
 				</div>
-				<?php }?>
+				
+				<?php else:?>
+				<div class="listado">
+					<div class="header_lista">
+							<div class="titulo_lista">
+									<h1>Nuevas Notificaciones!</h1>
+							</div>
+					</div>
+				</div>
+				<?php endif;?>
 			</div>
+	 </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
