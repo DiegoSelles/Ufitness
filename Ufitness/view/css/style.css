@@ -13,6 +13,9 @@
   margin-right: 50px;
 }
 
+.navbar{
+  height: 65px;
+}
 .navbar-logo{
   width: 225px;
   float:left;
@@ -176,9 +179,14 @@ ul.dropdown-menu {
 }
 
 .contenido_index{
-  margin-top: 50px;
+  margin-top: 20px;
   display:flex;
   justify-content: center;
+}
+
+.contenido_notificacion{
+  display: flex;
+
 }
 .bloque_lista{
   max-width: 1000px;
@@ -448,6 +456,56 @@ margin-bottom: 5px;
   color:black;
 }
 
+.info_notif{
+  display:flex;
+  flex-direction: column;
+  max-width: 500px;
+  width:auto;
+  margin-top: 20px;
+  font-size:20px;
+  color:black;
+}
+
+.formulario_not{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  font-size:20px;
+  color:black;
+  max-width: 1920px;
+  width: auto;
+}
+
+.info_notif{
+  display: flex;
+  max-width: 500px;
+  width:auto;
+  padding: 20px;
+
+}
+
+.input_notif{
+  width: 450px;
+
+}
+
+.receptor_notif{
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  margin-right: 80px;
+  padding: 20px;
+}
+
+.lista_receptor{
+  border: 1px solid black;
+  padding-right: 100px;
+  height: 280px;
+  overflow: auto;
+
+}
+
 .formulario_ent{
   max-width: 700px;
   display:flex;
@@ -513,30 +571,29 @@ div.img img {
     width: 24.99999%;
 }
 
+.dropdown-toggle{
+  top: 0px;
+}
+
 @media only screen and (max-width: 700px){
     .responsive {
-        width: 49.99999%;
+        width: 90%;
         margin: 6px 0;
     }
-
-    .img-logo{
-      margin-top: 10px;
-      margin-left: 40px;
-      height: 80px;
-      width: auto;
+    .navbar{
+      height: 65px;
     }
 
+
 }
+
 
 @media only screen and (max-width: 500px){
     .responsive {
         width: 100%;
     }
-    .img-logo{
-      margin-top: 10px;
-      margin-left: 40px;
-      height: 80px;
-      width: auto;
+    .navbar{
+      height: 65px;
     }
 }
 
@@ -554,11 +611,12 @@ div.img img {
 	.dropdown-lr label {
 		color: #eee;
 	}
+  .navbar{
+    height: 65px;
+  }
 
   .img-logo{
-    margin-top: 10px;
-    margin-left: 40px;
-    height: 80px;
+    height: 55px;
     width: auto;
   }
 }
