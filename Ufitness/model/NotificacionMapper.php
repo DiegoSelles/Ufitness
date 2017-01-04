@@ -16,7 +16,7 @@ class NotificacionMapper {
 	{
 		global $connect;
 	    $consulta= " INSERT INTO Notificacion (idNotificacion, Usuario_Dni, Deportista_Usuario_Dni, titulo, descripcion, visto) VALUES ('". $notificacion->getId() ."',
-	     '". $_SESSION["Dni"] ."', '". $notificacion->getReceptor() ."', '". $notificacion->getTitulo() ."', '". $notificacion->getDescripcion() ."' ,'". $notificacion->getVisto() ."')";
+	     '". $notificacion->getEmisor() ."', '". $notificacion->getReceptor() ."', '". $notificacion->getTitulo() ."', '". $notificacion->getDescripcion() ."' ,'". $notificacion->getVisto() ."')";
 	    $connect->query($consulta);
 	}
 
@@ -30,7 +30,7 @@ class NotificacionMapper {
 				$notificacion = new Notificacion ($actual["titulo"],$actual["descripcion"],$actual["Usuario_Dni"],$actual["Deportista_Usuario_Dni"],$actual["visto"],$actual["idNotificacion"]);
 				array_push($listaNotificaciones, $notificacion);
 		}
-		return $listaEntrenadores;
+		return $listaNotificaciones;
 
 	}
 
