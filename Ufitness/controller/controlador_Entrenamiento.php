@@ -4,18 +4,22 @@ require_once("../model/Sesion.php");
 require_once("../model/EntrenamientoMapper.php");
 require_once("../model/EntrenamientoHasEjercicioMapper.php");
 require_once("../model/UsuarioMapper.php");
+require_once("../model/EjercicioMapper.php");
+require_once("../model/generadorPDF.php");
 
 class controlador_Entrenamiento{
 
   private $entrenamientoMapper;
   private $usuarioMapper;
   private $entrenamientoHasEjercicioMapper;
+  private $ejercicioMapper;
 
   public function __construct() {
 
     $this->entrenamientoMapper = new EntrenamientoMapper();
     $this->usuarioMapper = new UsuarioMapper();
     $this->entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+    $this->ejercicioMapper = new EjercicioMapper();
   }
 
   public function buscarEntrenamientoId($id){
@@ -33,6 +37,10 @@ class controlador_Entrenamiento{
   public function ejerciciosEntrenamiento($id){
     return $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($id);
   }
+  
+  public function entrenamientosDeportista($dni){
+	  return $this->entrenamientoMapper->listarIdEntrenamientosDeportista($dni);
+	  }
 
   public function ejercicioEnEntrenamiento($idEnt,$idEjer){
     $listaEjercicios = $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEnt);
@@ -54,6 +62,17 @@ class controlador_Entrenamiento{
       }
     }
     return false;
+  }
+
+  public  function getEjercicioFromEntrenamiento($idEnt,$idEjer){
+    $listaEjercicios = $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEnt);
+
+    foreach ($listaEjercicios as $ejercicio) {
+      if($ejercicio->getIdEjercicio()==$idEjer){
+        return $this->ejercicioMapper->buscarId($idEjer);
+      }
+    }
+    return NULL;
   }
 
   public function modificarEntrenamiento (){
@@ -191,13 +210,16 @@ class controlador_Entrenamiento{
     header("Location: ../view/adminEntrenamientos.php");
   }
 
-    public function asignarEntrenamiento($dni,$nombre){
-	  global $connect;
+    public function asignacionEntrenamiento($dni,$nombre){
+	  $entrenamientoMapper = new EntrenamientoMapper();
+	  $asignado = $entrenamientoMapper->asignarEntrenamiento($dni,$nombre);
+	  /*global $connect;
 	  $consulta = "SELECT idEntrenamiento FROM Entrenamiento WHERE nombre= '" .$nombre."'";
 	  $resultado = $connect->query($consulta);
 	  $entrenamiento = mysqli_fetch_assoc($resultado);
 	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
-	  if($connect->query($consult)){
+	   */
+	  if($asignado){
 	    echo '<script language="javascript">alert("El entrenamiento ha sido asignado con exito");</script>';
 	  }else{
 		echo '<script language="javascript">alert("Este usuario ya tiene este entrenamiento asignado");</script>';
@@ -206,7 +228,7 @@ class controlador_Entrenamiento{
   }
 
 	 public static function ejerciciosRealizados()
-  {
+	{
 
     $entrenamientoMapper = new EntrenamientoMapper();
     $dniDeportista=$_POST["dniDeportista"];
@@ -230,6 +252,25 @@ class controlador_Entrenamiento{
    return  $entrenamientoMapper->ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha);
 
    }
+   
+   public function imprimirEntrenamiento(){
+		if (!isset($_POST["id"]) && !isset($_POST["idEjer"])) {
+			throw new Exception("id is mandatory");
+		}
+		$generador = new generadorPDF();
+		$entrenamientoMapper = new EntrenamientoMapper();
+		$ejercicioMapper = new EjercicioMapper();
+		$entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+		$listaEjercicios = array();
+		$idEntrenamiento = $_REQUEST["id"];
+		$idEjercicio = $_REQUEST["idEjer"];
+		$listaEjercicios = $entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEntrenamiento);
+		
+		return $generador->extractPDF($entrenamientoMapper->buscarEntrenamientoId($idEntrenamiento),$ejercicioMapper-> buscarId($idEjercicio),
+		$listaEjercicios);
+		
+   }
+   
 
 }
 
