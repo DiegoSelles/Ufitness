@@ -82,7 +82,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
              </form>
 
               <?php if(isset($_POST['AsignarEntrenamiento'])){
-				   $econtroler->asignarEntrenamiento($dni,$_POST['entrenamiento']);
+				   //$econtroler->asignarEntrenamiento($dni,$_POST['entrenamiento']);
+				   $econtroler->asignacionEntrenamiento($dni,$_POST['entrenamiento']);
 				   }else if(isset($_POST['CrearEntrenamiento'])){
 					  echo "<script language='javascript'>window.location='../view/crearEntrenamiento.php'</script>";
 				    }?>
