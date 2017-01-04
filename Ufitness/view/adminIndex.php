@@ -1,8 +1,11 @@
 <?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../controller/controlador_Notificacion.php");
+
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
+$ncontroler = new controlador_Notificacion();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_SESSION['rol'] != "deportista"){
 	header("Location: error.php");
@@ -53,6 +56,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
+
+			$listaNotificaciones = $ncontroler->viewNotificacion($_SESSION["Dni"]);
+
 			?>
 
 			<div id="contenido" class="container-fluid">
@@ -63,14 +69,38 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				<div class="contenido_index">
 					<a type="button" id="btn_notificacion" class="btn btn-primary" href="crearNotificacion.php" >Nueva Notificacion</a>
 				</div>
-				
+
 				<?php else:?>
+
 				<div class="listado">
 					<div class="header_lista">
 							<div class="titulo_lista">
+								<?php
+
+								?>
 									<h1>Nuevas Notificaciones!</h1>
 							</div>
 					</div>
+					<?php foreach ($listaNotificaciones as $notificacion ):?>
+					<ul>
+						<div class="bloque_lista">
+							<div class="titulo_bloque titulo_bloque_notif">
+									<h1><?=$notificacion->getTitulo(); ?><h1>
+							</div>
+							<div class="info_bloque info_bloque_notif">
+								<p><?php echo $notificacion->getDescripcion(); ?></p>
+							</div>
+							<div class="opciones_bloque">
+								<form action="../controller/controlador.php?controlador=controlador_Notificacion&amp;accion=notificacionVista" method="post" id = "form_notificacion">
+                  <input type="hidden" name="idNotificacion" value="<?=$notificacion->getId();?>">
+	                <a onclick="document.getElementById('form_notificacion').submit();" id="btn_visto" class="btn btn-primary " title="visto" type="button">
+	                  <i class="fa fa-check " aria-hidden="true"></i>
+	                </a>
+                </form>
+							</div>
+						</div>
+	        </ul>
+				<?php endforeach;	?>
 				</div>
 				<?php endif;?>
 			</div>
