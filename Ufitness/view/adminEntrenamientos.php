@@ -114,7 +114,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
 						   
                       <div class="opciones_bloque">
-						<a id="btn_imprimir" href="imprimirEntrenamiento" class="btn btn-primary" title="Imprimir" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>  
+						<a id="btn_imprimir" href="imprimirEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="Imprimir" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>  
 						<a id="btn_eliminar" href="eliminarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					  <?php } ?>
 					  </div>
