@@ -64,8 +64,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
           <strong>Nueva Notificación</strong>
         </div>
         <div>
-					<?php $deportistas = $dcontroler->listaDeportistas(); ?>
-  				<form action="../controller/controlador.php?controlador=controlador_Notificacion&amp;accion=newNotificacion" method="post" >
+
+					<?php $deportistas = $dcontroler->listaDeportistas();?>
+  				<form name="form_notif" action="../controller/controlador.php?controlador=controlador_Notificacion&amp;accion=newNotificacion" method="post" >
 						<div class="formulario_not">
 							<div class="info_notif">
 	              <label for="nombre">Título:</label>
@@ -75,16 +76,18 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 							</div>
 							<div class="receptor_notif">
 								<label for="nombre">Enviar a:</label>
+								<div class="radioBtn">
+									<input type="radio" name="receptor" value="todos">Todos
+	  						  <input type="radio" name="receptor" value="elegir">Elegir deportistas:
+								</div>
 								<div class="lista_receptor">
 								<ul>
+									<?php
+									 foreach ($deportistas as $deportista): ?>
 									<li>
-											<input type="checkbox" name="ejercicio[]" value="Todos" >Todos</input>
+											<input type="checkbox" name="receptores[]" value="<?php echo $deportista->getDni(); ?>" ><?php echo $deportista->getNombre().": ".$deportista->getDni(); ?></input>
 									</li>
-									<?php foreach ($deportistas as $deportista) { ?>
-									<li>
-											<input type="checkbox" name="ejercicio[]"value="<?php echo $deportista->getDni(); ?>" ><?php echo $deportista->getNombre().": ".$deportista->getDni(); ?></input>
-									</li>
-									<?php }?>
+								<?php endforeach;?>
 								</ul>
 								</div>
 							</div>
