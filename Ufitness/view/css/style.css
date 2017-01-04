@@ -336,6 +336,16 @@ margin-bottom: 5px;
   margin: 5px;
 }
 
+#btn_visto{
+  background-color: #81ba49;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  padding: 5px;
+  margin: 5px;
+
+}
+
 #btn_eliminar:hover{
   background-color: #F73224;
 }
@@ -498,6 +508,9 @@ margin-bottom: 5px;
   padding: 20px;
 }
 
+.radioBtn input{
+  margin:20px;
+}
 .lista_receptor{
   border: 1px solid black;
   padding-right: 100px;
