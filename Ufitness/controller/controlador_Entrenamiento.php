@@ -41,6 +41,10 @@ class controlador_Entrenamiento{
   public function entrenamientosDeportista($dni){
 	  return $this->entrenamientoMapper->listarIdEntrenamientosDeportista($dni);
 	  }
+	  
+	public function listarEntrenamientosDeportista($nivel){
+		return $this->entrenamientoMapper->listarEntrenamientosDeportista($nivel);
+	}
 
   public function ejercicioEnEntrenamiento($idEnt,$idEjer){
     $listaEjercicios = $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEnt);
