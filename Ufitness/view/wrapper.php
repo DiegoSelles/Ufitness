@@ -70,7 +70,7 @@ require_once("../resources/conexion.php");
                         <a href="adminActividades.php"><i class="fa fa-futbol-o" aria-hidden="true"></i> Actividades </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="adminEntrenamientos.php"><i class="fa fa-trophy" aria-hidden="true"></i> Entrenamientos </a>
+                        <a href="deportistaEntrenamientos.php"><i class="fa fa-trophy" aria-hidden="true"></i> Entrenamientos </a>
                     </li>
                     <li id="menu_lat">
                         <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> Ejercicios </a>
