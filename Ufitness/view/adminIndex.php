@@ -56,9 +56,6 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
-
-			$listaNotificaciones = $ncontroler->viewNotificacion($_SESSION["Dni"]);
-
 			?>
 
 			<div id="contenido" class="container-fluid">
@@ -67,27 +64,67 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				</div>
 				<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"):?>
 				<div class="contenido_index">
-					<a type="button" id="btn_notificacion" class="btn btn-primary" href="crearNotificacion.php" >Nueva Notificacion</a>
+					<a type="button" id="btn_notificacion" class="btn btn-primary" href="crearNotificacion.php" >Nueva Notificación</a>
 				</div>
-
-				<?php else:?>
-
 				<div class="listado">
 					<div class="header_lista">
 							<div class="titulo_lista">
-								<?php
-
-								?>
-									<h1>Nuevas Notificaciones!</h1>
+									<h1>Últimas Notificaciones.</h1>
 							</div>
 					</div>
-					<?php foreach ($listaNotificaciones as $notificacion ):?>
+					<?php
+						$listaNotificaciones= $ncontroler->listaNotificaciones();
+					foreach ($listaNotificaciones as $notificacion ):
+					?>
 					<ul>
+
 						<div class="bloque_lista">
-							<div class="titulo_bloque titulo_bloque_notif">
+							<div class="titulo_bloque ">
 									<h1><?=$notificacion->getTitulo(); ?><h1>
 							</div>
-							<div class="info_bloque info_bloque_notif">
+							<div class="info_bloque ">
+								<p><?php echo $notificacion->getDescripcion(); ?></p>
+							</div>
+						</div>
+	        </ul>
+				<?php endforeach;	?>
+				</div>
+
+				<?php else:
+					$listaNotificaciones = $ncontroler->listaNotificacionesReceptor($_SESSION["Dni"]);
+				?>
+
+				<div class="listado">
+					<div class="header_lista header_lista_notif">
+							<div class="titulo_lista titulo_lista_notif">
+								<?php
+									if($listaNotificaciones==NULL):
+								?>
+									<div >
+									<h1>No tienes notificaciones nuevas.</h1>
+									</div>
+									<div>
+										<img class="img-visto" src="img/visto.png" alt="visto"/>
+									</div>
+								<?php
+									else:
+								?>
+									<h1>¡Tienes nuevas notificaciones!</h1>
+								<?php
+									endif;
+								?>
+							</div>
+					</div>
+					<?php foreach ($listaNotificaciones as $notificacionHD ):
+								$notificacion = $ncontroler->notificacionId($notificacionHD->getId());
+					?>
+					<ul>
+
+						<div class="bloque_lista">
+							<div class="titulo_bloque ">
+									<h1><?=$notificacion->getTitulo(); ?><h1>
+							</div>
+							<div class="info_bloque ">
 								<p><?php echo $notificacion->getDescripcion(); ?></p>
 							</div>
 							<div class="opciones_bloque">

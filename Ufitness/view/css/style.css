@@ -29,6 +29,14 @@
   height: 55px;
   width: auto;
 }
+
+.img-visto{
+  display: flex;
+  opacity: 0.2;
+  height: auto;
+  width: auto;
+  align-self: center;
+}
 .container{
   position: absolute;
   bottom: 5px;
@@ -140,10 +148,19 @@ ul.dropdown-menu {
   padding: 20px;
   justify-content: space-between;
   align-items: center;
-
 }
+
+.header_lista_notif{
+  justify-content: center;
+}
+
 .titulo_lista{
   display:flex;
+}
+
+.titulo_lista_notif{
+  flex-direction: column;
+  align-items:  center;
 }
 .titulo_lista h1{
   font-size: 30px;
@@ -228,7 +245,7 @@ ul.dropdown-menu {
 .info_bloque{
   display:flex;
   flex-direction: column;
-  font-size: 10px;
+  font-size: 20px;
   flex-basis: 40%;
 }
 

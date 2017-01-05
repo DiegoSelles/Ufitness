@@ -77,7 +77,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 							<div class="receptor_notif">
 								<label for="nombre">Enviar a:</label>
 								<div class="radioBtn">
-									<input type="radio" name="receptor" value="todos">Todos
+									<input type="radio" name="receptor" value="todos" required>Todos
 	  						  <input type="radio" name="receptor" value="elegir">Elegir deportistas:
 								</div>
 								<div class="lista_receptor">

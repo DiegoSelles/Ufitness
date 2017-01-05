@@ -66,7 +66,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `G24`.`Notificacion` (
   `idNotificacion` INT NOT NULL AUTO_INCREMENT,
   `Usuario_Dni` VARCHAR(10) NOT NULL,
-  `Deportista_Usuario_Dni` VARCHAR(10) NOT NULL,
   `titulo` VARCHAR(45) NULL,
   `descripcion` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`idNotificacion`),
@@ -286,7 +285,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `G24`;
-INSERT INTO `G24`.`Notificacion` (`idNotificacion`, `Usuario_Dni`, `Deportista_Usuario_Dni`, `titulo`, `descripcion`) VALUES (1, '11223344F', '66666666C', 'Actividad spinning', 'Nueva actividad');
+INSERT INTO `G24`.`Notificacion` (`Usuario_Dni`, `titulo`, `descripcion`) VALUES ('11223344F', 'Actividad spinning', 'Nueva actividad');
+INSERT INTO `G24`.`Notificacion` (`Usuario_Dni`, `titulo`, `descripcion`) VALUES ('11223344F', 'SPINNING', 'Cambio al aula 3');
 
 COMMIT;
 
@@ -365,6 +365,8 @@ COMMIT;
 START TRANSACTION;
 USE `G24`;
 INSERT INTO `G24`.`Notificacion_has_Deportista` (`Notificacion_idNotificacion`, `Deportista_DNI`, `Visto`) VALUES (1, '66666666C', 0);
+INSERT INTO `G24`.`Notificacion_has_Deportista` (`Notificacion_idNotificacion`, `Deportista_DNI`, `Visto`) VALUES (2, '77777777D', 0);
+INSERT INTO `G24`.`Notificacion_has_Deportista` (`Notificacion_idNotificacion`, `Deportista_DNI`, `Visto`) VALUES (2, '88888888E', 0);
+INSERT INTO `G24`.`Notificacion_has_Deportista` (`Notificacion_idNotificacion`, `Deportista_DNI`, `Visto`) VALUES (2, '99999999F', 0);
 
 COMMIT;
-

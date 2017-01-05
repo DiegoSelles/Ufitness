@@ -4,21 +4,27 @@ require_once("../model/NotificacionMapper.php");
 require_once("../model/DeportistaMapper.php");
 require_once("../model/Notificacion.php");
 require_once("../model/Deportista.php");
+require_once("../model/NotificacionHasDeportistaMapper.php");
+require_once("../model/NotificacionHasDeportista.php");
 
 
 class controlador_Notificacion{
 
 	private $notificacionMapper;
 	private $deportistaMapper;
+	private $notificacionHasDeportistaMapper;
 
 	public function __construct() {
 
+		$this->notificacionHasDeportistaMapper = new NotificacionHasDeportistaMapper();
     $this->notificacionMapper = new NotificacionMapper();
 		$this->deportistaMapper = new DeportistaMapper();
   }
 
 	public function newNotificacion(){
-		$notificacionMapper = new NotificacionMapper();
+
+		$notificacionHasDeportistaMapper = new NotificacionHasDeportistaMapper();
+    $notificacionMapper = new NotificacionMapper();
 		$deportistaMapper = new DeportistaMapper();
 
 		$titulo = $_POST['titulo'];
@@ -26,10 +32,16 @@ class controlador_Notificacion{
 		$receptor=$_POST['receptor'];
 
 		if($receptor=="todos"){
+
+			$notificacion = new Notificacion($titulo,$descripcion, $_SESSION["Dni"]);
+			$notificacionMapper->save($notificacion);
+			$idUltima = $notificacionMapper->findLastId();
+
 			$deportistas = $deportistaMapper->listarDeportistas();
 			foreach ($deportistas as $deportista) {
-				$notificacion = new Notificacion($titulo,$descripcion, $_SESSION["Dni"],$deportista->getDni());
-				$notificacionMapper->save($notificacion);
+				$notificacionHasDeportista= new NotificacionHasDeportista($idUltima,$deportista->getDni());
+				$notificacionHasDeportistaMapper->save($notificacionHasDeportista);
+
 			}
 		}else{
 
@@ -41,11 +53,15 @@ class controlador_Notificacion{
 			}
 			else
 			{
+				$notificacion = new Notificacion($titulo,$descripcion, $_SESSION["Dni"]);
+				$notificacionMapper->save($notificacion);
+				$idUltima = $notificacionMapper->findLastId();
+
 				$N = count($receptores);
 				for($i=0; $i < $N; $i++)
 				{
-					$notificacion = new Notificacion($titulo,$descripcion, $_SESSION["Dni"],$receptores[$i]);
-					$notificacionMapper->save($notificacion);
+					$notificacionHasDeportista= new NotificacionHasDeportista($idUltima,$receptores[$i]);
+					$notificacionHasDeportistaMapper->save($notificacionHasDeportista);
 				}
 			}
 		}
@@ -53,8 +69,16 @@ class controlador_Notificacion{
 
 	}
 
-	public function viewNotificacion($receptor){
-		return $this->notificacionMapper->listarNotificacionesReceptor($receptor);
+	public function listaNotificacionesReceptor($dnireceptor){
+		return $this->notificacionHasDeportistaMapper->listarNotificacionesReceptor($dnireceptor);
+	}
+
+	public function notificacionId($idNotificacion){
+		return $this->notificacionMapper->find($idNotificacion);
+	}
+
+	public function listaNotificaciones(){
+		return $this->notificacionMapper->listaNotificaciones();
 	}
 
 	public function delete(){
@@ -70,7 +94,14 @@ class controlador_Notificacion{
 
 	}
 	public function notificacionVista(){
-		print("hadfasjdf");
+		$notificacionHasDeportistaMapper = new NotificacionHasDeportistaMapper();
+		if (isset($_POST["idNotificacion"])) {
+			$idNotificacion= $_REQUEST["idNotificacion"];
+			$notificacionHasDeportistaMapper->notificacionVista($idNotificacion,$_SESSION["Dni"]);
+
+	  }
+		header ("Location: ../view/adminIndex.php");
+
 	}
 
 
