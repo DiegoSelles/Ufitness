@@ -132,5 +132,20 @@ class EntrenamientoMapper {
 		}
 	   
   }
+  
+  public function listarEntrenamientosDeportista($nivel){
+	  global $connect;
+	  
+	  $consulta = "SELECT * FROM Entrenamiento e,Entrenamiento_has_Deportista ed WHERE e.idEntrenamiento = ed.Entrenamiento_idEntrenamiento and e.nivel = '".$nivel."'";
+	  //$consulta = "SELECT * FROM Entrenamiento e INNER JOIN Entrenamiendo_has_Deportista ed ON e.idEntrenamiento = ed.Entrenamiento_idEntrenamiento WHERE e.nivel = '".$nivel."'";
+	  $resultado = $connect->query($consulta);
+	  $listaEntrenamientos = array();
+	  while ($entrenamiento = mysqli_fetch_assoc($resultado)) {
+		  $entrenamientos = new Entrenamiento($entrenamiento["duracion"],$entrenamiento["nombre"],$entrenamiento["nivel"], $entrenamiento["idEntrenamiento"]);
+        array_push($listaEntrenamientos, $entrenamientos);
+    }
+    return $listaEntrenamientos;
+	  
+  }
 
 }
