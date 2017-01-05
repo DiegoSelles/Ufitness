@@ -84,90 +84,109 @@ if($_SESSION['rol'] != "deportista"){
                     </div>
                   </div>
 				</div>
-				
+
             <div class="body_pagina">
 				<?php
-				$entrenamientos = $econtroller->listarEntrenamientosDeportista("principiante");
-				if($entrenamientos != NULL){ ?>		
+				$entrenamientos = $econtroller->listarEntrenamientosDeportista("principiante",$_SESSION["Dni"]);
+				 ?>
 				<nav id = "desplegable1">
 					<ul>
 						<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
-						<?php for ($i=0; $i< count($entrenamientos);$i++) {	?>
+						<?php
+						if($entrenamientos != NULL):
+							foreach ($entrenamientos as $entrenamiento):
+								?>
 					<ul>
 
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
                         <a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
-							<h1><?php echo $entrenamientos[$i]->getNombre(); ?></h1>
+							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
 
                       <div class="info_bloque">
-                        <p>Duración: <?php echo $entrenamientos[$i]->getDuracion(); ?> min.</p>
+                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                       </div>
 					  </div>
                   </div>
 				</ul>
-					<?php }} ?>
+			<?php endforeach;
+					else: ?>
+					<ul>
+						<h1>No tienes Entrenamientos de este nivel</h1>
+					</ul>
+					<?php
+						endif;?>
           	</li>
           </ul>
          </nav>
 
 			<?php
-			$entrenamientos = $econtroller->listarEntrenamientosDeportista("intermedio");
-			if($entrenamientos != NULL){
-				/*for ($i=0; $i< count($entrenamientos);$i++){
-					echo $entrenamientos[$i]->getId();
-					echo $entrenamientos[$i]->getNombre();
-				}*/
+			$entrenamientos = $econtroller->listarEntrenamientosDeportista("intermedio",$_SESSION["Dni"]);
 			?>
             <nav id = "desplegable2">
               <ul>
           		<li id="nivel2"><a id = "activador_2" class= "btn_nivel" href="#"><i id = "activador_2" class="fa fa-chevron-down"></i>Intermedio</a>
-					<?php for ($i=0; $i< count($entrenamientos);$i++) { ?>
+					<?php
+						if($entrenamientos != NULL):
+						foreach ($entrenamientos as $entrenamiento): ?>
 					<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-						<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamientos[$i]->getId(); ?>">
-							<h1><?php echo $entrenamientos[$i]->getNombre(); ?></h1>
+						<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
 
                       <div class="info_bloque">
-                        <p>Duración: <?php echo $entrenamientos[$i]->getDuracion(); ?> min.</p>
+                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                       </div>
 
                     </div>
           		</ul>
-                  <?php }} ?>
+						<?php endforeach;
+								else: ?>
+								<ul>
+									<h1>No tienes Entrenamientos de este nivel</h1>
+								</ul>
+								<?php
+									endif;?>
           			</li>
           		</ul>
             </nav>
 
 			<?php
-			$entrenamientos = $econtroller->listarEntrenamientosDeportista("avanzado");
-			if($entrenamientos != NULL){
+			$entrenamientos = $econtroller->listarEntrenamientosDeportista("avanzado",$_SESSION["Dni"]);
+
 			?>
             <nav id = "desplegable3">
               <ul>
           		<li id="nivel3"><a id = "activador_3" class= "btn_nivel" href="#"><i id = "activador_3" class="fa fa-chevron-down"></i>Avanzado</a>
 					<?php
-					for ($i=0; $i< count($entrenamientos);$i++) {
+					if($entrenamientos != NULL):
+					foreach ($entrenamientos as $entrenamiento):
 					?>
 			<ul>
             <div class="bloque_lista">
 				<div class="titulo_bloque">
-					<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamientos[$i]->getId(); ?>">
-						<h1><?php echo $entrenamientos[$i]->getNombre(); ?></h1>
+					<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+						<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 					</a>
                  </div>
 
                  <div class="info_bloque">
-					<p>Duración: <?php echo $entrenamientos[$i]->getDuracion(); ?> min.</p>
+					<p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                  </div>
                  </div>
 			 </ul>
-              		<?php }} ?>
+		 <?php endforeach;
+	 				else: ?>
+					<ul>
+						<h1>No tienes Entrenamientos de este nivel</h1>
+					</ul>
+					<?php
+	 					endif;?>
           	</li>
           </ul>
          </nav>

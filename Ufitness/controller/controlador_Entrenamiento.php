@@ -37,13 +37,14 @@ class controlador_Entrenamiento{
   public function ejerciciosEntrenamiento($id){
     return $this->entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($id);
   }
-  
+
   public function entrenamientosDeportista($dni){
 	  return $this->entrenamientoMapper->listarIdEntrenamientosDeportista($dni);
 	  }
-	  
-	public function listarEntrenamientosDeportista($nivel){
-		return $this->entrenamientoMapper->listarEntrenamientosDeportista($nivel);
+
+	public function listarEntrenamientosDeportista($nivel,$dni){
+
+		return $this->entrenamientoMapper->listarEntrenamientosDeportista($nivel, $dni);
 	}
 
   public function ejercicioEnEntrenamiento($idEnt,$idEjer){
@@ -256,7 +257,7 @@ class controlador_Entrenamiento{
    return  $entrenamientoMapper->ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha);
 
    }
-   
+
    public function imprimirEntrenamiento(){
 		if (!isset($_POST["id"]) && !isset($_POST["idEjer"])) {
 			throw new Exception("id is mandatory");
@@ -269,12 +270,12 @@ class controlador_Entrenamiento{
 		$idEntrenamiento = $_REQUEST["id"];
 		$idEjercicio = $_REQUEST["idEjer"];
 		$listaEjercicios = $entrenamientoHasEjercicioMapper->ejerciciosEntrenamiento($idEntrenamiento);
-		
+
 		return $generador->extractPDF($entrenamientoMapper->buscarEntrenamientoId($idEntrenamiento),$ejercicioMapper-> buscarId($idEjercicio),
 		$listaEjercicios);
-		
+
    }
-   
+
 
 }
 

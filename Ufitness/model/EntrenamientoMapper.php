@@ -82,7 +82,7 @@ class EntrenamientoMapper {
     $consulta= "UPDATE Entrenamiento set duracion='".$entrenamiento->getDuracion()."',nombre='".$entrenamiento->getNombre()."',nivel='".$entrenamiento->getNivel()."' WHERE idEntrenamiento='".$entrenamiento->getId()."'";
     $connect->query($consulta);
   }
-	
+
 	  public static function  ejerciciosRealizados(Sesion $sesion)
   {
       global $connect;
@@ -90,7 +90,7 @@ class EntrenamientoMapper {
        '". $sesion->getidHasEntrenamiento() ."', '". $sesion->getIdHasEjercicio() ."', '". $sesion->getAnotaciones() ."', '". $sesion->getFechaSesion() ."')";
       $connect->query($consulta);
   }
-	
+
 	public static function ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha)
   {
     global $connect;
@@ -98,14 +98,14 @@ class EntrenamientoMapper {
     $consulta="SELECT * FROM Sesion WHERE Deportista_Usuario_Dni='". $dniDeportista."' AND Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento='". $idEntrenamiento."' AND Entrenamiento_has_Ejercicio_Ejercicio_idEjercicio='". $idEjercicio ."' AND fecha='". $fecha."'";
 
     $res=$connect->query($consulta);
-    
+
     $fila = $res->num_rows;
 
     if($fila > 0)
       return true;
- 
+
   }
-	
+
 	  public function listarIdEntrenamientosDeportista($dniDeportista){
     global $connect;
     $consulta ="SELECT * FROM Entrenamiento_has_Deportista WHERE Deportista_DNI='". $dniDeportista ."' ";
@@ -116,28 +116,28 @@ class EntrenamientoMapper {
     }
     return $listaIdEntDepor;
   }
-  
+
   public function asignarEntrenamiento($dni,$nombre){
 	  global $connect;
-	  
+
 	  $consulta = "SELECT idEntrenamiento FROM Entrenamiento WHERE nombre= '" .$nombre."'";
 	  $resultado = $connect->query($consulta);
 	  $entrenamiento = mysqli_fetch_assoc($resultado);
 	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
-	  
+
 	  if($connect->query($consult)){
 	    return true;
 	  }else{
 		return false;
 		}
-	   
+
   }
-  
-  public function listarEntrenamientosDeportista($nivel){
+
+  public function listarEntrenamientosDeportista($nivel, $dni){
+
 	  global $connect;
-	  
-	  $consulta = "SELECT * FROM Entrenamiento e,Entrenamiento_has_Deportista ed WHERE e.idEntrenamiento = ed.Entrenamiento_idEntrenamiento and e.nivel = '".$nivel."'";
-	  //$consulta = "SELECT * FROM Entrenamiento e INNER JOIN Entrenamiendo_has_Deportista ed ON e.idEntrenamiento = ed.Entrenamiento_idEntrenamiento WHERE e.nivel = '".$nivel."'";
+
+	  $consulta = "SELECT * FROM Entrenamiento E, Entrenamiento_has_Deportista ED WHERE E.idEntrenamiento = ED.Entrenamiento_idEntrenamiento AND E.nivel ='$nivel' AND  ED.Deportista_DNI='$dni'  ";
 	  $resultado = $connect->query($consulta);
 	  $listaEntrenamientos = array();
 	  while ($entrenamiento = mysqli_fetch_assoc($resultado)) {
@@ -145,7 +145,7 @@ class EntrenamientoMapper {
         array_push($listaEntrenamientos, $entrenamientos);
     }
     return $listaEntrenamientos;
-	  
+
   }
 
 }
