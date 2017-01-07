@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `G24`.`Entrenamiento` (
   `idEntrenamiento` INT NOT NULL AUTO_INCREMENT,
   `duracion` DOUBLE NOT NULL,
   `nombre` VARCHAR(45) NULL,
+  `completado` INT (1) NULL DEFAULT 0,
   `nivel` ENUM('principiante', 'intermedio', 'avanzado') NOT NULL,
   PRIMARY KEY (`idEntrenamiento`))
 ENGINE = InnoDB;
@@ -296,8 +297,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `G24`;
-INSERT INTO `G24`.`Entrenamiento` (`idEntrenamiento`, `duracion`, `nombre`, `nivel`) VALUES (1, 30, 'press banca', 'principiante');
-INSERT INTO `G24`.`Entrenamiento` (`idEntrenamiento`, `duracion`, `nombre`, `nivel`) VALUES (2, 15, 'bicicleta', 'intermedio');
+INSERT INTO `G24`.`Entrenamiento` (`idEntrenamiento`, `duracion`, `nombre`, `completado`, `nivel`) VALUES (1, 30, 'press banca', 0, 'principiante');
+INSERT INTO `G24`.`Entrenamiento` (`idEntrenamiento`, `duracion`, `nombre`, `completado`, `nivel`) VALUES (2, 15, 'bicicleta', 0, 'intermedio');
 
 COMMIT;
 
