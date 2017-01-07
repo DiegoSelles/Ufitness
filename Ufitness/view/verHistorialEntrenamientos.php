@@ -115,7 +115,7 @@ if($_SESSION['rol'] != "deportista"){
 			<?php endforeach;
 					else: ?>
 					<ul>
-						<h1>No tienes Entrenamientos de este nivel</h1>
+						<h1>No tienes Entrenamientos completados de este nivel</h1>
 					</ul>
 					<?php
 						endif;?>
@@ -149,7 +149,7 @@ if($_SESSION['rol'] != "deportista"){
 						<?php endforeach;
 								else: ?>
 								<ul>
-									<h1>No tienes Entrenamientos de este nivel</h1>
+									<h1>No tienes Entrenamientos completados de este nivel</h1>
 								</ul>
 								<?php
 									endif;?>
@@ -184,7 +184,7 @@ if($_SESSION['rol'] != "deportista"){
 		 <?php endforeach;
 	 				else: ?>
 					<ul>
-						<h1>No tienes Entrenamientos de este nivel</h1>
+						<h1>No tienes Entrenamientos completados de este nivel</h1>
 					</ul>
 					<?php
 	 					endif;?>
