@@ -71,6 +71,7 @@ class EntrenamientoMapper {
 
 	}
 
+
   public function eliminarEntrenamiento($entrenamiento) {
     global $connect;
     $consulta = "DELETE FROM Entrenamiento WHERE idEntrenamiento='".$entrenamiento->getId()."' ";
@@ -89,7 +90,23 @@ class EntrenamientoMapper {
       $consulta= "INSERT INTO Sesion(Deportista_Usuario_Dni,Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento,Entrenamiento_has_Ejercicio_Ejercicio_idEjercicio,anotaciones,fecha) VALUES ('". $sesion->getDniDeportista() ."',
        '". $sesion->getidHasEntrenamiento() ."', '". $sesion->getIdHasEjercicio() ."', '". $sesion->getAnotaciones() ."', '". $sesion->getFechaSesion() ."')";
       $connect->query($consulta);
-  }
+
+      //Esto lo hago para mirar si una sesion tiene todos los ejercicios realizados y así marcar el entrenamiento como completada
+      $consulta = "SELECT * FROM Sesion WHERE Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento ='". $sesion->getidHasEntrenamiento() ."' AND Deportista_Usuario_Dni ='". $sesion->getDniDeportista() ."'";
+      $result = $connect->query($consulta);
+      $numEjerciciosRealizados = $result->num_rows;
+
+      $consulta = "SELECT * FROM Entrenamiento_has_Ejercicio WHERE Entrenamiento_idEntrenamiento ='". $sesion->getidHasEntrenamiento() ."'";
+      $result = $connect->query($consulta);
+      $numEjerciciosEntrenamiento = $result->num_rows;
+      if ($numEjerciciosRealizados == $numEjerciciosEntrenamiento){
+        $consulta= "UPDATE Entrenamiento set completado = 1 WHERE idEntrenamiento = '". $sesion->getidHasEntrenamiento() ."'";
+        $connect->query($consulta);
+      }else{
+        $consulta= "UPDATE Entrenamiento set completado = 0 WHERE idEntrenamiento = '". $sesion->getidHasEntrenamiento() ."'";
+        $connect->query($consulta);
+      }
+    }
 
 	public static function ejercicioDiario($dniDeportista,$idEntrenamiento,$idEjercicio,$fecha)
   {
@@ -117,6 +134,7 @@ class EntrenamientoMapper {
     return $listaIdEntDepor;
   }
 
+
   public function asignarEntrenamiento($dni,$nombre){
 	  global $connect;
 
@@ -138,6 +156,22 @@ class EntrenamientoMapper {
 	  global $connect;
 
 	  $consulta = "SELECT * FROM Entrenamiento E, Entrenamiento_has_Deportista ED WHERE E.idEntrenamiento = ED.Entrenamiento_idEntrenamiento AND E.nivel ='$nivel' AND  ED.Deportista_DNI='$dni'  ";
+	  $resultado = $connect->query($consulta);
+	  $listaEntrenamientos = array();
+	  while ($entrenamiento = mysqli_fetch_assoc($resultado)) {
+		  $entrenamientos = new Entrenamiento($entrenamiento["duracion"],$entrenamiento["nombre"],$entrenamiento["nivel"], $entrenamiento["idEntrenamiento"]);
+        array_push($listaEntrenamientos, $entrenamientos);
+    }
+    return $listaEntrenamientos;
+
+  }
+
+
+  public function listarEntrenamientosCompletadosDeportista($nivel, $dni){
+
+	  global $connect;
+
+	  $consulta = "SELECT * FROM Entrenamiento E, Entrenamiento_has_Deportista ED WHERE E.idEntrenamiento = ED.Entrenamiento_idEntrenamiento AND E.nivel ='$nivel' AND  ED.Deportista_DNI='$dni' AND E.completado = 1 ";
 	  $resultado = $connect->query($consulta);
 	  $listaEntrenamientos = array();
 	  while ($entrenamiento = mysqli_fetch_assoc($resultado)) {
