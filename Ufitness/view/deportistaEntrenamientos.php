@@ -73,6 +73,11 @@ if($_SESSION['rol'] != "deportista"){
                   <div class="titulo_lista">
                     <h1>Lista de Entrenamientos </h1>
                   </div>
+
+                  <div class="anadir">
+                    <a id="btn_anadir" href="../view/verHistorialEntrenamientos.php" class="btn btn-primary" type="button">Historial de Entrenamientos</a>
+                  </div>
+
                   <div id="custom-search-input">
                     <div class="input-group col-md-12">
                         <input type="text" class="form-control input-lg" placeholder="Buscar Entrenamiento">
@@ -88,7 +93,7 @@ if($_SESSION['rol'] != "deportista"){
             <div class="body_pagina">
 				<?php
 				$entrenamientos = $econtroller->listarEntrenamientosDeportista("principiante",$_SESSION["Dni"]);
-				 ?>
+				?>
 				<nav id = "desplegable1">
 					<ul>
 						<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
