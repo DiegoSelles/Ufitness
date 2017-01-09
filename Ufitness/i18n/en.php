@@ -52,6 +52,56 @@ $texts = array(
 	'Elegir deportistas:' => 'Choose Athletics:',
 	'Enviar Notificación' => 'Send notification',
 	
+	//adminEntrenamientos
+	'Lista de Entrenamientos' => 'Trainings List',
+	'Buscar Entrenamiento' => 'Search Training',
+	'Añadir Entrenamiento' => 'Add Training',
+	'Principiante' => 'Beginner',
+	'Duración' => 'Duration',
+	'Intermedio' => 'Medium',
+	'Avanzado' => 'Advanced',
+	'Imprimir' => 'Print',
+	
+	//Crear entrenamiento
+	'Nuevo Entrenamiento' => 'New Training',
+	'Nombre Entrenamiento' => 'Training Name',
+	'Nivel Entrenamiento' => 'Training Level',
+	'Selecciona los ejercicios que formarán parte del entrenamiento' => 'Select the exercises that will be part of the training',
+	'Series' => 'Series',
+	'Repeticion' => 'Repetition',
+	'Carga' => 'Weight',
+	'Guardar' => 'Save',
+	
+	//Ver entrenamiento
+	'Monitorizar Entrenamiento' => 'Monitor Training',
+	'Lista de Ejercicios' => 'Exercise List',
+	'Máquina' => 'Machine',
+	'Tipo' => 'Type',
+	
+	//Eliminar entrenamiento
+	'¿Está seguro que quiere eliminar este entrenamiento?' => 'Are you sure that do you want remove this Training?',
+	'Nivel' => 'Level',
+	'Ejercicios del entrenamiento' => 'Training exercises',
+	
+	//Imprimir entrenamiento
+	'Imprimir Entrenamiento' => 'Print Training',
+	
+	//deportistaEntrenamientos
+	'Historial de Entrenamientos' => 'Training history',
+	'No tienes entrenamientos de este nivel' =>'You don´t have trainings for this level',
+	
+	//verHistorialEntrenamientos
+	'No tienes Entrenamientos completados de este nivel' => 'You don´t have completed trainings for this level',
+	
+	//Monitorizar entrenamiento
+	'Fecha' => 'Date',
+	'Ejercicio Realizado' => 'Exercise completed',
+	'Verificar' => 'Check',
+	'Anotaciones' => 'Annotations',
+	'Guardar' => 'Save',
+	'Borrar' => 'Delete',
+	'Cancelar' => 'Cancel',
+	
 	//adminEntrenadores
 	'Lista de Entrenadores' => 'Trainers list',
 	'Añadir Entrenador' => 'Add trainer',
@@ -71,7 +121,7 @@ $texts = array(
 	'SI' => 'YES',
 	'NO' => 'NO',
 	
-	//Modificar entrenador'Riesgos'
+	//Modificar entrenador
 	'Modificar Entrenador' => 'Edit trainer',
 	'Guardar Cambios' => 'Save changes',
 	'Volver' => 'Back',
@@ -100,8 +150,5 @@ $texts = array(
 	'Asignacion de entrenamientos' => 'Training assignment',
 	'Asignar' => 'Assign',
 	'Crear entrenamiento' => 'Create trainer'
-	
-	
-	
 );
 ?>

@@ -51,6 +51,56 @@ $texts = array(
 	'Choose Athletics:' => 'Elegir deportistas:',
 	'Send notification' => 'Enviar Notificación',
 	
+	//adminEntrenamientos
+	'Trainings List' => 'Lista de Entrenamientos',
+	'Search training' => 'Buscar Entrenamiento',
+	'Add Training' => 'Añadir Entrenamiento',
+	'Beginner' => 'Principiante',
+	'Duration' => 'Duración',
+	'Medium' => 'Intermedio',
+	'Advanced' => 'Avanzado',
+	'Print' => 'Imprimir',
+	
+	//Crear entrenamiento
+	'New Training' => 'Nuevo Entrenamiento',
+	'Training Name' => 'Nombre Entrenamiento',
+	'Training Level' => 'Nivel Entrenamiento',
+	'Select the exercises that will be part of the training' => 'Selecciona los ejercicios que formarán parte del entrenamiento',
+	'Series' => 'Series',
+	'Repetition' => 'Repeticion',
+	'Weight' => 'Carga',
+	'Save' => 'Guardar',
+	
+	//Ver entrenamiento
+	'Monitor Training' => 'Monitorizar Entrenamiento',
+	'Exercise Lists' => 'Lista de Ejercicio',
+	'Machine' => 'Máquina',
+	'Type' => 'Tipo',
+	
+	//Eliminar entrenamiento
+	'Are you sure that do you want remove this training?' => '¿Está seguro que quiere eliminar este entrenamiento?',
+	'Level' => 'Nivel',
+	'Training Exercises' => 'Ejercicios del entrenamiento',
+	
+	//Imprimir entrenamiento
+	'Print Training' => 'Imprimir Entrenamiento',
+	
+	//deportistaEntrenamientos
+	'Training history' => 'Historial de Entrenamientos',
+	'You don´t have trainings for this level' =>'No tienes entrenamientos de este nivel',
+	
+	//verHistorialEntrenamientos
+	'You don´t have completed trainings for this level' => 'No tienes Entrenamientos completados de este nivel',
+	
+	//Monitorizar entrenamiento
+	'Date' => 'Fecha',
+	'Exercise completed' => 'Ejercicio Realizado',
+	'Verificar' => 'Check',
+	'Annotations' => 'Anotaciones',
+	'Save' => 'Guardar',
+	'Delete' => 'Borrar',
+	'Cancel' => 'Cancelar',
+	
 	//adminEntrenadores
 	'Trainers list' => 'Lista de Entrenadores',
 	'Add trainer' => 'Añadir Entrenador',
