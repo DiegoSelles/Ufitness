@@ -12,6 +12,12 @@ if($_SESSION['rol'] != "deportista"){
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <!DOCTYPE html>
@@ -66,21 +72,21 @@ if($_SESSION['rol'] != "deportista"){
           <div id="contenido" class="container-fluid">
               <div class="titulo_seccion">
                 <i class="fa fa-trophy" aria-hidden="true"></i>
-                <strong>Entrenamientos</strong>
+                <strong><?php echo __('Entrenamientos',$lang); ?></strong>
               </div>
               <div class="listado">
                 <div class="header_lista">
                   <div class="titulo_lista">
-                    <h1>Lista de Entrenamientos </h1>
+                    <h1><?php echo __('Lista de Entrenamientos',$lang); ?> </h1>
                   </div>
 
                   <div class="anadir">
-                    <a id="btn_anadir" href="../view/verHistorialEntrenamientos.php" class="btn btn-primary" type="button">Historial de Entrenamientos</a>
+                    <a id="btn_anadir" href="../view/verHistorialEntrenamientos.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Historial de Entrenamientos',$lang); ?></a>
                   </div>
 
                   <div id="custom-search-input">
                     <div class="input-group col-md-12">
-                        <input type="text" class="form-control input-lg" placeholder="Buscar Entrenamiento">
+                        <input type="text" class="form-control input-lg" placeholder="<?php echo __('Buscar Entrenamiento',$lang); ?>'">
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-lg" type="button">
                                 <i class="glyphicon glyphicon-search"></i>
@@ -96,7 +102,7 @@ if($_SESSION['rol'] != "deportista"){
 				?>
 				<nav id = "desplegable1">
 					<ul>
-						<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i>Principiante</a>
+						<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i><?php echo __('Principiante',$lang); ?></a>
 						<?php
 						if($entrenamientos != NULL):
 							foreach ($entrenamientos as $entrenamiento):
@@ -105,13 +111,13 @@ if($_SESSION['rol'] != "deportista"){
 
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+                        <a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
 
                       <div class="info_bloque">
-                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
+                        <p> <?php echo __('Duración',$lang); ?> : <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                       </div>
 					  </div>
                   </div>
@@ -119,7 +125,7 @@ if($_SESSION['rol'] != "deportista"){
 			<?php endforeach;
 					else: ?>
 					<ul>
-						<h1>No tienes Entrenamientos de este nivel</h1>
+						<h1><?php echo __('No tienes entrenamientos de este nivel',$lang); ?></h1>
 					</ul>
 					<?php
 						endif;?>
@@ -132,20 +138,20 @@ if($_SESSION['rol'] != "deportista"){
 			?>
             <nav id = "desplegable2">
               <ul>
-          		<li id="nivel2"><a id = "activador_2" class= "btn_nivel" href="#"><i id = "activador_2" class="fa fa-chevron-down"></i>Intermedio</a>
+          		<li id="nivel2"><a id = "activador_2" class= "btn_nivel" href="#"><i id = "activador_2" class="fa fa-chevron-down"></i><?php echo __('Intermedio',$lang); ?></a>
 					<?php
 						if($entrenamientos != NULL):
 						foreach ($entrenamientos as $entrenamiento): ?>
 					<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-						<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+						<a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
 
                       <div class="info_bloque">
-                        <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
+                        <p> <?php echo __('Duración',$lang); ?> : <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                       </div>
 
                     </div>
@@ -153,7 +159,7 @@ if($_SESSION['rol'] != "deportista"){
 						<?php endforeach;
 								else: ?>
 								<ul>
-									<h1>No tienes Entrenamientos de este nivel</h1>
+									<h1><?php echo __('No tienes entrenamientos de este nivel',$lang); ?></h1>
 								</ul>
 								<?php
 									endif;?>
@@ -167,7 +173,7 @@ if($_SESSION['rol'] != "deportista"){
 			?>
             <nav id = "desplegable3">
               <ul>
-          		<li id="nivel3"><a id = "activador_3" class= "btn_nivel" href="#"><i id = "activador_3" class="fa fa-chevron-down"></i>Avanzado</a>
+          		<li id="nivel3"><a id = "activador_3" class= "btn_nivel" href="#"><i id = "activador_3" class="fa fa-chevron-down"></i><?php echo __('Avanzado',$lang); ?></a>
 					<?php
 					if($entrenamientos != NULL):
 					foreach ($entrenamientos as $entrenamiento):
@@ -175,20 +181,20 @@ if($_SESSION['rol'] != "deportista"){
 			<ul>
             <div class="bloque_lista">
 				<div class="titulo_bloque">
-					<a href="verEntrenamiento.php?idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+					<a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 						<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 					</a>
                  </div>
 
                  <div class="info_bloque">
-					<p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
+					<p> <?php echo __('Duración',$lang); ?> : <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                  </div>
                  </div>
 			 </ul>
 		 <?php endforeach;
 	 				else: ?>
 					<ul>
-						<h1>No tienes Entrenamientos de este nivel</h1>
+						<h1><?php echo __('No tienes entrenamientos de este nivel',$lang); ?></h1>
 					</ul>
 					<?php
 	 					endif;?>

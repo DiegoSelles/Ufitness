@@ -13,6 +13,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -61,18 +67,18 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <strong>Nuevo Entrenamiento</strong>
+          <strong><?php echo __('Nuevo Entrenamiento',$lang); ?></strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=anhadir" method="post" class="formulario ">
-              <?php echo "Nombre Entrenamiento" ?>: <input  type="text" name="nombre" class="input" required="true"/>
-              <?php echo "Duración" ?>: <input type="text" name="duracion" class="input" required="true"/>
-							<?php echo "Nivel Entrenamiento" ?>: <select name="nivel" class="select">
-			                                            <option value="principiante" selected>Principiante</option>
-			                                            <option value="intermedio">Intermedio</option>
-																									<option value="avanzado">Avanzado</option>
+  				<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Entrenamiento&amp;accion=anhadir" method="post" class="formulario ">
+              <?php echo __('Nombre Entrenamiento',$lang); ?>: <input  type="text" name="nombre" class="input" required="true"/>
+              <?php echo __('Duración',$lang); ?>: <input type="text" name="duracion" class="input" required="true"/>
+							<?php echo __('Nivel Entrenamiento',$lang); ?>: <select name="nivel" class="select">
+			                                            <option value="principiante" selected><?php echo __('Principiante',$lang); ?></option>
+			                                            <option value="intermedio"><?php echo __('Intermedio',$lang); ?></option>
+																									<option value="avanzado"><?php echo __('Avanzado',$lang); ?></option>
             																	 </select>
-              <?php echo "Selecciona los ejercicios que formarán parte del entrenamiento" ?>:
+              <?php echo __('Selecciona los ejercicios que formarán parte del entrenamiento',$lang); ?>:
 								<?php
 									foreach ($ejercicios as $ejercicio) {
 										$sxr="seriesxRep".$ejercicio->getIdEjercicio();
@@ -81,15 +87,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 								<ul>
 									<li>
 											<input type="checkbox" name="ejercicio[]"  value="<?php echo $ejercicio->getIdEjercicio();?>"> <strong><?php echo $ejercicio->getNombre();?></strong>
-											<p>Series x Repeticion: <input type="text"  class="input_ejer" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12" ></p>
-											<p>Carga:<input type="number" class="input_ejer" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>
+											<p><?php echo __('Series',$lang); ?> x <?php echo __('Repeticion',$lang); ?> : <input type="text"  class="input_ejer" name = "<?php echo $sxr;?>" placeholder="Ej: 3x12" ></p>
+											<p><?php echo __('Carga',$lang); ?> : <input type="number" class="input_ejer" name ="<?php echo $carga;?>" placeholder="Ej: 3"></p>
 									</li>
 								</ul>
 								<?php
 									}
 								?>
 								<div class="form_submit">
-										<input id="submit" class="btn btn-primary" type="submit" value="Guardar">
+										<input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Guardar',$lang); ?> ">
 								</div>
           </form>
         </div>

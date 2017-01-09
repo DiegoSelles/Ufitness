@@ -21,6 +21,12 @@ if($_SESSION['rol'] != "deportista"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 
@@ -115,19 +121,19 @@ if($_SESSION['rol'] != "deportista"){
       <div id="contenido" class="container-fluid">
          <div class="titulo_seccion">
             <i class="fa fa-table" aria-hidden="true"></i>
-              <strong>Monitorizar Entrenamiento - <?php echo $entrenamiento->getNombre(); ?> </strong>
+              <strong><?php echo __('Monitorizar Entrenamiento',$lang); ?> - <?php echo $entrenamiento->getNombre(); ?> </strong>
           </div>
           <div class="listado">
               <div class="header_lista">
                 <div class="titulo_lista">
-                  <h1>Lista de Ejercicios</h1>
+                  <h1><?php echo __('Lista de Ejercicios',$lang); ?></h1>
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
                   </div>
                 </div>
                 <div class="anadir">
-                    <a id="btn_anadir"  href="../view/verEntrenamiento.php?idEntrenamiento=<?php echo$idEntrenamiento; ?>" class="btn btn-primary" type="button">Volver</a>
+                    <a id="btn_anadir"  href="../view/verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo$idEntrenamiento; ?>" class="btn btn-primary" type="button"><?php echo __('Volver',$lang); ?></a>
                 </div>
               </div>
               <div class="body_pagina">
@@ -136,18 +142,18 @@ if($_SESSION['rol'] != "deportista"){
                         $ejercicio = $ejercontroller->buscarId($entrenamientoHasEjercicio->getIdEjercicio());
                 ?>
                   <ul>
-                    <form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=ejerciciosRealizados" method="post">
+                    <form action="../controller/controlador.php?<?php echo $lang; ?>&controlador=controlador_Entrenamiento&amp;accion=ejerciciosRealizados" method="post">
                       <ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
                               <h1>  <?php echo $ejercicio->getNombre(); ?></h1>
                           </div>
                           <div id="info-<?=$ejercicio->getIdEjercicio()?>" class="info_bloque">
-                            <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
-                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
-                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
-                            <p>series X Repeticion: <?php echo $entrenamientoHasEjercicio->getSxR(); ?></p>
-                            <p>Carga: <?php echo $entrenamientoHasEjercicio->getCarga(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                            <p> <?php echo __('Series',$lang); ?> X <?php echo __('Repeticion',$lang); ?>: <?php echo $entrenamientoHasEjercicio->getSxR(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $entrenamientoHasEjercicio->getCarga(); ?></p>
                             <p>fecha: <?php echo $fecha; ?></p>
                           </div>
                           <div class="opciones_bloque">
@@ -161,19 +167,19 @@ if($_SESSION['rol'] != "deportista"){
                               <input  type="text" name="fecha" hidden="true" value="<?php echo $fecha;?>" />
 
                               <?php if($entcontroller->ejercicioDiario($usuarioDni,$idEntrenamiento,$idEjercicio,$fecha)): ?>
-                                    <label>Ejercicio Realizado</label>
+                                    <label><?php echo __('Ejercicio Realizado',$lang); ?></label>
                               <?php endif ?>
 
-                              <input id="btn_edit_bloque" title="Verificar" class="btn btn-primary btn_verificar" type="submit" value="V" >
+                              <input id="btn_edit_bloque" title="<?php echo __('Verificar',$lang); ?>" class="btn btn-primary btn_verificar" type="submit" value="V" >
 
-                              <a id="btn_eliminar" href="javascript:mostrar(<?=$ejercicio->getIdEjercicio()?>);" class="btn btn-primary" title="Anotaciones" type="button"><i class="fa fa-book" aria-hidden="true"></i></a>
+                              <a id="btn_eliminar" href="javascript:mostrar(<?=$ejercicio->getIdEjercicio()?>);" class="btn btn-primary" title="<?php echo __('Anotaciones',$lang); ?>" type="button"><i class="fa fa-book" aria-hidden="true"></i></a>
                           </div>
                           <div id="oculto-<?=$ejercicio->getIdEjercicio()?>" style="display:none">
-                              <h4>Anotaciones</h4>
+                              <h4><?php echo __('Anotaciones',$lang); ?></h4>
                               <textarea rows="4" cols="50" name="anotacion" ></textarea>
-                              <input  type="button" name="submit" value="guardar" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>)">
-                              <input  type="button" name="submit" value="borrar" onclick="borrarTexto(<?=$ejercicio->getIdEjercicio()?>)">
-                              <input  type="button" name="submit" value="cancelar" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>);">
+                              <input  type="button" name="submit" value="<?php echo __('Guardar',$lang); ?>" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>)">
+                              <input  type="button" name="submit" value="<?php echo __('Borrar',$lang); ?>" onclick="borrarTexto(<?=$ejercicio->getIdEjercicio()?>)">
+                              <input  type="button" name="submit" value="<?php echo __('Cancelar',$lang); ?>" onclick="cerrar(<?=$ejercicio->getIdEjercicio()?>);">
                           </div>
                         </div>
                        </div>

@@ -19,7 +19,7 @@ if (isset($_GET['lang'])) {
                         <a href="adminActividades.php?lang='.$lang.'"><i class="fa fa-futbol-o" aria-hidden="true"></i> '.__('Actividades',$lang).' </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="adminEntrenamientos.php"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
+                        <a href="adminEntrenamientos.php?lang='.$lang.'"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
                     </li>
                     <li id="menu_lat">
                         <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
@@ -50,7 +50,7 @@ if (isset($_GET['lang'])) {
                         <a href="adminActividades.php?lang='.$lang.'"><i class="fa fa-futbol-o" aria-hidden="true"></i> '.__('Actividades',$lang).' </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="adminEntrenamientos.php"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
+                        <a href="adminEntrenamientos.php?lang='.$lang.'"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
                     </li>
                     <li id="menu_lat">
                         <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
@@ -77,7 +77,7 @@ if (isset($_GET['lang'])) {
                         <a href="adminActividades.php?lang='.$lang.'"><i class="fa fa-futbol-o" aria-hidden="true"></i> '.__('Actividades',$lang).' </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="deportistaEntrenamientos.php"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
+                        <a href="deportistaEntrenamientos.php?lang='.$lang.'"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
                     </li>
                     <li id="menu_lat">
                         <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>

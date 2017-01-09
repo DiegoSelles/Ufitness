@@ -20,6 +20,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -71,17 +77,17 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-bicycle" aria-hidden="true"></i>
-          <strong>¿Está seguro que quiere eliminar este ejercicio?</strong>
+          <strong><?php echo __('¿Está seguro que quiere eliminar este entrenamiento?',$lang); ?></strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Entrenamiento&amp;accion=eliminarEntrenamiento" method="post" class="formulario">
-              <label>Nombre: <?php echo $entrenamiento->getNombre(); ?></label>
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Entrenamiento&amp;accion=eliminarEntrenamiento" method="post" class="formulario">
+              <label><?php echo __('Nombre',$lang); ?> : <?php echo $entrenamiento->getNombre(); ?></label>
                <br/>
-              <label>Duracion: <?php echo $entrenamiento->getDuracion(); ?></label>
+              <label> <?php echo __('Duración',$lang); ?> : <?php echo $entrenamiento->getDuracion(); ?></label>
                <br/>
-              <label>Nivel: <?php echo $entrenamiento->getNivel(); ?></label>
+              <label> <?php echo __('Nivel',$lang); ?> : <?php echo $entrenamiento->getNivel(); ?></label>
                <br/>
-              <label>Ejercicios del Entrenamiento: </label>
+              <label><?php echo __('Ejercicios del entrenamiento',$lang); ?>: </label>
               <?php
                   foreach ($listaEntHasEjer as $entHasEjer) {
                     $ejercicio = $ejercontroller->buscarId($entHasEjer->getIdEjercicio());
@@ -94,11 +100,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
                     </a>
                   </div>
                   <div class="info_bloque">
-                    <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
-                    <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
-                    <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
-                    <p>series X Repeticion: <?php echo $entHasEjer->getSxR(); ?></p>
-                    <p>Carga: <?php echo $entHasEjer->getCarga(); ?></p>
+                    <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+                    <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
+                    <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                    <p> <?php echo __('Series',$lang); ?> X <?php echo __('Repeticion',$lang); ?>: <?php echo $entHasEjer->getSxR(); ?></p>
+                    <p> <?php echo __('Carga',$lang); ?> : <?php echo $entHasEjer->getCarga(); ?></p>
                   </div>
                 </div>
               </ul>
@@ -108,8 +114,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 
               <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
               <div class="form_submit">
-                <input id="submit" class="btn btn-primary" type="submit" value="SI">
-                <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">NO</a>
+                <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('SI',$lang); ?>">
+                <a id="submit" href="adminEjercicios.php?<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('NO',$lang); ?></a>
               </div>
 
           </form>

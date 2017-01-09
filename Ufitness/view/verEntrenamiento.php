@@ -15,6 +15,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <!DOCTYPE html>
@@ -73,19 +79,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-trophy" aria-hidden="true"></i>
               <strong><?php echo $entrenamiento->getNombre(); ?></strong>
 							<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-              <a id="btn_editar" href="../view/modificarEntrenamiento.php?idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" type="button"> Editar </a>
+              <a id="btn_editar" href="../view/modificarEntrenamiento.php?lang=<?php echo $lang; ?>&idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" type="button"><?php echo __('Editar',$lang); ?> </a>
 							<?php } ?>
 							<?php if($_SESSION['rol'] == "deportista"){ ?>
-              	<a id="btn_editar" href="../view/monitorizarEntrenamiento.php?idEntrenamiento=<?php echo $idEntrenamiento;?>" class="btn btn-primary" type="button"> Monitorizar Entrenamiento </a>
+              	<a id="btn_editar" href="../view/monitorizarEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $idEntrenamiento;?>" class="btn btn-primary" type="button"><?php echo __('Monitorizar Entrenamiento',$lang); ?> </a>
 							<?php } ?>
             </div>
             <div class="body_pagina">
 							<div class="header_lista">
                 <div class="titulo_lista">
-                  <h1>Lista de Ejercicios </h1>
+                  <h1><?php echo __('Lista de Ejercicios',$lang); ?> </h1>
                 </div>
 								<div>
-	                <p>Duración: <?php echo $entrenamiento->getDuracion(); ?> min.</p>
+	                <p> <?php echo __('Duración',$lang); ?> : <?php echo $entrenamiento->getDuracion(); ?> min.</p>
                 </div>
               </div>
 
@@ -103,11 +109,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 													</a>
 												</div>
 												<div class="info_bloque">
-													<p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
-													<p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
-													<p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
-													<p>series X Repeticion: <?php echo $entrenamientoHasEjercicio->getSxR(); ?></p>
-													<p>Carga: <?php echo $entrenamientoHasEjercicio->getCarga(); ?></p>
+													<p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+													<p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
+													<p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+													<p> <?php echo __('series',$lang); ?> X <?php echo __('Repeticion',$lang); ?> : <?php echo $entrenamientoHasEjercicio->getSxR(); ?></p>
+													<p> <?php echo __('Carga',$lang); ?> : <?php echo $entrenamientoHasEjercicio->getCarga(); ?></p>
 												</div>
 											</div>
 										</ul>
