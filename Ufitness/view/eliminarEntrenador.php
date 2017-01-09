@@ -14,6 +14,12 @@ if($_SESSION['rol'] != "administrador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -64,23 +70,23 @@ if($_SESSION['rol'] != "administrador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <strong>¿Está seguro que quiere eliminar a este usuario?</strong>
+          <strong><?php echo __('¿Está seguro que quiere eliminar a este usuario?',$lang); ?> </strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=eliminar" method="post" class="formulario">
-              <label>Nombre: <?php echo $usuario->getNombre(); ?></label>
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Usuario&amp;accion=eliminar" method="post" class="formulario">
+              <label><?php echo __('Nombre',$lang); ?> : <?php echo $usuario->getNombre(); ?></label>
                <br/>
               <label>DNI: <?php echo $usuario->getDni(); ?></label>
                <br/>
-              <label>Edad: <?php echo $usuario->getEdad(); ?></label>
+              <label><?php echo __('Edad',$lang); ?> : <?php echo $usuario->getEdad(); ?></label>
                <br/>
               <label>E-mail: <?php echo $usuario->getEmail(); ?></label>
               <br/>
 
               <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />
               <div class="form_submit">
-                <input id="submit" class="btn btn-primary" type="submit" value="SI">
-                <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">NO</a>
+                <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('SI',$lang); ?>">
+                <a id="submit" href="adminEntrenadores.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('NO',$lang); ?> </a>
               </div>
           </form>
         </div>

@@ -15,6 +15,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -63,12 +69,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			<div id="contenido" class="container-fluid">
 				<div class="titulo_seccion">
 					<i class="fa fa-table" aria-hidden="true"></i>
-					<strong>Asignacion de entrenamientos</strong>
+					<strong><?php echo __('Asignacion de entrenamientos',$lang); ?></strong>
 				</div>
 			<div >
 
   			<form method="post" action="#" class="formulario">
-				<label for="lista">Entrenamientos</label>
+				<label for="lista"><?php echo __('Entrenamientos',$lang); ?></label>
 				<?php $entrenamientos = $econtroler->listarEntrenamientos(); ?>
 				<select name="entrenamiento" class="select">
 					<?php foreach ($entrenamientos as $entrenamiento) { ?>
@@ -76,8 +82,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 					<?php }?>
 				</select>
 				<div class="form_submit">
-					<input id="submit" class="btn btn-primary" type="submit" value="Asignar" name="AsignarEntrenamiento">
-					<input id="btn_anadir" class="btn btn-primary" type="submit" value="Crear entrenamiento" name="CrearEntrenamiento">
+					<input id="submit" class="btn btn-primary" type="submit" value=" <?php echo __('Asignar',$lang); ?>" name="AsignarEntrenamiento">
+					<input id="btn_anadir" class="btn btn-primary" type="submit" value="<?php echo __('Crear entrenamiento',$lang); ?>" name="CrearEntrenamiento">
 				</div>
              </form>
 
@@ -85,7 +91,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				   //$econtroler->asignarEntrenamiento($dni,$_POST['entrenamiento']);
 				   $econtroler->asignacionEntrenamiento($dni,$_POST['entrenamiento']);
 				   }else if(isset($_POST['CrearEntrenamiento'])){
-					  echo "<script language='javascript'>window.location='../view/crearEntrenamiento.php'</script>";
+					  echo "<script language='javascript'>window.location='../view/crearEntrenamiento.php?lang=$lang'</script>";
 				    }?>
 			</div>
 		</div>

@@ -4,13 +4,21 @@ require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Deportista.php");
 
 if(!isset($_SESSION)) session_start();
+
+
 $ucontroler = new controlador_Usuario();
+$dcontroler = new controlador_Deportista();
 $usuarioActual =  $ucontroler->getUsuarioActual($_SESSION['Dni']);
 if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	header("Location: error.php");
 	exit();
 }
-$dcontroler = new controlador_Deportista();
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
 ?>
 
@@ -54,38 +62,38 @@ $dcontroler = new controlador_Deportista();
 			<?php
 			include("navbar.php");
 			include("wrapper.php");
-      if(isset($_GET['dniDeportista'])){
-        $dniDeportista = $_GET['dniDeportista'];
-        $deportista = $dcontroler->buscarDeportistaDni($dniDeportista);
-        $deportista->getNombre();
 
-      }else{
-        header("Location: ../view/error.php");
-      }
+			if(isset($_GET['dniDeportista'])){
+				$dniDeportista = $_GET['dniDeportista'];
+				$deportista = $dcontroler->buscarDeportistaDni($dniDeportista);
+
+			}else{
+				header("Location: ../view/error.php");
+			}
 			?>
 
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <strong>Nuevo Deportista</strong>
+          <strong><?php echo __('Modificar Deportista',$lang); ?></strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Deportista&amp;accion=modificarDeportista" method="post" class="formulario">
-              <?php echo "Nombre Completo" ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>" class="input" required="true"/>
-              <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>" class="input" pattern="[0-9]{8}[A-Z]{1}" title="El formato debe coincidir con 8 números y 1 letra."/>
+  				<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Deportista&amp;accion=modificarDeportista" method="post" class="formulario">
+              <?php echo __('Nombre completo',$lang); ?>: <input  type="text" name="nombre" value="<?php echo $deportista->getNombre(); ?>" class="input" required="true"/>
+              <?php echo "DNI" ?>: <input type="text" name="dni" value="<?php echo $deportista->getDni(); ?>" class="input" pattern="[0-9]{8}[A-Z]{1}" title="<?php echo __('El formato debe coincidir con 8 números y 1 letra.',$lang); ?>"/>
               <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $deportista->getDni(); ?>"/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" class="input" required="true" value="<?php echo $deportista->getFecha(); ?>"/>
+              <?php echo __('Fecha Nacimiento',$lang); ?>: <input type="date" name="fecha" class="input" required="true" value="<?php echo $deportista->getFecha(); ?>"/>
               <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>" class="input"/>
-              <!--<?php echo "Contraseña" ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>" class="input"/>
-              <label for="tipo">Tipo Actual: <?php echo $deportista->getTipo(); ?>  </label>
-              <?php echo "Modificar Tipo Deportista" ?>: <select name="tipo" class="select">
+              <!--<?php echo  __('Contraseña',$lang); ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>" class="input"/>
+              <label for="tipo"><?php echo __('Tipo Actual',$lang); ?> : <?php echo $deportista->getTipo(); ?>  </label>
+              <?php echo __('Modificar Tipo Deportista',$lang); ?>: <select name="tipo" class="select">
         			                                            <option value="tdu" selected>TDU</option>
         			                                            <option value="pef">PEF</option>
             																	           </select>
-              <?php echo "Riesgos" ?>: <textarea name="riesgos" rows="5" cols="20"><?php echo $deportista->getRiesgos(); ?> </textarea>
+              <?php echo __('Riesgos',$lang); ?>: <textarea name="riesgos" rows="5" cols="20"><?php echo $deportista->getRiesgos(); ?> </textarea>
 							<div class="form_submit">
-								<input id="submit" class="btn btn-primary" type="submit" value="Guardar cambios">
-								<a id="submit" href="adminDeportistas.php" class="btn btn-primary" type="button">Volver</a>
+								<input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Guardar Cambios',$lang); ?>">
+								<a id="submit" href="adminDeportistas.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Volver',$lang); ?> </a>
 							</div>
           </form>
         </div>

@@ -3,6 +3,7 @@ require_once("../resources/conexion.php");
 require_once("../controller/controlador_Notificacion.php");
 require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Deportista.php");
+require_once("../resources/languages.php");
 
 
 if(!isset($_SESSION)) session_start();
@@ -13,6 +14,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	header("Location: error.php");
 	exit();
 }
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
 ?>
 
@@ -61,24 +68,24 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-futbol-o" aria-hidden="true"></i>
-          <strong>Nueva Notificación</strong>
+          <strong><?php echo __('Nueva notificacion',$lang); ?></strong>
         </div>
         <div>
 
 					<?php $deportistas = $dcontroler->listaDeportistas();?>
-  				<form name="form_notif" action="../controller/controlador.php?controlador=controlador_Notificacion&amp;accion=newNotificacion" method="post" >
+  				<form name="form_notif" action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Notificacion&amp;accion=newNotificacion" method="post" >
 						<div class="formulario_not">
 							<div class="info_notif">
-	              <label for="nombre">Título:</label>
+	              <label for="nombre"><?php echo __('Título',$lang); ?> :</label>
 	              <input type="text" name="titulo" class="input_notif" required="true"/>
-	              <label for="nombre">Descripción:</label>
+	              <label for="nombre"><?php echo __('Descripción',$lang); ?> :</label>
 	              <textarea name="descripcion" rows="5" cols="4"></textarea>
 							</div>
 							<div class="receptor_notif">
-								<label for="nombre">Enviar a:</label>
+								<label for="nombre"><?php echo __('Enviar a',$lang); ?>:</label>
 								<div class="radioBtn">
-									<input type="radio" name="receptor" value="todos" required>Todos
-	  						  <input type="radio" name="receptor" value="elegir">Elegir deportistas:
+									<input type="radio" name="receptor" value="todos" required><?php echo __('Todos',$lang); ?>
+	  						  <input type="radio" name="receptor" value="elegir"><?php echo __('Elegir deportistas:',$lang); ?>
 								</div>
 								<div class="lista_receptor">
 								<ul>
@@ -94,7 +101,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 						</div>
 
 							<div class="form_submit">
-								<input id="submit" class="btn btn-primary" type="submit" value="Enviar Notificación">
+								<input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Enviar Notificación',$lang); ?>">
 							</div>
           </form>
         </div>

@@ -11,6 +11,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 
@@ -62,13 +68,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 			
 			<div id="datos_user" class="container-fluid">
 				<div id="titulo_perfil" class="titulo_seccion">
-					<h2><strong>Perfil:</strong><?php echo $_SESSION['rol']; ?></h2>
+					<h2><strong><?php echo __('Perfil',$lang); ?> : </strong><?php echo $_SESSION['rol']; ?></h2>
 						<div class="bloque_lista">
 							<div class="info_bloque">
-								<h4><strong> Nombre: </strong><br> <?php echo $usuarioActual-> getNombre(); ?></br></h4>
+								<h4><strong> <?php echo __('Nombre',$lang); ?> : </strong><br> <?php echo $usuarioActual-> getNombre(); ?></br></h4>
 								<h4><strong> Dni: </strong><br> <?php echo $usuarioActual-> getDni(); ?> </br></h4>
 								<h4><strong> Email: </strong><br> <?php  echo $usuarioActual-> getEmail(); ?> </br></h4>
-								<h4><strong> Edad: </strong><br> <?php echo $usuarioActual-> getEdad(); ?> </br></h4>
+								<h4><strong> <?php echo __('Edad',$lang) ; ?>: </strong><br> <?php echo $usuarioActual-> getEdad(); ?> </br></h4>
 							</div>
 						</div>
 					</div>

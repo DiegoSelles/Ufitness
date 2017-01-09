@@ -2,6 +2,8 @@
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Deportista.php");
+require_once("../resources/languages.php");
+
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
 $dcontroler = new controlador_Deportista();
@@ -10,6 +12,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	header("Location: error.php");
 	exit();
 }
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
 ?>
 
@@ -63,16 +71,16 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-users" aria-hidden="true"></i>
-              <strong>Deportistas</strong>
+              <strong><?php echo __('Deportistas',$lang); ?></strong>
             </div>
             <div class="listado">
               <div class="header_lista">
                 <div class="titulo_lista">
-                  <h1>Lista de Deportistas</h1>
+                  <h1><?php echo __('Lista de Deportistas',$lang); ?></h1>
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
-                      <input type="text" class="form-control input-lg" placeholder="Buscar Deportista" />
+                      <input type="text" class="form-control input-lg" placeholder=<?php echo __('Buscar Deportista',$lang); ?> />
                       <span class="input-group-btn">
                           <button class="btn btn-info btn-lg" type="button">
                               <i class="glyphicon glyphicon-search"></i>
@@ -81,7 +89,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
                   </div>
                 </div>
                 <div class="anadir">
-                  <a id="btn_anadir" href="../view/crearDeportista.php" class="btn btn-primary" type="button">Registrar Deportista</a>
+                  <a id="btn_anadir" href="../view/crearDeportista.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Registrar Deportista',$lang); ?></a>
                 </div>
               </div>
 
@@ -102,13 +110,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 								              </div>
 								              <div class="info_bloque">
 								                <p>DNI: <?php echo $deportista->getDni(); ?></p>
-								                <p>Edad: <?php echo $deportista->getEdad(); ?></p>
-								                <p>Riesgos: <?php echo $deportista->getRiesgos(); ?>  </p>
+								                <p> <?php echo __('Edad',$lang); ?> : <?php echo $deportista->getEdad(); ?></p>
+								                <p> <?php echo __('Riesgos',$lang); ?> : <?php echo $deportista->getRiesgos(); ?>  </p>
 								              </div>
 								              <div class="opciones_bloque">
-								                <a id="btn_edit_bloque" href="modificarDeportista.php?dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-								                <a id="btn_asignar" href="asignarEntrenamiento.php?DniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-								                <a id="btn_eliminar" href="eliminarDeportista.php?dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								                <a id="btn_edit_bloque" href="modificarDeportista.php?lang=<?php echo $lang; ?>&dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Editar',$lang); ?>" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+								                <a id="btn_asignar" href="asignarEntrenamiento.php?lang=<?php echo $lang; ?>&DniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Asignar Entrenamiento',$lang); ?>" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+								                <a id="btn_eliminar" href="eliminarDeportista.php?lang=<?php echo $lang; ?>&dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								              </div>
 								            </div>
 								          </ul>
@@ -131,13 +139,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 													 </div>
 													 <div class="info_bloque">
 														 <p>DNI: <?php echo $deportista->getDni(); ?></p>
-														 <p>Edad: <?php echo $deportista->getEdad(); ?></p>
-														 <p>Riesgos: <?php echo $deportista->getRiesgos(); ?>  </p>
+														 <p> <?php echo __('Edad',$lang); ?> : <?php echo $deportista->getEdad(); ?></p>
+														 <p> <?php echo __('Riesgos',$lang); ?> : <?php echo $deportista->getRiesgos(); ?>  </p>
 													 </div>
 													 <div class="opciones_bloque">
-														 <a id="btn_edit_bloque" href="modificarDeportista.php?dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Editar" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-														 <a id="btn_asignar" href="asignarEntrenamiento.php?dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Asignar Entrenamiento" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-														 <a id="btn_eliminar" href="eliminarDeportista.php?dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														 <a id="btn_edit_bloque" href="modificarDeportista.php?lang =<?php echo $lang; ?>&dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Editar',$lang); ?>" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+														 <a id="btn_asignar" href="asignarEntrenamiento.php?lang=<?php echo $lang; ?>&dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Asignar Entrenamiento',$lang); ?>" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+														 <a id="btn_eliminar" href="eliminarDeportista.php?lang=<?php echo $lang; ?>&dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 													 </div>
 												 </div>
 											 </ul>

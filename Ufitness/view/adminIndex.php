@@ -2,6 +2,7 @@
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
 require_once("../controller/controlador_Notificacion.php");
+require_once("../resources/languages.php");
 
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
@@ -11,6 +12,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	header("Location: error.php");
 	exit();
 }
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
 ?>
 
@@ -60,16 +67,16 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
 			<div id="contenido" class="container-fluid">
 				<div id="titulo_index" class="titulo_seccion">
-					<h1><strong>Bienvenido a UFitness</strong></h1>
+					<h1><strong><?php echo __('Bienvenido a Ufitness',$lang); ?></strong></h1>
 				</div>
 				<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"):?>
 				<div class="contenido_index">
-					<a type="button" id="btn_notificacion" class="btn btn-primary" href="crearNotificacion.php" >Nueva Notificación</a>
+					<a type="button" id="btn_notificacion" class="btn btn-primary" href="crearNotificacion.php?lang=<?php echo $lang; ?>" ><?php echo __('Nueva notificacion',$lang); ?></a>
 				</div>
 				<div class="listado">
 					<div class="header_lista">
 							<div class="titulo_lista">
-									<h1>Últimas Notificaciones.</h1>
+									<h1><?php echo __('Ultimas notifaciones',$lang); ?></h1>
 							</div>
 					</div>
 					<?php
@@ -101,15 +108,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 									if($listaNotificaciones==NULL):
 								?>
 									<div >
-									<h1>No tienes notificaciones nuevas.</h1>
+									<h1><?php echo __('No tienes notificaciones nuevas.',$lang); ?></h1>
 									</div>
 									<div>
-										<img class="img-visto" src="img/visto.png" alt="visto"/>
+										<img class="img-visto" src="img/visto.png" alt="Visto"/>
 									</div>
 								<?php
 									else:
 								?>
-									<h1>¡Tienes nuevas notificaciones!</h1>
+									<h1><?php echo __('¡Tienes nuevas notificaciones!',$lang); ?></h1>
 								<?php
 									endif;
 								?>
@@ -128,9 +135,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 								<p><?php echo $notificacion->getDescripcion(); ?></p>
 							</div>
 							<div class="opciones_bloque">
-								<form action="../controller/controlador.php?controlador=controlador_Notificacion&amp;accion=notificacionVista" method="post" id = "form_notificacion">
+								<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Notificacion&amp;accion=notificacionVista" method="post" id = "form_notificacion">
                   <input type="hidden" name="idNotificacion" value="<?=$notificacion->getId();?>">
-	                <a onclick="document.getElementById('form_notificacion').submit();" id="btn_visto" class="btn btn-primary " title="visto" type="button">
+	                <a onclick="document.getElementById('form_notificacion').submit();" id="btn_visto" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
 	                  <i class="fa fa-check " aria-hidden="true"></i>
 	                </a>
                 </form>

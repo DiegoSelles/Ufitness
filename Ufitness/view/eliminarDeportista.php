@@ -19,6 +19,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 ?>
 
 <html lang="en">
@@ -69,26 +74,26 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <strong>¿Está seguro de que quiere eliminar a este Deportista?</strong>
+          <strong><?php echo __('¿Está seguro que quiere eliminar a este deportista?',$lang); ?></strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Deportista&amp;accion=eliminar" method="post" class="formulario">
-              <label>Nombre: <?php echo $deportista->getNombre(); ?></label>
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Deportista&amp;accion=eliminar" method="post" class="formulario">
+              <label> <?php echo __('Nombre',$lang); ?> : <?php echo $deportista->getNombre(); ?></label>
                <br/>
               <label>DNI: <?php echo $deportista->getDni(); ?></label>
                <br/>
-              <label>Edad: <?php echo $deportista->getEdad(); ?></label>
+              <label><?php echo __('Edad',$lang); ?> : <?php echo $deportista->getEdad(); ?></label>
                <br/>
               <label>E-mail: <?php echo $deportista->getEmail(); ?></label>
               <br/>
-              <label>Tipo Deportista: <?php echo $deportista->getTipo(); ?></label>
+              <label> <?php echo __('Tipo Deportista',$lang); ?> : <?php echo $deportista->getTipo(); ?></label>
               <br/>
-              <label>Riesgos: <?php echo $deportista->getRiesgos(); ?></label>
+              <label><?php echo __('Riesgos',$lang); ?> : <?php echo $deportista->getRiesgos(); ?></label>
 
               <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />
               <div class="form_submit">
-                <input id="submit" class="btn btn-primary" type="submit" value="SI">
-                <a id="submit" href="adminDeportistas.php" class="btn btn-primary" type="button">NO</a>
+                <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('SI',$lang); ?>">
+                <a id="submit" href="adminDeportistas.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('NO',$lang); ?></a>
               </div>
           </form>
         </div>

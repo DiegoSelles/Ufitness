@@ -14,6 +14,12 @@ if($_SESSION['rol'] != "administrador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -64,18 +70,18 @@ if($_SESSION['rol'] != "administrador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-edit" aria-hidden="true"></i>
-          <strong>Modificar Entrenador</strong>
+          <strong><?php echo __('Modificar Entrenador',$lang); ?></strong>
         </div>
         <div >
-         <form action="../controller/controlador.php?controlador=controlador_Usuario&amp;accion=editar" method="post" class="formulario">
-              <?php echo  "Nombre"  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input" required="true"/> <br/>
-              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input" required="true" pattern="[0-9]{8}[A-Z]{1}" title="El formato debe coincidir con 8 números y 1 letra."/>
+         <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Usuario&amp;accion=editar" method="post" class="formulario">
+              <?php echo  __('Nombre',$lang);  ?>: <input  type="text" name="nombre" value="<?php echo $usuario->getNombre(); ?>" class="input" required="true"/> <br/>
+              <?php echo "DNI" ?>: <input type="text" name="Dni" value="<?php echo $usuario->getDni(); ?>"  class="input" required="true" pattern="[0-9]{8}[A-Z]{1}" title="<?php echo __('El formato debe coincidir con 8 números y 1 letra.',$lang); ?>"/>
               <br/>
-              <?php echo "Fecha Nacimiento" ?>: <input type="date" name="fecha" value="<?php echo $usuario->getFecha(); ?>" required="true" />
+              <?php echo __('Fecha Nacimiento',$lang); ?>: <input type="date" name="fecha" value="<?php echo $usuario->getFecha(); ?>" required="true" />
               <br/>
               <?php echo "E-mail" ?>: <input type="text" name="email" value="<?php echo $usuario->getEmail(); ?>" class="input"/>
               <br/>
-              <?php echo "Contraseña" ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" class="input" required="true" />
+              <?php echo __('Contraseña',$lang); ?>: <input type="password" name="password" value="<?php echo $usuario->getPassword(); ?>" class="input" required="true" />
 
               <input type="text" name="rol" hidden="true" value="entrenador" class="input"/>
               <input type="text" name="dniAntiguo" hidden="true" value="<?php echo $usuario->getDni(); ?>" class="input"/>
@@ -83,8 +89,8 @@ if($_SESSION['rol'] != "administrador"){
 
              <!-- <input type="text" hidden="true" name="dni" value="<?php echo $dni; ?>" />-->
              <div class="form_submit">
-               <input id="submit" class="btn btn-primary" type="submit" value="Guardar Cambios">
-               <a id="submit" href="adminEntrenadores.php" class="btn btn-primary" type="button">Volver</a>
+               <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Guardar Cambios',$lang); ?>">
+               <a id="submit" href="adminEntrenadores.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Volver',$lang); ?></a>
  						</div>
               <br/>
           </form>

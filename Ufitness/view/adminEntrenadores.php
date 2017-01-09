@@ -1,6 +1,7 @@
 <?php
 require_once("../resources/conexion.php");
 require_once("../controller/controlador_Usuario.php");
+require_once("../resources/languages.php");
 
 if(!isset($_SESSION)) session_start();
 $ucontroler = new controlador_Usuario();
@@ -9,6 +10,12 @@ if($_SESSION['rol'] != "administrador"){
 	header("Location: error.php");
 	exit();
 }
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
 ?>
 
@@ -80,12 +87,12 @@ if($_SESSION['rol'] != "administrador"){
  <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-users" aria-hidden="true"></i>
-              <strong>Entrenadores</strong>
+              <strong><?php echo __('Entrenadores',$lang); ?></strong>
             </div>
             <div class="listado">
               <div class="header_lista">
                 <div class="titulo_lista">
-                  <h1>Lista de Entrenadores </h1>
+                  <h1><?php echo __('Lista de Entrenadores',$lang); ?> </h1>
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
@@ -93,7 +100,7 @@ if($_SESSION['rol'] != "administrador"){
                   </div>
                 </div>
                 <div class="anadir">
-                  <a id="btn_anadir"  href="../view/crearEntrenador.php" class="btn btn-primary" type="button">Añadir Entrenador</a>
+                  <a id="btn_anadir"  href="../view/crearEntrenador.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Añadir Entrenador',$lang); ?></a>
                 </div>
               </div>
               <div class="body_pagina">
@@ -111,7 +118,7 @@ if($_SESSION['rol'] != "administrador"){
                         </div>
                         <div class="info_bloque">
                           <p>Dni: <?php echo $usuario->getDni(); ?>    </p>
-                          <p>Edad: <?php echo $usuario->getEdad(); ?>    </p>
+                          <p> <?php echo __('Edad',$lang); ?> : <?php echo $usuario->getEdad(); ?>    </p>
                           <p>Email:   <?php echo $usuario->getEmail(); ?> </p>
                         </div>
                         <div class="opciones_bloque">
@@ -121,9 +128,9 @@ if($_SESSION['rol'] != "administrador"){
                              var usuarioEliminar = '<?php echo $usuarioEliminar; ?>'
                            </script>
 
-                            <a id="btn_edit_bloque" href="../view/modificarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a>
+                            <a id="btn_edit_bloque" href="../view/modificarEntrenador.php?lang=<?php echo $lang; ?>&dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="<?php echo __('modificar',$lang); ?>"></i></a>
 
-                            <a id="btn_eliminar" href="eliminarEntrenador.php?dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" title="Eliminar" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a id="btn_eliminar" href="eliminarEntrenador.php?lang=<?php echo $lang; ?>&dni=<?php echo $usuarioEliminar; ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </div>
                       </div>
 

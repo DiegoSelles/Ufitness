@@ -1,6 +1,13 @@
 <?php
 require_once("../controller/controlador_Actividad.php");
+require_once("../resources/languages.php");
 $acontroler = new controlador_Actividad();
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 ?>
 
 <!DOCTYPE html>
@@ -53,20 +60,27 @@ $acontroler = new controlador_Actividad();
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-logo" href="../index.php"><img class="img-logo" src="img/logo.png" alt="logo"/></a>
+                <?php
+                if($lang == "es"){
+					echo '<a class="idiomaEN" href="userActividades.php?lang=en"><img class="img-ID" src="img/EN.png" alt="Ingles"/></a>';
+				}else{
+					echo '<a class="idiomaESP" href="userActividades.php?lang=es"><img class="img-ID" src="img/ES.png" alt="Español"/></a>';
+				}
+				?>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"> Entrar <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"> <?php echo __('Entrar',$lang); ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                         <div class="col-lg-12">
-                            <div class="text-center"><h3><b>Entrar</b></h3></div>
+                            <div class="text-center"><h3><b><?php echo __('Entrar',$lang); ?></b></h3></div>
                                 <div class="form-group">
-                                  <form action="controller/controlador.php?controlador=controlador_Usuario&amp;accion=login" method="post">
+                                  <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Usuario&amp;accion=login" method="post">
                                     <label for="username">DNI</label>
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="DNI del usuario" value="" autocomplete="off">
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña" autocomplete="off">
+                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="<?php echo __('DNI del usuario',$lang); ?>" value="" autocomplete="off">
+                                    <label for="password"><?php echo __('Contraseña',$lang); ?></label>
+                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="<?php echo __('Contraseña',$lang); ?>" autocomplete="off">
                                     <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
                                   </form>
                                 </div>
@@ -75,7 +89,7 @@ $acontroler = new controlador_Actividad();
                                     <div class="row">
                                         <div class="col-xs-7">
                                             <input type="checkbox" tabindex="3" name="remember" id="remember">
-                                            <label for="remember"> Recordarme </label>
+                                            <label for="remember"> <?php echo __('Recordarme',$lang); ?> </label>
                                         </div>
                                     </div>
                                 </div>
@@ -92,16 +106,16 @@ $acontroler = new controlador_Actividad();
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
                 <i class="fa fa-futbol-o" aria-hidden="true"></i>
-                <strong>Actividades</strong>
+                <strong><?php echo __('Actividades',$lang); ?></strong>
             </div>
             <div class="listado">
                 <div class="header_lista">
                     <div class="titulo_lista">
-                    <h1>Lista de Actividades </h1>
+                    <h1><?php echo __('Lista de Actividades',$lang); ?> </h1>
                     </div>
                     <div id="custom-search-input">
                         <div class="input-group col-md-12">
-                            <input type="text" class="form-control input-lg" placeholder="Buscar Actividad">
+                            <input type="text" class="form-control input-lg" placeholder="<?php echo __('Buscar Actividad',$lang); ?>">
                             <span class="input-group-btn">
                                 <button class="btn btn-info btn-lg" type="button">
                                 <i class="glyphicon glyphicon-search"></i>
@@ -122,10 +136,10 @@ $acontroler = new controlador_Actividad();
 							</a>
 						</div>
 						<div class="info_bloque">
-							<p>Horario: <?php echo $actividad->getHorario(); ?></p>
-							<p>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></p>
-							<p>Lugar: <?php echo $actividad->getLugar(); ?></p>
-							<p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
+							<p> <?php echo __('Horario',$lang); ?> : <?php echo $actividad->getHorario(); ?></p>
+							<p> <?php echo __('Tipo de actividad',$lang); ?> : <?php echo $actividad->getTipoActividad(); ?></p>
+							<p> <?php echo __('Numero de plazas',$lang); ?>: <?php echo $actividad->getNumPlazas(); ?></p>
+							<p> <?php echo __('Lugar',$lang); ?>: <?php echo $actividad->getLugar(); ?></p>
 						</div>
 
 					</div>
