@@ -85,8 +85,14 @@ class controlador_Entrenamiento{
   }
 
   public function modificarEntrenamiento (){
-		$entrenamientoMapper = new EntrenamientoMapper();
+	$entrenamientoMapper = new EntrenamientoMapper();
     $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+    
+    if (isset($_GET['lang'])) {
+		$lang = $_GET['lang'];
+     }else{
+		$lang="es";
+	  }
 
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
       $idEntrenamiento  = $_POST['idEnt'];
@@ -139,6 +145,12 @@ class controlador_Entrenamiento{
   public function anhadir() {
     $entrenamientoMapper = new EntrenamientoMapper();
     $entrenamientoHasEjercicioMapper = new EntrenamientoHasEjercicioMapper();
+    
+    if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
 
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
@@ -191,12 +203,18 @@ class controlador_Entrenamiento{
 
      }*/
     }
-    header("Location: ../view/adminEntrenamientos.php");
+    header("Location: ../view/adminEntrenamientos.php?lang=$lang");
 
 
   }
 
   public function eliminarEntrenamiento() {
+	  
+	 if (isset($_GET['lang'])) {
+		$lang = $_GET['lang'];
+     }else{
+		$lang="es";
+	  }
 
     if (!isset($_POST["id"])) {
       throw new Exception("id is mandatory");
@@ -216,7 +234,7 @@ class controlador_Entrenamiento{
       $entrenamientoHasEjercicioMapper->eliminarEntHasEjer($entrenamiento->getId());
     }
 
-    header("Location: ../view/adminEntrenamientos.php");
+    header("Location: ../view/adminEntrenamientos.php?lang=$lang");
   }
 
     public function asignacionEntrenamiento($dni,$nombre){
@@ -245,6 +263,12 @@ class controlador_Entrenamiento{
     $idEjercicio=$_POST["idEjercicio"];
     $anotaciones=$_POST["anotacion"];
     $fecha=$_POST["fecha"];
+    
+    if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
     $sesion = new Sesion($dniDeportista,$idEntrenamiento,$idEjercicio,$anotaciones,$fecha);
 
@@ -263,6 +287,12 @@ class controlador_Entrenamiento{
    }
 
    public function imprimirEntrenamiento(){
+	   if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+       }else{
+			$lang="es";
+	   }
+	   
 		if (!isset($_POST["id"]) && !isset($_POST["idEjer"])) {
 			throw new Exception("id is mandatory");
 		}
