@@ -19,6 +19,12 @@ class controlador_Deportista{
 
     $deportistaMapper = new DeportistaMapper();
     $usuarioMapper = new UsuarioMapper();
+    
+    if (isset($_GET['lang'])) {
+		$lang = $_GET['lang'];
+	} else {
+		$lang = "es";
+	}
 
     if(isset($_POST["nombre"])){ //Cogemos los datos de http
 
@@ -35,9 +41,9 @@ class controlador_Deportista{
             $deportistaMapper->guardarDeportista($deportista);
             $usuarioMapper->guardarUsuario($usuario);
 
-            echo '<script language="javascript">alert("Se ha creado el deportista."); window.location.href="../view/adminDeportistas.php";</script>';
+            echo '<script language="javascript">alert("Se ha creado el deportista."); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
       	} else {
-      	  echo '<script language="javascript">alert("Ya existe un deportista con el mismo DNI."); window.location.href="../view/adminDeportistas.php";</script>';
+      	  echo '<script language="javascript">alert("Ya existe un deportista con el mismo DNI."); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
 
       	}
       }catch(ValidationException $ex) {
@@ -61,6 +67,12 @@ class controlador_Deportista{
 
     $deportistaMapper = new DeportistaMapper();
     $usuarioMapper = new UsuarioMapper();
+    if (isset($_GET['lang'])) {
+		$lang = $_GET['lang'];
+	} else {
+		$lang = "es";
+	}
+	
     if (!isset($_POST["dni"])) {
       throw new Exception("id is mandatory");
     }
@@ -90,7 +102,7 @@ class controlador_Deportista{
     // header("Location: index.php?controller=posts&action=index")
     // die();
     //$this->view->redirect("posts", "index");
-    header("Location: ../view/adminDeportistas.php");
+    header("Location: ../view/adminDeportistas.php?lang=$lang");
   }
 
   public function buscarDeportistaDni($dni){
@@ -100,6 +112,11 @@ class controlador_Deportista{
   public function modificarDeportista(){
     $deportistaMapper  = new DeportistaMapper();
     $usuarioMapper  = new UsuarioMapper();
+        if (isset($_GET['lang'])) {
+		$lang = $_GET['lang'];
+	} else {
+		$lang = "es";
+	}
     $nombre_deportista = $_POST['nombre'];
     $dni_deportista = $_POST['dni'];
     $email_deportista = $_POST['email'];
@@ -108,12 +125,14 @@ class controlador_Deportista{
     $fecha_deportista = $_POST['fecha'];
     $password_deportista = $_POST['password'];
     $dniAntiguo = $_POST['dniAntiguo'];
+    
+
 
     $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$fecha_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
     $usuario = new Usuario($nombre_deportista,$email_deportista,$password_deportista,$fecha_deportista,$dni_deportista,"deportista");
     $deportistaMapper->modificarDeportista($deportista,$dniAntiguo);
     $usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
-    echo '<script language="javascript">alert("Se ha modificado el deportista."); window.location.href="../view/adminDeportistas.php";</script>';
+    echo '<script language="javascript">alert("Se ha modificado el deportista."); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
   }
 
 }

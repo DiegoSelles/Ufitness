@@ -16,8 +16,13 @@ class controlador_Usuario{
 			global $connect;
 			$usuario = $_POST['username'];
 			$password = $_POST['password'];
+			if (isset($_GET['lang'])) {
+				$lang = $_GET['lang'];
+			} else {
+				$lang = "es";
+			}
 			if(empty($usuario) || empty($password)){
-				header("Location: ../index.php");
+				header("Location: ../index.php?lang=$lang");
 				exit();
 			}
 			$consulta = "SELECT * FROM Usuario WHERE Dni='". $usuario."'";
@@ -27,13 +32,13 @@ class controlador_Usuario{
 				session_start();
 				$_SESSION['Dni'] = $usuario;
 				$_SESSION['rol'] = $row['rol'];
-				header("Location: ../view/adminIndex.php");
+				header("Location: ../view/adminIndex.php?lang=$lang");
 				}else{
-					header("Location: ../index.php");
+					header("Location: ../index.php?lang=$lang");
 					exit();
 				}
 			}else{
-				header("Location: ../index.php");
+				header("Location: ../index.php?lang=$lang");
 				exit();
 			}
 		}
@@ -41,7 +46,12 @@ class controlador_Usuario{
 		public static function logout(){
 			if(!isset($_SESSION)) session_start();
 			session_destroy();
-			header("Location: ../index.php");
+			if (isset($_SESSION['lang'])) {
+				$lang = $_SESSION['lang'];
+			} else {
+				$lang = "es";
+			}
+			header("Location: ../index.php?lang=$lang");
 		}
 
 		public static function getUsuarioActual($Dni){
@@ -62,12 +72,18 @@ class controlador_Usuario{
 		public static function anhadir()
 		{
     		$usuarioMapper = new UsuarioMapper();
+    		if (isset($_GET['lang'])) {
+				$lang = $_GET['lang'];
+			} else {
+				$lang = "es";
+			}
 
 		    if(isset($_POST["nombre"]))
 		    {
 
 			    $fecha = $_POST["fecha"];
 			    $fechaNac = str_replace("/","-",$fecha);
+
 
 			    $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$fechaNac,$_POST["dni"],"entrenador");
 
@@ -76,11 +92,11 @@ class controlador_Usuario{
 			     		{
 				    //  		$usuario->comprobarDatos();
 				      		$usuarioMapper->guardarUsuario($usuario);
-				      		header("Location: ../view/adminEntrenadores.php");
+				      		header("Location: ../view/adminEntrenadores.php?lang=$lang");
 						}
 						else
 						{
-							echo '<script language="javascript">alert("Ya existe un entrenador con el mismo DNI."); window.location.href="../view/adminEntrenadores.php";</script>';
+							echo '<script language="javascript">alert("Ya existe un entrenador con el mismo DNI."); window.location.href="../view/adminEntrenadores.php?lang=$lang";</script>';
 				      	}
 
 		      	}catch(ValidationException $ex)
@@ -102,22 +118,32 @@ class controlador_Usuario{
 			$password = $_POST["password"];
 			$fecha = $_POST["fecha"];
 		    $fechaNac = str_replace("/","-",$fecha);
+		    if (isset($_GET['lang'])) {
+				$lang = $_GET['lang'];
+			} else {
+				$lang = "es";
+			}
 
 			$usuario = new Usuario($nombre,$email,$password,$fechaNac,$dni,"entrenador");
 
 			$usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
-			header("Location: ../view/adminEntrenadores.php");
+			header("Location: ../view/adminEntrenadores.php?lang=$lang");
 		}
 
 	public static function eliminar()
 	{
 		$dni = $_POST["dni"];
 		//$usuario = $this->usuarioMapper->find($dni);
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		} else {
+			$lang = "es";
+		}
 
 		$usuarioMapper = new UsuarioMapper();
 		$usuarioMapper->eliminarUsuario($dni);
 
-	    header("Location: ../view/adminEntrenadores.php");
+	    header("Location: ../view/adminEntrenadores.php?lang=$lang");
 	}
 
 }

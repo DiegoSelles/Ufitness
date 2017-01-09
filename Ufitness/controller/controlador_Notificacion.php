@@ -24,11 +24,17 @@ class controlador_Notificacion{
 	public function newNotificacion(){
 
 		$notificacionHasDeportistaMapper = new NotificacionHasDeportistaMapper();
-    $notificacionMapper = new NotificacionMapper();
+		$notificacionMapper = new NotificacionMapper();
 		$deportistaMapper = new DeportistaMapper();
+		
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		}else{
+		   $lang="es";
+		}
 
 		$titulo = $_POST['titulo'];
-    $descripcion = $_POST['descripcion'];
+		$descripcion = $_POST['descripcion'];
 		$receptor=$_POST['receptor'];
 
 		if($receptor=="todos"){
@@ -65,7 +71,7 @@ class controlador_Notificacion{
 				}
 			}
 		}
-		header ("Location: ../view/adminIndex.php");
+		header ("Location: ../view/adminIndex.php?lang=$lang");
 
 	}
 
@@ -81,26 +87,19 @@ class controlador_Notificacion{
 		return $this->notificacionMapper->listaNotificaciones();
 	}
 
-	public function delete(){
-		if (!isset($_POST["idActividad"])) {
-			//Esta excepcion habría que capturarla en algun lado
-			//throw new Exception("id is mandatory");
-	   	 }
-		$idActividad = $_REQUEST["idActividad"];
-		$actividadMapper = new ActividadMapper();
-		$actividadMapper->eliminarActividad($idActividad);
-		header ("Location: ../view/adminActividades.php");
-
-
-	}
 	public function notificacionVista(){
 		$notificacionHasDeportistaMapper = new NotificacionHasDeportistaMapper();
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		}else{
+		   $lang="es";
+		}
 		if (isset($_POST["idNotificacion"])) {
 			$idNotificacion= $_REQUEST["idNotificacion"];
 			$notificacionHasDeportistaMapper->notificacionVista($idNotificacion,$_SESSION["Dni"]);
 
 	  }
-		header ("Location: ../view/adminIndex.php");
+		header ("Location: ../view/adminIndex.php?lang=$lang");
 
 	}
 
