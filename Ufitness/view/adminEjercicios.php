@@ -13,6 +13,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 
@@ -67,16 +73,16 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-bicycle" aria-hidden="true"></i>
-              <strong>Ejercicios</strong>
+              <strong><?php echo __('Ejercicios',$lang); ?></strong>
             </div>
             <div class="listado">
               <div class="header_lista">
                 <div class="titulo_lista">
-                  <h1>Lista de Ejercicios </h1>
+                  <h1><?php echo __('Lista de Ejercicios',$lang); ?> </h1>
                 </div>
                 <div id="custom-search-input">
                   <div class="input-group col-md-12">
-                      <input type="text" class="form-control input-lg" placeholder="Buscar Ejercicio" />
+                      <input type="text" class="form-control input-lg" placeholder="<?php echo __('Buscar Ejercicio',$lang); ?>" />
                       <span class="input-group-btn">
                           <button class="btn btn-info btn-lg" type="button">
                               <i class="glyphicon glyphicon-search"></i>
@@ -86,14 +92,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 </div>
 								<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                 <div class="anadir">
-                  <a id="btn_anadir" href="crearEjercicio.php" class="btn btn-primary" type="button">Añadir Ejercicio</a>
+                  <a id="btn_anadir" href="crearEjercicio.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Añadir Ejercicio',$lang); ?></a>
                 </div>
 								<?php } ?>
               </div>
               <div class="body_pagina">
                 <nav id = "desplegable1">
                   <ul>
-              			<li id="nivel1"><a class= "btn_nivel" id = "activador_1"  href="#"><i id = "activador_1" class="fa fa-chevron-down" ></i> Piernas</a>
+              			<li id="nivel1"><a class= "btn_nivel" id = "activador_1"  href="#"><i id = "activador_1" class="fa fa-chevron-down" ></i><?php echo __('Piernas',$lang); ?></a>
 											<?php
 											 $ejercicios = $econtroler->listaEjerciciosGrupo("Piernas");
 											 foreach ($ejercicios as $ejercicio) {
@@ -102,20 +108,20 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
 
-														<a href = "../view/verEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>">
+														<a href = "../view/verEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>">
                             	<h1> <?php echo $ejercicio->getNombre(); ?> <h1>
 														</a>
                           </div>
                           <div class="info_bloque">
-                            <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
-                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
-                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
 													<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                           <div class="opciones_bloque">
-														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>"
-															 class="btn btn-primary" type="button" title="modificar"><i class="fa fa-edit" aria-hidden="true" ></i></a>
-                            <a id="btn_eliminar" href="eliminarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button" title="eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>"
+															 class="btn btn-primary" type="button" title="<?php echo __('modificar',$lang); ?>"><i class="fa fa-edit" aria-hidden="true" ></i></a>
+                            <a id="btn_eliminar" href="eliminarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button" title="<?php echo __('Eliminar',$lang); ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                           </div>
 													<?php } ?>
                         </div>
@@ -127,7 +133,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                 <nav id = "desplegable2">
                   <ul>
-                    <li id="nivel2"><a class= "btn_nivel" id = "activador_2"  href="#"><i id = "activador_2" class="fa fa-chevron-down" ></i> Brazos</a>
+                    <li id="nivel2"><a class= "btn_nivel" id = "activador_2"  href="#"><i id = "activador_2" class="fa fa-chevron-down" ></i><?php echo __('Brazos',$lang); ?></a>
 											<?php
 											 $ejercicios = $econtroler->listaEjerciciosGrupo("Brazos");
 											 foreach ($ejercicios as $ejercicio) {
@@ -135,19 +141,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 											<ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
-														<a href = "../view/verEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>">
+														<a href = "../view/verEjercicio.php?lang=?<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>">
                             	<h1> <?php echo $ejercicio->getNombre(); ?> <h1>
 														</a>
                           </div>
                           <div class="info_bloque">
-                            <p>Descripción: <?php echo $ejercicio->getDescripcion(); ?></p>
-                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
-                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
 													<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                           <div class="opciones_bloque">
-														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a>
-														<a id="btn_eliminar" href="eliminarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>                          </div>
+														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="<?php echo __('modificar',$lang); ?>"></i></a>
+														<a id="btn_eliminar" href="eliminarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button" title="<?php echo __('Eliminar',$lang); ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>                          </div>
                         	</div>
 													<?php } ?>
               				</ul>
@@ -158,7 +164,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                 <nav id = "desplegable3">
                   <ul>
-              			<li id="nivel3"><a class= "btn_nivel" id = "activador_3"  href="#"><i id = "activador_3" class="fa fa-chevron-down" ></i> Espalda</a>
+              			<li id="nivel3"><a class= "btn_nivel" id = "activador_3"  href="#"><i id = "activador_3" class="fa fa-chevron-down" ></i><?php echo __('Espalda',$lang); ?></a>
 											<?php
 											 $ejercicios = $econtroler->listaEjerciciosGrupo("Espalda");
 											 foreach ($ejercicios as $ejercicio) {
@@ -173,14 +179,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 
                           </div>
                           <div class="info_bloque">
-                            <p>Descripción: <?php echo $ejercicio->getNombre(); ?></p>
-                            <p>Máquina: <?php echo $ejercicio->getMaquina(); ?></p>
-                            <p>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getNombre(); ?></p>
+                            <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
+                            <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
 													<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                           <div class="opciones_bloque">
-														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="modificar"></i></a>
-														<a id="btn_eliminar" href="eliminarEjercicio.php?idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>                          </div>
+														<a id="btn_edit_bloque" href="../view/modificarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true" title="<?php echo __('modificar',$lang); ?>"></i></a>
+														<a id="btn_eliminar" href="eliminarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>" class="btn btn-primary" type="button" title="<?php echo __('Eliminar',$lang); ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>                         </div>
                         </div>
 												<?php } ?>
                       </ul>

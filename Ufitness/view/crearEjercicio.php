@@ -12,6 +12,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -59,40 +65,40 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-bicycle" aria-hidden="true"></i>
-          <strong>Nuevo Ejercicio</strong>
+          <strong><?php echo __('Nuevo Ejercicio',$lang); ?></strong>
         </div>
         <div >
 
-          <form enctype = "multipart/form-data" action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=registrarEjercicio" method="post" class="formulario">
+          <form enctype = "multipart/form-data" action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Ejercicio&amp;accion=registrarEjercicio" method="post" class="formulario">
 						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" class="input"/>
 
-						<label for="nombre">Nombre Ejercicio:</label>
+						<label for="nombre"><?php echo __('Nombre Ejercicio',$lang); ?>:</label>
 						<input type="text" name="nombre" class="input" required="true"/>
-						<label for="tipoEjercicio">Tipo del ejercicio:</label>
+						<label for="tipoEjercicio"><?php echo __('Tipo de Ejercicio',$lang); ?>:</label>
 						<select name="tipoEjercicio" class="select">
-								<option value="Cardio" >Cardio</option>
-								<option value="Estiramientos">Estiramientos</option>
-								<option value="Muscular">Muscular</option>
+								<option value="Cardio" ><?php echo __('Cardio',$lang); ?></option>
+								<option value="Estiramientos"><?php echo __('Estiramientos',$lang); ?></option>
+								<option value="Muscular"><?php echo __('Muscular',$lang); ?></option>
 						</select>
-						<label for="maquina">Maquina:</label>
+						<label for="maquina"><?php echo __('Máquina',$lang); ?> :</label>
 						<input type="text" name="maquina" class="input"/>
-						<label for="grupoMuscular">Grupo Muscular:</label>
+						<label for="grupoMuscular"><?php echo __('Grupo Muscular',$lang); ?>:</label>
 						<select name="grupoMuscular" class="select">
-								<option value="Piernas" >Piernas</option>
-								<option value="Brazos">Brazos</option>
-								<option value="Espalda">Espalda</option>
+								<option value="Piernas" ><?php echo __('Piernas',$lang); ?></option>
+								<option value="Brazos"><?php echo __('Brazos',$lang); ?></option>
+								<option value="Espalda"><?php echo __('Espalda',$lang); ?></option>
 						</select>
-						<label for="descripcion">Descripcion:</label>
+						<label for="descripcion"><?php echo __('Descripción',$lang); ?>:</label>
 						<input type="text" name="descripcion" class="input"/>
-						<label for="video">Video:</label>
+						<label for="video"><?php echo __('Vídeo',$lang); ?>:</label>
 						<input type="text" name="urlYoutube" class="input"/>
 						<br/>
 
-            <label for="imagen">Imagen:</label>
+            <label for="imagen"><?php echo __('Imagén',$lang); ?> :</label>
             <input type="file" name="imagen" />
 						<br/>
 						<div class="form_submit">
-						<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+						<input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Registrar',$lang); ?>">
 						</div>
           </form>
 

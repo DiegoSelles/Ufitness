@@ -12,6 +12,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 }
 $econtroler = new controlador_Ejercicio();
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -66,36 +72,36 @@ $econtroler = new controlador_Ejercicio();
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
 					<i class="fa fa-bicycle" aria-hidden="true"></i>
-          <strong>Modificar Ejercicio</strong>
+          <strong><?php echo __('Modificar Ejercicio',$lang); ?></strong>
         </div>
         <div >
-  				<form enctype = "multipart/form-data" action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=modificarEjercicio" method="post" class="formulario">
+  				<form enctype = "multipart/form-data" action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Ejercicio&amp;accion=modificarEjercicio" method="post" class="formulario">
 						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" class="input"/>
-						<label for="nombre">Nombre Ejercicio:</label>
+						<label for="nombre"><?php echo __('Nombre Ejercicio',$lang); ?> :</label>
             <input type="text" name="nombre" value="<?php echo $ejercicio->getNombre(); ?>" class="input" required="true"/>
-            <label for="tipoEjercicio">Tipo del ejercicio:</label>
+            <label for="tipoEjercicio"><?php echo __('Tipo de Ejercicio',$lang); ?>:</label>
             <select name="tipoEjercicio" class="select">
-                <option value="Cardio" <?php echo (($ejercicio->getTipoEjercicio()=="Cardio")?"selected":""); ?>>Cardio</option>
-                <option value="Estiramientos" <?php echo (($ejercicio->getTipoEjercicio()=="Estiramientos")?"selected":""); ?>>Estiramientos</option>
-                <option value="Muscular" <?php echo (($ejercicio->getTipoEjercicio()=="Muscular")?"selected":""); ?>>Muscular</option>
+                <option value="Cardio" <?php echo (($ejercicio->getTipoEjercicio()=="Cardio")?"selected":""); ?>><?php echo __('Cardio',$lang); ?></option>
+                <option value="Estiramientos" <?php echo (($ejercicio->getTipoEjercicio()=="Estiramientos")?"selected":""); ?>><?php echo __('Estiramientos',$lang); ?></option>
+                <option value="Muscular" <?php echo (($ejercicio->getTipoEjercicio()=="Muscular")?"selected":""); ?>><?php echo __('Muscular',$lang); ?></option>
             </select>
-            <label for="maquina">Maquina:</label>
+            <label for="maquina"><?php echo __('Máquina',$lang); ?> :</label>
             <input type="text" name="maquina" value="<?php echo $ejercicio->getMaquina(); ?>" class="input" />
-            <label for="grupoMuscular">Grupo Muscular:</label>
+            <label for="grupoMuscular"><?php echo __('Grupo Muscular',$lang); ?>: </label>
             <select name="grupoMuscular" class="select">
               <!-- falta ponerle aqui el valor que estaba antes -->
-                <option value="Piernas" <?php echo (($ejercicio->getGrupoMuscular()=="Piernas")?"selected":""); ?>>Piernas</option>
-                <option value="Brazos" <?php echo (($ejercicio->getGrupoMuscular()=="Brazos")?"selected":""); ?>>Brazos</option>
-                <option value="Espalda" <?php echo (($ejercicio->getGrupoMuscular()=="Espalda")?"selected":""); ?>>Espalda</option>
+                <option value="Piernas" <?php echo (($ejercicio->getGrupoMuscular()=="Piernas")?"selected":""); ?>><?php echo __('Piernas',$lang); ?></option>
+                <option value="Brazos" <?php echo (($ejercicio->getGrupoMuscular()=="Brazos")?"selected":""); ?>><?php echo __('Brazos',$lang); ?></option>
+                <option value="Espalda" <?php echo (($ejercicio->getGrupoMuscular()=="Espalda")?"selected":""); ?>><?php echo __('Espalda',$lang); ?></option>
             </select>
-            <label for="descripcion">Descripcion:</label>
+            <label for="descripcion"><?php echo __('Descripción',$lang); ?>:</label>
             <textarea name="descripcion" rows="3" cols="10"> <?php echo $ejercicio->getDescripcion(); ?> </textarea>
 
             <input type="text" hidden="true" name="dniCreador" value="<?php echo $ejercicio->getUsuarioDni(); ?>" />
 
             <input type="text" hidden="true" name="idEjercicio" value="<?php echo $id; ?>" />
 
-						<label for="imagen">Imagen:</label>
+						<label for="imagen"><?php echo __('Imagén',$lang); ?>:</label>
 
 						<?php if ($ejercicio->getImagen() != null){ ?>
 								<div class="responsive">
@@ -120,7 +126,7 @@ $econtroler = new controlador_Ejercicio();
 						<br/>
 						<input type="text" hidden="true" name="videoActual" value="<?php echo $ejercicio->getVideo(); ?>">
 
-						<label for="video">Video:</label>
+						<label for="video"><?php echo __('Vídeo',$lang); ?>:</label>
 
 						<?php if ($ejercicio->getVideo() != null){ ?>
 							<iframe width="420" height="315" src="<?php echo $ejercicio->getVideo(); ?>" allowfullscreen></iframe>
@@ -128,8 +134,8 @@ $econtroler = new controlador_Ejercicio();
 
  						<input type="text" name="urlYoutube" placeholder="https://www.youtube.com/watch?v=OgIRAjnnJzI"/>
 						<div class="form_submit">
-	            <input id="submit" class="btn btn-primary" type="submit" value="Guardar Cambios">
-	            <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">Volver</a>
+	            <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Guardar Cambios',$lang); ?>">
+	            <a id="submit" href="adminEjercicios.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Volver',$lang); ?></a>
 							</div>
 					</form>
         </div>

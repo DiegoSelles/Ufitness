@@ -22,7 +22,7 @@ if (isset($_GET['lang'])) {
                         <a href="adminEntrenamientos.php?lang='.$lang.'"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
+                        <a href="adminEjercicios.php?lang='.$lang.'"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
                     </li>
                     <li id="menu_lat">
                         <a href="adminEntrenadores.php?lang='.$lang.'"><i class="fa fa-users" aria-hidden="true"></i> '.__('Entrenadores',$lang).' </a>
@@ -53,7 +53,7 @@ if (isset($_GET['lang'])) {
                         <a href="adminEntrenamientos.php?lang='.$lang.'"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
+                        <a href="adminEjercicios.php?lang='.$lang.'"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
                     </li>
                     <li id="menu_lat">
                         <a href="adminDeportistas.php?lang='.$lang.'"><i class="fa fa-users" aria-hidden="true"></i> '.__('Deportistas',$lang).' </a>
@@ -80,7 +80,7 @@ if (isset($_GET['lang'])) {
                         <a href="deportistaEntrenamientos.php?lang='.$lang.'"><i class="fa fa-trophy" aria-hidden="true"></i> '.__('Entrenamientos',$lang).' </a>
                     </li>
                     <li id="menu_lat">
-                        <a href="adminEjercicios.php"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
+                        <a href="adminEjercicios.php?lang='.$lang.'"><i class="fa fa-bicycle" aria-hidden="true"></i></i> '.__('Ejercicios',$lang).' </a>
                     </li>
                 </ul>
             </div>

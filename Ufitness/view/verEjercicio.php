@@ -12,6 +12,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	exit();
 }
 
+	if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +74,7 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-bicycle" aria-hidden="true"></i>
               <strong><?php echo $ejercicio->getNombre(); ?></strong>
 							<?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){?>
-							<a id="btn_editar" href="../view/modificarEjercicio.php?idEjercicio=<?php echo $id; ?>" class="btn btn-primary" type="button">Editar</a>
+							<a id="btn_editar" href="../view/modificarEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $id; ?>" class="btn btn-primary" type="button"><?php echo __('Editar',$lang); ?></a>
 							<?php } ?>
 						</div>
 
@@ -77,13 +83,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             <div class="contenido_pagina">
               <div class="info_ejercicio">
                 <div class="descripcion_ejer">
-                  <h1>Descripción: <?php echo $ejercicio->getDescripcion(); ?></h1>
+                  <h1><?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></h1>
                 </div>
                 <div class="musculo_ejer">
-                  <h1>Músculos: <?php echo $ejercicio->getGrupoMuscular(); ?></h1>
+                  <h1><?php echo __('Músculos',$lang); ?> : <?php echo $ejercicio->getGrupoMuscular(); ?></h1>
                 </div>
                 <div class="maquina_ejer">
-                  <h1>Máquina: <?php echo $ejercicio->getMaquina(); ?></h1>
+                  <h1> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></h1>
                 </div>
               </div>
 							<?php if ($ejercicio->getImagen() != null){ ?>

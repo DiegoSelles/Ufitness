@@ -17,6 +17,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -67,19 +73,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-bicycle" aria-hidden="true"></i>
-          <strong>¿Está seguro que quiere eliminar este ejercicio?</strong>
+          <strong><?php echo __('¿Está seguro que quiere eliminar este ejercicio?',$lang); ?></strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Ejercicio&amp;accion=eliminarEjercicio" method="post" class="formulario">
-              <label>Nombre: <?php echo $ejercicio->getNombre(); ?></label>
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Ejercicio&amp;accion=eliminarEjercicio" method="post" class="formulario">
+              <label><?php echo __('Nombre',$lang); ?> : <?php echo $ejercicio->getNombre(); ?></label>
                <br/>
-              <label>Tipo: <?php echo $ejercicio->getTipoEjercicio(); ?></label>
+              <label><?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></label>
                <br/>
-              <label>Grupo Muscular: <?php echo $ejercicio->getGrupoMuscular(); ?></label>
+              <label><?php echo __('Grupo Muscular',$lang); ?> : <?php echo $ejercicio->getGrupoMuscular(); ?></label>
                <br/>
-              <label>Descripción: <?php echo $ejercicio->getDescripcion(); ?></label>
+              <label><?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></label>
               <br/>
-              <label>Dni del creador: <?php echo $ejercicio->getUsuarioDni(); ?></label>
+              <label><?php echo __('DNI del creador',$lang); ?> : <?php echo $ejercicio->getUsuarioDni(); ?></label>
               <br/>
 
               <?php if ($ejercicio->getImagen() != null){ ?>
@@ -100,8 +106,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
                <br/>
               <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
               <div class="form_submit">
-                <input id="submit" class="btn btn-primary" type="submit" value="SI">
-                <a id="submit" href="adminEjercicios.php" class="btn btn-primary" type="button">NO</a>
+                <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('SI',$lang); ?>">
+                <a id="submit" href="adminEjercicios.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('NO',$lang); ?></a>
               </div>
           </form>
         </div>
