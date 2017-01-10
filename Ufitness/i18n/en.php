@@ -102,6 +102,36 @@ $texts = array(
 	'Borrar' => 'Delete',
 	'Cancelar' => 'Cancel',
 	
+	//adminEjercicios
+	'Lista de Ejercicios' => 'Exercises List',
+	'Buscar Ejercicio' => 'Search exercise',
+	'Añadir Ejercicio' => 'Add Exercise',
+	'Piernas' => 'Legs',
+	'Brazos' => 'Arms',
+	'Espalda' => 'back',
+	
+	//Crear Ejercicio
+	'Nuevo Ejercicio' => 'New Exercise',
+	'Nombre Ejercicio' => 'Exercise Name',
+	'Tipo de Ejercicio' => 'Type of Exercise',
+	'Cardio' => 'Cardio',
+	'Estiramientos' => 'Stretching',
+	'Muscular' => 'Muscular',
+	'Grupo Muscular' => 'Muscular Group',
+	'Vídeo' => 'video',
+	'Imagén' => 'Image',
+	
+	//Ver ejercicio
+	'Músculos' => 'Muscles',
+	
+	//Modificar ejercicio
+	'Modificar Ejercicio' => 'Edit Exercise',
+	'Nombre Ejercicio' => 'Exercise Name',
+	
+	//Eliminar ejercicio
+	'¿Está seguro que quiere eliminar este ejercicio?' => 'Are you sure that do you want remove this Exercise?',
+	'DNI del creador' => 'DNI of the creator',
+	
 	//adminEntrenadores
 	'Lista de Entrenadores' => 'Trainers list',
 	'Añadir Entrenador' => 'Add trainer',
