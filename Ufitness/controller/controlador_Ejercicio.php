@@ -15,7 +15,11 @@ class controlador_Ejercicio{
 
 
   public function registrarEjercicio() {
-
+	if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
 
     $target_dir = '../imagenesSubidas/';
     $target_file = $target_dir . basename($_FILES['imagen']['name']);
@@ -67,7 +71,7 @@ class controlador_Ejercicio{
 
     $ejercicioMapper->registrarEjercicio($ejercicio);
 
-    header("Location: ../view/adminEjercicios.php");
+    header("Location: ../view/adminEjercicios.php?lang=$lang");
 
   }
 
@@ -111,6 +115,13 @@ class controlador_Ejercicio{
     $descripcion = $_POST['descripcion'];
     $idEjercicio = $_POST['idEjercicio'];
     $imagenActual = null;
+    
+    if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+	   
     if (isset ($_POST['imagenActual'])){
       $imagenActual = $_POST['imagenActual'];
     }
@@ -156,6 +167,7 @@ class controlador_Ejercicio{
 
     $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion, $nombreImagen, $urlVideo);
     return $ejercicioMapper->modificarEjercicio($ejercicio, $idEjercicio);
+  
   }
 
   public function eliminarImagen ($nombreImagen){
@@ -163,6 +175,12 @@ class controlador_Ejercicio{
   }
 
   public function eliminarEjercicio() {
+	 if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+	   
     if (!isset($_POST["id"])) {
     //Poner alert
     }
@@ -178,7 +196,7 @@ class controlador_Ejercicio{
 
     $ejercicioMapper->eliminarEjercicio($ejercicio);
 
-    header("Location: ../view/adminEjercicios.php");
+    header("Location: ../view/adminEjercicios.php?lang=$lang");
   }
 
 }
