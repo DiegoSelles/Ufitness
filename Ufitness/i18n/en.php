@@ -35,6 +35,7 @@ $texts = array(
 	
 	//adminActividades && userActividades
 	'Lista de Actividades' => 'Activities list',
+	'Buscar Actividad' => 'Search Activity',
 	'Buscar Actividad' => 'Search activity',
 	'Añadir Actividad' => 'Add activity',
 	'Horario' => 'Horary',
@@ -69,7 +70,7 @@ $texts = array(
 	'Modificar' => 'Modify',
 
 	//eliminar actividad
-	'Está seguro que quiere eliminar esta actividad' => 'Are you sure that do you want to delete this activity',
+	'¿Está seguro que quiere eliminar esta actividad?' => 'Are you sure that do you want to delete this activity?',
 	'Monitor de la actividad' => 'Activity instructor',
 
 	//ver actividad

@@ -67,7 +67,7 @@ $texts = array(
 	'Modify' => 'Modificar',
 
 	//eliminar actividad
-	'Are you sure that do you want to delete this activity' => 'Está seguro que quiere eliminar esta actividad',
+	'Are you sure that do you want to delete this activity?' => '¿Está seguro que quiere eliminar esta actividad?',
 	'Activity instructor' => 'Monitor de la actividad',
 
 	//ver actividad
