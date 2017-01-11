@@ -26,7 +26,7 @@ class controlador_Notificacion{
 		$notificacionHasDeportistaMapper = new NotificacionHasDeportistaMapper();
 		$notificacionMapper = new NotificacionMapper();
 		$deportistaMapper = new DeportistaMapper();
-		
+
 		if (isset($_GET['lang'])) {
 			$lang = $_GET['lang'];
 		}else{
@@ -95,13 +95,29 @@ class controlador_Notificacion{
 		   $lang="es";
 		}
 		if (isset($_POST["idNotificacion"])) {
+
 			$idNotificacion= $_REQUEST["idNotificacion"];
+			var_dump($idNotificacion);
+			die;
 			$notificacionHasDeportistaMapper->notificacionVista($idNotificacion,$_SESSION["Dni"]);
 
 	  }
 		header ("Location: ../view/adminIndex.php?lang=$lang");
 
 	}
+
+	public function deleteNotificacion(){
+		$idNotificacion = $_REQUEST["idNotificacion"];
+		
+		$notificacionMapper = new NotificacionMapper();
+		$notificacionHDMapper = new NotificacionHasDeportistaMapper();
+		$notificacionMapper->delete($idNotificacion);
+		$notificacionHDMapper->delete($idNotificacion);
+		header ("Location: ../view/adminIndex.php");
+
+	}
+
+
 
 
 

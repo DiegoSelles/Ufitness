@@ -96,11 +96,11 @@ if (isset($_GET['lang'])) {
                   </div>
                   <?php }  ?>
 				</div>
-				
+
             <div class="body_pagina">
 				<?php
 				$entrenamientos = $econtroller->listarEntrenamientosNivel("principiante");
-				if($entrenamientos != NULL){ ?>		
+				if($entrenamientos != NULL){ ?>
 				<nav id = "desplegable1">
 					<ul>
 						<li id="nivel1"><a id = "activador_1" class= "btn_nivel" href="#"><i id = "activador_1" class="fa fa-chevron-down"></i><?php echo __('Principiante',$lang); ?></a>
@@ -119,9 +119,9 @@ if (isset($_GET['lang'])) {
                       </div>
 
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-						   
+
                       <div class="opciones_bloque">
-						<a id="btn_imprimir" href="imprimirEntrenamiento.php?lang=<?php echo $lang; ?>&idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>  
+						<a id="btn_imprimir" href="imprimirEntrenamiento.php?lang=<?php echo $lang; ?>&idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
 						<a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					  <?php } ?>
 					  </div>

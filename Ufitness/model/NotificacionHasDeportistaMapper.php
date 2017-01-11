@@ -31,10 +31,10 @@ class NotificacionHasDeportistaMapper {
 			 $connect->query($consulta);
 	}
 
-	public function delete($notificacion)
+	public function delete($idNotificacion)
 	{
 		global $connect;
-	    $consulta = "DELETE FROM Notificacion_has_Deportista WHERE Notificacion_idNotificacion='". $notificacion->getId() ."' " ;
+	    $consulta = "DELETE FROM Notificacion_has_Deportista WHERE Notificacion_idNotificacion='". $idNotificacion ."' " ;
 	    $connect->query($consulta);
 	}
 

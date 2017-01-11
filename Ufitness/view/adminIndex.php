@@ -86,11 +86,18 @@ if (isset($_GET['lang'])) {
 					<ul>
 
 						<div class="bloque_lista">
-							<div class="titulo_bloque ">
+							<div class="titulo_bloque">
+								<a href = "verNotificacion.php?idNotificacion=<?php echo $notificacion->getId(); ?>">
 									<h1><?=$notificacion->getTitulo(); ?><h1>
+								</a>
 							</div>
-							<div class="info_bloque ">
-								<p><?php echo $notificacion->getDescripcion(); ?></p>
+							<div class="info_bloque inf_bl">
+								<p><?php echo substr($notificacion->getDescripcion(),0,90); ?>...</p>
+							</div>
+							<div class="opciones_bloque opc_bl">
+								<a id="btn_eliminar" href="eliminarNotificacion.php?lang=<?php echo $lang ?>&idNotificacion=<?php echo $notificacion->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</a>
 							</div>
 						</div>
 	        </ul>
@@ -124,23 +131,18 @@ if (isset($_GET['lang'])) {
 					</div>
 					<?php foreach ($listaNotificaciones as $notificacionHD ):
 								$notificacion = $ncontroler->notificacionId($notificacionHD->getId());
+
 					?>
 					<ul>
 
 						<div class="bloque_lista">
-							<div class="titulo_bloque ">
+							<div class="titulo_bloque tit_bl">
+								<a href = "verNotificacion.php?idNotificacion=<?php echo $notificacion->getId(); ?>">
 									<h1><?=$notificacion->getTitulo(); ?><h1>
+								</a>
 							</div>
-							<div class="info_bloque ">
-								<p><?php echo $notificacion->getDescripcion(); ?></p>
-							</div>
-							<div class="opciones_bloque">
-								<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Notificacion&amp;accion=notificacionVista" method="post" id = "form_notificacion">
-                  <input type="hidden" name="idNotificacion" value="<?=$notificacion->getId();?>">
-	                <a onclick="document.getElementById('form_notificacion').submit();" id="btn_visto" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
-	                  <i class="fa fa-check " aria-hidden="true"></i>
-	                </a>
-                </form>
+							<div class="info_bloque  inf_bl ">
+								<p><?php echo substr($notificacion->getDescripcion(),0,90); ?>...</p>
 							</div>
 						</div>
 	        </ul>

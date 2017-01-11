@@ -50,10 +50,10 @@ class NotificacionMapper {
 	    $connect->query($consulta);
 	}
 
-	public function delete($notificacion)
+	public function delete($idNotificacion)
 	{
 		global $connect;
-	    $consulta = "DELETE FROM Notificacion WHERE idNotificacion='". $notificacion->getId() ."' " ;
+	    $consulta = "DELETE FROM Notificacion WHERE idNotificacion='". $idNotificacion ."' " ;
 	    $connect->query($consulta);
 	}
 

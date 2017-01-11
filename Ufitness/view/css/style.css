@@ -109,9 +109,13 @@ ul.dropdown-menu {
   font-family: 'Quattrocento Sans', sans-serif;
   font-size: 50px;
   margin-top: 20px;
-  display: inline-block;
+  display:inline-block;
   padding-bottom: 15px;
   border-bottom: 1px solid black;
+}
+
+.tit_sec{
+  display: inline-block;
 }
 
 #titulo_index{
@@ -249,13 +253,22 @@ ul.dropdown-menu {
   flex-basis: 40%;
 }
 
+.inf_bl{
+  flex-basis: 60%;
+}
+
+
+
 .opciones_bloque{
   display:flex;
   flex-basis: 30%;
   padding-left: 20px;
   align-items:center;
   justify-content: flex-end;
+}
 
+.opc_bl{
+  flex-basis: 10%;
 }
 
 .btn_nivel{
@@ -268,6 +281,14 @@ ul.dropdown-menu {
 
 .btn_nivel:focus{
   color: black;
+}
+
+.desc_notif{
+  padding: 15px;
+}
+
+.desc_notif p{
+  font-size: 2em;
 }
 
 #datos_user{
@@ -361,6 +382,10 @@ margin-bottom: 5px;
   padding: 5px;
   margin: 5px;
 
+}
+
+#btn_visto:hover{
+  background-color: #6f9946;
 }
 
 #btn_eliminar:hover{
