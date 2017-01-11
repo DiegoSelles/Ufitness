@@ -141,7 +141,7 @@ if (isset($_GET['lang'])) {
 											<ul>
                         <div class="bloque_lista">
                           <div class="titulo_bloque">
-														<a href = "../view/verEjercicio.php?lang=?<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>">
+														<a href = "../view/verEjercicio.php?lang=<?php echo $lang; ?>&idEjercicio=<?php echo $ejercicio->getIdEjercicio(); ?>">
                             	<h1> <?php echo $ejercicio->getNombre(); ?> <h1>
 														</a>
                           </div>
