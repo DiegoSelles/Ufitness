@@ -85,8 +85,8 @@ class ActividadMapper {
 		$resultado = mysqli_fetch_assoc($consulta);
 		$sql = " INSERT INTO Actividad (Usuario_Dni, nombre, numPlazas, horario, lugar, tipoAct)
 		VALUES ('". $resultado['Dni'] ."', '". $actividad->getNombre() ."', '". $actividad->getNumPlazas() ."', '". $actividad->getHorario() ."', '". $actividad->getLugar() ."', '". $actividad->getTipoActividad() ."')";
-		if($connect->query($sql))
-			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+		$connect->query($sql);
+			
 	}
 
   public function eliminarActividad ($idActividad){
@@ -99,8 +99,8 @@ class ActividadMapper {
 		$consulta = $connect->query("SELECT Dni FROM Usuario WHERE nombre ='" .$actividad->getMonitor(). "'");
 		$resultado = mysqli_fetch_assoc($consulta);
 		$consult = "UPDATE Actividad set Usuario_Dni ='" .$resultado['Dni']."',nombre='".$actividad->getNombre()."', numPlazas='".$actividad->getNumPlazas()."', horario='".$actividad->getHorario()."', lugar='".$actividad->getLugar()."', tipoAct='".$actividad->getTipoActividad()."' where idActividad = '".$id."'";
-		if($connect->query($consult))
-			echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
+		$connect->query($consult);
+			//echo "<script language='javascript'>window.location='../view/adminActividades.php'</script>";
 	}
 
 	public function findAllActividades() {
