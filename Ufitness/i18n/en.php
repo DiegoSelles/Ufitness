@@ -17,7 +17,6 @@ $texts = array(
 	'¿A qué esperas?' => 'what are you waiting for?',
 	'Vente' => 'Come',
 	
-	
 	//Wrapper
 	'Actividades' => 'Activities',
 	'Entrenamientos' => 'Trainings',
@@ -46,7 +45,6 @@ $texts = array(
 	'Eliminar' => 'Remove',
 	'Estadísticas' => 'Statistics',
 	'Estadísticas de Actividades' => 'Activity Statistics',
-
 
 	//verEstadisticasActividad
 	'Actividad más popular' => 'Most popular activity',
@@ -83,6 +81,9 @@ $texts = array(
 	'Todos' => 'All',
 	'Elegir deportistas:' => 'Choose Athletics:',
 	'Enviar Notificación' => 'Send notification',
+	
+	//Eliminar notificaciones
+	'¿Está seguro que quiere eliminar esta notificacion?' => 'Are you sure that do you want delete this notification?',
 	
 	//adminEntrenamientos
 	'Lista de Entrenamientos' => 'Trainings List',

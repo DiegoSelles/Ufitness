@@ -81,6 +81,9 @@ $texts = array(
 	'Choose Athletics:' => 'Elegir deportistas:',
 	'Send notification' => 'Enviar Notificación',
 	
+	//Eliminar notificaciones
+	'Are you sure that do you want delete this notification?' => '¿Está seguro que quiere eliminar esta notificacion?',
+	
 	//adminEntrenamientos
 	'Trainings List' => 'Lista de Entrenamientos',
 	'Search training' => 'Buscar Entrenamiento',
