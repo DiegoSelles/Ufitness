@@ -126,11 +126,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         foreach ($arrayActividades as $actividad ){
                         ?>
                         <ul>
-                            <div class="bloque_lista">
+                            <div class="num_plazas">
                                 <p> <?php echo $actividad->getNombre(); ?><p>
-                                <p>Horario: <?php echo $actividad->getHorario(); ?></p>
-                                <p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
-                                <p>Lugar: <?php echo $actividad->getLugar(); ?></p>
                             </div>
                         </ul>
                     <?php } ?>
@@ -146,11 +143,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         foreach ($arrayActividades as $actividad ){
                         ?>
                         <ul>
-                           <div class="bloque_lista">
+                           <div class="num_plazas">
                                 <p> <?php echo $actividad->getNombre(); ?><p>
-                                <p>Horario: <?php echo $actividad->getHorario(); ?></p>
-                                <p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
-                                <p>Lugar: <?php echo $actividad->getLugar(); ?></p>
                             </div>
                          </ul>
                     <?php } ?>
@@ -166,11 +160,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         foreach ($arrayActividades as $actividad ){
                         ?>
                         <ul>
-                            <div class="bloque_lista">
+                            <div class="num_plazas">
                                 <p> <?php echo $actividad->getNombre(); ?><p>
-                                <p>Horario: <?php echo $actividad->getHorario(); ?></p>
-                                <p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
-                                <p>Lugar: <?php echo $actividad->getLugar(); ?></p>
                             </div>
                          </ul>
                     <?php } ?>
@@ -184,11 +175,8 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         foreach ($arrayActividades as $actividad ){
                         ?>
                         <ul>
-                            <div class="bloque_lista">
+                            <div class="num_plazas">
                                 <p> <?php echo $actividad->getNombre(); ?><p>
-                                <p>Horario: <?php echo $actividad->getHorario(); ?></p>
-                                <p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
-                                <p>Lugar: <?php echo $actividad->getLugar(); ?></p>
                             </div>
                          </ul>
                     <?php } ?>
