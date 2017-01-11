@@ -43,7 +43,38 @@ $texts = array(
 	'Lugar' => 'Place',
 	'Editar' => 'Edit',
 	'Eliminar' => 'Remove',
-	
+	'Estadísticas' => 'Statistics',
+	'Estadísticas de Actividades' => 'Activity Statistics',
+
+
+	//verEstadisticasActividad
+	'Actividad más popular' => 'Most popular activity',
+	'Actividades Individuales' => 'Individual activities' ,
+	'Actividades en grupo' => 'Group activities',
+	'Actividades por tipo de deportista' => 'Activities by type of athletic',
+	'Total actividades' => 'Total activities',
+	'Media de plazas' => 'Average squares',
+	'ver' => 'see',
+	'cerrar' => 'close',
+
+	//crear actividad
+	'Nueva Actividad' => 'New activity',
+	'Nombre Actividad' => 'Activity name',
+	'Monitor' => 'Instructor',
+
+	//modificar actividad
+	'Modificar actividad' => 'Modify Activity',
+	'Monitor actual' => 'Current instructor',
+	'Modificar monitor' => 'Modify instructor',
+	'Modificar' => 'Modify',
+
+	//eliminar actividad
+	'Está seguro que quiere eliminar esta actividad' => 'Are you sure that do you want to delete this activity',
+	'Monitor de la actividad' => 'Activity instructor',
+
+	//ver actividad
+	'Reservar Plaza' => 'Book Place',
+
 	//Crear notificaciones
 	'Título' => 'Title',
 	'Descripción' => 'Description',
