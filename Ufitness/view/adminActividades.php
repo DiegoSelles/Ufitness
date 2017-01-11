@@ -89,11 +89,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                             </span>
                         </div>
                     </div>
-										<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
-                    <div class="anadir">
-                        <a id="btn_anadir" href="../view/crearActividad.php" class="btn btn-primary" type="button">Añadir Actividad</a>
-                    </div>
-										<?php }?>
+						<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
+                            <div class="anadir">
+                                <a id="btn_anadir" href="../view/crearActividad.php" class="btn btn-primary" type="button">Añadir Actividad</a>
+
+                                <a id="btn_anadir" href="../view/verEstadisticasActividad.php" class="btn btn-primary" type="button">Estadísticas</a>
+                            </div>
+						<?php }?>
                 </div>
 				<?php
 
