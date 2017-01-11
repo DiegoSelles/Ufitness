@@ -108,12 +108,16 @@ class controlador_Notificacion{
 
 	public function deleteNotificacion(){
 		$idNotificacion = $_REQUEST["idNotificacion"];
-		
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		}else{
+		   $lang="es";
+		}
 		$notificacionMapper = new NotificacionMapper();
 		$notificacionHDMapper = new NotificacionHasDeportistaMapper();
 		$notificacionMapper->delete($idNotificacion);
 		$notificacionHDMapper->delete($idNotificacion);
-		header ("Location: ../view/adminIndex.php");
+		header ("Location: ../view/adminIndex.php?lang=$lang");
 
 	}
 
