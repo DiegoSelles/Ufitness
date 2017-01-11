@@ -42,10 +42,14 @@ class controlador_Actividad{
 	}
 
 	public function registrarActividad (){
-		//Liada: al llamar a esta accion directamente desde un formulario no se llama al constructor
-		//y por tanto no se crea el ActividadMapper()
+		
 		$actividadMapper = new ActividadMapper();
 		global $connect;
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		}else{
+           $lang="es";
+		}
 		//Obtener el nombre del monitor
 		$nombre_monitor = $_POST['monitor'];
 		//Obtener el nombre de la actividad
@@ -61,22 +65,34 @@ class controlador_Actividad{
 		$tipo = $_POST['tipo'];
 		$actividad = new Actividad ($nombre_monitor,$nombre,$numPlazas,$horario,$lugar,$tipo);
 		$actividadMapper->registrarActividad($actividad, $nombre_monitor);
+		header ("Location: ../view/adminActividades.php?lang=$lang");
 
 	}
 
 	public function eliminarActividad (){
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		}else{
+           $lang="es";
+		}
+		
 		if (!isset($_POST["idActividad"])) {
-			//Esta excepcion habría que capturarla en algun lado
-			//throw new Exception("id is mandatory");
+			throw new Exception("id is mandatory");
 	   	 }
 		$idActividad = $_REQUEST["idActividad"];
 		$actividadMapper = new ActividadMapper();
 		$actividadMapper->eliminarActividad($idActividad);
-		header ("Location: ../view/adminActividades.php");
+		header ("Location: ../view/adminActividades.php?lang=$lang");
 
 
 	}
 	public function modificarActividad (){
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+		}else{
+           $lang="es";
+		}
+		
 		if (!isset($_POST["id"])) {
 			//Esta excepcion habría que capturarla en algun lado
 			//throw new Exception("id is mandatory");
@@ -99,6 +115,7 @@ class controlador_Actividad{
 		$tipo = $_POST['tipo'];
 		$actividad = new Actividad ($nombre_monitor,$nombre,$numPlazas,$horario,$lugar,$tipo);
 		$actividadMapper->updateActividad($actividad,$id);
+		header ("Location: ../view/adminActividades.php?lang=$lang");
 	}
 
 	public function getReserva($idActividad){
