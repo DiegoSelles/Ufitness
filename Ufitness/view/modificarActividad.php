@@ -75,7 +75,7 @@ if (isset($_GET['lang'])) {
 				</div>
 			<div >
 
-  			<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=modificarActividad" method="post" class="formulario">
+  			<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Actividad&amp;accion=modificarActividad" method="post" class="formulario">
               <label for="nombre"><?php echo __('Nombre Actividad',$lang);?>: </label>
               <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?>" class="input" required="true"/>
               <input type="text" name="id" hidden="True" value =<?php echo $idActividad ?> />

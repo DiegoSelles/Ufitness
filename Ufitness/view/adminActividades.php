@@ -87,7 +87,7 @@ if (isset($_GET['lang'])) {
                     </div>
                     <div id="custom-search-input">
                         <div class="input-group col-md-12">
-                            <input type="text" class="form-control input-lg" placeholder="Buscar Actividad">
+                            <input type="text" class="form-control input-lg" placeholder="<?php echo __('Buscar Actividad',$lang); ?>">
                             <span class="input-group-btn">
                                 <button class="btn btn-info btn-lg" type="button">
                                 <i class="glyphicon glyphicon-search"></i>
@@ -123,10 +123,10 @@ if (isset($_GET['lang'])) {
 						</div>
 						<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
 						<div class="opciones_bloque">
-							<a id="btn_edit_bloque" href="modificarActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Editar" type="button">
+							<a id="btn_edit_bloque" href="modificarActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="<?php echo __('Editar',$lang); ?>" type="button">
 								<i class="fa fa-edit" aria-hidden="true"></i>
 							</a>
-							<a id="btn_eliminar" href="eliminarActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button">
+							<a id="btn_eliminar" href="eliminarActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button">
 								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</a>
 						</div>

@@ -73,10 +73,10 @@ if (isset($_GET['lang'])) {
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-futbol-o" aria-hidden="true"></i>
-          <strong>¿<?php echo __('Está seguro que quiere eliminar esta actividad',$lang);?></strong>
+          <strong>¿<?php echo __('¿Está seguro que quiere eliminar esta actividad?', $lang);?></strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=eliminarActividad" method="post" class="formulario">
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Actividad&amp;accion=eliminarActividad" method="post" class="formulario">
               <label><?php echo __('Nombre',$lang);?>: <?php echo $actividad->getNombre(); ?></label>
                <br/>
               <label><?php echo __('Numero de plazas',$lang);?>: <?php echo $actividad->getNumPlazas(); ?></label>

@@ -68,7 +68,7 @@ if (isset($_GET['lang'])) {
           <strong><?php echo __('Nueva Actividad',$lang);?></strong>
         </div>
         <div >
-  				<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=registrarActividad" method="post" class="formulario">
+  				<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Actividad&amp;accion=registrarActividad" method="post" class="formulario">
               <label for="nombre"><?php echo __('Nombre Actividad',$lang);?>:</label>
               <input type="text" name="nombre" class="input" required="true"/>
               <label for="monitor"><?php echo __('Monitor',$lang);?>:</label>
