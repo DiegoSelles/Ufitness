@@ -12,6 +12,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
+
 ?>
 
 <html lang="en">
@@ -59,13 +65,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 			<div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-futbol-o" aria-hidden="true"></i>
-          <strong>Nueva Actividad</strong>
+          <strong><?php echo __('Nueva Actividad',$lang);?></strong>
         </div>
         <div >
   				<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=registrarActividad" method="post" class="formulario">
-              <label for="nombre">Nombre Actividad:</label>
+              <label for="nombre"><?php echo __('Nombre Actividad',$lang);?>:</label>
               <input type="text" name="nombre" class="input" required="true"/>
-              <label for="monitor">Monitor:</label>
+              <label for="monitor"><?php echo __('Monitor',$lang);?>:</label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
               <select name="monitor" class="select">
                 <?php foreach ($entrenadores as $entrenador) { ?>
@@ -73,16 +79,16 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
                   <option value="<?php echo $entrenador->getNombre(); ?>" ><?php echo $entrenador->getNombre(); ?></option>
                 <?php }?>
   						</select>
-              <label for="horario">Horario:</label>
+              <label for="horario"><?php echo __('Horario',$lang);?>:</label>
               <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" name="horario" class="input" required="true"/>
-              <label for="lugar">Lugar:</label>
+              <label for="lugar"><?php echo __('Lugar',$lang);?>:</label>
               <input type="text" name="lugar" class="input" required="true"/>
-              <label for="numPlazas">Numero de Plazas:</label>
+              <label for="numPlazas"><?php echo __('Numero de plazas',$lang);?>:</label>
               <input type="number" name="numPlazas" class="input" required="true"/>
-              <label for="tipo">Tipo:</label>
+              <label for="tipo"><?php echo __('Tipo',$lang);?>:</label>
               <input type="text" name="tipo" class="input" required="true"/>
 							<div class="form_submit">
-								<input id="submit" class="btn btn-primary" type="submit" value="Registrar">
+								<input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Registrar',$lang);?>">
 							</div>
           </form>
         </div>

@@ -10,6 +10,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
+
 ?>
 
 <!DOCTYPE html>
@@ -72,12 +78,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
                 <i class="fa fa-futbol-o" aria-hidden="true"></i>
-                <strong>Actividades</strong>
+                <strong><?php echo __('Actividades',$lang);?></strong>
             </div>
             <div class="listado">
                 <div class="header_lista">
                     <div class="titulo_lista">
-                    <h1>Lista de Actividades </h1>
+                    <h1><?php echo __('Lista de Actividades',$lang); ?> </h1>
                     </div>
                     <div id="custom-search-input">
                         <div class="input-group col-md-12">
@@ -91,9 +97,9 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                     </div>
 						<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
                             <div class="anadir">
-                                <a id="btn_anadir" href="../view/crearActividad.php" class="btn btn-primary" type="button">Añadir Actividad</a>
+                                <a id="btn_anadir" href="../view/crearActividad.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Añadir Actividad',$lang);?></a>
 
-                                <a id="btn_anadir" href="../view/verEstadisticasActividad.php" class="btn btn-primary" type="button">Estadísticas</a>
+                                <a id="btn_anadir" href="../view/verEstadisticasActividad.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Estadísticas',$lang); ?></a>
                             </div>
 						<?php }?>
                 </div>
@@ -105,22 +111,22 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 				<ul>
 					<div class="bloque_lista">
 						<div class="titulo_bloque">
-							<a href = "verActividad.php?idActividad=<?php echo $actividad->getId(); ?>">
+							<a href = "verActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>">
 								<h1> <?php echo $actividad->getNombre(); ?><h1>
 							</a>
 						</div>
 						<div class="info_bloque">
-							<p>Horario: <?php echo $actividad->getHorario(); ?></p>
-							<p>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></p>
-							<p>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></p>
-							<p>Lugar: <?php echo $actividad->getLugar(); ?></p>
+							<p><?php echo __('Horario',$lang);?>:<?php echo $actividad->getHorario(); ?></p>
+							<p><?php echo __('Tipo de actividad',$lang);?>:<?php echo $actividad->getTipoActividad(); ?></p>
+							<p><?php echo __('Numero de plazas',$lang);?>:<?php echo $actividad->getNumPlazas(); ?></p>
+							<p><?php echo __('Lugar',$lang);?>:<?php echo $actividad->getLugar(); ?></p>
 						</div>
 						<?php if($_SESSION['rol'] == "administrador" || $_SESSION['rol'] == "entrenador"){?>
 						<div class="opciones_bloque">
-							<a id="btn_edit_bloque" href="modificarActividad.php?idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Editar" type="button">
+							<a id="btn_edit_bloque" href="modificarActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Editar" type="button">
 								<i class="fa fa-edit" aria-hidden="true"></i>
 							</a>
-							<a id="btn_eliminar" href="eliminarActividad.php?idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button">
+							<a id="btn_eliminar" href="eliminarActividad.php?lang=<?php echo $lang; ?>&idActividad=<?php echo $actividad->getId(); ?>" class="btn btn-primary" title="Eliminar" type="button">
 								<i class="fa fa-trash-o" aria-hidden="true"></i>
 							</a>
 						</div>

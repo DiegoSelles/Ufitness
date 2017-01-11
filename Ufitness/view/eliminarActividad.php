@@ -17,6 +17,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
+
 ?>
 
 <html lang="en">
@@ -67,29 +73,29 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-futbol-o" aria-hidden="true"></i>
-          <strong>¿Está seguro que quiere eliminar esta actividad?</strong>
+          <strong>¿<?php echo __('Está seguro que quiere eliminar esta actividad',$lang);?></strong>
         </div>
         <div >
           <form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=eliminarActividad" method="post" class="formulario">
-              <label>Nombre: <?php echo $actividad->getNombre(); ?></label>
+              <label><?php echo __('Nombre',$lang);?>: <?php echo $actividad->getNombre(); ?></label>
                <br/>
-              <label>Numero de Plazas: <?php echo $actividad->getNumPlazas(); ?></label>
+              <label><?php echo __('Numero de plazas',$lang);?>: <?php echo $actividad->getNumPlazas(); ?></label>
                <br/>
-              <label>Horario: <?php echo $actividad->getHorario(); ?></label>
+              <label><?php echo __('Horario',$lang);?>: <?php echo $actividad->getHorario(); ?></label>
                <br/>
-              <label>Lugar: <?php echo $actividad->getLugar(); ?></label>
+              <label><?php echo __('Lugar',$lang);?>: <?php echo $actividad->getLugar(); ?></label>
               <br/>
-              <label>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></label>
+              <label><?php echo __('Tipo de actividad',$lang);?>: <?php echo $actividad->getTipoActividad(); ?></label>
               <br/>
-              <label>Monitor de la actividad: <?php echo $actividad->getMonitor(); ?></label>
+              <label><?php echo __('Monitor de la actividad',$lang);?>: <?php echo $actividad->getMonitor(); ?></label>
               <br/>
 
               <!-- Habría que meter imagen y video aqui tambien -->
 
               <input type="text" hidden="true" name="idActividad" value="<?php echo $id; ?>" />
               <div class="form_submit">
-                <input id="submit" class="btn btn-primary" type="submit" value="SI">
-                <a id="submit" href="adminActividades.php" class="btn btn-primary" type="button">NO</a>
+                <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('SI',$lang);?>">
+                <a id="submit" href="adminActividades.php?lang=<?php echo $lang;?>" class="btn btn-primary" type="button"><?php echo __('NO',$lang);?></a>
               </div>
           </form>
         </div>

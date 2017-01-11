@@ -13,6 +13,13 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 	exit();
 }
 
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
+
 ?>
 
 <html lang="en">
@@ -64,35 +71,35 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
 			<div id="contenido" class="container-fluid">
 				<div class="titulo_seccion">
 					<i class="fa fa-futbol-o" aria-hidden="true"></i>
-					<strong>Modificar actividad</strong>
+					<strong><?php echo __('Modificar actividad',$lang);?></strong>
 				</div>
 			<div >
 
   			<form action="../controller/controlador.php?controlador=controlador_Actividad&amp;accion=modificarActividad" method="post" class="formulario">
-              <label for="nombre">Nombre Actividad: </label>
+              <label for="nombre"><?php echo __('Nombre Actividad',$lang);?>: </label>
               <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?>" class="input" required="true"/>
               <input type="text" name="id" hidden="True" value =<?php echo $idActividad ?> />
-              <label for="monitor">Monitor actual : <?php echo $actividad->getMonitor(); ?> </label>
+              <label for="monitor"><?php echo __('Monitor actual',$lang);?> : <?php echo $actividad->getMonitor(); ?> </label>
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
-              <label for="monitor">Modificar monitor :</label>
+              <label for="monitor"><?php echo __('Modificar monitor',$lang);?> :</label>
               <select name="monitor" class="select">
                 <?php foreach ($entrenadores as $entrenador) { ?>
                   <!-- Parece que funciona el option pero no se ven los nobmres de los entrenadores -->
                   <option value="<?php echo $entrenador->getNombre(); ?>"><?php echo $entrenador->getNombre(); ?></option>
                 <?php }?>
 			  </select>
-              <label for="horario">Horario:</label>
+              <label for="horario"><?php echo __('Horario',$lang);?>:</label>
 							<!--El horario no muestra la fecha anterior como debería -->
               <input type="text" placeholder = "YYYY-MM-DD HH:MM:SS" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" name="horario" class="input" required="true" value="<?php echo $actividad->getHorario(); ?>"/>
-              <label for="lugar">Lugar:</label>
+              <label for="lugar"><?php echo __('Lugar',$lang);?>:</label>
               <input type="text" name="lugar" value="<?php echo $actividad->getLugar(); ?>" class="input" required="true"/>
-              <label for="numPlazas">Numero de Plazas:</label>
+              <label for="numPlazas"><?php echo __('Numero de plazas',$lang);?>:</label>
               <input type="number" name="numPlazas" value="<?php echo $actividad->getNumPlazas(); ?>" class="input" required="true"/>
-              <label for="tipo">Tipo:</label>
+              <label for="tipo"><?php echo __('Tipo',$lang);?>:</label>
               <input type="text" name="tipo" value="<?php echo $actividad->getTipoActividad(); ?>" class="input" required="true"/>
 				<div class="form_submit">
-			  	<input id="submit" class="btn btn-primary" type="submit" value="Modificar">
-					<a id="submit" href="adminActividades.php" class="btn btn-primary" type="button">Volver</a>
+			  	<input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Modificar',$lang);?>">
+					<a id="submit" href="adminActividades.php?lang=<?php echo $lang;?>" class="btn btn-primary" type="button"><?php echo __('Volver',$lang);?></a>
 				</div>
 			</form>
 		</div>

@@ -14,7 +14,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	header("Location: error.php");
 	exit();
 }
-
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
 ?>
 
 <!DOCTYPE html>
@@ -71,11 +75,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
               <strong><?php echo $actividad->getNombre(); ?></strong>
               <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
-              <a id="btn_editar" href="modificarActividad.php?idActividad=<?php echo $id; ?>" class="btn btn-primary" type="button"> Editar </a>
+              <a id="btn_editar" href="modificarActividad.php?lang=<?php echo $lang;?>&idActividad=<?php echo $id; ?>" class="btn btn-primary" type="button"><?php echo __('Editar',$lang);?> </a>
               <?php } ?>
               <?php if($_SESSION['rol'] == "deportista"){ ?>
 			  <form method="post" action="#">
-              <input id="btn_editar" class="btn btn-primary" type="submit" value="Reservar Plaza" name="ReservarPlaza">
+              <input id="btn_editar" class="btn btn-primary" type="submit" value="<?php echo __('Reservar Plaza',$lang);?>" name="ReservarPlaza">
               <?php if(isset($_POST['ReservarPlaza'])) $acontroler->reservarPlaza($id,$_SESSION['Dni']); ?>
               <?php } ?>
               </form>
@@ -84,19 +88,19 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
             <div class="contenido_pagina">
               <div class="info_actividad">
                 <div class="horario_actividad">
-                  <h1>Horario: <?php echo $actividad->getHorario(); ?> </h1>
+                  <h1><?php echo __('Horario',$lang);?>: <?php echo $actividad->getHorario(); ?> </h1>
                 </div>
                 <div class="lugar_actividad">
-                  <h1>Lugar: <?php echo $actividad->getLugar(); ?></h1>
+                  <h1><?php echo __('Lugar',$lang);?>: <?php echo $actividad->getLugar(); ?></h1>
                 </div>
                 <div class="tipo_actividad">
-                  <h1>Tipo de actividad: <?php echo $actividad->getTipoActividad(); ?></h1>
+                  <h1><?php echo __('Tipo de actividad',$lang);?>: <?php echo $actividad->getTipoActividad(); ?></h1>
                 </div>
                 <div class="num_plazas">
-                  <h1>Numero de plazas: <?php echo $actividad->getNumPlazas(); ?></h1>
+                  <h1><?php echo __('Numero de plazas',$lang);?>: <?php echo $actividad->getNumPlazas(); ?></h1>
                 </div>
 								<div class="num_plazas">
-                  <h1>Monitor de la actividad: <?php echo $actividad->getMonitor(); ?></h1>
+                  <h1><?php echo __('Monitor de la actividad',$lang);?>: <?php echo $actividad->getMonitor(); ?></h1>
                 </div>
               </div>
             </div>
