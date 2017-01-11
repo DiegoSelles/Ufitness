@@ -388,6 +388,29 @@ margin-bottom: 5px;
   background-color: #6f9946;
 }
 
+#btn_ver{
+  background-color: #F28F46;
+  width: 50px;
+  height: 30px;
+  font-size: 15px;
+  padding:5px;
+}
+
+#btn-ver:hover{
+   background-color: #F27D29;
+}
+
+.num_plazas_est{
+  display: flex;
+}
+
+.num_plazas_est a{
+  margin-left: 20px;
+
+}
+
+
+
 #btn_eliminar:hover{
   background-color: #F73224;
 }
