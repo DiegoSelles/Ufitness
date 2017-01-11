@@ -17,6 +17,22 @@ class controlador_Actividad{
 		return $this->actividadMapper->listarActividades();
 	}
 
+	public function listarActividadesInd (){
+		return $this->actividadMapper->listarActividadesInd();
+	}
+
+	public function listarActividadesGrupo (){
+		return $this->actividadMapper->listarActividadesGrupo();
+	}
+
+	public function listarActividadesPEF (){
+		return $this->actividadMapper->listarActividadesPEF();
+	}
+
+	public function listarActividadesTDU (){
+		return $this->actividadMapper->listarActividadesTDU();
+	}
+
 	public function getActividad ($idActividad){
 		return $this->actividadMapper->getActividad($idActividad);
 	}
@@ -97,6 +113,53 @@ class controlador_Actividad{
 		return $this->actividadMapper->reservar($idActividad,$usuarioActual);
 
 		}
+
+	/////////////// Estadisticas///////////////////////////
+	public function numeroActividades()
+	{
+		return $this->actividadMapper->numeroActividades();
+	}
+
+	public function numeroMedioPlazas()
+	{
+		return $this->actividadMapper->numeroMedioPlazas();
+	}
+
+	public function actividadMasSolicitada()
+	{
+		return $this->actividadMapper->actividadMasSolicitada();
+
+	}
+	public function actividadIndividual()
+	{
+		return $this->actividadMapper->actividadIndividual();
+
+	}
+	public function actividadGrupo()
+	{
+		return $this->actividadMapper->actividadGrupo();
+
+	}
+
+	public function actividadesPorTDU()
+	{
+		return $this->actividadMapper->actividadesPorTDU();
+	}
+
+	public function actividadesPorPEF()
+	{
+		return $this->actividadMapper->actividadesPorPEF();
+	}
+
+	public function actividadesHombres()
+	{
+
+	}
+
+	public function actividadesMujeres()
+	{
+
+	}
 
 }
 
