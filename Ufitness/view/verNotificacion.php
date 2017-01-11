@@ -14,6 +14,11 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
 	header("Location: error.php");
 	exit();
 }
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
 
 	$ncontroler = new controlador_Notificacion();
 

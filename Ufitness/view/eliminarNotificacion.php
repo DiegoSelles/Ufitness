@@ -17,6 +17,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
   exit();
 }
 
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+		   $lang="es";
+	   }
+
 ?>
 
 <html lang="en">
@@ -67,18 +73,18 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador"){
       <div id="contenido" class="container-fluid">
         <div class="titulo_seccion">
           <i class="fa fa-futbol-o" aria-hidden="true"></i>
-          <strong>¿Está seguro que quiere eliminar esta notificacion?</strong>
+          <strong><?php echo __('¿Está seguro que quiere eliminar esta notificacion?',$lang); ?></strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?controlador=controlador_Notificacion&amp;accion=deleteNotificacion" method="post" class="formulario">
-              <label>Título: <?php echo $notificacion->getTitulo(); ?></label>
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Notificacion&amp;accion=deleteNotificacion" method="post" class="formulario">
+              <label><?php echo __('Título',$lang); ?>: <?php echo $notificacion->getTitulo(); ?></label>
                <br/>
-              <label>Descripcion: <?php echo $notificacion->getDescripcion(); ?></label>
+              <label><?php echo __('Descripción',$lang); ?> : <?php echo $notificacion->getDescripcion(); ?></label>
                <br/>
               <input type="text" hidden="true" name="idNotificacion" value="<?php echo $id; ?>" />
               <div class="form_submit">
-                <input id="submit" class="btn btn-primary" type="submit" value="SI">
-                <a id="submit" href="adminIndex.php" class="btn btn-primary" type="button">NO</a>
+                <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('SI',$lang); ?>">
+                <a id="submit" href="adminIndex.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('NO',$lang); ?></a>
               </div>
           </form>
         </div>

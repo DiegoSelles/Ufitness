@@ -87,7 +87,7 @@ if (isset($_GET['lang'])) {
 
 						<div class="bloque_lista">
 							<div class="titulo_bloque">
-								<a href = "verNotificacion.php?idNotificacion=<?php echo $notificacion->getId(); ?>">
+								<a href = "verNotificacion.php?lang=<?php echo $lang; ?>&idNotificacion=<?php echo $notificacion->getId(); ?>">
 									<h1><?=$notificacion->getTitulo(); ?><h1>
 								</a>
 							</div>
@@ -137,7 +137,7 @@ if (isset($_GET['lang'])) {
 
 						<div class="bloque_lista">
 							<div class="titulo_bloque tit_bl">
-								<a href = "verNotificacion.php?idNotificacion=<?php echo $notificacion->getId(); ?>">
+								<a href = "verNotificacion.php?<?php echo $lang; ?>idNotificacion=<?php echo $notificacion->getId(); ?>">
 									<h1><?=$notificacion->getTitulo(); ?><h1>
 								</a>
 							</div>
