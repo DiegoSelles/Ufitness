@@ -58,7 +58,7 @@ class EjercicioMapper {
     , video='".$ejercicio->getVideo()."'
     WHERE idEjercicio='".$idEjercicio."'";
 		$connect->query($consulta);
-		header("Location: ../view/adminEjercicios.php");
+		
 	}
 
   public function eliminarEjercicio($ejercicio) {
