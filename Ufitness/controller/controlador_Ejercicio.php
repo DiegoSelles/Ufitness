@@ -166,7 +166,8 @@ class controlador_Ejercicio{
     }
 
     $ejercicio= new Ejercicio($nombre, $dniCreador, $tipo, $grupoMuscular, $maquina, $descripcion, $nombreImagen, $urlVideo);
-    return $ejercicioMapper->modificarEjercicio($ejercicio, $idEjercicio);
+    $ejercicioMapper->modificarEjercicio($ejercicio, $idEjercicio);
+    header("Location: ../view/adminEjercicios.php?lang=$lang");
   
   }
 
