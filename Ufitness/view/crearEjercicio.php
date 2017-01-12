@@ -89,7 +89,7 @@ if (isset($_GET['lang'])) {
 								<option value="Espalda"><?php echo __('Espalda',$lang); ?></option>
 						</select>
 						<label for="descripcion"><?php echo __('Descripción',$lang); ?>:</label>
-						<input type="text" name="descripcion" class="input"/>
+						<textarea name="descripcion" rows="5" cols="5"></textarea>
 						<label for="video"><?php echo __('Vídeo',$lang); ?>:</label>
 						<input type="text" name="urlYoutube" class="input"/>
 						<br/>

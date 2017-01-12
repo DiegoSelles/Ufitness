@@ -103,7 +103,7 @@ if (isset($_GET['lang'])) {
 														</a>
                           </div>
                           <div class="info_bloque">
-                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo substr($ejercicio->getDescripcion(),0,90); ?>...</p>
                             <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
                             <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
@@ -136,7 +136,7 @@ if (isset($_GET['lang'])) {
 														</a>
                           </div>
                           <div class="info_bloque">
-                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo substr($ejercicio->getDescripcion(),0,90); ?>...</p>
                             <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
                             <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
@@ -169,7 +169,7 @@ if (isset($_GET['lang'])) {
 
                           </div>
                           <div class="info_bloque">
-                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getNombre(); ?></p>
+                            <p> <?php echo __('Descripción',$lang); ?> : <?php echo substr($ejercicio->getDescripcion(),0,90); ?>...</p>
                             <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
                             <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                           </div>
