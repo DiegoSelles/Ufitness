@@ -85,10 +85,9 @@ if (isset($_GET['lang'])) {
               <?php echo __('Fecha Nacimiento',$lang); ?>: <input type="date" name="fecha" class="input" required="true" value="<?php echo $deportista->getFecha(); ?>"/>
               <?php echo "e-mail" ?>: <input type="text" name="email" value="<?php echo $deportista->getEmail(); ?>" class="input"/>
               <!--<?php echo  __('Contraseña',$lang); ?>:--> <input type="password" hidden = "true" name="password" value="<?php echo $deportista->getPassword(); ?>" class="input"/>
-              <label for="tipo"><?php echo __('Tipo Actual',$lang); ?> : <?php echo $deportista->getTipo(); ?>  </label>
               <?php echo __('Modificar Tipo Deportista',$lang); ?>: <select name="tipo" class="select">
-        			                                            <option value="tdu" selected>TDU</option>
-        			                                            <option value="pef">PEF</option>
+        			                                            <option value="tdu" <?php echo (($deportista->getTipo()=="tdu")?"selected":""); ?>>TDU</option>
+        			                                            <option value="pef" <?php echo (($deportista->getTipo()=="PEF")?"selected":""); ?>>PEF</option>
             																	           </select>
               <?php echo __('Riesgos',$lang); ?>: <textarea name="riesgos" rows="5" cols="20"><?php echo $deportista->getRiesgos(); ?> </textarea>
 							<div class="form_submit">
