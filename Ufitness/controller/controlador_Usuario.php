@@ -90,19 +90,17 @@ class controlador_Usuario{
 			     	try{
 			     		if (!$usuarioMapper->usuarioExiste($usuario->getDni()))
 			     		{
-				    //  		$usuario->comprobarDatos();
 				      		$usuarioMapper->guardarUsuario($usuario);
 				      		header("Location: ../view/adminEntrenadores.php?lang=$lang");
 						}
 						else
 						{
-							echo '<script language="javascript">alert("Ya existe un entrenador con el mismo DNI."); window.location.href="../view/adminEntrenadores.php?lang=$lang";</script>';
+							echo '<script language="javascript">alert("'.__('Ya existe un entrenador con el mismo DNI.',$lang).'"); window.location.href="../view/adminEntrenadores.php?lang=$lang";</script>';
 				      	}
 
 		      	}catch(ValidationException $ex)
 		      	{
 		      		$errors = $ex->getErrors();
-						//print_r($errors);
 		     	}
 			}
 		}

@@ -6,6 +6,7 @@ require_once("../model/EntrenamientoHasEjercicioMapper.php");
 require_once("../model/UsuarioMapper.php");
 require_once("../model/EjercicioMapper.php");
 require_once("../model/generadorPDF.php");
+require_once("../resources/languages.php");
 
 class controlador_Entrenamiento{
 
@@ -177,31 +178,6 @@ class controlador_Entrenamiento{
         }
       }
 
-      /*
-      try{
-	       //$usuario->comprobarDatos(); // if it fails, ValidationException
-         //$deportista->comprobarDatos();
-
-      	//#####
-      	if (!$usuarioMapper->usuarioExiste($deportista->getDni())){
-
-            $deportistaMapper->guardarDeportista($deportista);
-            $usuarioMapper->guardarUsuario($usuario);
-
-            header("Location: ../view/adminDeportistas.php");
-      	} else {
-
-      	  $errors = array();
-      	  $errors["dni"] = "El deportista ya existe";
-      	  print_r($errors);
-          //header("Location: ../view/error.php");
-      	}
-      }catch(ValidationException $ex) {
-	    // Get the errors array inside the exepction...
-	     $errors = $ex->getErrors();
-       print_r($errors);
-
-     }*/
     }
     header("Location: ../view/adminEntrenamientos.php?lang=$lang");
 
@@ -238,18 +214,17 @@ class controlador_Entrenamiento{
   }
 
     public function asignacionEntrenamiento($dni,$nombre){
+		if (isset($_GET['lang'])) {
+			$lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
 	  $entrenamientoMapper = new EntrenamientoMapper();
 	  $asignado = $entrenamientoMapper->asignarEntrenamiento($dni,$nombre);
-	  /*global $connect;
-	  $consulta = "SELECT idEntrenamiento FROM Entrenamiento WHERE nombre= '" .$nombre."'";
-	  $resultado = $connect->query($consulta);
-	  $entrenamiento = mysqli_fetch_assoc($resultado);
-	  $consult="INSERT INTO Entrenamiento_has_Deportista(Entrenamiento_idEntrenamiento,Deportista_DNI) VALUES('".$entrenamiento['idEntrenamiento']."','".$dni."')";
-	   */
 	  if($asignado){
-	    echo '<script language="javascript">alert("El entrenamiento ha sido asignado con exito");</script>';
+	    echo '<script language="javascript">alert("'.__('El entrenamiento ha sido asignado con exito',$lang).'");</script>';
 	  }else{
-		echo '<script language="javascript">alert("Este usuario ya tiene este entrenamiento asignado");</script>';
+		echo '<script language="javascript">alert("'.__('Este usuario ya tiene este entrenamiento asignado',$lang).'");</script>';
 	}
 
   }
@@ -274,7 +249,7 @@ class controlador_Entrenamiento{
 
     $entrenamientoMapper->ejerciciosRealizados($sesion);
 
-    header("Location: ../view/monitorizarEntrenamiento.php?idEntrenamiento=$idEntrenamiento&idEjercicio=$idEjercicio");
+    header("Location: ../view/monitorizarEntrenamiento.php?lang=$lang&idEntrenamiento=$idEntrenamiento&idEjercicio=$idEjercicio");
 
   }
 

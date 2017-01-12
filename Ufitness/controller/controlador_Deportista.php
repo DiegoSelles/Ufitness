@@ -19,7 +19,7 @@ class controlador_Deportista{
 
     $deportistaMapper = new DeportistaMapper();
     $usuarioMapper = new UsuarioMapper();
-
+    
     if (isset($_GET['lang'])) {
 		$lang = $_GET['lang'];
 	} else {
@@ -32,18 +32,15 @@ class controlador_Deportista{
       $usuario = new Usuario($_POST["nombre"],$_POST["email"],$_POST["password"],$_POST["fecha"],$_POST["dni"],"deportista");
 
       try{
-	       //$usuario->comprobarDatos(); // if it fails, ValidationException
-         //$deportista->comprobarDatos();
 
-      	//#####
       	if (!$usuarioMapper->usuarioExiste($deportista->getDni())){
 
             $deportistaMapper->guardarDeportista($deportista);
             $usuarioMapper->guardarUsuario($usuario);
 
-            echo '<script language="javascript">alert("Se ha creado el deportista."); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
+            echo '<script language="javascript">alert("'.__('Se ha creado el deportista.',$lang).'"); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
       	} else {
-      	  echo '<script language="javascript">alert("Ya existe un deportista con el mismo DNI."); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
+      	  echo '<script language="javascript">alert("'.__('Ya existe un deportista con el mismo DNI.',$lang).'"); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
 
       	}
       }catch(ValidationException $ex) {
@@ -72,13 +69,11 @@ class controlador_Deportista{
 	} else {
 		$lang = "es";
 	}
-
+	
     if (!isset($_POST["dni"])) {
       throw new Exception("id is mandatory");
     }
-    /*if (!isset($this->currentUser)) {
-      throw new Exception("Not in session. Editing posts requires login");
-    }*/
+
     $deportistadni = $_REQUEST["dni"];
     echo $deportistadni;
     $deportista = $deportistaMapper->buscarDni($deportistadni);
@@ -91,17 +86,6 @@ class controlador_Deportista{
     $deportistaMapper->eliminarDeportista($deportista);
     $usuarioMapper->eliminarUsuario($deportista->getDni());
 
-    // POST-REDIRECT-GET
-    // Everything OK, we will redirect the user to the list of posts
-    // We want to see a message after redirection, so we establish
-    // a "flash" message (which is simply a Session variable) to be
-    // get in the view after redirection.
-    //$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."),$post ->getTitle()));
-
-    // perform the redirection. More or less:
-    // header("Location: index.php?controller=posts&action=index")
-    // die();
-    //$this->view->redirect("posts", "index");
     header("Location: ../view/adminDeportistas.php?lang=$lang");
   }
 
@@ -125,14 +109,14 @@ class controlador_Deportista{
     $fecha_deportista = $_POST['fecha'];
     $password_deportista = $_POST['password'];
     $dniAntiguo = $_POST['dniAntiguo'];
-
+    
 
 
     $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$fecha_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
     $usuario = new Usuario($nombre_deportista,$email_deportista,$password_deportista,$fecha_deportista,$dni_deportista,"deportista");
     $deportistaMapper->modificarDeportista($deportista,$dniAntiguo);
     $usuarioMapper->modificarUsuario($usuario,$dniAntiguo);
-    echo '<script language="javascript">alert("Se ha modificado el deportista."); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
+    echo '<script language="javascript">alert("'.__('Se ha modificado el deportista.',$lang).'"); window.location.href="../view/adminDeportistas.php?lang='.$lang.'";</script>';
   }
 
 }
