@@ -18,7 +18,7 @@ class ActividadMapper {
 
 	 public function listarActividadesInd (){
 		global $connect;
-		$consulta = $connect->query("SELECT * FROM actividad where tipoAct='Individual'");
+		$consulta = $connect->query("SELECT * FROM Actividad where tipoAct='Individual'");
 		$listaActividades = array();
 		while ($actual = mysqli_fetch_assoc($consulta)) {
 
@@ -31,7 +31,7 @@ class ActividadMapper {
 
 	public function listarActividadesGrupo (){
 		global $connect;
-		$consulta = $connect->query("SELECT * FROM actividad where tipoAct='Grupo'");
+		$consulta = $connect->query("SELECT * FROM Actividad where tipoAct='Grupo'");
 		$listaActividades = array();
 		while ($actual = mysqli_fetch_assoc($consulta)) {
 
@@ -44,7 +44,7 @@ class ActividadMapper {
 
 	public function listarActividadesPEF (){
 		global $connect;
-		$consulta = $connect->query("SELECT * FROM reserva,deportista,actividad WHERE tipoDep='PEF' and Deportista_Usuario_Dni=DNI and actividad.idActividad=reserva.Actividad_idActividad");
+		$consulta = $connect->query("SELECT * FROM Reserva,Deportista,Actividad WHERE tipoDep='PEF' and Deportista_Usuario_Dni=DNI and Actividad.idActividad=Reserva.Actividad_idActividad");
 		$listaActividades = array();
 		while ($actual = mysqli_fetch_assoc($consulta)) {
 
@@ -57,7 +57,7 @@ class ActividadMapper {
 
 	public function listarActividadesTDU (){
 		global $connect;
-		$consulta = $connect->query("SELECT * FROM reserva,deportista,actividad WHERE tipoDep='TDU' and Deportista_Usuario_Dni=DNI and actividad.idActividad=reserva.Actividad_idActividad");
+		$consulta = $connect->query("SELECT * FROM Reserva,Deportista,Actividad WHERE tipoDep='TDU' and Deportista_Usuario_Dni=DNI and Actividad.idActividad=Reserva.Actividad_idActividad");
 		$listaActividades = array();
 		while ($actual = mysqli_fetch_assoc($consulta)) {
 
@@ -173,7 +173,7 @@ class ActividadMapper {
 	public function numeroActividades()
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(idActividad) AS TOTAL FROM actividad";
+		$consulta = "SELECT COUNT(idActividad) AS TOTAL FROM Actividad";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["TOTAL"];
@@ -184,7 +184,7 @@ class ActividadMapper {
 	public function numeroMedioPlazas()
 	{
 		global $connect;
-		$consulta = "SELECT AVG(numPlazas) AS MEDIA FROM actividad";
+		$consulta = "SELECT AVG(numPlazas) AS MEDIA FROM Actividad";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["MEDIA"];
@@ -196,7 +196,7 @@ class ActividadMapper {
 	public function actividadMasSolicitada()
 	{
 		global $connect;
-		$consulta = "SELECT nombre,MAX(plazas_ocupadas) AS SOLICITADA FROM reserva,actividad";
+		$consulta = "SELECT nombre,MAX(plazas_ocupadas) AS SOLICITADA FROM Reserva,Actividad";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["nombre"];
@@ -208,7 +208,7 @@ class ActividadMapper {
 	public function actividadIndividual()
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(tipoAct) AS INDIVIDUAL FROM `actividad` WHERE tipoAct='Individual'";
+		$consulta = "SELECT COUNT(tipoAct) AS INDIVIDUAL FROM `Actividad` WHERE tipoAct='Individual'";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["INDIVIDUAL"];
@@ -220,7 +220,7 @@ class ActividadMapper {
 	public function actividadGrupo()
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(tipoAct) AS GRUPO FROM `actividad` WHERE tipoAct='Grupo'";
+		$consulta = "SELECT COUNT(tipoAct) AS GRUPO FROM `Actividad` WHERE tipoAct='Grupo'";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["GRUPO"];
@@ -231,7 +231,7 @@ class ActividadMapper {
 	public function actividadesPorTDU()
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(Deportista_Usuario_Dni) AS TOTAL, tipoDep FROM reserva,deportista WHERE tipoDep='TDU' and Deportista_Usuario_Dni=DNI";
+		$consulta = "SELECT COUNT(Deportista_Usuario_Dni) AS TOTAL, tipoDep FROM Reserva,Deportista WHERE tipoDep='TDU' and Deportista_Usuario_Dni=DNI";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["TOTAL"];
@@ -241,7 +241,7 @@ class ActividadMapper {
 	public function actividadesPorPEF()
 	{
 		global $connect;
-		$consulta = "SELECT COUNT(Deportista_Usuario_Dni) AS TOTAL, tipoDep FROM reserva,deportista WHERE tipoDep='PEF' and Deportista_Usuario_Dni=DNI";
+		$consulta = "SELECT COUNT(Deportista_Usuario_Dni) AS TOTAL, tipoDep FROM Reserva,Deportista WHERE tipoDep='PEF' and Deportista_Usuario_Dni=DNI";
 		$resultado = $connect->query($consulta);
 		while ($row = mysqli_fetch_assoc($resultado)) {
          	$res = $row["TOTAL"];
