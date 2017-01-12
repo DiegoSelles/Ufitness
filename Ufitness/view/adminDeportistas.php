@@ -78,16 +78,6 @@ if (isset($_GET['lang'])) {
                 <div class="titulo_lista">
                   <h1><?php echo __('Lista de Deportistas',$lang); ?></h1>
                 </div>
-                <div id="custom-search-input">
-                  <div class="input-group col-md-12">
-                      <input type="text" class="form-control input-lg" placeholder=<?php echo __('Buscar Deportista',$lang); ?> />
-                      <span class="input-group-btn">
-                          <button class="btn btn-info btn-lg" type="button">
-                              <i class="glyphicon glyphicon-search"></i>
-                          </button>
-                      </span>
-                  </div>
-                </div>
                 <div class="anadir">
                   <a id="btn_anadir" href="../view/crearDeportista.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Registrar Deportista',$lang); ?></a>
                 </div>

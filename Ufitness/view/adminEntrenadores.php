@@ -94,11 +94,6 @@ if (isset($_GET['lang'])) {
                 <div class="titulo_lista">
                   <h1><?php echo __('Lista de Entrenadores',$lang); ?> </h1>
                 </div>
-                <div id="custom-search-input">
-                  <div class="input-group col-md-12">
-
-                  </div>
-                </div>
                 <div class="anadir">
                   <a id="btn_anadir"  href="../view/crearEntrenador.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Añadir Entrenador',$lang); ?></a>
                 </div>

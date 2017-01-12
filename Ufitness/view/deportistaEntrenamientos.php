@@ -84,16 +84,7 @@ if (isset($_GET['lang'])) {
                     <a id="btn_anadir" href="../view/verHistorialEntrenamientos.php?lang=<?php echo $lang; ?>" class="btn btn-primary" type="button"><?php echo __('Historial de Entrenamientos',$lang); ?></a>
                   </div>
 
-                  <div id="custom-search-input">
-                    <div class="input-group col-md-12">
-                        <input type="text" class="form-control input-lg" placeholder="<?php echo __('Buscar Entrenamiento',$lang); ?>'">
-                        <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                  </div>
+                  
 				</div>
 
             <div class="body_pagina">
