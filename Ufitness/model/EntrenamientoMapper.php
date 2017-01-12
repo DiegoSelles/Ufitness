@@ -87,8 +87,8 @@ class EntrenamientoMapper {
 	  public static function  ejerciciosRealizados(Sesion $sesion)
   {
       global $connect;
-      $consulta= "INSERT INTO Sesion(Deportista_Usuario_Dni,Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento,Entrenamiento_has_Ejercicio_Ejercicio_idEjercicio,anotaciones,fecha) VALUES ('". $sesion->getDniDeportista() ."',
-       '". $sesion->getidHasEntrenamiento() ."', '". $sesion->getIdHasEjercicio() ."', '". $sesion->getAnotaciones() ."', '". $sesion->getFechaSesion() ."')";
+      $consulta= "INSERT INTO Sesion(Deportista_Usuario_Dni,Entrenamiento_has_Ejercicio_Entrenamiento_idEntrenamiento,Entrenamiento_has_Ejercicio_Ejercicio_idEjercicio,fecha,anotaciones) VALUES ('". $sesion->getDniDeportista() ."',
+       '". $sesion->getidHasEntrenamiento() ."', '". $sesion->getIdHasEjercicio() ."','". $sesion->getFechaSesion() ."', '". $sesion->getAnotaciones() ."')";
       $connect->query($consulta);
 
       //Esto lo hago para mirar si una sesion tiene todos los ejercicios realizados y así marcar el entrenamiento como completada
