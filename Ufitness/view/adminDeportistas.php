@@ -134,7 +134,7 @@ if (isset($_GET['lang'])) {
 													 </div>
 													 <div class="opciones_bloque">
 														 <a id="btn_edit_bloque" href="modificarDeportista.php?lang =<?php echo $lang; ?>&dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Editar',$lang); ?>" type="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
-														 <a id="btn_asignar" href="asignarEntrenamiento.php?lang=<?php echo $lang; ?>&dniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Asignar Entrenamiento',$lang); ?>" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+														 <a id="btn_asignar" href="asignarEntrenamiento.php?lang=<?php echo $lang; ?>&DniDeportista=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Asignar Entrenamiento',$lang); ?>" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 														 <a id="btn_eliminar" href="eliminarDeportista.php?lang=<?php echo $lang; ?>&dni=<?php echo $deportista->getDni(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 													 </div>
 												 </div>
