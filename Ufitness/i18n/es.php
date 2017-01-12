@@ -217,7 +217,7 @@ $texts = array(
 	//Asignar Entrenamiento
 	'Training assignment' => 'Asignacion de entrenamientos',
 	'Asignar' => 'Assign',
-	'Crear entrenamiento' => 'Create trainer'
+	'Crear entrenamiento' => 'Create training'
 );
 ?>
 
