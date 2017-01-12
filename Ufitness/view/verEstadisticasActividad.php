@@ -10,6 +10,12 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
     header("Location: error.php");
     exit();
 }
+
+if (isset($_GET['lang'])) {
+     $lang = $_GET['lang'];
+       }else{
+           $lang="es";
+       }
 ?>
 
 <!DOCTYPE html>
@@ -108,17 +114,21 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
         <div id="contenido" class="container-fluid">
             <div class="titulo_seccion">
               <i class="fa fa-futbol-o" aria-hidden="true"></i>
-              <strong>Estadísticas de Actividades</strong>
+              <strong><?php echo __('Estadísticas de Actividades',$lang);?></strong>
             </div>
             <div class="contenido_pagina">
               <div class="info_actividad">
                 <div class="num_plazas">
-                    <h4>Actividad más popular: <strong><?php echo $actividadPopular;?></strong> </h4>
+                    <h4><?php echo __('Actividad más popular',$lang);?>:<strong><?php echo $actividadPopular;?></strong> </h4>
                 </div>
-                <div class="num_plazas">
-                  <h4>Actividades Individuales: <strong><?php echo $actividadIndividual;?></strong></h4>
-                  <button onclick="mostrarInd()">ver</button>
-                  <button onclick="cerrarInd()">cerrar</button>
+                <div class="num_plazas_est">
+                  <h4><?php echo __('Actividades Individuales',$lang);?>:<strong><?php echo $actividadIndividual;?></strong></h4>
+                  <a onclick="mostrarInd();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('ver',$lang);?>
+                    </a>
+                    <a onclick="cerrarInd();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('cerrar',$lang);?>
+                    </a>
                 </div>
                 <div class="num_plazas" id="ocultoI" style="display:none">
                     <?php
@@ -132,10 +142,14 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                         </ul>
                     <?php } ?>
                 </div>
-                <div class="num_plazas">
-                    <h4>Actividades en grupo: <strong><?php echo $actividadGrupo;?></strong></h4>
-                <button onclick="mostrarGrupo()">ver</button>
-                <button onclick="cerrarGrupo()">cerrar</button>
+                <div class="num_plazas_est">
+                    <h4><?php echo __('Actividades en grupo',$lang);?>:<strong><?php echo $actividadGrupo;?></strong></h4>
+                 <a onclick="mostrarGrupo();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('ver',$lang);?>
+                    </a>
+                    <a onclick="cerrarGrupo();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('cerrar',$lang);?>
+                    </a>
                 </div>
                 <div class="num_plazas" id="ocultoG" style="display:none">
                     <?php
@@ -149,11 +163,17 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                          </ul>
                     <?php } ?>
                 </div>
-                <div class="num_plazas">
-                  <h4>Actividades por tipo de deportista:</h4>
+               
+                  <h4><?php echo __('Actividades por tipo de deportista',$lang);?>:</h4>
+                   <div class="num_plazas_est">
                   <h4>PEF: <strong><?php echo $actividadPEF;?></strong></h4> 
-                    <button onclick="mostrarPEF()">ver</button>
-                    <button onclick="cerrarPEF()">cerrar</button>
+                     <a onclick="mostrarPEF();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('ver',$lang);?>
+                    </a>
+                    <a onclick="cerrarPEF();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('cerrar',$lang);?>
+                    </a>
+                    </div>
                     <div class="num_plazas" id="ocultoP" style="display:none">
                     <?php
                         $arrayActividades = $acontroler->listarActividadesPEF();
@@ -166,9 +186,15 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                          </ul>
                     <?php } ?>
                 </div>
+                 <div class="num_plazas_est">
                   <h4>TDU: <strong><?php echo $actividadTDU;?></strong></h4>
-                    <button onclick="mostrarTDU()">ver</button>
-                    <button onclick="cerrarTDU()">cerrar</button>
+                    <a onclick="mostrarTDU();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('ver',$lang);?>
+                    </a>
+                    <a onclick="cerrarTDU();" id="btn_ver" class="btn btn-primary " title="<?php echo __('Visto',$lang); ?>" type="button">
+                      <?php echo __('cerrar',$lang);?>
+                    </a>
+                    </div>
                     <div class="num_plazas" id="ocultoT" style="display:none">
                     <?php
                         $arrayActividades = $acontroler->listarActividadesTDU();
@@ -183,10 +209,10 @@ if($_SESSION['rol'] != "administrador" && $_SESSION['rol'] != "entrenador" && $_
                 </div>
                 </div>
                 <div class="num_plazas">
-                  <h4>Total actividades: <strong><?php echo $numeroActividades;?></strong> </h4>
+                  <h4><?php echo __('Total actividades',$lang);?>: <strong><?php echo $numeroActividades;?></strong> </h4>
                 </div>
                 <div class="num_plazas">
-                  <h4>Media de plazas: <strong><?php echo $numeroMedioPlazas;?></strong></h4>
+                  <h4><?php echo __('Media de plazas',$lang);?> : <strong><?php echo $numeroMedioPlazas;?></strong></h4>
                 </div>
                 
               </div>
