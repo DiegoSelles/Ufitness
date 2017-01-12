@@ -116,7 +116,6 @@ class controlador_Notificacion{
 		$notificacionMapper = new NotificacionMapper();
 		$notificacionHDMapper = new NotificacionHasDeportistaMapper();
 		$notificacionMapper->delete($idNotificacion);
-		$notificacionHDMapper->delete($idNotificacion);
 		header ("Location: ../view/adminIndex.php?lang=$lang");
 
 	}
