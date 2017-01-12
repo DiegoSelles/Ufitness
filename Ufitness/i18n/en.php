@@ -172,7 +172,7 @@ $texts = array(
 	'Añadir Entrenador' => 'Add trainer',
 	'Edad' => 'Age',
 	'modificar' => 'Edit',
-	'Ya existe un deportista con el mismo DNI.' => 'There is already an trainer with the same DNI.'
+	'Ya existe un deportista con el mismo DNI.' => 'There is already an trainer with the same DNI.',
 	
 	//Crear entrenador
 	'Nuevo Entrenador' => 'New trainer',
@@ -203,7 +203,7 @@ $texts = array(
 	'Nuevo Deportista' => 'New Athletic',
 	'Tipo Deportista' => 'Athletic type',
 	'Registrar' => 'Register',
-	'Se ha creado el deportista.' =>'Athletic has been created.',
+	'Se ha creado el deportista.' => 'Athletic has been created.',
 	'Ya existe un deportista con el mismo DNI.' => 'There is already an athletic with the same DNI.',
 	
 	//eliminar deportista
