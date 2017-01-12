@@ -19,7 +19,7 @@ class controlador_Deportista{
 
     $deportistaMapper = new DeportistaMapper();
     $usuarioMapper = new UsuarioMapper();
-    
+
     if (isset($_GET['lang'])) {
 		$lang = $_GET['lang'];
 	} else {
@@ -72,7 +72,7 @@ class controlador_Deportista{
 	} else {
 		$lang = "es";
 	}
-	
+
     if (!isset($_POST["dni"])) {
       throw new Exception("id is mandatory");
     }
@@ -125,7 +125,7 @@ class controlador_Deportista{
     $fecha_deportista = $_POST['fecha'];
     $password_deportista = $_POST['password'];
     $dniAntiguo = $_POST['dniAntiguo'];
-    
+
 
 
     $deportista= new Deportista($nombre_deportista, $email_deportista, $password_deportista,$fecha_deportista,$dni_deportista,"deportista", $riesgos_deportista,$tipo_deportista);
