@@ -134,6 +134,8 @@ $texts = array(
 	'Guardar' => 'Save',
 	'Borrar' => 'Delete',
 	'Cancelar' => 'Cancel',
+	'El entrenamiento ha sido asignado con exito' => 'Training has been successfully assigned',
+	'Este usuario ya tiene este entrenamiento asignado' => 'User already has this assigned training',
 	
 	//adminEjercicios
 	'Lista de Ejercicios' => 'Exercises List',
@@ -141,7 +143,7 @@ $texts = array(
 	'Añadir Ejercicio' => 'Add Exercise',
 	'Piernas' => 'Legs',
 	'Brazos' => 'Arms',
-	'Espalda' => 'back',
+	'Espalda' => 'Back',
 	
 	//Crear Ejercicio
 	'Nuevo Ejercicio' => 'New Exercise',
@@ -170,6 +172,7 @@ $texts = array(
 	'Añadir Entrenador' => 'Add trainer',
 	'Edad' => 'Age',
 	'modificar' => 'Edit',
+	'Ya existe un deportista con el mismo DNI.' => 'There is already an trainer with the same DNI.'
 	
 	//Crear entrenador
 	'Nuevo Entrenador' => 'New trainer',
@@ -187,7 +190,7 @@ $texts = array(
 	//Modificar entrenador
 	'Modificar Entrenador' => 'Edit trainer',
 	'Guardar Cambios' => 'Save changes',
-	'Volver' => 'Back',
+	'Volver' => 'back',
 	
 	//adminDeportistas
 	'Lista de Deportistas' => 'Trainers Athletics',
@@ -200,6 +203,8 @@ $texts = array(
 	'Nuevo Deportista' => 'New Athletic',
 	'Tipo Deportista' => 'Athletic type',
 	'Registrar' => 'Register',
+	'Se ha creado el deportista.' =>'Athletic has been created.',
+	'Ya existe un deportista con el mismo DNI.' => 'There is already an athletic with the same DNI.',
 	
 	//eliminar deportista
 	'¿Está seguro que quiere eliminar a este deportista?' => 'Are you sure that do you want remove this athletic?',
@@ -208,6 +213,7 @@ $texts = array(
 	'Modificar Deportista' => 'Edit Athletic',
 	'Tipo Actual' => 'Actual Type',
 	'Modificar Tipo Deportista' => 'Edit Athletic type',
+	'Se ha modificado el deportista.' => 'Athletic has been modify.',
 	
 	//Asignar entrenamiento
 	'Asignacion de entrenamientos' => 'Training assignment',
