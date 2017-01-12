@@ -97,8 +97,6 @@ class controlador_Notificacion{
 		if (isset($_POST["idNotificacion"])) {
 
 			$idNotificacion= $_REQUEST["idNotificacion"];
-			var_dump($idNotificacion);
-			die;
 			$notificacionHasDeportistaMapper->notificacionVista($idNotificacion,$_SESSION["Dni"]);
 
 	  }
