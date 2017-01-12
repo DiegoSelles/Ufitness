@@ -41,7 +41,7 @@ class DeportistaMapper {
     $resultado = $connect->query($consulta);
 		$listaDeportistas = array();
 		while ($actual = mysqli_fetch_assoc($resultado)) {
-        $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["fecha_nacimiento"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"],$actual["historialEntrenamiento"]);
+        $deportista = new Deportista($actual["Nombre"],$actual["email"],$actual["password"],$actual["fecha_nacimiento"],$actual["DNI"],$actual["rol"],$actual["riesgos"],$actual["tipoDep"]);
 				array_push($listaDeportistas, $deportista);
 		}
 		return $listaDeportistas;
@@ -60,7 +60,7 @@ class DeportistaMapper {
     $resultado = mysqli_fetch_assoc($res);
 
     if($resultado != null) {
-      return new Deportista($resultado["Nombre"],$resultado["email"],$resultado["password"],$resultado["fecha_nacimiento"],$resultado["Dni"],$resultado["rol"],$resultado["riesgos"],$resultado["tipoDep"],$resultado["historialEntrenamiento"]);
+      return new Deportista($resultado["Nombre"],$resultado["email"],$resultado["password"],$resultado["fecha_nacimiento"],$resultado["Dni"],$resultado["rol"],$resultado["riesgos"],$resultado["tipoDep"]);
     } else {
       return NULL;
     }

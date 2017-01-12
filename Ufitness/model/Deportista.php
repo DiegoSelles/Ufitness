@@ -4,15 +4,13 @@ require_once("../resources/ValidationException.php");
 class Deportista extends Usuario {
 
 	public $riesgos;
-	public $historialEntrenamiento=NULL;
 	public $tipo;
 
-	function __construct($nombre,$email,$password,$edad,$dni,$rol,$riesgos,$tipoDeportista,$historialentrenamiento=NULL)
+	function __construct($nombre,$email,$password,$edad,$dni,$rol,$riesgos,$tipoDeportista)
 	{
 		parent::__construct($nombre,$email,$password,$edad,$dni,$rol);
 		$this ->riesgos = $riesgos;
 		$this ->tipo = $tipoDeportista;
-		$this ->historialEntrenamiento = $historialentrenamiento;
 	}
 
 	public function getRiesgos (){
@@ -21,14 +19,6 @@ class Deportista extends Usuario {
 
 	public function setRiesgos ($riesgos){
 		$this ->riesgos = $riesgos;
-	}
-
-	public function getHistorialEntrenamiento (){
-		return $this ->historialEntrenamiento;
-	}
-
-	public function setHistorialEntrenamiento ($historialEntrenamiento){
-		$this ->historialEntrenamiento = $historialEntrenamiento;
 	}
 
 	public function getTipo (){
