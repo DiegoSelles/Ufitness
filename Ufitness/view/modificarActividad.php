@@ -78,14 +78,14 @@ if (isset($_GET['lang'])) {
   			<form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Actividad&amp;accion=modificarActividad" method="post" class="formulario">
               <label for="nombre"><?php echo __('Nombre Actividad',$lang);?>: </label>
               <input type="text" name="nombre" value="<?php echo $actividad->getNombre(); ?>" class="input" required="true"/>
-              <input type="text" name="id" hidden="True" value =<?php echo $idActividad ?> />
-              <label for="monitor"><?php echo __('Monitor actual',$lang);?> : <?php echo $actividad->getMonitor(); ?> </label>
+              <input type="text" name="id" hidden="True" value ="<?php echo $idActividad ?>" />
               <?php $entrenadores = $ucontroler->listarEntrenadores(); ?>
               <label for="monitor"><?php echo __('Modificar monitor',$lang);?> :</label>
               <select name="monitor" class="select">
                 <?php foreach ($entrenadores as $entrenador) { ?>
                   <!-- Parece que funciona el option pero no se ven los nobmres de los entrenadores -->
-                  <option value="<?php echo $entrenador->getNombre(); ?>"><?php echo $entrenador->getNombre(); ?></option>
+		     <option value="<?php echo $entrenador->getNombre(); ?>" <?php echo (($entrenador->getNombre()==$actividad->getMonitor())?"selected":""); ?>><?php echo $entrenador->getNombre(); ?></option>
+
                 <?php }?>
 			  </select>
               <label for="horario"><?php echo __('Horario',$lang);?>:</label>
