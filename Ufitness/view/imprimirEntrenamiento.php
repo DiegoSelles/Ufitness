@@ -80,7 +80,7 @@ if (isset($_GET['lang'])) {
           <strong><?php echo __('Imprimir Entrenamiento',$lang); ?> </strong>
         </div>
         <div >
-          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&controlador=controlador_Entrenamiento&amp;accion=imprimirEntrenamiento" method="post" class="formulario">
+          <form action="../controller/controlador.php?lang=<?php echo $lang; ?>&amp;controlador=controlador_Entrenamiento&amp;accion=imprimirEntrenamiento" method="post" class="formulario">
               <label> <?php echo __('Nombre',$lang); ?> : <?php echo $entrenamiento->getNombre(); ?></label>
                <br/>
               <label> <?php echo __('Duración',$lang); ?> : <?php echo $entrenamiento->getDuracion(); ?></label>
@@ -101,7 +101,7 @@ if (isset($_GET['lang'])) {
                   </div>
                   <div class="info_bloque">
                     <p> <?php echo __('Descripción',$lang); ?> : <?php echo $ejercicio->getDescripcion(); ?></p>
-                    
+
                     <p> <?php echo __('Máquina',$lang); ?> : <?php echo $ejercicio->getMaquina(); ?></p>
                     <p> <?php echo __('Tipo',$lang); ?> : <?php echo $ejercicio->getTipoEjercicio(); ?></p>
                     <p> <?php echo __('Series',$lang); ?> X <?php echo __('Repeticion',$lang); ?> : <?php echo $entHasEjer->getSxR(); ?></p>
@@ -113,11 +113,10 @@ if (isset($_GET['lang'])) {
 
               <input type="text" hidden="true" name="id" value="<?php echo $id; ?>" />
               <input type="text" hidden="true" name="idEjer" value="<?php echo $ejercicio->getIdEjercicio() ?>" />
-              <
               <div class="form_submit">
                 <input id="submit" class="btn btn-primary" type="submit" value="<?php echo __('Imprimir Entrenamiento',$lang); ?>">
               </div>
-				
+
           </form>
         </div>
       </div>
@@ -132,4 +131,3 @@ if (isset($_GET['lang'])) {
 </body>
 
 </html>
-

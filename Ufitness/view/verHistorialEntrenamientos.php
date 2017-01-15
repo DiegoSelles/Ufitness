@@ -79,17 +79,6 @@ if (isset($_GET['lang'])) {
                   <div class="titulo_lista">
                     <h1><?php echo __('Historial de Entrenamientos',$lang); ?> </h1>
                   </div>
-
-                  <div id="custom-search-input">
-                    <div class="input-group col-md-12">
-                        <input type="text" class="form-control input-lg" placeholder="<?php echo __('Buscar Entrenamiento',$lang); ?>">
-                        <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                  </div>
 				</div>
 
             <div class="body_pagina">

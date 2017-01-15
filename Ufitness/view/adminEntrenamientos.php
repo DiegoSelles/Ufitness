@@ -99,7 +99,7 @@ if (isset($_GET['lang'])) {
 
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-                        <a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+                        <a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&amp;idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
@@ -111,8 +111,8 @@ if (isset($_GET['lang'])) {
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
 
                       <div class="opciones_bloque">
-						<a id="btn_imprimir" href="imprimirEntrenamiento.php?lang=<?php echo $lang; ?>&idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
-						<a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<a id="btn_imprimir" href="imprimirEntrenamiento.php?lang=<?php echo $lang; ?>&amp;idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
+						<a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&amp;idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					  <?php } ?>
 					  </div>
                   </div>
@@ -133,7 +133,7 @@ if (isset($_GET['lang'])) {
 					<ul>
                     <div class="bloque_lista">
                       <div class="titulo_bloque">
-						<a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+						<a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&amp;idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 							<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 						</a>
                       </div>
@@ -144,8 +144,8 @@ if (isset($_GET['lang'])) {
 
                       <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                       <div class="opciones_bloque">
-						  <a id="btn_imprimir" href="imprimirEntrenamiento?lang=<?php echo $lang; ?>&idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
-                          <a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						  <a id="btn_imprimir" href="imprimirEntrenamiento.php?lang=<?php echo $lang; ?>&amp;idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
+                          <a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&amp;idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       </div>
                       <?php } ?>
                     </div>
@@ -168,7 +168,7 @@ if (isset($_GET['lang'])) {
 			<ul>
             <div class="bloque_lista">
 				<div class="titulo_bloque">
-					<a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
+					<a href="verEntrenamiento.php?lang=<?php echo $lang; ?>&amp;idEntrenamiento=<?php echo $entrenamiento->getId(); ?>">
 						<h1><?php echo $entrenamiento->getNombre(); ?></h1>
 					</a>
                  </div>
@@ -178,8 +178,8 @@ if (isset($_GET['lang'])) {
                  </div>
                      <?php if($_SESSION['rol'] == "administrador"  || $_SESSION['rol'] == "entrenador" ){ ?>
                  <div class="opciones_bloque">
-					 <a id="btn_imprimir" href="imprimirEntrenamiento?lang=<?php echo $lang; ?>&idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
-                    <a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+					 <a id="btn_imprimir" href="imprimirEntrenamiento.php?lang=<?php echo $lang; ?>&amp;idEnt=<?php echo $entrenamiento->getId();?>" class="btn btn-primary" title="<?php echo __('Imprimir',$lang); ?>" type="button"><i class="fa fa-print" aria-hidden="true"></i></a>
+                    <a id="btn_eliminar" href="eliminarEntrenamiento.php?lang=<?php echo $lang ?>&amp;idEnt=<?php echo $entrenamiento->getId(); ?>" class="btn btn-primary" title="<?php echo __('Eliminar',$lang); ?>" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                  </div>
                      <?php } ?>
                  </div>
