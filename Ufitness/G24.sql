@@ -18,6 +18,9 @@ DROP SCHEMA IF EXISTS `G24` ;
 CREATE SCHEMA IF NOT EXISTS `G24` DEFAULT CHARACTER SET utf8 ;
 USE `G24` ;
 
+
+GRANT ALL PRIVILEGES ON G24.* TO 'root'@'localhost' IDENTIFIED by 'root';
+
 -- -----------------------------------------------------
 -- Table `G24`.`Usuario`
 -- -----------------------------------------------------
